@@ -34,17 +34,17 @@
             this.openProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openNewSPIsFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateSPICardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtProjectLocation = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.TxtProjectName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.TxtProjModified = new System.Windows.Forms.TextBox();
-            this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openNewSPIsFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateSPICardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TxtProjectName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -75,28 +75,51 @@
             // newProjectToolStripMenuItem
             // 
             this.newProjectToolStripMenuItem.Name = "newProjectToolStripMenuItem";
-            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
             this.newProjectToolStripMenuItem.Text = "New Project";
             this.newProjectToolStripMenuItem.Click += new System.EventHandler(this.newProjectToolStripMenuItem_Click);
             // 
             // openProjectToolStripMenuItem
             // 
             this.openProjectToolStripMenuItem.Name = "openProjectToolStripMenuItem";
-            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
             this.openProjectToolStripMenuItem.Text = "Open Project";
             this.openProjectToolStripMenuItem.Click += new System.EventHandler(this.openProjectToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(207, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(161, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // projectToolStripMenuItem
+            // 
+            this.projectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openNewSPIsFormToolStripMenuItem,
+            this.updateSPICardToolStripMenuItem});
+            this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
+            this.projectToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
+            this.projectToolStripMenuItem.Text = "Project";
+            // 
+            // openNewSPIsFormToolStripMenuItem
+            // 
+            this.openNewSPIsFormToolStripMenuItem.Name = "openNewSPIsFormToolStripMenuItem";
+            this.openNewSPIsFormToolStripMenuItem.Size = new System.Drawing.Size(216, 24);
+            this.openNewSPIsFormToolStripMenuItem.Text = "Open New SPIs Form";
+            this.openNewSPIsFormToolStripMenuItem.Click += new System.EventHandler(this.openNewSPIsFormToolStripMenuItem_Click);
+            // 
+            // updateSPICardToolStripMenuItem
+            // 
+            this.updateSPICardToolStripMenuItem.Name = "updateSPICardToolStripMenuItem";
+            this.updateSPICardToolStripMenuItem.Size = new System.Drawing.Size(216, 24);
+            this.updateSPICardToolStripMenuItem.Text = "Update SPI Card";
+            this.updateSPICardToolStripMenuItem.Click += new System.EventHandler(this.updateSPICardToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -148,25 +171,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General";
             // 
-            // label2
+            // TxtProjModified
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(19, 68);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 18);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Project Name*";
-            // 
-            // TxtProjectName
-            // 
-            this.TxtProjectName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TxtProjModified.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtProjectName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtProjectName.Location = new System.Drawing.Point(139, 62);
-            this.TxtProjectName.Name = "TxtProjectName";
-            this.TxtProjectName.Size = new System.Drawing.Size(714, 24);
-            this.TxtProjectName.TabIndex = 4;
+            this.TxtProjModified.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtProjModified.Location = new System.Drawing.Point(139, 97);
+            this.TxtProjModified.Name = "TxtProjModified";
+            this.TxtProjModified.Size = new System.Drawing.Size(714, 24);
+            this.TxtProjModified.TabIndex = 6;
             // 
             // label3
             // 
@@ -178,38 +191,25 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Last modified on:";
             // 
-            // TxtProjModified
+            // TxtProjectName
             // 
-            this.TxtProjModified.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TxtProjectName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtProjModified.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtProjModified.Location = new System.Drawing.Point(139, 97);
-            this.TxtProjModified.Name = "TxtProjModified";
-            this.TxtProjModified.Size = new System.Drawing.Size(714, 24);
-            this.TxtProjModified.TabIndex = 6;
+            this.TxtProjectName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtProjectName.Location = new System.Drawing.Point(139, 62);
+            this.TxtProjectName.Name = "TxtProjectName";
+            this.TxtProjectName.Size = new System.Drawing.Size(714, 24);
+            this.TxtProjectName.TabIndex = 4;
             // 
-            // projectToolStripMenuItem
+            // label2
             // 
-            this.projectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openNewSPIsFormToolStripMenuItem,
-            this.updateSPICardToolStripMenuItem});
-            this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
-            this.projectToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
-            this.projectToolStripMenuItem.Text = "Project";
-            // 
-            // openNewSPIsFormToolStripMenuItem
-            // 
-            this.openNewSPIsFormToolStripMenuItem.Name = "openNewSPIsFormToolStripMenuItem";
-            this.openNewSPIsFormToolStripMenuItem.Size = new System.Drawing.Size(216, 24);
-            this.openNewSPIsFormToolStripMenuItem.Text = "Open New SPIs Form";
-            this.openNewSPIsFormToolStripMenuItem.Click += new System.EventHandler(this.openNewSPIsFormToolStripMenuItem_Click);
-            // 
-            // updateSPICardToolStripMenuItem
-            // 
-            this.updateSPICardToolStripMenuItem.Name = "updateSPICardToolStripMenuItem";
-            this.updateSPICardToolStripMenuItem.Size = new System.Drawing.Size(216, 24);
-            this.updateSPICardToolStripMenuItem.Text = "Update SPI Card";
-            this.updateSPICardToolStripMenuItem.Click += new System.EventHandler(this.updateSPICardToolStripMenuItem_Click);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(19, 68);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(105, 18);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Project Name*";
             // 
             // FrmMain
             // 

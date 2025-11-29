@@ -190,7 +190,7 @@ namespace AirportSMS
                     foreach (var spi in spiList)
                     {
                         //listSPIs.Items.Add($"{spi.FileName} | {spi.SPI_Name} | {spi.SPI_Id}");
-                        Panel newCard = asms_cls.CreateSPICard(flowLayoutPanel1, spi.SPI_Name, spi.SPI_Id, "3.58");
+                        Panel newCard = asms_cls.CreateSPICard(flowLayoutPanel1, spi.SPI_Name_1, spi.SPI_Id_1, "35");
                         flowLayoutPanel1.Controls.Add(newCard);
                     }
 
@@ -217,7 +217,7 @@ namespace AirportSMS
             foreach (var spi in spiList)
             {
                 //listSPIs.Items.Add($"{spi.FileName} | {spi.SPI_Name} | {spi.SPI_Id}");
-                Panel newCard = asms_cls.CreateSPICard(flowLayoutPanel1, spi.SPI_Name, spi.SPI_Id, "3.58");
+                Panel newCard = asms_cls.CreateSPICard(flowLayoutPanel1, spi.SPI_Name_1, spi.SPI_Id_1, "35");
                 flowLayoutPanel1.Controls.Add(newCard);
             }
             flowLayoutPanel1.ResumeLayout(true);

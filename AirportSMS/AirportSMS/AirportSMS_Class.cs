@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using static AirportSMS.FrmMain;
 
 namespace AirportSMS
 {
@@ -141,18 +146,8 @@ namespace AirportSMS
             void openDetails(object s, EventArgs e)
             {
                 var info = (dynamic)card.Tag;
-                OpenDetailForm(info.Name, info.ID, info.Value);
-            }
-
-            //open form with full details of SPIs
-            void OpenSPIFormDetails(string projectFolder)
-            {
-                // 2. Load SPI metadata (filename, name, id)
-                var spiList = Load_Individual_SPI_Data(projectFolder);
-
-                //listSPIs.Items.Clear();
-                
-
+                //OpenDetailForm(info.Name, info.ID, info.Value);
+                OpenDetailForm(info.ID);
             }
 
             lblID.Click += openDetails;
@@ -165,25 +160,93 @@ namespace AirportSMS
             return card;
         }
 
-
-
-
-        public void OpenDetailForm(string name, string id, string value)
+        private static JsonSerializerOptions jsonOptions = new JsonSerializerOptions
         {
-            FrmHazardMonitoring fhm = new FrmHazardMonitoring();
-            fhm.TxtSPI_Name.Text = name;
-            fhm.TxtSPI_ID.Text = id;
-            fhm.TxtSPI_Value.Text = value;
+            WriteIndented = true,
+            AllowTrailingCommas = false,
+            ReadCommentHandling = JsonCommentHandling.Skip,
+            PropertyNameCaseInsensitive = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            UnknownTypeHandling = JsonUnknownTypeHandling.JsonNode
+        };
 
-            fhm.ShowDialog();
+        public static SMS_Project_Package_class.SPI Get_Individual_SPI_Data(string projectFolder,
+            string SPI_filename_to_Open)
+        {
+            string spiFolder = Path.Combine(projectFolder, "SPIs");
+
+            if (!Directory.Exists(spiFolder))
+            {
+                MessageBox.Show("SPI folder does not exist...");
+                return null;
+            }
+
+            string filePath = Path.Combine(spiFolder, SPI_filename_to_Open);
+
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show("SPI file not found...");
+                return null;
+            }
+
+            string json = File.ReadAllText(filePath);
+
+            return JsonSerializer.Deserialize<SMS_Project_Package_class.SPI>(
+                json,
+                jsonOptions
+            );
         }
 
 
+        public void OpenDetailForm(string id)
+        {
+            FrmHazardMonitoring fhm = new FrmHazardMonitoring();
+            FrmMain fm = new FrmMain();
+
+            if(fm.TxtProjectLocation.Text == "")
+            {
+                MessageBox.Show("No valid project loaded...");
+            }
+            else
+            {
+                string project_folder = fm.TxtProjectLocation.Text;
+                string thisfilename = "SPI_" + id + ".json";
+
+                var spi = Get_Individual_SPI_Data(project_folder, thisfilename);
+
+                if (spi != null)
+                {
+                    //Selecting SPIs
+                    
+
+                    //SPI info
+                    fhm.TxtSPI_ID.Text = spi.SPI_Id;
+                    fhm.TxtSPI_Name.Text = spi.SPI_Name;
+                    fhm.TxtSPI_Value.Text = "5200";
+
+                    //Defining SPIs
+                    fhm.TxtSPI_Type.Text = spi.SPI_Type;
+                    fhm.TxtSPI_Description.Text = spi.SPI_Des;
+                    fhm.Txt_SPI_Manage.Text = spi.SPI_Manage;
+                    fhm.TxtSPI_Inform.Text = spi.SPI_Inform;
+                    fhm.Txt_SPI_Unit.Text = spi.SPI_Unit;
+                    fhm.TxtSPI_Calc.Text = spi.SPI_Calc;
+
+                    //SPIs data
 
 
 
 
 
+
+                }
+
+            }
+               
+            
+
+            fhm.ShowDialog();
+        }
 
 
     }
