@@ -1,0 +1,26 @@
+public static List<SPILoadResult> LoadSPIMetadata(string projectFolder)
+{
+    List<SPILoadResult> list = new List<SPILoadResult>();
+    string spiFolder = Path.Combine(projectFolder, "SPIs");
+
+    if (!Directory.Exists(spiFolder))
+        return list;
+
+    foreach (var file in Directory.GetFiles(spiFolder, "*.json"))
+    {
+        string json = File.ReadAllText(file);
+        var spi = JsonSerializer.Deserialize<SMS_Project_Package_class.SPI>(json, jsonOptions);
+
+        if (spi != null)
+        {
+            list.Add(new SPILoadResult
+            {
+                //FileName = Path.GetFileName(file),
+                SPI_Name = spi.SPI_Name,
+                SPI_Id = spi.SPI_Id
+            });
+        }
+    }
+
+    return list;
+}
