@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static AirportSMS.FrmMain;
+using static AirportSMS.SMS_Project_Package_class;
 
 namespace AirportSMS
 {
@@ -197,15 +198,24 @@ namespace AirportSMS
             );
         }
 
+        public void CheckOnIfTrue(CheckBox chk, bool IsCheckOn)
+        {
+            if (IsCheckOn)
+                chk.Checked = true;
+            else
+                chk.Checked = false;
+        }
 
         public void OpenDetailForm(string id)
         {
             FrmHazardMonitoring fhm = new FrmHazardMonitoring();
-            FrmMain fm = new FrmMain();
+            //FrmMain fm = new FrmMain();
+            FrmMain fm = (FrmMain)Application.OpenForms["FrmMain"];
 
-            if(fm.TxtProjectLocation.Text == "")
+            if (fm.TxtProjectLocation.Text == "")
             {
                 MessageBox.Show("No valid project loaded...");
+                MessageBox.Show(fm.TxtProjectLocation.Text);
             }
             else
             {
@@ -217,7 +227,10 @@ namespace AirportSMS
                 if (spi != null)
                 {
                     //Selecting SPIs
-                    
+                    CheckOnIfTrue(fhm.checkBox1, spi.IsRelatedToObjective);
+                    CheckOnIfTrue(fhm.checkBox2, spi.IsBasedOnDateAndMeasurement);
+                    CheckOnIfTrue(fhm.checkBox3, spi.IsSpecificQuantifiable);
+                    CheckOnIfTrue(fhm.checkBox4, spi.IsRealistic);
 
                     //SPI info
                     fhm.TxtSPI_ID.Text = spi.SPI_Id;
@@ -233,18 +246,23 @@ namespace AirportSMS
                     fhm.TxtSPI_Calc.Text = spi.SPI_Calc;
 
                     //SPIs data
+                    for (int i = 0; i < 13; i++)
+                    {
+                        
+                        //MessageBox.Show("dgv " + i + " : " + spi.PrevYearObserved[i]);
+                        fhm.dataGridView1.Rows[0].Cells[i + 2].Value = spi.PrevYearObserved[i].ToString();
+                        fhm.dataGridView1.Rows[1].Cells[i + 2].Value = spi.CurrYearTargetPercent[i];
+                        fhm.dataGridView1.Rows[2].Cells[i + 2].Value = spi.CurrYearTargetValue[i];
+                        fhm.dataGridView1.Rows[3].Cells[i + 2].Value = spi.CurrYearObserved[i];
+                    }
 
-
-
-
-
-
+                    fhm.PlotGraph();
+                    fhm.createNewSPIToolStripMenuItem.Enabled = false;
+                
                 }
 
             }
                
-            
-
             fhm.ShowDialog();
         }
 

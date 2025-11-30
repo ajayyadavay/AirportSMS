@@ -242,7 +242,7 @@ namespace AirportSMS
             fhm.saveSPIToolStripMenuItem.Enabled = false;
         }
 
-        private void updateSPICardToolStripMenuItem_Click(object sender, EventArgs e)
+        public void updateSPICardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (TxtProjectLocation.Text == "")
             {
@@ -253,7 +253,6 @@ namespace AirportSMS
                 string projectFolder = TxtProjectLocation.Text;
                 UpdateSPICard(projectFolder);
             }
-                
         }
     }
 }

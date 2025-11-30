@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -25,6 +26,57 @@ namespace AirportSMS
         public FrmHazardMonitoring()
         {
             InitializeComponent();
+
+            GenerateRowsDGV();
+
+            // X axis data
+            X_axis[0] = "YEAR";
+            X_axis[1] = "JAN";
+            X_axis[2] = "FEB";
+            X_axis[3] = "MAR";
+            X_axis[4] = "APR";
+            X_axis[5] = "MAY";
+            X_axis[6] = "JUN";
+            X_axis[7] = "JUL";
+            X_axis[8] = "AUG";
+            X_axis[9] = "SEP";
+            X_axis[10] = "OCT";
+            X_axis[11] = "NOV";
+            X_axis[12] = "DEC";
+        }
+
+        public void GenerateRowsDGV()
+        {
+            // generate rows
+            string[] descript = { "Prv_Year_obs", "Curr_Year_Target_%", "Curr_Year_Target_val",
+            "Curr_Year_obs"};
+
+            for (int i = 0; i < 4; i++)
+            {
+                dataGridView1.Rows.Add();
+                dataGridView1.Rows[i].Cells["ColDes"].Value = descript[i];
+                dataGridView1.Rows[i].Cells["ColID"].Value = i + 1;
+            }
+
+            // Assuming you have dataGridView1 already populated
+
+            // Row 0 -> Red
+            foreach (DataGridViewCell cell in dataGridView1.Rows[0].Cells)
+            {
+                cell.Style.ForeColor = Color.Red;
+            }
+
+            // Row 2 -> Green
+            foreach (DataGridViewCell cell in dataGridView1.Rows[2].Cells)
+            {
+                cell.Style.ForeColor = Color.Green;
+            }
+
+            // Row 3 -> Blue
+            foreach (DataGridViewCell cell in dataGridView1.Rows[3].Cells)
+            {
+                cell.Style.ForeColor = Color.Blue;
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -34,107 +86,108 @@ namespace AirportSMS
 
         
 
-    public void ChartStyle1(Chart chart)
-    {
-        var chartArea = chart.ChartAreas[0];
-        var legend = chart.Legends[0];
-
-        // -----------------------------------------------------
-        // Background
-        // -----------------------------------------------------
-        chart.BackColor = Color.White;
-        chartArea.BackColor = Color.White;
-        chartArea.BorderWidth = 0;
-
-        // -----------------------------------------------------
-        // Grid Lines (light grey modern look)
-        // -----------------------------------------------------
-        chartArea.AxisX.MajorGrid.LineColor = Color.FromArgb(220, 220, 220);
-        chartArea.AxisY.MajorGrid.LineColor = Color.FromArgb(220, 220, 220);
-
-        chartArea.AxisX.MajorGrid.LineDashStyle = ChartDashStyle.Solid;
-        chartArea.AxisY.MajorGrid.LineDashStyle = ChartDashStyle.Solid;
-
-        chartArea.AxisX.MinorGrid.Enabled = false;
-        chartArea.AxisY.MinorGrid.Enabled = false;
-
-        // -----------------------------------------------------
-        // Axis Style
-        // -----------------------------------------------------
-        chartArea.AxisX.LineColor = Color.FromArgb(180, 180, 180);
-        chartArea.AxisY.LineColor = Color.FromArgb(180, 180, 180);
-
-        chartArea.AxisX.LabelStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
-        chartArea.AxisY.LabelStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
-
-        chartArea.AxisX.TitleFont = new Font("Segoe UI", 10, FontStyle.Bold);
-        chartArea.AxisY.TitleFont = new Font("Segoe UI", 10, FontStyle.Bold);
-
-        chartArea.AxisX.Interval = 1;
-        chartArea.AxisX.IsLabelAutoFit = false;
-
-        // -----------------------------------------------------
-        // Legend (Modern top bar)
-        // -----------------------------------------------------
-        legend.Docking = Docking.Top;
-        legend.Alignment = StringAlignment.Center;
-        legend.LegendStyle = LegendStyle.Row;
-        legend.Font = new Font("Segoe UI", 9, FontStyle.Regular);
-        legend.BackColor = Color.White;
-        legend.BorderColor = Color.Transparent;
-
-        // -----------------------------------------------------
-        // Title
-        // -----------------------------------------------------
-        chart.Titles.Clear();
-        chart.Titles.Add("Monthly Performance Overview");
-        chart.Titles[0].Font = new Font("Segoe UI Semibold", 14);
-        chart.Titles[0].Alignment = ContentAlignment.TopCenter;
-
-
-
-        // -------------------- X Axis Title --------------------
-        chart.ChartAreas[0].AxisX.Title = "Months";
-        chart.ChartAreas[0].AxisX.TitleFont = new Font("Arial", 10, FontStyle.Bold);
-        chart.ChartAreas[0].AxisX.TitleForeColor = Color.Black;
-
-
-        // -------------------- Y Axis Title --------------------
-        chart.ChartAreas[0].AxisY.Title = "values";
-        chart.ChartAreas[0].AxisY.TitleFont = new Font("Arial", 10, FontStyle.Bold);
-        chart.ChartAreas[0].AxisY.TitleForeColor = Color.Black;
-
-
-
-        // -----------------------------------------------------
-        // Series Colors (Modern Color Palette)
-        // -----------------------------------------------------
-        Color[] modernColors =
+        public void ChartStyle1(Chart chart)
         {
-            Color.FromArgb(231, 76, 60),    // Red
-            Color.FromArgb(46, 204, 113),   // Green
-            Color.FromArgb(52, 152, 219),   // Blue
-            Color.FromArgb(241, 196, 15),   // Yellow
-            Color.FromArgb(155, 89, 182)    // Purple
-        };
+            var chartArea = chart.ChartAreas[0];
+            var legend = chart.Legends[0];
 
-        int ci = 0;
-        foreach (var s in chart.Series)
-        {
-            s.Color = modernColors[ci % modernColors.Length];
-            s.BorderWidth = 3;
-            s.ChartType = SeriesChartType.Line;
-            s.BorderDashStyle = ChartDashStyle.Solid;
-            s.MarkerStyle = MarkerStyle.Circle;
-            s.MarkerSize = 7;
-            s.MarkerColor = s.Color;
-            s.MarkerBorderColor = Color.White;
-            ci++;
+            // -----------------------------------------------------
+            // Background
+            // -----------------------------------------------------
+            chart.BackColor = Color.White;
+            chartArea.BackColor = Color.White;
+            chartArea.BorderWidth = 0;
+
+            // -----------------------------------------------------
+            // Grid Lines (light grey modern look)
+            // -----------------------------------------------------
+            chartArea.AxisX.MajorGrid.LineColor = Color.FromArgb(220, 220, 220);
+            chartArea.AxisY.MajorGrid.LineColor = Color.FromArgb(220, 220, 220);
+
+            chartArea.AxisX.MajorGrid.LineDashStyle = ChartDashStyle.Solid;
+            chartArea.AxisY.MajorGrid.LineDashStyle = ChartDashStyle.Solid;
+
+            chartArea.AxisX.MinorGrid.Enabled = false;
+            chartArea.AxisY.MinorGrid.Enabled = false;
+
+            // -----------------------------------------------------
+            // Axis Style
+            // -----------------------------------------------------
+            chartArea.AxisX.LineColor = Color.FromArgb(180, 180, 180);
+            chartArea.AxisY.LineColor = Color.FromArgb(180, 180, 180);
+
+            chartArea.AxisX.LabelStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+            chartArea.AxisY.LabelStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+
+            chartArea.AxisX.TitleFont = new Font("Segoe UI", 10, FontStyle.Bold);
+            chartArea.AxisY.TitleFont = new Font("Segoe UI", 10, FontStyle.Bold);
+
+            chartArea.AxisX.Interval = 1;
+            chartArea.AxisX.IsLabelAutoFit = false;
+
+            // -----------------------------------------------------
+            // Legend (Modern top bar)
+            // -----------------------------------------------------
+            legend.Docking = Docking.Top;
+            legend.Alignment = StringAlignment.Center;
+            legend.LegendStyle = LegendStyle.Row;
+            legend.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+            legend.BackColor = Color.White;
+            legend.BorderColor = Color.Transparent;
+
+            // -----------------------------------------------------
+            // Title
+            // -----------------------------------------------------
+            chart.Titles.Clear();
+            chart.Titles.Add("Monthly Performance Overview");
+            chart.Titles[0].Font = new Font("Segoe UI Semibold", 14);
+            chart.Titles[0].Alignment = ContentAlignment.TopCenter;
+
+
+
+            // -------------------- X Axis Title --------------------
+            chart.ChartAreas[0].AxisX.Title = "Months";
+            chart.ChartAreas[0].AxisX.TitleFont = new Font("Arial", 10, FontStyle.Bold);
+            chart.ChartAreas[0].AxisX.TitleForeColor = Color.Black;
+
+
+            // -------------------- Y Axis Title --------------------
+            chart.ChartAreas[0].AxisY.Title = "values";
+            chart.ChartAreas[0].AxisY.TitleFont = new Font("Arial", 10, FontStyle.Bold);
+            chart.ChartAreas[0].AxisY.TitleForeColor = Color.Black;
+
+
+
+            // -----------------------------------------------------
+            // Series Colors (Modern Color Palette)
+            // -----------------------------------------------------
+            Color[] modernColors =
+            {
+                Color.FromArgb(231, 76, 60),    // Red
+                Color.FromArgb(46, 204, 113),   // Green
+                Color.FromArgb(52, 152, 219),   // Blue
+                Color.FromArgb(241, 196, 15),   // Yellow
+                Color.FromArgb(155, 89, 182)    // Purple
+            };
+
+            int ci = 0;
+            foreach (var s in chart.Series)
+            {
+                s.Color = modernColors[ci % modernColors.Length];
+                s.BorderWidth = 3;
+                s.ChartType = SeriesChartType.Line;
+                s.BorderDashStyle = ChartDashStyle.Solid;
+                s.MarkerStyle = MarkerStyle.Circle;
+                s.MarkerSize = 7;
+                s.MarkerColor = s.Color;
+                s.MarkerBorderColor = Color.White;
+                ci++;
+            }
         }
-    }
 
 
-    public void PlotGraph()
+
+        public void PlotGraph()
         {
             Chart1.Series.Clear();
             Chart1.Series.Add("Prv_Year_obs");
@@ -173,57 +226,27 @@ namespace AirportSMS
             Chart1.Series["Prv_Year_obs"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             Chart1.Series["Curr_Year_Target_val"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             Chart1.Series["Curr_Year_obs"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
+            Chart1.Invalidate();
+            Chart1.Update();
         }
 
         private void FrmHazardMonitoring_Load(object sender, EventArgs e)
         {
-            // generate rows
+            /*// generate rows
             string[] descript = { "Prv_Year_obs", "Curr_Year_Target_%", "Curr_Year_Target_val",
             "Curr_Year_obs"};
 
             for(int i =0;i<4;i++)
             {
-                dataGridView1.Rows.Add();
+                //dataGridView1.Rows.Add();
                 dataGridView1.Rows[i].Cells["ColDes"].Value = descript[i];
                 dataGridView1.Rows[i].Cells["ColID"].Value = i + 1;
-            }
+            }*/
 
-            // Assuming you have dataGridView1 already populated
+            
 
-            // Row 0 -> Red
-            foreach (DataGridViewCell cell in dataGridView1.Rows[0].Cells)
-            {
-                cell.Style.ForeColor = Color.Red;
-            }
-
-            // Row 2 -> Green
-            foreach (DataGridViewCell cell in dataGridView1.Rows[2].Cells)
-            {
-                cell.Style.ForeColor = Color.Green;
-            }
-
-            // Row 3 -> Blue
-            foreach (DataGridViewCell cell in dataGridView1.Rows[3].Cells)
-            {
-                cell.Style.ForeColor = Color.Blue;
-            }
-
-
-
-            // X axis data
-            X_axis[0] = "YEAR";
-            X_axis[1] = "JAN";
-            X_axis[2] = "FEB";
-            X_axis[3] = "MAR";
-            X_axis[4] = "APR";
-            X_axis[5] = "MAY";
-            X_axis[6] = "JUN";
-            X_axis[7] = "JUL";
-            X_axis[8] = "AUG";
-            X_axis[9] = "SEP";
-            X_axis[10] = "OCT";
-            X_axis[11] = "NOV";
-            X_axis[12] = "DEC";
+           
 
 
             //SPI Type combobox
@@ -367,19 +390,6 @@ namespace AirportSMS
 
         private void createSPICardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //This gets the already opened / running instance of FrmMain
-            FrmMain fm = (FrmMain)Application.OpenForms["FrmMain"];
-            //FrmMain fm = new FrmMain(); //New form is created but not shown
-            string name = TxtSPI_Name.Text;
-            string id = TxtSPI_ID.Text;
-            string value = TxtSPI_Value.Text;
-
-            
-            //Panel newCard = CreateSPICard(name, id, value);
-            AirportSMS_Class asms_cls = new AirportSMS_Class();
-
-            Panel newCard = asms_cls.CreateSPICard(fm.flowLayoutPanel1, name, id, value);
-            fm.flowLayoutPanel1.Controls.Add(newCard);
 
         }
 
@@ -412,7 +422,7 @@ namespace AirportSMS
 
         private bool IsChecked(CheckBox chk)
         {
-            if (checkBox1.Checked == true)
+            if (chk.Checked == true)
                 return true;
             else
                 return false;
@@ -516,6 +526,8 @@ namespace AirportSMS
             {
                 string projectfolder = fm.TxtProjectLocation.Text;
                 SaveOrCreateNewSPIFinal(false, projectfolder);
+                fm.updateSPICardToolStripMenuItem_Click(null, null);
+                MessageBox.Show("SPI saved successfully");
             }
                
         }
@@ -533,7 +545,14 @@ namespace AirportSMS
             {
                 string projectfolder = fm.TxtProjectLocation.Text;
                 SaveOrCreateNewSPIFinal(true, projectfolder);
+                fm.updateSPICardToolStripMenuItem_Click(null, null);
+                MessageBox.Show("New SPI created successfully");
             }
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            //PlotGraph();
         }
     }
 }

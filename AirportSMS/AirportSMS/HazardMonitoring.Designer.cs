@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,7 +52,6 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createNewSPIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveSPIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createSPICardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
@@ -97,16 +96,16 @@
             // 
             // Chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.Chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.Chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.Chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.Chart1.Legends.Add(legend2);
             this.Chart1.Location = new System.Drawing.Point(7, 940);
             this.Chart1.Name = "Chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.Chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.Chart1.Series.Add(series2);
             this.Chart1.Size = new System.Drawing.Size(1340, 493);
             this.Chart1.TabIndex = 1;
             this.Chart1.Text = "chart1";
@@ -135,6 +134,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1340, 147);
             this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             // 
             // ColID
@@ -258,7 +258,6 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createNewSPIToolStripMenuItem,
             this.saveSPIToolStripMenuItem,
-            this.createSPICardToolStripMenuItem,
             this.toolStripMenuItem2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -268,33 +267,26 @@
             // createNewSPIToolStripMenuItem
             // 
             this.createNewSPIToolStripMenuItem.Name = "createNewSPIToolStripMenuItem";
-            this.createNewSPIToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
+            this.createNewSPIToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.createNewSPIToolStripMenuItem.Text = "Create New SPI";
             this.createNewSPIToolStripMenuItem.Click += new System.EventHandler(this.createNewSPIToolStripMenuItem_Click);
             // 
             // saveSPIToolStripMenuItem
             // 
             this.saveSPIToolStripMenuItem.Name = "saveSPIToolStripMenuItem";
-            this.saveSPIToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
+            this.saveSPIToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.saveSPIToolStripMenuItem.Text = "Save SPI";
             this.saveSPIToolStripMenuItem.Click += new System.EventHandler(this.saveSPIToolStripMenuItem_Click);
-            // 
-            // createSPICardToolStripMenuItem
-            // 
-            this.createSPICardToolStripMenuItem.Name = "createSPICardToolStripMenuItem";
-            this.createSPICardToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
-            this.createSPICardToolStripMenuItem.Text = "Create SPI card";
-            this.createSPICardToolStripMenuItem.Click += new System.EventHandler(this.createSPICardToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(176, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -716,10 +708,8 @@
         public System.Windows.Forms.TextBox TxtSPI_ID;
         public System.Windows.Forms.TextBox TxtSPI_Value;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ToolStripMenuItem createSPICardToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         public System.Windows.Forms.ToolStripMenuItem saveSPIToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem createNewSPIToolStripMenuItem;
         public System.Windows.Forms.DataGridView dataGridView1;
         public System.Windows.Forms.CheckBox checkBox2;
         public System.Windows.Forms.CheckBox checkBox1;
@@ -731,5 +721,6 @@
         public System.Windows.Forms.TextBox Txt_SPI_Manage;
         public System.Windows.Forms.TextBox Txt_SPI_Unit;
         public System.Windows.Forms.TextBox TxtSPI_Calc;
+        public System.Windows.Forms.ToolStripMenuItem createNewSPIToolStripMenuItem;
     }
 }
