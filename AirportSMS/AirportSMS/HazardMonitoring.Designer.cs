@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,6 +86,7 @@
             this.TxtSPI_Name = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.importTemplateSPIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.Chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -96,16 +97,16 @@
             // 
             // Chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.Chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.Chart1.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.Chart1.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.Chart1.Legends.Add(legend4);
             this.Chart1.Location = new System.Drawing.Point(7, 940);
             this.Chart1.Name = "Chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.Chart1.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.Chart1.Series.Add(series4);
             this.Chart1.Size = new System.Drawing.Size(1340, 493);
             this.Chart1.TabIndex = 1;
             this.Chart1.Text = "chart1";
@@ -259,6 +260,7 @@
             this.createNewSPIToolStripMenuItem,
             this.saveSPIToolStripMenuItem,
             this.toolStripMenuItem2,
+            this.importTemplateSPIToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
@@ -633,6 +635,13 @@
             this.label8.TabIndex = 3;
             this.label8.Text = "Types of SPI";
             // 
+            // importTemplateSPIToolStripMenuItem
+            // 
+            this.importTemplateSPIToolStripMenuItem.Name = "importTemplateSPIToolStripMenuItem";
+            this.importTemplateSPIToolStripMenuItem.Size = new System.Drawing.Size(263, 24);
+            this.importTemplateSPIToolStripMenuItem.Text = "Import Template SPI (*.json)";
+            this.importTemplateSPIToolStripMenuItem.Click += new System.EventHandler(this.importTemplateSPIToolStripMenuItem_Click);
+            // 
             // FrmHazardMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -722,5 +731,6 @@
         public System.Windows.Forms.TextBox Txt_SPI_Unit;
         public System.Windows.Forms.TextBox TxtSPI_Calc;
         public System.Windows.Forms.ToolStripMenuItem createNewSPIToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem importTemplateSPIToolStripMenuItem;
     }
 }

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -553,6 +554,68 @@ namespace AirportSMS
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             //PlotGraph();
+        }
+
+        private void importTemplateSPIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string path = "";
+            OpenFileDialog openfiledialog1 = new OpenFileDialog();
+            openfiledialog1.Filter = "SPI Template (*.json)|*.json";//"Text File(*.txt)|*.txt|Excel Sheet(*.xls)|*.xls|All Files(*.*)|*.*";
+            openfiledialog1.FilterIndex = 1;
+
+            if (openfiledialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                path = openfiledialog1.FileName;
+            }
+            else if (openfiledialog1.ShowDialog() == System.Windows.Forms.DialogResult.Cancel) return;
+
+            string json = File.ReadAllText(path); 
+
+            SMS_Project_Package_class.SPI spi = JsonSerializer.Deserialize<SMS_Project_Package_class.SPI>(
+                json,
+                jsonOptions
+            );
+
+            AirportSMS_Class asms = new AirportSMS_Class();
+            if (spi != null)
+            {
+                //Selecting SPIs
+                asms.CheckOnIfTrue(checkBox1, spi.IsRelatedToObjective);
+                asms.CheckOnIfTrue(checkBox2, spi.IsBasedOnDateAndMeasurement);
+                asms.CheckOnIfTrue(checkBox3, spi.IsSpecificQuantifiable);
+                asms.CheckOnIfTrue(checkBox4, spi.IsRealistic);
+
+                //SPI info
+                TxtSPI_ID.Text = spi.SPI_Id;
+                TxtSPI_Name.Text = spi.SPI_Name;
+                TxtSPI_Value.Text = "5200";
+
+                //Defining SPIs
+                TxtSPI_Type.Text = spi.SPI_Type;
+                TxtSPI_Description.Text = spi.SPI_Des;
+                Txt_SPI_Manage.Text = spi.SPI_Manage;
+                TxtSPI_Inform.Text = spi.SPI_Inform;
+                Txt_SPI_Unit.Text = spi.SPI_Unit;
+                TxtSPI_Calc.Text = spi.SPI_Calc;
+
+                //SPIs data
+                for (int i = 0; i < 13; i++)
+                {
+
+                    //MessageBox.Show("dgv " + i + " : " + spi.PrevYearObserved[i]);
+                    dataGridView1.Rows[0].Cells[i + 2].Value = spi.PrevYearObserved[i].ToString();
+                    dataGridView1.Rows[1].Cells[i + 2].Value = spi.CurrYearTargetPercent[i];
+                    dataGridView1.Rows[2].Cells[i + 2].Value = spi.CurrYearTargetValue[i];
+                    dataGridView1.Rows[3].Cells[i + 2].Value = spi.CurrYearObserved[i];
+                }
+
+                PlotGraph();
+                //createNewSPIToolStripMenuItem.Enabled = false;
+
+            }
+
+
+
         }
     }
 }

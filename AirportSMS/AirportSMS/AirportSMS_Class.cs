@@ -80,6 +80,30 @@ namespace AirportSMS
                 {
                     flowLayoutPanel1.Controls.Remove(card);
                     card.Dispose();
+
+                    FrmMain fm = (FrmMain)Application.OpenForms["FrmMain"];
+
+                    if (fm.TxtProjectLocation.Text == "")
+                    {
+                        MessageBox.Show("No valid project loaded...");
+                    }
+                    else
+                    {
+                        string project_folder = fm.TxtProjectLocation.Text;
+                        string spiFolders = Path.Combine(project_folder, "SPIs");
+                        string thisfilename_del = "SPI_" + spiID + ".json";
+                        string filePath_del = Path.Combine(spiFolders, thisfilename_del);
+
+                        if (File.Exists(filePath_del))
+                        {
+                            File.Delete(filePath_del);
+                            MessageBox.Show("File deleted successfully.");
+                        }
+
+                    }
+
+
+
                 }
             };
 
@@ -148,7 +172,7 @@ namespace AirportSMS
             {
                 var info = (dynamic)card.Tag;
                 //OpenDetailForm(info.Name, info.ID, info.Value);
-                OpenDetailForm(info.ID);
+                OpenDetailForm(info.ID, false);
             }
 
             lblID.Click += openDetails;
@@ -206,7 +230,7 @@ namespace AirportSMS
                 chk.Checked = false;
         }
 
-        public void OpenDetailForm(string id)
+        public void OpenDetailForm(string id, bool IsTemplate)
         {
             FrmHazardMonitoring fhm = new FrmHazardMonitoring();
             //FrmMain fm = new FrmMain();
@@ -215,7 +239,7 @@ namespace AirportSMS
             if (fm.TxtProjectLocation.Text == "")
             {
                 MessageBox.Show("No valid project loaded...");
-                MessageBox.Show(fm.TxtProjectLocation.Text);
+                //MessageBox.Show(fm.TxtProjectLocation.Text);
             }
             else
             {
@@ -258,12 +282,16 @@ namespace AirportSMS
 
                     fhm.PlotGraph();
                     fhm.createNewSPIToolStripMenuItem.Enabled = false;
+                    fhm.importTemplateSPIToolStripMenuItem.Enabled = false;
                 
                 }
 
             }
-               
-            fhm.ShowDialog();
+            if(IsTemplate == false)
+            {
+                fhm.ShowDialog();
+            }
+            
         }
 
 
