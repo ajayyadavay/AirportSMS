@@ -17,17 +17,17 @@ namespace AirportSMS
     internal class AirportSMS_Class
     {
         public Panel CreateSPICard(FlowLayoutPanel flowLayoutPanel1,
-                           string spiName, string spiID, string spiValue)
+                           string spiName, string spiID, string spiValue, string spiType)
         {
             Panel card = new Panel();
             card.Width = 250;
-            card.Height = 150;
+            card.Height = 180;
             card.Margin = new Padding(12);
             card.Padding = new Padding(10);
             card.BackColor = Color.White;
             card.Cursor = Cursors.Hand;
 
-            card.Tag = new { Name = spiName, ID = spiID, Value = spiValue };
+            card.Tag = new { Name = spiName, ID = spiID, Value = spiValue, Type = spiType };
 
             // ░░░ MAIN TABLE (3 ROWS) ░░░
             TableLayoutPanel main = new TableLayoutPanel();
@@ -49,6 +49,7 @@ namespace AirportSMS
             row1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 28));   // Delete fixed width
             row1.AutoSize = true;  // Row height = max of controls
 
+            /*
             Label lblID = new Label();
             int maxIDLength = 10;  // maximum characters to show
             string displayID = spiID.Length > maxIDLength
@@ -60,6 +61,20 @@ namespace AirportSMS
             lblID.AutoSize = true;
             lblID.MaximumSize = new Size(card.Width - 40, 0); // WRAP enabled
             lblID.Anchor = AnchorStyles.Left | AnchorStyles.Top; // important to prevent row grow
+            //lblID.Dock = DockStyle.Fill;
+            */
+
+            Label lblType = new Label();
+            int maxIDLength = 50;  // maximum characters to show
+            string displayType = spiType.Length > maxIDLength
+                                 ? spiType.Substring(0, maxIDLength) + "…"
+                                 : spiType;
+            lblType.Text = $"Type: {displayType}";
+            lblType.Font = new Font("Segoe UI", 10);
+            lblType.ForeColor = Color.FromArgb(120, 120, 120);
+            lblType.AutoSize = true;
+            lblType.MaximumSize = new Size(card.Width - 40, 0); // WRAP enabled
+            lblType.Anchor = AnchorStyles.Left | AnchorStyles.Top; // important to prevent row grow
             //lblID.Dock = DockStyle.Fill;
 
             Button btnDelete = new Button();
@@ -102,12 +117,11 @@ namespace AirportSMS
 
                     }
 
-
-
                 }
             };
 
-            row1.Controls.Add(lblID, 0, 0);
+            //row1.Controls.Add(lblID, 0, 0);
+            row1.Controls.Add(lblType, 0, 0);
             row1.Controls.Add(btnDelete, 1, 0);
 
             // ░░░ ROW 2: SPI NAME WRAP ░░░
@@ -175,7 +189,8 @@ namespace AirportSMS
                 OpenDetailForm(info.ID, false);
             }
 
-            lblID.Click += openDetails;
+            //lblID.Click += openDetails;
+            lblType.Click += openDetails;
             lblName.Click += openDetails;
             lblPrev.Click += openDetails;
             lblTarget.Click += openDetails;

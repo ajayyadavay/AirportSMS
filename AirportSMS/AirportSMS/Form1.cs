@@ -119,6 +119,7 @@ namespace AirportSMS
             public string FileName_1 { get; set; }
             public string SPI_Name_1 { get; set; }
             public string SPI_Id_1 { get; set; }
+            public string SPI_Type_1 { get; set; }
         }
 
 
@@ -141,7 +142,8 @@ namespace AirportSMS
                     {
                         FileName_1 = Path.GetFileName(file),
                         SPI_Name_1 = spi.SPI_Name,
-                        SPI_Id_1 = spi.SPI_Id
+                        SPI_Id_1 = spi.SPI_Id,
+                        SPI_Type_1 = spi.SPI_Type
                     });
                 }
             }
@@ -177,6 +179,7 @@ namespace AirportSMS
                     // Show Modified Date
                     TxtProjModified.Text = project.ModifiedOn.ToString("yyyy-MM-dd HH:mm:ss");
 
+                    /*
                     // 2. Load SPI metadata (filename, name, id)
                     var spiList = LoadSPIMetadata(projectFolder);
 
@@ -190,10 +193,11 @@ namespace AirportSMS
                     foreach (var spi in spiList)
                     {
                         //listSPIs.Items.Add($"{spi.FileName} | {spi.SPI_Name} | {spi.SPI_Id}");
-                        Panel newCard = asms_cls.CreateSPICard(flowLayoutPanel1, spi.SPI_Name_1, spi.SPI_Id_1, "35");
+                        Panel newCard = asms_cls.CreateSPICard(flowLayoutPanel1, spi.SPI_Name_1, spi.SPI_Id_1, "35", spi.SPI_Type_1);
                         flowLayoutPanel1.Controls.Add(newCard);
                     }
-
+                    */
+                    updateSPICardToolStripMenuItem_Click(null, null);
                     MessageBox.Show("Project loaded successfully");
                 }
             }
@@ -201,7 +205,7 @@ namespace AirportSMS
 
         }
 
-        public void UpdateSPICard(string projectFolder)
+        public void UpdateSPICard(string projectFolder, string filterType = null)
         {
             // 2. Load SPI metadata (filename, name, id)
             var spiList = LoadSPIMetadata(projectFolder);
@@ -217,7 +221,11 @@ namespace AirportSMS
             foreach (var spi in spiList)
             {
                 //listSPIs.Items.Add($"{spi.FileName} | {spi.SPI_Name} | {spi.SPI_Id}");
-                Panel newCard = asms_cls.CreateSPICard(flowLayoutPanel1, spi.SPI_Name_1, spi.SPI_Id_1, "35");
+                // If filtering is requested, skip non-matching types
+                if (!string.IsNullOrEmpty(filterType) && spi.SPI_Type_1 != filterType)
+                    continue;
+
+                Panel newCard = asms_cls.CreateSPICard(flowLayoutPanel1, spi.SPI_Name_1, spi.SPI_Id_1, "35", spi.SPI_Type_1);
                 flowLayoutPanel1.Controls.Add(newCard);
             }
             flowLayoutPanel1.ResumeLayout(true);
@@ -251,8 +259,42 @@ namespace AirportSMS
             else
             {
                 string projectFolder = TxtProjectLocation.Text;
+                TxtFilterSPIType.Text = "";
                 UpdateSPICard(projectFolder);
             }
+        }
+
+        private void ComboBoxFilterSPI_Type_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TxtFilterSPIType.Text = ComboBoxFilterSPI_Type.Text;
+        }
+
+        private void filterBySelectedSPITypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (TxtProjectLocation.Text == "")
+            {
+                MessageBox.Show("No valid project loaded...");
+                return;
+            }
+
+            string filterType = TxtFilterSPIType.Text.Trim();
+
+            if (string.IsNullOrEmpty(filterType))
+            {
+                MessageBox.Show("Select SPI Type to filter...");
+                return;
+            }
+
+            UpdateSPICard(TxtProjectLocation.Text, filterType);  // ← Pass filter
+
+        }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            //SPI Type combobox
+            ComboBoxFilterSPI_Type.Items.Add("Lagging SPIs: Low Probability/High Severity");
+            ComboBoxFilterSPI_Type.Items.Add("Precursor SPIs: High Probability/Low Severity");
+            ComboBoxFilterSPI_Type.Items.Add("Leading SPIs: Proactive");
         }
     }
 }

@@ -245,16 +245,10 @@ namespace AirportSMS
                 dataGridView1.Rows[i].Cells["ColID"].Value = i + 1;
             }*/
 
-            
-
-           
-
-
             //SPI Type combobox
             ComboBoxSPI_Type.Items.Add("Lagging SPIs: Low Probability/High Severity");
             ComboBoxSPI_Type.Items.Add("Precursor SPIs: High Probability/Low Severity");
             ComboBoxSPI_Type.Items.Add("Leading SPIs: Proactive");
-
 
 
         }
@@ -504,15 +498,16 @@ namespace AirportSMS
             string name = TxtSPI_Name.Text;
             string id = spiID;
             string value = TxtSPI_Value.Text;
+            string type = TxtSPI_Type.Text;
 
 
-            if(IsCreateNew)
+            /*if(IsCreateNew)
             {
                 //Panel newCard = CreateSPICard(name, id, value);
                 AirportSMS_Class asms_cls = new AirportSMS_Class();
-                Panel newCard = asms_cls.CreateSPICard(fm.flowLayoutPanel1, name, id, value);
+                Panel newCard = asms_cls.CreateSPICard(fm.flowLayoutPanel1, name, id, value, type);
                 fm.flowLayoutPanel1.Controls.Add(newCard);
-            }
+            }*/
             
         }
 
