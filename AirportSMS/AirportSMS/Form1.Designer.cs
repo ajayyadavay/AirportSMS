@@ -37,6 +37,8 @@
             this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openNewSPIsFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateSPICardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.filterBySelectedSPITypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtProjectLocation = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -46,11 +48,9 @@
             this.TxtProjectName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ComboBoxFilterSPI_Type = new System.Windows.Forms.ComboBox();
             this.TxtFilterSPIType = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.ComboBoxFilterSPI_Type = new System.Windows.Forms.ComboBox();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.filterBySelectedSPITypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -82,26 +82,26 @@
             // newProjectToolStripMenuItem
             // 
             this.newProjectToolStripMenuItem.Name = "newProjectToolStripMenuItem";
-            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
             this.newProjectToolStripMenuItem.Text = "New Project";
             this.newProjectToolStripMenuItem.Click += new System.EventHandler(this.newProjectToolStripMenuItem_Click);
             // 
             // openProjectToolStripMenuItem
             // 
             this.openProjectToolStripMenuItem.Name = "openProjectToolStripMenuItem";
-            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
             this.openProjectToolStripMenuItem.Text = "Open Project";
             this.openProjectToolStripMenuItem.Click += new System.EventHandler(this.openProjectToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(161, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -129,6 +129,18 @@
             this.updateSPICardToolStripMenuItem.Size = new System.Drawing.Size(251, 24);
             this.updateSPICardToolStripMenuItem.Text = "Update SPI Card";
             this.updateSPICardToolStripMenuItem.Click += new System.EventHandler(this.updateSPICardToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(248, 6);
+            // 
+            // filterBySelectedSPITypeToolStripMenuItem
+            // 
+            this.filterBySelectedSPITypeToolStripMenuItem.Name = "filterBySelectedSPITypeToolStripMenuItem";
+            this.filterBySelectedSPITypeToolStripMenuItem.Size = new System.Drawing.Size(251, 24);
+            this.filterBySelectedSPITypeToolStripMenuItem.Text = "Filter by Selected SPI Type";
+            this.filterBySelectedSPITypeToolStripMenuItem.Click += new System.EventHandler(this.filterBySelectedSPITypeToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -235,6 +247,18 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filter";
             // 
+            // ComboBoxFilterSPI_Type
+            // 
+            this.ComboBoxFilterSPI_Type.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ComboBoxFilterSPI_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxFilterSPI_Type.FormattingEnabled = true;
+            this.ComboBoxFilterSPI_Type.Location = new System.Drawing.Point(133, 26);
+            this.ComboBoxFilterSPI_Type.Name = "ComboBoxFilterSPI_Type";
+            this.ComboBoxFilterSPI_Type.Size = new System.Drawing.Size(717, 26);
+            this.ComboBoxFilterSPI_Type.TabIndex = 9;
+            this.ComboBoxFilterSPI_Type.SelectedIndexChanged += new System.EventHandler(this.ComboBoxFilterSPI_Type_SelectedIndexChanged);
+            // 
             // TxtFilterSPIType
             // 
             this.TxtFilterSPIType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -254,28 +278,6 @@
             this.label6.Size = new System.Drawing.Size(108, 18);
             this.label6.TabIndex = 1;
             this.label6.Text = "SelectSPI Type";
-            // 
-            // ComboBoxFilterSPI_Type
-            // 
-            this.ComboBoxFilterSPI_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBoxFilterSPI_Type.FormattingEnabled = true;
-            this.ComboBoxFilterSPI_Type.Location = new System.Drawing.Point(133, 26);
-            this.ComboBoxFilterSPI_Type.Name = "ComboBoxFilterSPI_Type";
-            this.ComboBoxFilterSPI_Type.Size = new System.Drawing.Size(717, 26);
-            this.ComboBoxFilterSPI_Type.TabIndex = 9;
-            this.ComboBoxFilterSPI_Type.SelectedIndexChanged += new System.EventHandler(this.ComboBoxFilterSPI_Type_SelectedIndexChanged);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(248, 6);
-            // 
-            // filterBySelectedSPITypeToolStripMenuItem
-            // 
-            this.filterBySelectedSPITypeToolStripMenuItem.Name = "filterBySelectedSPITypeToolStripMenuItem";
-            this.filterBySelectedSPITypeToolStripMenuItem.Size = new System.Drawing.Size(251, 24);
-            this.filterBySelectedSPITypeToolStripMenuItem.Text = "Filter by Selected SPI Type";
-            this.filterBySelectedSPITypeToolStripMenuItem.Click += new System.EventHandler(this.filterBySelectedSPITypeToolStripMenuItem_Click);
             // 
             // FrmMain
             // 

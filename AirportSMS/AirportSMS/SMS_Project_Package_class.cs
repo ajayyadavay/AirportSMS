@@ -42,7 +42,10 @@ namespace AirportSMS
             //SPIs info
             public string SPI_Id { get; set; }
             public string SPI_Name { get; set; }
-            
+            public string SPI_Value_Prev_Obs { get; set; }
+            public string SPI_Value_Curr_Target { get; set; }
+            public string SPI_Value_Curr_obs { get; set; }
+
             //Defining SPIs
             public string SPI_Type { get; set; }
             public string SPI_Des { get; set; }

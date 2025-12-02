@@ -17,7 +17,7 @@ namespace AirportSMS
     internal class AirportSMS_Class
     {
         public Panel CreateSPICard(FlowLayoutPanel flowLayoutPanel1,
-                           string spiName, string spiID, string spiValue, string spiType)
+                           string spiName, string spiID, string spiValuePrevObs, string spiValCurrTarget, string spiValCurrObs, string spiType)
         {
             Panel card = new Panel();
             card.Width = 250;
@@ -27,7 +27,13 @@ namespace AirportSMS
             card.BackColor = Color.White;
             card.Cursor = Cursors.Hand;
 
-            card.Tag = new { Name = spiName, ID = spiID, Value = spiValue, Type = spiType };
+            card.Tag = new { 
+                Name = spiName, 
+                ID = spiID, 
+                ValuePrevObs = spiValuePrevObs,
+                ValueCurrTarget = spiValCurrTarget,
+                ValueCurrObs = spiValCurrObs,
+                Type = spiType };
 
             // ░░░ MAIN TABLE (3 ROWS) ░░░
             TableLayoutPanel main = new TableLayoutPanel();
@@ -149,21 +155,21 @@ namespace AirportSMS
             row3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3F));
 
             Label lblPrev = new Label();
-            lblPrev.Text = "Prev:\n" + spiValue;
+            lblPrev.Text = "Prev:\n" + spiValuePrevObs;
             lblPrev.Font = new Font("Segoe UI", 9);
             lblPrev.ForeColor = Color.FromArgb(0, 90, 158);
             lblPrev.AutoSize = true;
             lblPrev.Dock = DockStyle.Fill;
 
             Label lblTarget = new Label();
-            lblTarget.Text = "Target:\n—";
+            lblTarget.Text = "Target:\n"+spiValCurrTarget;
             lblTarget.Font = new Font("Segoe UI", 9);
             lblTarget.ForeColor = Color.Green;
             lblTarget.AutoSize = true;
             lblTarget.Dock = DockStyle.Fill;
 
             Label lblCurrent = new Label();
-            lblCurrent.Text = "Obs:\n—";
+            lblCurrent.Text = "Obs:\n"+spiValCurrObs;
             lblCurrent.Font = new Font("Segoe UI", 9, FontStyle.Bold);
             lblCurrent.ForeColor = Color.Blue;
             lblCurrent.AutoSize = true;
@@ -274,7 +280,9 @@ namespace AirportSMS
                     //SPI info
                     fhm.TxtSPI_ID.Text = spi.SPI_Id;
                     fhm.TxtSPI_Name.Text = spi.SPI_Name;
-                    fhm.TxtSPI_Value.Text = "5200";
+                    fhm.TxtSPI_Value.Text = spi.SPI_Value_Prev_Obs;
+                    fhm.TxtSPI_Value_Target.Text = spi.SPI_Value_Curr_Target;
+                    fhm.TxtSPI_Value_Current.Text = spi.SPI_Value_Curr_obs;
 
                     //Defining SPIs
                     fhm.TxtSPI_Type.Text = spi.SPI_Type;

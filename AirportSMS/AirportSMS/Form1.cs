@@ -95,7 +95,15 @@ namespace AirportSMS
             //Write project name
             SMS_Project_Package_class.SMSProject smsproj = new SMS_Project_Package_class.SMSProject();
 
-            smsproj.ProjectName = "This_Project" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
+            if(TxtProjectName.Text == "")
+            {
+                smsproj.ProjectName = "This_Project" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
+            }
+            else
+            {
+                smsproj.ProjectName = TxtProjectName.Text;
+            }
+            
 
             //creating project
             CreateProject(RootFolderPath, smsproj);
@@ -119,6 +127,9 @@ namespace AirportSMS
             public string FileName_1 { get; set; }
             public string SPI_Name_1 { get; set; }
             public string SPI_Id_1 { get; set; }
+            public string SPI_Val_Prev_Obs_1 { get; set; }
+            public string SPI_Val_Curr_Target_1 { get; set; }
+            public string SPI_Val_Curr_Obs_1 { get; set; }
             public string SPI_Type_1 { get; set; }
         }
 
@@ -143,6 +154,9 @@ namespace AirportSMS
                         FileName_1 = Path.GetFileName(file),
                         SPI_Name_1 = spi.SPI_Name,
                         SPI_Id_1 = spi.SPI_Id,
+                        SPI_Val_Prev_Obs_1 = spi.SPI_Value_Prev_Obs,
+                        SPI_Val_Curr_Target_1 = spi.SPI_Value_Curr_Target,
+                        SPI_Val_Curr_Obs_1 = spi.SPI_Value_Curr_obs,
                         SPI_Type_1 = spi.SPI_Type
                     });
                 }
@@ -225,7 +239,16 @@ namespace AirportSMS
                 if (!string.IsNullOrEmpty(filterType) && spi.SPI_Type_1 != filterType)
                     continue;
 
-                Panel newCard = asms_cls.CreateSPICard(flowLayoutPanel1, spi.SPI_Name_1, spi.SPI_Id_1, "35", spi.SPI_Type_1);
+                Panel newCard = asms_cls.CreateSPICard(
+                    flowLayoutPanel1, 
+                    spi.SPI_Name_1, 
+                    spi.SPI_Id_1, 
+                    spi.SPI_Val_Prev_Obs_1, 
+                    spi.SPI_Val_Curr_Target_1,
+                    spi.SPI_Val_Curr_Obs_1, 
+                    spi.SPI_Type_1
+                );
+
                 flowLayoutPanel1.Controls.Add(newCard);
             }
             flowLayoutPanel1.ResumeLayout(true);

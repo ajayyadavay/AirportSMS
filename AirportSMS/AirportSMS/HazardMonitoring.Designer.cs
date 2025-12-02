@@ -31,6 +31,8 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,6 +69,10 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.TxtSPI_Value_Current = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.TxtSPI_Value_Target = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.TxtSPI_Value = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -114,6 +120,14 @@
             // dataGridView1
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColID,
@@ -131,11 +145,18 @@
             this.ColOct,
             this.ColNov,
             this.ColDec});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(8, 787);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1340, 147);
             this.dataGridView1.TabIndex = 4;
-            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             // 
             // ColID
@@ -250,7 +271,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1370, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1353, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -419,6 +440,10 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.TxtSPI_Value_Current);
+            this.groupBox3.Controls.Add(this.label15);
+            this.groupBox3.Controls.Add(this.TxtSPI_Value_Target);
+            this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.TxtSPI_Value);
             this.groupBox3.Controls.Add(this.label12);
@@ -447,22 +472,58 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Defining SPIs";
             // 
+            // TxtSPI_Value_Current
+            // 
+            this.TxtSPI_Value_Current.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSPI_Value_Current.Location = new System.Drawing.Point(958, 159);
+            this.TxtSPI_Value_Current.Name = "TxtSPI_Value_Current";
+            this.TxtSPI_Value_Current.Size = new System.Drawing.Size(344, 24);
+            this.TxtSPI_Value_Current.TabIndex = 28;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(819, 159);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(133, 18);
+            this.label15.TabIndex = 27;
+            this.label15.Text = "Value Current Obs:";
+            // 
+            // TxtSPI_Value_Target
+            // 
+            this.TxtSPI_Value_Target.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSPI_Value_Target.Location = new System.Drawing.Point(958, 129);
+            this.TxtSPI_Value_Target.Name = "TxtSPI_Value_Target";
+            this.TxtSPI_Value_Target.Size = new System.Drawing.Size(344, 24);
+            this.TxtSPI_Value_Target.TabIndex = 26;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(857, 133);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(94, 18);
+            this.label14.TabIndex = 25;
+            this.label14.Text = "Value Target:";
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(806, 102);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(48, 18);
+            this.label13.Size = new System.Drawing.Size(146, 18);
             this.label13.TabIndex = 24;
-            this.label13.Text = "Value:";
+            this.label13.Text = "Value Prev Observed";
             // 
             // TxtSPI_Value
             // 
             this.TxtSPI_Value.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSPI_Value.Location = new System.Drawing.Point(860, 99);
+            this.TxtSPI_Value.Location = new System.Drawing.Point(958, 99);
             this.TxtSPI_Value.Name = "TxtSPI_Value";
-            this.TxtSPI_Value.Size = new System.Drawing.Size(442, 24);
+            this.TxtSPI_Value.Size = new System.Drawing.Size(344, 24);
             this.TxtSPI_Value.TabIndex = 23;
             // 
             // label12
@@ -648,7 +709,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1387, 749);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -733,5 +794,9 @@
         public System.Windows.Forms.TextBox TxtSPI_Calc;
         public System.Windows.Forms.ToolStripMenuItem createNewSPIToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem importTemplateSPIToolStripMenuItem;
+        private System.Windows.Forms.Label label14;
+        public System.Windows.Forms.TextBox TxtSPI_Value_Current;
+        private System.Windows.Forms.Label label15;
+        public System.Windows.Forms.TextBox TxtSPI_Value_Target;
     }
 }

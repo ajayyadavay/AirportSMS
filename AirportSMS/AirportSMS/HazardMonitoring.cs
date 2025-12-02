@@ -279,6 +279,32 @@ namespace AirportSMS
             }
         }
 
+        public double CalculateAverage(DataGridView dgv, int row, int ColStart = 3, int ColEnd = 14)
+        {
+            double sum = 0.0;
+            int count = 0;
+
+            // Loop through the specified columns
+            for (int i = ColStart; i <= ColEnd; i++)
+            {
+                var cellValue = dgv.Rows[row].Cells[i].Value;
+
+                if (cellValue != null)
+                {
+                    // Try to parse as double
+                    if (double.TryParse(cellValue.ToString(), out double number))
+                    {
+                        sum += number;
+                        count++;
+                    }
+                }
+            }
+
+            // Return average of available numbers only
+            return count > 0 ? sum / count : 0.0;
+        }
+
+
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             // Only watch Row 0 and Row 1
@@ -319,7 +345,7 @@ namespace AirportSMS
                 if (double.TryParse(cellRow2.Value?.ToString(), out double valRow2) &&
                     double.TryParse(cellRow3.Value?.ToString(), out double valRow3))
                 {
-                    if (valRow3 > valRow2)
+                    if (row1<0 && valRow3 > valRow2 || row1 > 0 && valRow3 < valRow2)
                     {
                         var currentFont = cellRow3.Style.Font ?? dataGridView1.DefaultCellStyle.Font;
                         cellRow3.Style.Font = new Font(currentFont.FontFamily, 12f, FontStyle.Bold);
@@ -328,14 +354,20 @@ namespace AirportSMS
                     }
                     else
                     {
-                        cellRow3.Style.Font = new Font("Microsoft Sans Serif", 9.75f, FontStyle.Regular);
+                        cellRow3.Style.Font = new Font("Microsoft Sans Serif", 11f, FontStyle.Regular);
                         cellRow3.Style.ForeColor = Color.Blue; // keep blue color
                         cellRow3.Style.BackColor = Color.White;
                     }
                 }
 
                 // ----- END NEW LOGIC -----
+                double AvgPreObs = CalculateAverage(dataGridView1, 0);
+                double AvgCurrTar = CalculateAverage(dataGridView1, 2);
+                double AvgCurrObs = CalculateAverage(dataGridView1, 3);
 
+                TxtSPI_Value.Text = AvgPreObs.ToString("0.00");
+                TxtSPI_Value_Target.Text = AvgCurrTar.ToString("0.00");
+                TxtSPI_Value_Current.Text = AvgCurrObs.ToString("0.00");
                 //Plot graph on changing any cells of row0, row2, row3
                 PlotGraph();
 
@@ -475,6 +507,9 @@ namespace AirportSMS
                 // SPI Info
                 SPI_Id = spiID,
                 SPI_Name = TxtSPI_Name.Text,
+                SPI_Value_Prev_Obs = TxtSPI_Value.Text,
+                SPI_Value_Curr_Target = TxtSPI_Value_Target.Text,
+                SPI_Value_Curr_obs = TxtSPI_Value_Current.Text,
 
                 // Defining SPI
                 SPI_Type = TxtSPI_Type.Text,
@@ -548,7 +583,6 @@ namespace AirportSMS
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            //PlotGraph();
         }
 
         private void importTemplateSPIToolStripMenuItem_Click(object sender, EventArgs e)
@@ -583,7 +617,9 @@ namespace AirportSMS
                 //SPI info
                 TxtSPI_ID.Text = spi.SPI_Id;
                 TxtSPI_Name.Text = spi.SPI_Name;
-                TxtSPI_Value.Text = "5200";
+                TxtSPI_Value.Text = spi.SPI_Value_Prev_Obs;
+                TxtSPI_Value_Target.Text = spi.SPI_Value_Curr_Target;
+                TxtSPI_Value_Current.Text = spi.SPI_Value_Curr_obs;
 
                 //Defining SPIs
                 TxtSPI_Type.Text = spi.SPI_Type;
