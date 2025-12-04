@@ -17,11 +17,12 @@ namespace AirportSMS
     internal class AirportSMS_Class
     {
         public Panel CreateSPICard(FlowLayoutPanel flowLayoutPanel1,
-                           string spiName, string spiID, string spiValuePrevObs, string spiValCurrTarget, string spiValCurrObs, string spiType)
+                           string spiName, string spiID, string spiValuePrevObs, string spiValCurrTarget, string spiValCurrObs, string spiType,
+                           string spiProgressPercent)
         {
             Panel card = new Panel();
             card.Width = 250;
-            card.Height = 180;
+            card.Height = 250;
             card.Margin = new Padding(12);
             card.Padding = new Padding(10);
             card.BackColor = Color.White;
@@ -157,7 +158,8 @@ namespace AirportSMS
             Label lblPrev = new Label();
             lblPrev.Text = "Prev:\n" + spiValuePrevObs;
             lblPrev.Font = new Font("Segoe UI", 9);
-            lblPrev.ForeColor = Color.FromArgb(0, 90, 158);
+            //lblPrev.ForeColor = Color.FromArgb(0, 90, 158);
+            lblPrev.ForeColor = Color.Red;
             lblPrev.AutoSize = true;
             lblPrev.Dock = DockStyle.Fill;
 
@@ -169,7 +171,7 @@ namespace AirportSMS
             lblTarget.Dock = DockStyle.Fill;
 
             Label lblCurrent = new Label();
-            lblCurrent.Text = "Obs:\n"+spiValCurrObs;
+            lblCurrent.Text = "Curr:\n"+spiValCurrObs;
             lblCurrent.Font = new Font("Segoe UI", 9, FontStyle.Bold);
             lblCurrent.ForeColor = Color.Blue;
             lblCurrent.AutoSize = true;
@@ -202,6 +204,118 @@ namespace AirportSMS
             lblTarget.Click += openDetails;
             lblCurrent.Click += openDetails;
             card.Click += openDetails;
+
+
+            
+            // ░░░ ADD ROW 4 SAFELY: PROGRESS CIRCLE ░░░
+            // Increase main rows without altering previous 3 rows
+            main.RowCount = 4;
+            main.RowStyles.Add(new RowStyle(SizeType.Absolute, 85));   // fixed row - prevents overlap
+
+            // container so drawing never spills outside
+            Panel progressContainer = new Panel();
+            progressContainer.Dock = DockStyle.Fill;
+            progressContainer.BackColor = Color.Transparent;
+
+            // the circle itself
+            Panel progressPanel = new Panel();
+            progressPanel.Size = new Size(70, 70); //circle size
+            progressPanel.BackColor = Color.Transparent;
+            progressPanel.Anchor = AnchorStyles.None; // center automatically
+            progressPanel.Location = new Point(
+                (progressContainer.Width - progressPanel.Width) / 2,
+                (progressContainer.Height - progressPanel.Height) / 2);
+
+            progressContainer.Resize += (s, e) =>
+            {
+                progressPanel.Location = new Point(
+                    (progressContainer.Width - progressPanel.Width) / 2,
+                    (progressContainer.Height - progressPanel.Height) / 2);
+            };
+
+            double Progress_Percent = Convert.ToDouble(spiProgressPercent);// user parameter
+
+
+
+
+            progressPanel.Paint += (s, e) =>
+            {
+                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+                int size = Math.Min(progressPanel.Width, progressPanel.Height) - 10;
+                Rectangle rect = new Rectangle(4, 4, size, size);
+
+                // background ring
+                using (Pen bg = new Pen(Color.LightGray, 10))
+                    e.Graphics.DrawEllipse(bg, rect);
+
+                // percent color red → blue → green
+                Color progressColor;
+
+                // 0 → 50  (Red → Blue)
+                if (Progress_Percent <= 50)
+                {
+                    double t = Progress_Percent / 50.0;   // 0 to 1
+
+                    int r = (int)(255 * (1 - t));         // 255 → 0
+                    int g = 0;                            // stays 0
+                    int b = (int)(255 * t);               // 0 → 255
+
+                    progressColor = Color.FromArgb(r, g, b);
+                }
+                // 50 → 100 (Blue → Green)
+                else
+                {
+                    double t = (Progress_Percent - 50) / 50.0; // 0 to 1
+
+                    int r = 0;                                // stays 0
+                    int g = (int)(255 * t);                   // 0 → 255
+                    int b = (int)(255 * (1 - t));             // 255 → 0
+
+                    progressColor = Color.FromArgb(r, g, b);
+                }
+
+
+                // ---- Click opens detail form on circle, text, and inside area ----
+                //progressContainer.Click += openDetails;
+                //progressPanel.Click += openDetails;
+
+                // Transparent overlay to allow clicking the text area drawn inside the circle
+                Label lblProgressClick = new Label();
+                lblProgressClick.Dock = DockStyle.Fill;
+                lblProgressClick.BackColor = Color.Transparent;
+                lblProgressClick.Click += openDetails;
+
+                // Add the overlay label to the circle panel
+                progressPanel.Controls.Add(lblProgressClick);
+
+                using (Pen pen = new Pen(progressColor, 8))
+                {
+                    pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
+                    pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
+                    float sweep = (float)(Progress_Percent * 3.6);
+                    e.Graphics.DrawArc(pen, rect, -90, sweep);
+                }
+
+                // text inside
+                Brush TxtProgressBrush = new SolidBrush(progressColor);
+                string txt = Progress_Percent.ToString("0") + "%";
+                using (Font f = new Font("Segoe UI", 11, FontStyle.Bold))
+                {
+                    SizeF t = e.Graphics.MeasureString(txt, f);
+                    e.Graphics.DrawString(txt, f,TxtProgressBrush, //Brushes.Black
+                        (progressPanel.Width - t.Width) / 2,
+                        (progressPanel.Height - t.Height) / 2);
+                }
+            };
+
+            // add circle into container
+            progressContainer.Controls.Add(progressPanel);
+
+            // add container to new row 4
+            main.Controls.Add(progressContainer, 0, 3);
+
+
 
             return card;
         }

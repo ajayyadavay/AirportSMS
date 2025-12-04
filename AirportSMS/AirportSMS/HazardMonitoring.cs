@@ -368,9 +368,18 @@ namespace AirportSMS
                 TxtSPI_Value.Text = AvgPreObs.ToString("0.00");
                 TxtSPI_Value_Target.Text = AvgCurrTar.ToString("0.00");
                 TxtSPI_Value_Current.Text = AvgCurrObs.ToString("0.00");
+
+                //Progress bar
+                int totalValueCount;
+                int font12Count = CountCellsWithFont12(dataGridView1, 3, out totalValueCount);
+                
+                double ratio = 100.0 * (totalValueCount - font12Count) / totalValueCount;
+
+                TxtProgressPercent.Text = ratio.ToString("0.00");
+
+
                 //Plot graph on changing any cells of row0, row2, row3
                 PlotGraph();
-
 
             }
             catch 
@@ -378,6 +387,34 @@ namespace AirportSMS
 
             }
         }
+
+        public int CountCellsWithFont12(
+            DataGridView dgv,
+            int row,
+            out int totalValueCount,
+            int ColStart = 3,
+            int ColEnd = 14)
+        {
+            int font12Count = 0;
+            totalValueCount = 0;
+
+            for (int i = ColStart; i <= ColEnd; i++)
+            {
+                var cell = dgv.Rows[row].Cells[i];
+
+                // Count all cells that have ANY value (non-null & not empty)
+                if (cell.Value != null && cell.Value.ToString().Trim() != "")
+                    totalValueCount++;
+
+                // Count only cells with font size = 12
+                if (cell.Style.Font != null && cell.Style.Font.Size == 12)
+                    font12Count++;
+            }
+
+            return font12Count;
+        }
+
+
 
         private void TxtCurrentYear_TextChanged(object sender, EventArgs e)
         {
@@ -510,6 +547,7 @@ namespace AirportSMS
                 SPI_Value_Prev_Obs = TxtSPI_Value.Text,
                 SPI_Value_Curr_Target = TxtSPI_Value_Target.Text,
                 SPI_Value_Curr_obs = TxtSPI_Value_Current.Text,
+                SPI_Progress_Percentage = TxtProgressPercent.Text,
 
                 // Defining SPI
                 SPI_Type = TxtSPI_Type.Text,
@@ -534,6 +572,7 @@ namespace AirportSMS
             string id = spiID;
             string value = TxtSPI_Value.Text;
             string type = TxtSPI_Type.Text;
+            string Progress = TxtProgressPercent.Text;
 
 
             /*if(IsCreateNew)

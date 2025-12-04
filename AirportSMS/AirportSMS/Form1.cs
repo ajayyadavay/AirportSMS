@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
@@ -131,6 +132,7 @@ namespace AirportSMS
             public string SPI_Val_Curr_Target_1 { get; set; }
             public string SPI_Val_Curr_Obs_1 { get; set; }
             public string SPI_Type_1 { get; set; }
+            public string SPI_Progress_Percentage { get; set; }
         }
 
 
@@ -157,7 +159,8 @@ namespace AirportSMS
                         SPI_Val_Prev_Obs_1 = spi.SPI_Value_Prev_Obs,
                         SPI_Val_Curr_Target_1 = spi.SPI_Value_Curr_Target,
                         SPI_Val_Curr_Obs_1 = spi.SPI_Value_Curr_obs,
-                        SPI_Type_1 = spi.SPI_Type
+                        SPI_Type_1 = spi.SPI_Type,
+                        SPI_Progress_Percentage = spi.SPI_Progress_Percentage
                     });
                 }
             }
@@ -221,6 +224,7 @@ namespace AirportSMS
 
         public void UpdateSPICard(string projectFolder, string filterType = null)
         {
+            
             // 2. Load SPI metadata (filename, name, id)
             var spiList = LoadSPIMetadata(projectFolder);
 
@@ -246,7 +250,8 @@ namespace AirportSMS
                     spi.SPI_Val_Prev_Obs_1, 
                     spi.SPI_Val_Curr_Target_1,
                     spi.SPI_Val_Curr_Obs_1, 
-                    spi.SPI_Type_1
+                    spi.SPI_Type_1,
+                    spi.SPI_Progress_Percentage
                 );
 
                 flowLayoutPanel1.Controls.Add(newCard);

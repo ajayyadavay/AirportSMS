@@ -93,6 +93,8 @@
             this.TxtSPI_Name = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.TxtProgressPercent = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -440,6 +442,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label16);
+            this.groupBox3.Controls.Add(this.TxtProgressPercent);
             this.groupBox3.Controls.Add(this.TxtSPI_Value_Current);
             this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.TxtSPI_Value_Target);
@@ -477,6 +481,7 @@
             this.TxtSPI_Value_Current.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtSPI_Value_Current.Location = new System.Drawing.Point(958, 159);
             this.TxtSPI_Value_Current.Name = "TxtSPI_Value_Current";
+            this.TxtSPI_Value_Current.ReadOnly = true;
             this.TxtSPI_Value_Current.Size = new System.Drawing.Size(344, 24);
             this.TxtSPI_Value_Current.TabIndex = 28;
             // 
@@ -495,6 +500,7 @@
             this.TxtSPI_Value_Target.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtSPI_Value_Target.Location = new System.Drawing.Point(958, 129);
             this.TxtSPI_Value_Target.Name = "TxtSPI_Value_Target";
+            this.TxtSPI_Value_Target.ReadOnly = true;
             this.TxtSPI_Value_Target.Size = new System.Drawing.Size(344, 24);
             this.TxtSPI_Value_Target.TabIndex = 26;
             // 
@@ -523,6 +529,7 @@
             this.TxtSPI_Value.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtSPI_Value.Location = new System.Drawing.Point(958, 99);
             this.TxtSPI_Value.Name = "TxtSPI_Value";
+            this.TxtSPI_Value.ReadOnly = true;
             this.TxtSPI_Value.Size = new System.Drawing.Size(344, 24);
             this.TxtSPI_Value.TabIndex = 23;
             // 
@@ -704,6 +711,25 @@
             this.label8.TabIndex = 3;
             this.label8.Text = "Types of SPI";
             // 
+            // TxtProgressPercent
+            // 
+            this.TxtProgressPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtProgressPercent.Location = new System.Drawing.Point(958, 189);
+            this.TxtProgressPercent.Name = "TxtProgressPercent";
+            this.TxtProgressPercent.ReadOnly = true;
+            this.TxtProgressPercent.Size = new System.Drawing.Size(344, 24);
+            this.TxtProgressPercent.TabIndex = 29;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(803, 192);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(151, 18);
+            this.label16.TabIndex = 30;
+            this.label16.Text = "Progress Percent (%)";
+            // 
             // FrmHazardMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -798,5 +824,7 @@
         public System.Windows.Forms.TextBox TxtSPI_Value_Current;
         private System.Windows.Forms.Label label15;
         public System.Windows.Forms.TextBox TxtSPI_Value_Target;
+        public System.Windows.Forms.TextBox TxtProgressPercent;
+        private System.Windows.Forms.Label label16;
     }
 }
