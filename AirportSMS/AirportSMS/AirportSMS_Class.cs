@@ -233,9 +233,8 @@ namespace AirportSMS
                     (progressContainer.Height - progressPanel.Height) / 2);
             };
 
+            //MessageBox.Show("% = " + spiProgressPercent);
             double Progress_Percent = Convert.ToDouble(spiProgressPercent);// user parameter
-
-
 
 
             progressPanel.Paint += (s, e) =>
@@ -365,6 +364,7 @@ namespace AirportSMS
                 chk.Checked = false;
         }
 
+
         public void OpenDetailForm(string id, bool IsTemplate)
         {
             FrmHazardMonitoring fhm = new FrmHazardMonitoring();
@@ -430,6 +430,104 @@ namespace AirportSMS
             }
             
         }
+
+
+
+        public void CopyAlltoClipboard(DataGridView dataGridView1)
+        {
+            //required when exporting to all to excel
+            dataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            dataGridView1.MultiSelect = true;
+            dataGridView1.SelectAll();
+            DataObject dataObj = dataGridView1.GetClipboardContent();
+            if (dataObj != null)
+                Clipboard.SetDataObject(dataObj);
+        }
+
+        public void CopySelectedtoClipboard(DataGridView dataGridView1)
+        {
+            //dataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            dataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            dataGridView1.MultiSelect = true;
+            //datagridview1.SelectAll();
+            DataObject dataObj = dataGridView1.GetClipboardContent();
+            if (dataObj != null)
+                Clipboard.SetDataObject(dataObj);
+        }
+
+        public void PasteClipboardToDatagridview(DataGridView dgv)
+        {
+            if (dgv.SelectedCells.Count == 0) return;
+
+            // Find top-left selected cell (Excel behavior)
+            int startRow = dgv.SelectedCells.Cast<DataGridViewCell>().Min(c => c.RowIndex);
+            int startCol = dgv.SelectedCells.Cast<DataGridViewCell>().Min(c => c.ColumnIndex);
+
+            string clipboardText = Clipboard.GetText();
+            if (string.IsNullOrWhiteSpace(clipboardText)) return;
+
+            // IMPORTANT: Remove empty trailing lines
+            string[] lines = clipboardText
+                .Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+            int row = startRow;
+
+            foreach (string line in lines)
+            {
+                if (row >= dgv.Rows.Count || dgv.Rows[row].IsNewRow)
+                    break;
+
+                string[] values = line.Split('\t');
+                int col = startCol;
+
+                foreach (string value in values)
+                {
+                    if (col >= dgv.Columns.Count)
+                        break;
+
+                    dgv.Rows[row].Cells[col].Value = value;
+                    col++;
+                }
+
+                row++;
+            }
+        }
+
+
+        /*public void PasteClipboardToDatagridview(DataGridView dataGridView1)
+        {
+            if (dataGridView1.SelectedCells.Count < 1) return;
+
+            string[] lines;
+
+            int row = dataGridView1.SelectedCells[0].RowIndex;
+            int col = dataGridView1.SelectedCells[0].ColumnIndex;
+
+            //get copied values
+            lines = Clipboard.GetText().Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+
+            string[] values;
+            for (int i = 0; i < lines.Length; i++)
+            {
+                values = lines[i].Split('\t');
+
+                if (row >= dataGridView1.Rows.Count || dataGridView1.Rows[row].IsNewRow) continue;
+                //if (row >= dataGridView1.Rows.Count || dataGridView1.Rows[row].IsNewRow) dataGridView1.Rows.Add();
+                for (int j = 0; j < values.Length; j++)
+                {
+                    if (col + j >= dataGridView1.Columns.Count) continue;
+                    dataGridView1.Rows[row].Cells[col + j].Value = values[j];
+                }
+
+                row++;
+            }
+
+
+        }*/
+
+
+
+
 
 
     }

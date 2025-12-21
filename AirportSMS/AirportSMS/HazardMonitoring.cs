@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Odbc;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -85,9 +86,19 @@ namespace AirportSMS
             Close();
         }
 
-        
+        public class SeriesStyleConfig
+        {
+            public bool ShowSeries { get; set; } = true;        // NEW
+            public bool ShowValueLabel { get; set; } = false;
+            public string LegendText { get; set; } = null;
+            public SeriesChartType ChartType { get; set; } = SeriesChartType.Line;
 
-        public void ChartStyle1(Chart chart)
+            // NEW → Area fill direction relative to data line
+            public bool AreaFillAbove { get; set; } = false; // default = below
+        }
+
+        public void ChartStyle1(Chart chart, string ChartName, String Y_Label,
+            Dictionary<string, SeriesStyleConfig> seriesConfig = null)
         {
             var chartArea = chart.ChartAreas[0];
             var legend = chart.Legends[0];
@@ -140,7 +151,8 @@ namespace AirportSMS
             // Title
             // -----------------------------------------------------
             chart.Titles.Clear();
-            chart.Titles.Add("Monthly Performance Overview");
+            //chart.Titles.Add("Monthly Performance Overview");
+            chart.Titles.Add(ChartName);
             chart.Titles[0].Font = new Font("Segoe UI Semibold", 14);
             chart.Titles[0].Alignment = ContentAlignment.TopCenter;
 
@@ -153,7 +165,8 @@ namespace AirportSMS
 
 
             // -------------------- Y Axis Title --------------------
-            chart.ChartAreas[0].AxisY.Title = "values";
+            //chart.ChartAreas[0].AxisY.Title = "values";
+            chart.ChartAreas[0].AxisY.Title = Y_Label;
             chart.ChartAreas[0].AxisY.TitleFont = new Font("Arial", 10, FontStyle.Bold);
             chart.ChartAreas[0].AxisY.TitleForeColor = Color.Black;
 
@@ -175,13 +188,108 @@ namespace AirportSMS
             foreach (var s in chart.Series)
             {
                 s.Color = modernColors[ci % modernColors.Length];
-                s.BorderWidth = 3;
-                s.ChartType = SeriesChartType.Line;
+                /*s.BorderWidth = 3;
+                //s.ChartType = SeriesChartType.Line;
                 s.BorderDashStyle = ChartDashStyle.Solid;
                 s.MarkerStyle = MarkerStyle.Circle;
                 s.MarkerSize = 7;
                 s.MarkerColor = s.Color;
-                s.MarkerBorderColor = Color.White;
+                s.MarkerBorderColor = Color.White;*/
+
+
+
+                // ---------- SERIES CONFIG (PER SERIES) ----------
+                SeriesStyleConfig cfg = null;
+
+                // IMPORTANT: reset line-only visuals for non-line charts
+                if (s.ChartType != SeriesChartType.Line)
+                {
+                    s.MarkerStyle = MarkerStyle.None;
+                }
+
+                if (seriesConfig != null &&
+                    seriesConfig.TryGetValue(s.Name, out cfg))
+                {
+                    s.Enabled = cfg.ShowSeries;
+                    s.IsVisibleInLegend = cfg.ShowSeries;
+                    // Show / hide value labels
+                    s.IsValueShownAsLabel = cfg.ShowValueLabel;
+
+                    // Legend text override (optional)
+                    if (!string.IsNullOrEmpty(cfg.LegendText))
+                        s.LegendText = cfg.LegendText;
+
+                    // Chart type per series
+                    s.ChartType = cfg.ChartType;
+                }
+                else
+                {
+                    // Defaults (unchanged behavior)
+                    s.Enabled = true;
+                    s.IsVisibleInLegend = true;
+                    s.IsValueShownAsLabel = false;
+                    s.ChartType = SeriesChartType.Line;
+                }
+
+
+                switch (s.ChartType)
+                {
+                    case SeriesChartType.Line:
+                        s.BorderWidth = 3;
+                        s.BorderDashStyle = ChartDashStyle.Solid;
+                        s.MarkerStyle = MarkerStyle.Circle;
+                        s.MarkerSize = 7;
+                        s.MarkerColor = s.Color;
+                        s.MarkerBorderColor = Color.White;
+                        break;
+
+                    case SeriesChartType.Column:
+                        //s.BorderWidth = 0;                 // important
+                        //s.BorderDashStyle = ChartDashStyle.NotSet;
+                        //s.MarkerStyle = MarkerStyle.None;  // important
+                        //s.BorderWidth = 1;
+                        //s.MarkerStyle = MarkerStyle.None;
+                        s["PointWidth"] = "0.7";       // important for visibility
+                        //MessageBox.Show("Column");
+                        break;
+
+                    case SeriesChartType.Area:
+                        s.BorderWidth = 2;
+                        s.BorderDashStyle = ChartDashStyle.Solid;
+                        s.MarkerStyle = MarkerStyle.None;
+                        s.BackSecondaryColor = Color.Transparent;
+                        s.Color = Color.FromArgb(120, s.Color); // soft transparent fill
+                        break;
+
+                }
+
+
+                // Label styling (safe even if hidden)
+                s.LabelForeColor = s.Color;
+                s.LabelBackColor = Color.Transparent;
+                s.Font = new Font("Segoe UI", 8, FontStyle.Regular);
+                s["LabelStyle"] = "Top";
+                // ----------------------------------------------
+
+
+
+                /*// --------- VALUE LABELS (PER SERIES) ---------
+                bool showLabel = false;
+
+                if (seriesLabelVisibility != null &&
+                    seriesLabelVisibility.ContainsKey(s.Name))
+                {
+                    showLabel = seriesLabelVisibility[s.Name];
+                }
+
+                s.IsValueShownAsLabel = showLabel;
+                s.LabelForeColor = s.Color;          // ← SAME AS PLOT COLOR
+                s.LabelBackColor = Color.Transparent;
+                s.Font = new Font("Segoe UI", 8, FontStyle.Regular);
+                s["LabelStyle"] = "Top";
+                // --------------------------------------------*/
+
+
                 ci++;
             }
         }
@@ -207,26 +315,70 @@ namespace AirportSMS
                 Chart1.Series["Curr_Year_obs"].Points.AddXY(X_axis[i+1], Y1_axis_curr_year_obs[i]);
             }
 
-            Chart1.Series["Prv_Year_obs"].Color = Color.Red;
+            /*Chart1.Series["Prv_Year_obs"].Color = Color.Red;
             Chart1.Series["Curr_Year_Target_val"].Color = Color.Green;
-            Chart1.Series["Curr_Year_obs"].Color = Color.Blue;
+            Chart1.Series["Curr_Year_obs"].Color = Color.Blue;*/
 
-            Chart1.Series["Prv_Year_obs"].BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            //Chart1.Series["Prv_Year_obs"].BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
             //Chart1.Series["Curr_Year_Target_val"].BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
 
-            var ax = Chart1.ChartAreas[0].AxisX;
+            /*var ax = Chart1.ChartAreas[0].AxisX;
 
             ax.Interval = 1;                   // Force all labels
             ax.IsLabelAutoFit = false;         // Disable auto hiding
-            ax.LabelStyle.Angle = -45;         // Optional (better fit)
+            ax.LabelStyle.Angle = -45;         // Optional (better fit)*/
             //ax.MajorGrid.Enabled = false;      // Cleaner look
 
-            ChartStyle1(Chart1);
+            string Chart_Name, Y_axis_Label;
+            if(TxtSPI_Name.Text == "")
+            {
+                Chart_Name = "Monthly performance overview";
+            }
+            else
+            {
+                Chart_Name = TxtSPI_Name.Text;
+            }
+
+            if (Txt_SPI_Unit.Text == "")
+            {
+                Y_axis_Label = "Number or Number per .... FMs";
+            }
+            else
+            {
+                Y_axis_Label = Txt_SPI_Unit.Text;
+            }
+
+            var seriesConfig = new Dictionary<string, SeriesStyleConfig>()
+            {
+                ["Prv_Year_obs"] = new SeriesStyleConfig
+                {
+                    ShowSeries = false,
+                    ShowValueLabel = false,
+                    LegendText = "Oberved value for previous year",
+                    ChartType = SeriesChartType.Column
+                },
+                ["Curr_Year_Target_val"] = new SeriesStyleConfig
+                {
+                    ShowSeries = true,
+                    ShowValueLabel = true,
+                    LegendText = "Target value for current year",
+                    ChartType = SeriesChartType.Area
+                },
+                ["Curr_Year_obs"] = new SeriesStyleConfig
+                {
+                    ShowSeries = true,
+                    ShowValueLabel = true,
+                    LegendText = "Observed value for current year",
+                    ChartType = SeriesChartType.Line
+                }
+            };
+
+            ChartStyle1(Chart1, Chart_Name, Y_axis_Label, seriesConfig);
 
             //Chart1.Series["Line"].Points.AddXY(2, 2);
-            Chart1.Series["Prv_Year_obs"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            Chart1.Series["Curr_Year_Target_val"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            Chart1.Series["Curr_Year_obs"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            //Chart1.Series["Prv_Year_obs"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            //Chart1.Series["Curr_Year_Target_val"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            //.Series["Curr_Year_obs"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
 
             Chart1.Invalidate();
             Chart1.Update();
@@ -531,7 +683,7 @@ namespace AirportSMS
                 curr_year_obs[i] = Convert.ToDouble(dataGridView1.Rows[3].Cells[i + 2].Value);
 
             }
-
+            
             // 2. Create the project object
             var thisSPI = new SMS_Project_Package_class.SPI
             {
@@ -602,6 +754,8 @@ namespace AirportSMS
                
         }
 
+
+        
         private void createNewSPIToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -686,6 +840,32 @@ namespace AirportSMS
 
 
 
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AirportSMS_Class asmscls = new AirportSMS_Class();
+                asmscls.CopySelectedtoClipboard(dataGridView1);
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AirportSMS_Class asmscls = new AirportSMS_Class();
+                asmscls.PasteClipboardToDatagridview(dataGridView1);
+            }
+            catch
+            {
+
+            }
         }
     }
 }

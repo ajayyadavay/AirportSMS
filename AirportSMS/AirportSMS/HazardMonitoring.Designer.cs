@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -69,6 +70,8 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.TxtProgressPercent = new System.Windows.Forms.TextBox();
             this.TxtSPI_Value_Current = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.TxtSPI_Value_Target = new System.Windows.Forms.TextBox();
@@ -93,14 +96,16 @@
             this.TxtSPI_Name = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.TxtProgressPercent = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.Chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Chart1
@@ -147,6 +152,7 @@
             this.ColOct,
             this.ColNov,
             this.ColDec});
+            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -476,6 +482,25 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Defining SPIs";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(803, 192);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(151, 18);
+            this.label16.TabIndex = 30;
+            this.label16.Text = "Progress Percent (%)";
+            // 
+            // TxtProgressPercent
+            // 
+            this.TxtProgressPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtProgressPercent.Location = new System.Drawing.Point(958, 189);
+            this.TxtProgressPercent.Name = "TxtProgressPercent";
+            this.TxtProgressPercent.ReadOnly = true;
+            this.TxtProgressPercent.Size = new System.Drawing.Size(344, 24);
+            this.TxtProgressPercent.TabIndex = 29;
+            // 
             // TxtSPI_Value_Current
             // 
             this.TxtSPI_Value_Current.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -711,24 +736,28 @@
             this.label8.TabIndex = 3;
             this.label8.Text = "Types of SPI";
             // 
-            // TxtProgressPercent
+            // contextMenuStrip1
             // 
-            this.TxtProgressPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtProgressPercent.Location = new System.Drawing.Point(958, 189);
-            this.TxtProgressPercent.Name = "TxtProgressPercent";
-            this.TxtProgressPercent.ReadOnly = true;
-            this.TxtProgressPercent.Size = new System.Drawing.Size(344, 24);
-            this.TxtProgressPercent.TabIndex = 29;
+            this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem,
+            this.pasteToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
             // 
-            // label16
+            // copyToolStripMenuItem
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(803, 192);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(151, 18);
-            this.label16.TabIndex = 30;
-            this.label16.Text = "Progress Percent (%)";
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
+            // pasteToolStripMenuItem
+            // 
+            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pasteToolStripMenuItem.Text = "Paste";
+            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
             // FrmHazardMonitoring
             // 
@@ -757,6 +786,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -826,5 +856,8 @@
         public System.Windows.Forms.TextBox TxtSPI_Value_Target;
         public System.Windows.Forms.TextBox TxtProgressPercent;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
     }
 }
