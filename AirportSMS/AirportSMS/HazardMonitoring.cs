@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ScottPlot.Colormaps;
+using ScottPlot.Plottables;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +16,8 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using sctplot = ScottPlot;
+using sctplotwin = ScottPlot.WinForms;
 
 namespace AirportSMS
 {
@@ -23,11 +27,25 @@ namespace AirportSMS
         double [] Y1_axis_prev_year = new double[100];
         double [] Y1_axis_curr_year_target = new double[100];
         double [] Y1_axis_curr_year_obs = new double[100];
-        
+
+        public sctplotwin.FormsPlot formsPlot1;
+
+        public void InitializeScottPlot()
+        {
+            // Only if not already created
+            if (formsPlot1 == null)
+            {
+                formsPlot1 = new sctplotwin.FormsPlot();
+                formsPlot1.Dock = DockStyle.Fill;         // Fill the panel
+                PanelPlot.Controls.Add(formsPlot1);       // Add to your panel
+            }
+        }
+
 
         public FrmHazardMonitoring()
         {
             InitializeComponent();
+            InitializeScottPlot();
 
             GenerateRowsDGV();
 
@@ -92,9 +110,13 @@ namespace AirportSMS
             public bool ShowValueLabel { get; set; } = false;
             public string LegendText { get; set; } = null;
             public SeriesChartType ChartType { get; set; } = SeriesChartType.Line;
+            public string ScottPlot_Chart_Type { get; set; } = "LINE";
 
             // NEW → Area fill direction relative to data line
             public bool AreaFillAbove { get; set; } = false; // default = below
+            
+            // ✅ DATA (added, not renamed)
+            public double[] YValues { get; set; }
         }
 
         public void ChartStyle1(Chart chart, string ChartName, String Y_Label,
@@ -185,18 +207,10 @@ namespace AirportSMS
             };
 
             int ci = 0;
-            foreach (var s in chart.Series)
+            //foreach (var s in chart.Series)
+            foreach (var s in chart.Series.Cast<Series>().ToList())
             {
                 s.Color = modernColors[ci % modernColors.Length];
-                /*s.BorderWidth = 3;
-                //s.ChartType = SeriesChartType.Line;
-                s.BorderDashStyle = ChartDashStyle.Solid;
-                s.MarkerStyle = MarkerStyle.Circle;
-                s.MarkerSize = 7;
-                s.MarkerColor = s.Color;
-                s.MarkerBorderColor = Color.White;*/
-
-
 
                 // ---------- SERIES CONFIG (PER SERIES) ----------
                 SeriesStyleConfig cfg = null;
@@ -244,13 +258,7 @@ namespace AirportSMS
                         break;
 
                     case SeriesChartType.Column:
-                        //s.BorderWidth = 0;                 // important
-                        //s.BorderDashStyle = ChartDashStyle.NotSet;
-                        //s.MarkerStyle = MarkerStyle.None;  // important
-                        //s.BorderWidth = 1;
-                        //s.MarkerStyle = MarkerStyle.None;
                         s["PointWidth"] = "0.7";       // important for visibility
-                        //MessageBox.Show("Column");
                         break;
 
                     case SeriesChartType.Area:
@@ -260,7 +268,7 @@ namespace AirportSMS
                         s.BackSecondaryColor = Color.Transparent;
                         s.Color = Color.FromArgb(120, s.Color); // soft transparent fill
                         break;
-
+                    
                 }
 
 
@@ -269,31 +277,13 @@ namespace AirportSMS
                 s.LabelBackColor = Color.Transparent;
                 s.Font = new Font("Segoe UI", 8, FontStyle.Regular);
                 s["LabelStyle"] = "Top";
-                // ----------------------------------------------
-
-
-
-                /*// --------- VALUE LABELS (PER SERIES) ---------
-                bool showLabel = false;
-
-                if (seriesLabelVisibility != null &&
-                    seriesLabelVisibility.ContainsKey(s.Name))
-                {
-                    showLabel = seriesLabelVisibility[s.Name];
-                }
-
-                s.IsValueShownAsLabel = showLabel;
-                s.LabelForeColor = s.Color;          // ← SAME AS PLOT COLOR
-                s.LabelBackColor = Color.Transparent;
-                s.Font = new Font("Segoe UI", 8, FontStyle.Regular);
-                s["LabelStyle"] = "Top";
-                // --------------------------------------------*/
-
+                
 
                 ci++;
             }
         }
 
+        
 
 
         public void PlotGraph()
@@ -348,12 +338,37 @@ namespace AirportSMS
                 Y_axis_Label = Txt_SPI_Unit.Text;
             }
 
+            double Percent;
+
+            var cellValue = dataGridView1.Rows[1].Cells[3].Value;
+
+            if (cellValue == null || cellValue == DBNull.Value || string.IsNullOrWhiteSpace(cellValue.ToString()))
+            {
+                Percent = 0;
+            }
+            else
+            {
+                Percent = Convert.ToDouble(cellValue);
+            }
+
+
+            bool fillabove;
+            if (Percent >= 0)
+            {
+                fillabove = true;
+            }
+            else
+            {
+                fillabove = false;
+            }
+
+
             var seriesConfig = new Dictionary<string, SeriesStyleConfig>()
             {
                 ["Prv_Year_obs"] = new SeriesStyleConfig
                 {
-                    ShowSeries = false,
-                    ShowValueLabel = false,
+                    ShowSeries = true,
+                    ShowValueLabel = true,
                     LegendText = "Oberved value for previous year",
                     ChartType = SeriesChartType.Column
                 },
@@ -362,7 +377,8 @@ namespace AirportSMS
                     ShowSeries = true,
                     ShowValueLabel = true,
                     LegendText = "Target value for current year",
-                    ChartType = SeriesChartType.Area
+                    ChartType = SeriesChartType.Area,
+                    AreaFillAbove = fillabove
                 },
                 ["Curr_Year_obs"] = new SeriesStyleConfig
                 {
@@ -382,7 +398,270 @@ namespace AirportSMS
 
             Chart1.Invalidate();
             Chart1.Update();
+
+            PlotGraphScottPlot();
         }
+
+        // --------------------------- PlotGraphScottPlot ---------------------------
+        public void PlotGraphScottPlot()
+        {
+            if (formsPlot1 == null) return;
+
+            // Clear previous plot
+            formsPlot1.Plot.Clear();
+
+            // Collect data from DataGridView
+            double[] XPos = Enumerable.Range(0, 12).Select(i => (double)i).ToArray();
+            string[] Xs = X_axis.Skip(1).Take(12).ToArray(); // JAN, FEB, ...
+
+            // Fill series data
+            for (int i = 0; i < 12; i++)
+            {
+                Y1_axis_prev_year[i] = Convert.ToDouble(dataGridView1.Rows[0].Cells[i + 3].Value);
+                Y1_axis_curr_year_target[i] = Convert.ToDouble(dataGridView1.Rows[2].Cells[i + 3].Value);
+                Y1_axis_curr_year_obs[i] = Convert.ToDouble(dataGridView1.Rows[3].Cells[i + 3].Value);
+            }
+
+            double Percent;
+            var cellValue = dataGridView1.Rows[1].Cells[3].Value;
+            if (cellValue == null || cellValue == DBNull.Value || string.IsNullOrWhiteSpace(cellValue.ToString()))
+                Percent = 0;
+            else
+                Percent = Convert.ToDouble(cellValue);
+
+            bool fillabove = Percent >= 0;
+           
+
+            // Define series
+            var seriesConfig = new Dictionary<string, SeriesStyleConfig>()
+            {
+                ["Prv_Year_obs"] = new SeriesStyleConfig
+                {
+                    ShowSeries = true,
+                    ShowValueLabel = true,
+                    LegendText = "Observed value for previous year",
+                    ScottPlot_Chart_Type = "COLUMN",
+                    YValues = Y1_axis_prev_year.Take(12).ToArray()
+                },
+                ["Curr_Year_Target_val"] = new SeriesStyleConfig
+                {
+                    ShowSeries = true,
+                    ShowValueLabel = true,
+                    LegendText = "Target value for current year",
+                    ScottPlot_Chart_Type = "AREA",
+                    AreaFillAbove = fillabove,
+                    YValues = Y1_axis_curr_year_target.Take(12).ToArray()
+                },
+                ["Curr_Year_obs"] = new SeriesStyleConfig
+                {
+                    ShowSeries = true,
+                    ShowValueLabel = true,
+                    LegendText = "Observed value for current year",
+                    ScottPlot_Chart_Type = "LINE",
+                    YValues = Y1_axis_curr_year_obs.Take(12).ToArray()
+                }
+            };
+
+            double maxval1 = Y1_axis_curr_year_target.Max();
+            double maxval2 = Y1_axis_curr_year_obs.Max();
+            double maxval = Math.Max(maxval1, maxval2);
+
+            // Apply styling and plotting
+            ScottPlotStyle(formsPlot1, Xs, XPos,maxval, seriesConfig);
+
+            formsPlot1.Refresh();
+        }
+
+        // --------------------------- ScottPlotStyle ---------------------------
+        public void ScottPlotStyle(sctplotwin.FormsPlot formsPlot1, string[] XLabels, double[] XPos, double maxCurrObsVal,
+            Dictionary<string, SeriesStyleConfig> seriesConfig)
+        {
+
+            Color[] modernColors =
+            {
+                Color.FromArgb(231, 76, 60),    // Red
+                Color.FromArgb(46, 204, 113),   // Green
+                Color.FromArgb(52, 152, 219),   // Blue
+                Color.FromArgb(241, 196, 15),   // Yellow
+                Color.FromArgb(155, 89, 182)    // Purple
+            };
+
+            int ci = 0;
+            //s.Color = modernColors[ci % modernColors.Length];
+
+            
+
+
+            var plt = formsPlot1.Plot;
+            plt.Clear();
+
+            foreach (var kvp in seriesConfig)
+            {
+                var cfg = kvp.Value;
+                if (!cfg.ShowSeries || cfg.YValues == null) continue;
+
+                var drawingColor = modernColors[ci % modernColors.Length];
+                var spColor = ScottPlot.Color.FromColor(drawingColor);
+
+                string type = cfg.ScottPlot_Chart_Type?.ToUpperInvariant();
+
+                switch (type)
+                {
+                    case "LINE":
+                    {
+                        // In ScottPlot 5, Scatter takes double[] or List<double>
+                        var p = plt.Add.Scatter(XPos, cfg.YValues);
+                        p.LegendText = cfg.LegendText;
+                        p.LineWidth = 2;
+                        p.MarkerSize = 5;
+                        p.Color = spColor;
+
+                        if (cfg.ShowValueLabel)
+                        {
+                            for (int i = 0; i < cfg.YValues.Length; i++)
+                            {
+                                var txt = plt.Add.Text(
+                                    cfg.YValues[i].ToString(),
+                                    XPos[i],
+                                    cfg.YValues[i]
+                                );
+                                txt.Alignment = ScottPlot.Alignment.LowerCenter;
+                                txt.LabelFontColor = spColor;
+                            }
+                        }
+
+
+
+                        }
+                        break;
+
+                    case "AREA":
+                        {
+                            //double baseline = cfg.AreaFillAbove ? 0 : cfg.YValues.Min();
+                            //double baseline = cfg.AreaFillAbove ? cfg.YValues.Max(v => Math.Min(v, 0)) : cfg.YValues.Min();
+
+                            // ScottPlot 5 FillY requires a generic collection or coordinates
+                            //var fill = plt.Add.FillY(XPos, cfg.YValues, Enumerable.Repeat(baseline, cfg.YValues.Length).ToArray());
+
+                            //double baseline;
+                            double[] boundaryValues;
+
+                            if (cfg.AreaFillAbove)
+                            {
+                                // To fill "Above", we need a ceiling. 
+                                // We set the boundary to the maximum value in the dataset (or slightly higher)
+                                //double maxVal = cfg.YValues.Max();
+                                double maxVal = maxCurrObsVal;
+                                boundaryValues = Enumerable.Repeat(maxVal * 1.2, cfg.YValues.Length).ToArray();
+                            }
+                            else
+                            {
+                                // To fill "Below", we fill down to 0
+                                boundaryValues = Enumerable.Repeat(0.0, cfg.YValues.Length).ToArray();
+                            }
+
+                            var fill = plt.Add.FillY(XPos, cfg.YValues, boundaryValues);
+
+                            // Correction: Use ScottPlot.Color (note the spelling) and FromArgb
+                            //fill.FillStyle.Color = ScottPlot.Colors.Blue.WithAlpha(120);
+                            fill.FillStyle.Color = spColor.WithAlpha(120); // Use WithAlpha for transparency
+                            fill.LineStyle.Width = 0; // Removes the border around the area
+                            fill.LegendText = cfg.LegendText;
+
+                            if (cfg.ShowValueLabel)
+                            {
+                                for (int i = 0; i < cfg.YValues.Length; i++)
+                                {
+                                    var txt = plt.Add.Text(
+                                        cfg.YValues[i].ToString(),
+                                        XPos[i],
+                                        cfg.YValues[i]
+                                    );
+                                    txt.Alignment = ScottPlot.Alignment.LowerCenter;
+                                    txt.LabelFontColor = spColor.WithAlpha(120);
+                                }
+                            }
+
+
+
+
+
+                        }
+                        break;
+
+                    case "COLUMN":
+                        {
+                            // 1. Create the series as a single object
+                            var barPlot = plt.Add.Bars(XPos, cfg.YValues);
+
+                            // 2. Set the legend text for the entire series (only shows once)
+                            barPlot.LegendText = cfg.LegendText;
+
+                            // 3. Set the color for all bars in this series
+                            // In ScottPlot 5, use .Color to set the fill color for the whole group
+                            //barPlot.Color = ScottPlot.Colors.Green.WithAlpha(120);
+                            barPlot.Color = spColor;
+                            
+                            // 4. Adjust width for all bars
+                            foreach (var bar in barPlot.Bars)
+                            {
+                                bar.Size = 0.6;
+                                bar.LineStyle.Width = 0;
+                            }
+
+                            if (cfg.ShowValueLabel)
+                            {
+                                for (int i = 0; i < cfg.YValues.Length; i++)
+                                {
+                                    var txt = plt.Add.Text(
+                                        cfg.YValues[i].ToString(),
+                                        XPos[i],
+                                        cfg.YValues[i]
+                                    );
+                                    txt.Alignment = ScottPlot.Alignment.LowerCenter;
+                                    txt.LabelFontColor = spColor;
+                                }
+                            }
+
+
+
+                        }
+                        break;
+                }
+
+                ci++;
+            }
+
+            // Titles
+            plt.Title(TxtSPI_Name.Text == "" ? "Monthly performance overview" : TxtSPI_Name.Text);
+            plt.YLabel(Txt_SPI_Unit.Text == "" ? "Number or Number per .... FMs" : Txt_SPI_Unit.Text);
+            plt.XLabel("Month");
+
+            // X-axis string labels
+            plt.Axes.Bottom.TickGenerator = new ScottPlot.TickGenerators.NumericManual(positions: XPos, labels: XLabels);
+
+            // FORCE Y AXIS BASELINE
+            //plt.Axes.SetLimitsY(min: 0);
+            // This forces the bottom of the viewport to 0
+            // but allows the top to expand to fit your data.
+            plt.Axes.AutoScale(false);
+            plt.Axes.SetLimits(bottom: 0.0);
+
+            // Legend
+            //plt.Legend(location: sctplot.Alignment.UpperRight);
+            // Use the Alignment property on the Legend object
+            plt.Legend.Alignment = ScottPlot.Alignment.UpperRight;
+
+            // Ensure it is visible
+            plt.Legend.IsVisible = true;
+
+            //plt.Axes.SetLimits(bottom: 0);
+        }
+
+
+
+
+
 
         private void FrmHazardMonitoring_Load(object sender, EventArgs e)
         {

@@ -14,6 +14,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using static AirportSMS.FrmMain;
 
 namespace AirportSMS
 {
@@ -324,5 +325,99 @@ namespace AirportSMS
             ComboBoxFilterSPI_Type.Items.Add("Precursor SPIs: High Probability/Low Severity");
             ComboBoxFilterSPI_Type.Items.Add("Leading SPIs: Proactive");
         }
+
+        private void openHazardLogRecordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmHazardLog fhlg = new FrmHazardLog();
+            fhlg.Show();
+        }
+
+        private void openSPISummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(TxtProjectLocation.Text))
+            {
+                MessageBox.Show("No valid project loaded...");
+                return;
+            }
+
+            //FrmSPISummary fssum = new FrmSPISummary();
+            FrmSPISummary frmSipSum = new FrmSPISummary();
+            frmSipSum.Show();
+        }
+
+        public class SPIModel
+        {
+            public double[] CurrYearObserved { get; set; } = new double[13];
+
+            public string SPI_Name { get; set; }
+            public string SPI_Progress_Percentage { get; set; }
+            public string SPI_Type { get; set; }
+        }
+
+      
+
+        public static class SPILoader
+        {
+            public static List<(string Name, string Type, string Progress, double Total)> LoadSPISummary(string projectLocation)
+            {
+                var result = new List<(string, string, string, double)>();
+
+                /*if (FrmMain.TxtProjectLocation.Text == "")
+                {
+                    MessageBox.Show("No valid project loaded...");
+                    //MessageBox.Show(fm.TxtProjectLocation.Text);
+                }*/
+                // 1. Read project location
+                //string projectLocation = File.ReadAllText("TxtProjectLocation.txt").Trim();
+                //projectLocation = "E:\\SMSOne";
+
+                // 2. SPI folder path
+                string spiFolder = Path.Combine(projectLocation, "SPIs");
+
+                if (!Directory.Exists(spiFolder))
+                    return result;
+
+                // 3. Read all SPI JSON files
+                string[] jsonFiles = Directory.GetFiles(spiFolder, "*.json");
+
+                if (jsonFiles.Length == 0)
+                {
+                    MessageBox.Show("No SPI files found.", "Information",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return result;
+                }
+
+                foreach (string file in jsonFiles)
+                {
+                    string json = File.ReadAllText(file);
+
+                    SPIModel spi = JsonSerializer.Deserialize<SPIModel>(json);
+
+                    if (spi?.CurrYearObserved == null || spi.CurrYearObserved.Length < 13)
+                        continue;
+
+                    // 4. Sum JAN–DEC (index 1 to 12)
+                    double total = 0;
+                    for (int i = 1; i <= 12; i++)
+                        total += spi.CurrYearObserved[i];
+
+                    result.Add((
+                        spi.SPI_Name,
+                        spi.SPI_Type,
+                        spi.SPI_Progress_Percentage,
+                        total
+                    ));
+                }
+
+                return result;
+            }
+        }
+
+
+
+
+
+
+
     }
 }
