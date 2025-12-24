@@ -39,6 +39,9 @@
             this.updateSPICardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.filterBySelectedSPITypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.openHazardLogRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openSPISummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtProjectLocation = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -51,9 +54,6 @@
             this.ComboBoxFilterSPI_Type = new System.Windows.Forms.ComboBox();
             this.TxtFilterSPIType = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.openHazardLogRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openSPISummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -67,7 +67,7 @@
             this.projectToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1353, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1370, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -85,26 +85,26 @@
             // newProjectToolStripMenuItem
             // 
             this.newProjectToolStripMenuItem.Name = "newProjectToolStripMenuItem";
-            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
+            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.newProjectToolStripMenuItem.Text = "New Project";
             this.newProjectToolStripMenuItem.Click += new System.EventHandler(this.newProjectToolStripMenuItem_Click);
             // 
             // openProjectToolStripMenuItem
             // 
             this.openProjectToolStripMenuItem.Name = "openProjectToolStripMenuItem";
-            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
+            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.openProjectToolStripMenuItem.Text = "Open Project";
             this.openProjectToolStripMenuItem.Click += new System.EventHandler(this.openProjectToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(161, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -147,6 +147,25 @@
             this.filterBySelectedSPITypeToolStripMenuItem.Size = new System.Drawing.Size(251, 24);
             this.filterBySelectedSPITypeToolStripMenuItem.Text = "Filter by Selected SPI Type";
             this.filterBySelectedSPITypeToolStripMenuItem.Click += new System.EventHandler(this.filterBySelectedSPITypeToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(248, 6);
+            // 
+            // openHazardLogRecordToolStripMenuItem
+            // 
+            this.openHazardLogRecordToolStripMenuItem.Name = "openHazardLogRecordToolStripMenuItem";
+            this.openHazardLogRecordToolStripMenuItem.Size = new System.Drawing.Size(251, 24);
+            this.openHazardLogRecordToolStripMenuItem.Text = "Open Hazard Log Record";
+            this.openHazardLogRecordToolStripMenuItem.Click += new System.EventHandler(this.openHazardLogRecordToolStripMenuItem_Click);
+            // 
+            // openSPISummaryToolStripMenuItem
+            // 
+            this.openSPISummaryToolStripMenuItem.Name = "openSPISummaryToolStripMenuItem";
+            this.openSPISummaryToolStripMenuItem.Size = new System.Drawing.Size(251, 24);
+            this.openSPISummaryToolStripMenuItem.Text = "Open SPI Summary";
+            this.openSPISummaryToolStripMenuItem.Click += new System.EventHandler(this.openSPISummaryToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -282,31 +301,12 @@
             this.label6.TabIndex = 1;
             this.label6.Text = "SelectSPI Type";
             // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(248, 6);
-            // 
-            // openHazardLogRecordToolStripMenuItem
-            // 
-            this.openHazardLogRecordToolStripMenuItem.Name = "openHazardLogRecordToolStripMenuItem";
-            this.openHazardLogRecordToolStripMenuItem.Size = new System.Drawing.Size(251, 24);
-            this.openHazardLogRecordToolStripMenuItem.Text = "Open Hazard Log Record";
-            this.openHazardLogRecordToolStripMenuItem.Click += new System.EventHandler(this.openHazardLogRecordToolStripMenuItem_Click);
-            // 
-            // openSPISummaryToolStripMenuItem
-            // 
-            this.openSPISummaryToolStripMenuItem.Name = "openSPISummaryToolStripMenuItem";
-            this.openSPISummaryToolStripMenuItem.Size = new System.Drawing.Size(251, 24);
-            this.openSPISummaryToolStripMenuItem.Text = "Open SPI Summary";
-            this.openSPISummaryToolStripMenuItem.Click += new System.EventHandler(this.openSPISummaryToolStripMenuItem_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.ClientSize = new System.Drawing.Size(1387, 749);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.menuStrip1);

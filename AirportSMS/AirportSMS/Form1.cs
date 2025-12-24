@@ -252,7 +252,7 @@ namespace AirportSMS
                     spi.SPI_Val_Curr_Target_1,
                     spi.SPI_Val_Curr_Obs_1, 
                     spi.SPI_Type_1,
-                    spi.SPI_Progress_Percentage
+                    spi.SPI_Progress_Percentage.ToString()
                 );
 
                 flowLayoutPanel1.Controls.Add(newCard);
@@ -358,18 +358,9 @@ namespace AirportSMS
 
         public static class SPILoader
         {
-            public static List<(string Name, string Type, string Progress, double Total)> LoadSPISummary(string projectLocation)
+            public static List<(string Name, string Type, double Progress, double Total, double CurrYear, double[] MonthlySPIObsData)> LoadSPISummary(string projectLocation)
             {
-                var result = new List<(string, string, string, double)>();
-
-                /*if (FrmMain.TxtProjectLocation.Text == "")
-                {
-                    MessageBox.Show("No valid project loaded...");
-                    //MessageBox.Show(fm.TxtProjectLocation.Text);
-                }*/
-                // 1. Read project location
-                //string projectLocation = File.ReadAllText("TxtProjectLocation.txt").Trim();
-                //projectLocation = "E:\\SMSOne";
+                var result = new List<(string, string, double, double, double, double[])>();
 
                 // 2. SPI folder path
                 string spiFolder = Path.Combine(projectLocation, "SPIs");
@@ -386,7 +377,7 @@ namespace AirportSMS
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return result;
                 }
-
+                double Curr_Year;
                 foreach (string file in jsonFiles)
                 {
                     string json = File.ReadAllText(file);
@@ -397,6 +388,7 @@ namespace AirportSMS
                         continue;
 
                     // 4. Sum JAN–DEC (index 1 to 12)
+                    Curr_Year = spi.CurrYearObserved[0];
                     double total = 0;
                     for (int i = 1; i <= 12; i++)
                         total += spi.CurrYearObserved[i];
@@ -404,8 +396,10 @@ namespace AirportSMS
                     result.Add((
                         spi.SPI_Name,
                         spi.SPI_Type,
-                        spi.SPI_Progress_Percentage,
-                        total
+                        Convert.ToDouble(spi.SPI_Progress_Percentage),
+                        total,
+                        Curr_Year,
+                        spi.CurrYearObserved
                     ));
                 }
 

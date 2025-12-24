@@ -28,34 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGV_SPI_Summary = new System.Windows.Forms.DataGridView();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PanelPlotSPISummary = new System.Windows.Forms.Panel();
+            this.ComboBoxSort = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.RadioAscending = new System.Windows.Forms.RadioButton();
+            this.RadioDescending = new System.Windows.Forms.RadioButton();
+            this.RadioDefault = new System.Windows.Forms.RadioButton();
             this.ColSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSPIs = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSPIsType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSPIsProgress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSPIsTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.plotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PanelPlotSPISummary = new System.Windows.Forms.Panel();
+            this.sortSummaryTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.TabSummarySPIs = new System.Windows.Forms.TabPage();
+            this.TabDetailedSummary = new System.Windows.Forms.TabPage();
+            this.TabMonthwise = new System.Windows.Forms.TabPage();
+            this.DGV_SPI_Summary_ALL = new System.Windows.Forms.DataGridView();
+            this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColJan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColFeb = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColApr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColJun = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColJul = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColAug = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSep = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColOct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColNov = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDec = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGV_Summary_Monthly = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMonthTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PanelPlotMonth = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SPI_Summary)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.TabSummarySPIs.SuspendLayout();
+            this.TabDetailedSummary.SuspendLayout();
+            this.TabMonthwise.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_SPI_Summary_ALL)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_Summary_Monthly)).BeginInit();
             this.SuspendLayout();
             // 
             // DGV_SPI_Summary
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_SPI_Summary.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SPI_Summary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGV_SPI_Summary.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSN,
@@ -63,24 +88,105 @@
             this.ColSPIsType,
             this.ColSPIsProgress,
             this.ColSPIsTotal});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_SPI_Summary.DefaultCellStyle = dataGridViewCellStyle4;
-            this.DGV_SPI_Summary.Location = new System.Drawing.Point(12, 77);
+            this.DGV_SPI_Summary.Location = new System.Drawing.Point(18, 52);
             this.DGV_SPI_Summary.Name = "DGV_SPI_Summary";
-            this.DGV_SPI_Summary.Size = new System.Drawing.Size(854, 580);
+            this.DGV_SPI_Summary.Size = new System.Drawing.Size(854, 487);
             this.DGV_SPI_Summary.TabIndex = 0;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1353, 28);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sortSummaryTableToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // PanelPlotSPISummary
+            // 
+            this.PanelPlotSPISummary.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.PanelPlotSPISummary.Location = new System.Drawing.Point(18, 545);
+            this.PanelPlotSPISummary.Name = "PanelPlotSPISummary";
+            this.PanelPlotSPISummary.Size = new System.Drawing.Size(854, 569);
+            this.PanelPlotSPISummary.TabIndex = 2;
+            // 
+            // ComboBoxSort
+            // 
+            this.ComboBoxSort.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxSort.FormattingEnabled = true;
+            this.ComboBoxSort.Location = new System.Drawing.Point(170, 19);
+            this.ComboBoxSort.Name = "ComboBoxSort";
+            this.ComboBoxSort.Size = new System.Drawing.Size(269, 26);
+            this.ComboBoxSort.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(15, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(149, 18);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Select column to sort";
+            // 
+            // RadioAscending
+            // 
+            this.RadioAscending.AutoSize = true;
+            this.RadioAscending.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RadioAscending.Location = new System.Drawing.Point(461, 26);
+            this.RadioAscending.Name = "RadioAscending";
+            this.RadioAscending.Size = new System.Drawing.Size(126, 20);
+            this.RadioAscending.TabIndex = 5;
+            this.RadioAscending.Text = "Ascending Order";
+            this.RadioAscending.UseVisualStyleBackColor = true;
+            // 
+            // RadioDescending
+            // 
+            this.RadioDescending.AutoSize = true;
+            this.RadioDescending.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RadioDescending.Location = new System.Drawing.Point(608, 26);
+            this.RadioDescending.Name = "RadioDescending";
+            this.RadioDescending.Size = new System.Drawing.Size(135, 20);
+            this.RadioDescending.TabIndex = 6;
+            this.RadioDescending.Text = "Descending Order";
+            this.RadioDescending.UseVisualStyleBackColor = true;
+            // 
+            // RadioDefault
+            // 
+            this.RadioDefault.AutoSize = true;
+            this.RadioDefault.Checked = true;
+            this.RadioDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RadioDefault.Location = new System.Drawing.Point(777, 26);
+            this.RadioDefault.Name = "RadioDefault";
+            this.RadioDefault.Size = new System.Drawing.Size(67, 20);
+            this.RadioDefault.TabIndex = 7;
+            this.RadioDefault.TabStop = true;
+            this.RadioDefault.Text = "Default";
+            this.RadioDefault.UseVisualStyleBackColor = true;
             // 
             // ColSN
             // 
             this.ColSN.HeaderText = "SN";
             this.ColSN.Name = "ColSN";
-            this.ColSN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColSN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
             // ColSPIs
             // 
@@ -100,75 +206,264 @@
             // 
             this.ColSPIsProgress.HeaderText = "SPIs Progress";
             this.ColSPIsProgress.Name = "ColSPIsProgress";
-            this.ColSPIsProgress.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColSPIsProgress.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
             // ColSPIsTotal
             // 
             this.ColSPIsTotal.HeaderText = "SPIs Total";
             this.ColSPIsTotal.Name = "ColSPIsTotal";
+            this.ColSPIsTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
-            // menuStrip1
+            // sortSummaryTableToolStripMenuItem
             // 
-            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(881, 28);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.sortSummaryTableToolStripMenuItem.Name = "sortSummaryTableToolStripMenuItem";
+            this.sortSummaryTableToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.sortSummaryTableToolStripMenuItem.Text = "Sort Summary Table";
+            this.sortSummaryTableToolStripMenuItem.Click += new System.EventHandler(this.sortSummaryTableToolStripMenuItem_Click);
             // 
-            // fileToolStripMenuItem
+            // tabControl1
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.plotToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
-            this.fileToolStripMenuItem.Text = "File";
+            this.tabControl1.Controls.Add(this.TabSummarySPIs);
+            this.tabControl1.Controls.Add(this.TabDetailedSummary);
+            this.tabControl1.Controls.Add(this.TabMonthwise);
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(12, 31);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1329, 1200);
+            this.tabControl1.TabIndex = 8;
             // 
-            // plotToolStripMenuItem
+            // TabSummarySPIs
             // 
-            this.plotToolStripMenuItem.Name = "plotToolStripMenuItem";
-            this.plotToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.plotToolStripMenuItem.Text = "Plot";
+            this.TabSummarySPIs.Controls.Add(this.RadioDefault);
+            this.TabSummarySPIs.Controls.Add(this.DGV_SPI_Summary);
+            this.TabSummarySPIs.Controls.Add(this.RadioDescending);
+            this.TabSummarySPIs.Controls.Add(this.PanelPlotSPISummary);
+            this.TabSummarySPIs.Controls.Add(this.RadioAscending);
+            this.TabSummarySPIs.Controls.Add(this.label1);
+            this.TabSummarySPIs.Controls.Add(this.ComboBoxSort);
+            this.TabSummarySPIs.Location = new System.Drawing.Point(4, 25);
+            this.TabSummarySPIs.Name = "TabSummarySPIs";
+            this.TabSummarySPIs.Padding = new System.Windows.Forms.Padding(3);
+            this.TabSummarySPIs.Size = new System.Drawing.Size(1321, 1171);
+            this.TabSummarySPIs.TabIndex = 0;
+            this.TabSummarySPIs.Text = "Summary - SPIs";
+            this.TabSummarySPIs.UseVisualStyleBackColor = true;
             // 
-            // toolStripMenuItem1
+            // TabDetailedSummary
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.TabDetailedSummary.Controls.Add(this.DGV_SPI_Summary_ALL);
+            this.TabDetailedSummary.Location = new System.Drawing.Point(4, 25);
+            this.TabDetailedSummary.Name = "TabDetailedSummary";
+            this.TabDetailedSummary.Padding = new System.Windows.Forms.Padding(3);
+            this.TabDetailedSummary.Size = new System.Drawing.Size(1321, 1171);
+            this.TabDetailedSummary.TabIndex = 1;
+            this.TabDetailedSummary.Text = "Detailed Summary - SPIs";
+            this.TabDetailedSummary.UseVisualStyleBackColor = true;
             // 
-            // exitToolStripMenuItem
+            // TabMonthwise
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.TabMonthwise.Controls.Add(this.PanelPlotMonth);
+            this.TabMonthwise.Controls.Add(this.DGV_Summary_Monthly);
+            this.TabMonthwise.Location = new System.Drawing.Point(4, 25);
+            this.TabMonthwise.Name = "TabMonthwise";
+            this.TabMonthwise.Size = new System.Drawing.Size(1321, 1171);
+            this.TabMonthwise.TabIndex = 2;
+            this.TabMonthwise.Text = "Summary Monthwise - SPIs";
+            this.TabMonthwise.UseVisualStyleBackColor = true;
             // 
-            // PanelPlotSPISummary
+            // DGV_SPI_Summary_ALL
             // 
-            this.PanelPlotSPISummary.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.PanelPlotSPISummary.Location = new System.Drawing.Point(20, 671);
-            this.PanelPlotSPISummary.Name = "PanelPlotSPISummary";
-            this.PanelPlotSPISummary.Size = new System.Drawing.Size(846, 450);
-            this.PanelPlotSPISummary.TabIndex = 2;
+            this.DGV_SPI_Summary_ALL.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.DGV_SPI_Summary_ALL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGV_SPI_Summary_ALL.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColID,
+            this.ColName,
+            this.ColJan,
+            this.ColFeb,
+            this.ColMar,
+            this.ColApr,
+            this.ColMay,
+            this.ColJun,
+            this.ColJul,
+            this.ColAug,
+            this.ColSep,
+            this.ColOct,
+            this.ColNov,
+            this.ColDec,
+            this.ColTotal});
+            this.DGV_SPI_Summary_ALL.Location = new System.Drawing.Point(6, 54);
+            this.DGV_SPI_Summary_ALL.Name = "DGV_SPI_Summary_ALL";
+            this.DGV_SPI_Summary_ALL.Size = new System.Drawing.Size(1273, 436);
+            this.DGV_SPI_Summary_ALL.TabIndex = 5;
+            // 
+            // ColID
+            // 
+            this.ColID.HeaderText = "ID";
+            this.ColID.Name = "ColID";
+            this.ColID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColID.Width = 40;
+            // 
+            // ColName
+            // 
+            this.ColName.HeaderText = "Name";
+            this.ColName.Name = "ColName";
+            this.ColName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColName.Width = 190;
+            // 
+            // ColJan
+            // 
+            this.ColJan.HeaderText = "Jan";
+            this.ColJan.Name = "ColJan";
+            this.ColJan.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColJan.Width = 75;
+            // 
+            // ColFeb
+            // 
+            this.ColFeb.HeaderText = "Feb";
+            this.ColFeb.Name = "ColFeb";
+            this.ColFeb.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColFeb.Width = 75;
+            // 
+            // ColMar
+            // 
+            this.ColMar.HeaderText = "Mar";
+            this.ColMar.Name = "ColMar";
+            this.ColMar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColMar.Width = 75;
+            // 
+            // ColApr
+            // 
+            this.ColApr.HeaderText = "Apr";
+            this.ColApr.Name = "ColApr";
+            this.ColApr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColApr.Width = 75;
+            // 
+            // ColMay
+            // 
+            this.ColMay.HeaderText = "May";
+            this.ColMay.Name = "ColMay";
+            this.ColMay.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColMay.Width = 75;
+            // 
+            // ColJun
+            // 
+            this.ColJun.HeaderText = "Jun";
+            this.ColJun.Name = "ColJun";
+            this.ColJun.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColJun.Width = 75;
+            // 
+            // ColJul
+            // 
+            this.ColJul.HeaderText = "Jul";
+            this.ColJul.Name = "ColJul";
+            this.ColJul.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColJul.Width = 75;
+            // 
+            // ColAug
+            // 
+            this.ColAug.HeaderText = "Aug";
+            this.ColAug.Name = "ColAug";
+            this.ColAug.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColAug.Width = 75;
+            // 
+            // ColSep
+            // 
+            this.ColSep.HeaderText = "Sep";
+            this.ColSep.Name = "ColSep";
+            this.ColSep.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColSep.Width = 75;
+            // 
+            // ColOct
+            // 
+            this.ColOct.HeaderText = "Oct";
+            this.ColOct.Name = "ColOct";
+            this.ColOct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColOct.Width = 75;
+            // 
+            // ColNov
+            // 
+            this.ColNov.HeaderText = "Nov";
+            this.ColNov.Name = "ColNov";
+            this.ColNov.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColNov.Width = 75;
+            // 
+            // ColDec
+            // 
+            this.ColDec.HeaderText = "Dec";
+            this.ColDec.Name = "ColDec";
+            this.ColDec.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColDec.Width = 75;
+            // 
+            // ColTotal
+            // 
+            this.ColTotal.HeaderText = "Total";
+            this.ColTotal.Name = "ColTotal";
+            this.ColTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColTotal.Width = 80;
+            // 
+            // DGV_Summary_Monthly
+            // 
+            this.DGV_Summary_Monthly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGV_Summary_Monthly.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.ColMonth,
+            this.ColMonthTotal});
+            this.DGV_Summary_Monthly.Location = new System.Drawing.Point(35, 54);
+            this.DGV_Summary_Monthly.Name = "DGV_Summary_Monthly";
+            this.DGV_Summary_Monthly.Size = new System.Drawing.Size(393, 487);
+            this.DGV_Summary_Monthly.TabIndex = 9;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "SN";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.dataGridViewTextBoxColumn1.Width = 60;
+            // 
+            // ColMonth
+            // 
+            this.ColMonth.HeaderText = "Month";
+            this.ColMonth.Name = "ColMonth";
+            this.ColMonth.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColMonth.Width = 120;
+            // 
+            // ColMonthTotal
+            // 
+            this.ColMonthTotal.HeaderText = "Month Total";
+            this.ColMonthTotal.Name = "ColMonthTotal";
+            this.ColMonthTotal.Width = 150;
+            // 
+            // PanelPlotMonth
+            // 
+            this.PanelPlotMonth.BackColor = System.Drawing.Color.Gray;
+            this.PanelPlotMonth.Location = new System.Drawing.Point(458, 54);
+            this.PanelPlotMonth.Name = "PanelPlotMonth";
+            this.PanelPlotMonth.Size = new System.Drawing.Size(847, 487);
+            this.PanelPlotMonth.TabIndex = 10;
             // 
             // FrmSPISummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(898, 749);
-            this.Controls.Add(this.PanelPlotSPISummary);
-            this.Controls.Add(this.DGV_SPI_Summary);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.tabControl1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmSPISummary";
             this.Text = "SMS - SPI Summary";
+            this.Load += new System.EventHandler(this.FrmSPISummary_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SPI_Summary)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.TabSummarySPIs.ResumeLayout(false);
+            this.TabSummarySPIs.PerformLayout();
+            this.TabDetailedSummary.ResumeLayout(false);
+            this.TabMonthwise.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_SPI_Summary_ALL)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_Summary_Monthly)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,16 +472,45 @@
         #endregion
 
         private System.Windows.Forms.DataGridView DGV_SPI_Summary;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.Panel PanelPlotSPISummary;
+        private System.Windows.Forms.ComboBox ComboBoxSort;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton RadioAscending;
+        private System.Windows.Forms.RadioButton RadioDescending;
+        private System.Windows.Forms.RadioButton RadioDefault;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSN;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSPIs;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSPIsType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSPIsProgress;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSPIsTotal;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem plotToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.Panel PanelPlotSPISummary;
+        private System.Windows.Forms.ToolStripMenuItem sortSummaryTableToolStripMenuItem;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage TabDetailedSummary;
+        private System.Windows.Forms.TabPage TabSummarySPIs;
+        private System.Windows.Forms.TabPage TabMonthwise;
+        public System.Windows.Forms.DataGridView DGV_SPI_Summary_ALL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColJan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColFeb;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColMar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColApr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColMay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColJun;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColJul;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColAug;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColSep;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColOct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColNov;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColDec;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColTotal;
+        private System.Windows.Forms.DataGridView DGV_Summary_Monthly;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColMonth;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColMonthTotal;
+        private System.Windows.Forms.Panel PanelPlotMonth;
     }
 }

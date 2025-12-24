@@ -466,15 +466,24 @@ namespace AirportSMS
             double maxval2 = Y1_axis_curr_year_obs.Max();
             double maxval = Math.Max(maxval1, maxval2);
 
+            string Plot_Title = TxtSPI_Name.Text == "" ? "Monthly performance overview" : TxtSPI_Name.Text;
+            string Plot_YLabel= Txt_SPI_Unit.Text == "" ? "Number or Number per .... FMs" : Txt_SPI_Unit.Text;
+            string Plot_XLabel ="Month";
+
+            int X_Axis_Label_Rotation = 0;
+
             // Apply styling and plotting
-            ScottPlotStyle(formsPlot1, Xs, XPos,maxval, seriesConfig);
+            ScottPlotStyle(formsPlot1, Xs, XPos,maxval,
+                Plot_Title, Plot_YLabel, Plot_XLabel, X_Axis_Label_Rotation,
+                seriesConfig);
 
             formsPlot1.Refresh();
         }
 
         // --------------------------- ScottPlotStyle ---------------------------
         public void ScottPlotStyle(sctplotwin.FormsPlot formsPlot1, string[] XLabels, double[] XPos, double maxCurrObsVal,
-            Dictionary<string, SeriesStyleConfig> seriesConfig)
+           string Title, string Y_axis_Label, string X_axis_Label, int X_axis_label_Rotation,
+           Dictionary<string, SeriesStyleConfig> seriesConfig)
         {
 
             Color[] modernColors =
@@ -633,13 +642,17 @@ namespace AirportSMS
             }
 
             // Titles
-            plt.Title(TxtSPI_Name.Text == "" ? "Monthly performance overview" : TxtSPI_Name.Text);
-            plt.YLabel(Txt_SPI_Unit.Text == "" ? "Number or Number per .... FMs" : Txt_SPI_Unit.Text);
-            plt.XLabel("Month");
+            //plt.Title(TxtSPI_Name.Text == "" ? "Monthly performance overview" : TxtSPI_Name.Text);
+            //plt.YLabel(Txt_SPI_Unit.Text == "" ? "Number or Number per .... FMs" : Txt_SPI_Unit.Text);
+            //plt.XLabel("Month");
+
+            plt.Title(Title);
+            plt.YLabel(Y_axis_Label);
+            plt.XLabel(X_axis_Label);
 
             // X-axis string labels
             plt.Axes.Bottom.TickGenerator = new ScottPlot.TickGenerators.NumericManual(positions: XPos, labels: XLabels);
-
+            plt.Axes.Bottom.TickLabelStyle.Rotation = X_axis_label_Rotation;
             // FORCE Y AXIS BASELINE
             //plt.Axes.SetLimitsY(min: 0);
             // This forces the bottom of the viewport to 0
