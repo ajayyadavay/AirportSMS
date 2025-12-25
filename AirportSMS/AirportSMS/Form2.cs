@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static AirportSMS.FrmFlightMovement;
 using sctplot = ScottPlot;
 using sctplotwin = ScottPlot.WinForms;
 
@@ -46,6 +49,17 @@ namespace AirportSMS
             DGV_FMs_CurrentYear.CellValueChanged += DGV_FMs_CurrentYear_CellValueChanged;
             DGV_FMs_PreviousYear.CellValueChanged += DGV_FMs_PreviousYear_CellValueChanged;
 
+            string projectFolder = string.Empty;
+            if (fm.TxtProjectLocation.Text == "")
+            {
+                MessageBox.Show("No project found....Open project first");
+            }
+            else
+            {
+                projectFolder = fm.TxtProjectLocation.Text;
+                LoadFMdataGridsFromJson(projectFolder);
+            }
+
         }
 
         private void GenerateDGVWithMonthName(DataGridView DGV)
@@ -59,6 +73,8 @@ namespace AirportSMS
                 DGV.Rows[i].Cells[0].Value = (i + 1);
                 DGV.Rows[i].Cells[1].Value = Months[i];
             }
+            DGV.Rows.Add();
+            DGV.Rows[12].Cells[1].Value = "Total";
         }
 
         private double GetVal(object cellValue)
@@ -94,6 +110,22 @@ namespace AirportSMS
                 DGV.Rows[i].Cells[10].Value = GetVal(DGV.Rows[i].Cells[8].Value) + GetVal(DGV.Rows[i].Cells[9].Value);
             }
 
+            // 2. Create the Summary Row
+            //int summaryRowIndex = DGV.Rows.Add();
+            DataGridViewRow summaryRow = DGV.Rows[12];
+            //summaryRow.Cells[1].Value = "TOTAL"; // Label the row
+
+            // 3. Loop through columns 2 to 10 to calculate vertical sums
+            for (int col = 2; col <= 10; col++)
+            {
+                double columnSum = 0;
+                for (int row = 0; row < 12; row++)
+                {
+                    if (DGV.Rows[row].IsNewRow || row == 12) continue;
+                    columnSum += GetVal(DGV.Rows[row].Cells[col].Value);
+                }
+                summaryRow.Cells[col].Value = columnSum;
+            }
         }
 
         private void DGV_FMs_CurrentYear_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -351,5 +383,187 @@ namespace AirportSMS
 
             PlotFMGraphScottPlot();
         }
+
+        public class FMDataWrapper
+        {
+            public List<Dictionary<string, object>> CurrentYear { get; set; } = new List<Dictionary<string, object>>();
+            public List<Dictionary<string, object>> PreviousYear { get; set; } = new List<Dictionary<string, object>>();
+        }
+
+
+        private void SaveOrCreateFMData(string projectFolder)
+        {
+            string folderPath = Path.Combine(projectFolder, "FMData");
+            string filePath = Path.Combine(folderPath, "FMData.json");
+
+            bool exists = Directory.Exists(folderPath) && File.Exists(filePath);
+            string confirmMessage = exists
+                ? "File already exists. Are you sure you want to overwrite it?"
+                : "Are you sure you want to save the data?";
+
+            // 1. Ask User for confirmation
+            DialogResult result = MessageBox.Show(confirmMessage, "Confirm Save",
+                                  MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.No)
+            {
+                return; // Do nothing
+            }
+
+            try
+            {
+                // 2. Ensure Folder exists
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                // 3. Prepare the data object
+                FMDataWrapper dataToSave = new FMDataWrapper
+                {
+                    CurrentYear = GetGridData(DGV_FMs_CurrentYear),
+                    PreviousYear = GetGridData(DGV_FMs_PreviousYear)
+                };
+
+                // 4. Serialize and Write (File.WriteAllText overwrites by default)
+                string jsonString = JsonSerializer.Serialize(dataToSave, new JsonSerializerOptions
+                {
+                    WriteIndented = true
+                });
+
+                File.WriteAllText(filePath, jsonString);
+
+                MessageBox.Show("Data saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while saving: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private List<Dictionary<string, object>> GetGridData(DataGridView dgv)
+        {
+            var list = new List<Dictionary<string, object>>();
+
+            // Loop through row index 0 to 12
+            for (int i = 0; i <= 12; i++)
+            {
+                // Safety: Ensure the row exists and skip the 'New Row' placeholder
+                if (i >= dgv.Rows.Count || dgv.Rows[i].IsNewRow) continue;
+
+                var dict = new Dictionary<string, object>();
+                //int[] targetColumns = { 2, 3, 5, 6 };
+                int[] targetColumns = { 2, 3, 5, 6 };
+
+                foreach (int colIndex in targetColumns)
+                {
+                    string columnName = dgv.Columns[colIndex].Name;
+                    if (string.IsNullOrEmpty(columnName)) columnName = $"Col{colIndex}";
+
+                    // Access the cell value
+                    object rawValue = dgv.Rows[i].Cells[colIndex].Value;
+
+                    // Handle Null: If null or DBNull, use GetVal to convert to 0, 
+                    // otherwise use the value directly.
+                    dict[columnName] = (rawValue == null || rawValue == DBNull.Value)
+                                       ? 0
+                                       : GetVal(rawValue);
+                }
+
+                list.Add(dict);
+            }
+            return list;
+        }
+
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmMain fm = (FrmMain)Application.OpenForms["FrmMain"];
+            string projectFolder = string.Empty;
+            if(fm.TxtProjectLocation.Text == "")
+            {
+                MessageBox.Show("No project found....Open project first");
+            }
+            else
+            {
+                projectFolder = fm.TxtProjectLocation.Text;
+                SaveOrCreateFMData(projectFolder);
+                MessageBox.Show("Flight movement data saved successfully");
+            }
+
+        }
+
+        //Loading fligh movement data files
+        private void LoadFMdataGridsFromJson(string projectFolder)
+        {
+            string filePath = Path.Combine(projectFolder, "FMData", "FMData.json");
+
+            // 1. Check if file exists
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show("No Flight movement data file found", "File Missing",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                // 2. Read the file
+                string jsonString = File.ReadAllText(filePath);
+
+                // 3. Deserialize back to our class structure
+                FMDataWrapper loadedData = JsonSerializer.Deserialize<FMDataWrapper>(jsonString);
+
+                if (loadedData != null)
+                {
+                    // 4. Populate both grids
+                    PopulateGrid(DGV_FMs_CurrentYear, loadedData.CurrentYear);
+                    PopulateGrid(DGV_FMs_PreviousYear, loadedData.PreviousYear);
+
+                    MessageBox.Show("Data loaded successfully!", "Success",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Optional: Re-run your summation logic here to refresh the totals
+                    SumFlightMovements(DGV_FMs_CurrentYear);
+                    SumFlightMovements(DGV_FMs_PreviousYear);
+                    //plot graph
+                    PlotFMGraphScottPlot();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading data: {ex.Message}", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Helper method to map List data back into specific DGV cells
+        private void PopulateGrid(DataGridView dgv, List<Dictionary<string, object>> dataList)
+        {
+            if (dataList == null) return;
+
+            for (int i = 0; i < dataList.Count; i++)
+            {
+                // Safety check: Don't exceed row index 12 or the grid's capacity
+                if (i > 12 || i >= dgv.Rows.Count) break;
+
+                var rowData = dataList[i];
+                int[] targetColumns = { 2, 3, 5, 6 };
+
+                foreach (int colIndex in targetColumns)
+                {
+                    string colName = dgv.Columns[colIndex].Name;
+                    if (string.IsNullOrEmpty(colName)) colName = $"Col{colIndex}";
+
+                    if (rowData.ContainsKey(colName))
+                    {
+                        // Convert the JsonElement back to a usable value (double/int)
+                        dgv.Rows[i].Cells[colIndex].Value = rowData[colName]?.ToString();
+                    }
+                }
+            }
+        }
+
+
     }
 }

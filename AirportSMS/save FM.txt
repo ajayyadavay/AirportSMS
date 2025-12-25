@@ -1,0 +1,62 @@
+private void SaveGridsToJson(string projectFolder)
+{
+    string folderPath = Path.Combine(projectFolder, "FMData");
+    string filePath = Path.Combine(folderPath, "FMData.json");
+
+    // 1. Check Folder and File existence
+    if (Directory.Exists(folderPath) && File.Exists(filePath))
+    {
+        MessageBox.Show("Folder and File already exist.");
+        return;
+    }
+
+    // 2. Create Directory if it doesn't exist
+    if (!Directory.Exists(folderPath))
+    {
+        Directory.CreateDirectory(folderPath);
+    }
+
+    // 3. Extract data from both DataGridViews
+    FMDataWrapper dataToSave = new FMDataWrapper();
+    dataToSave.CurrentYear = GetGridData(DGV_FMs_CurrentYear);
+    dataToSave.PreviousYear = GetGridData(DGV_FMs_PreviousYear);
+
+    // 4. Serialize to JSON and Write to File
+    string jsonString = JsonSerializer.Serialize(dataToSave, new JsonSerializerOptions { WriteIndented = true });
+    File.WriteAllText(filePath, jsonString);
+
+    MessageBox.Show("File created successfully at: " + filePath);
+}
+
+private List<Dictionary<string, object>> GetGridData(DataGridView dgv)
+{
+    var list = new List<Dictionary<string, object>>();
+
+    // Loop through row index 0 to 12
+    for (int i = 0; i <= 12; i++)
+    {
+        // Safety: Ensure the row exists and skip the 'New Row' placeholder
+        if (i >= dgv.Rows.Count || dgv.Rows[i].IsNewRow) continue;
+
+        var dict = new Dictionary<string, object>();
+        int[] targetColumns = { 2, 3, 5, 6 };
+
+        foreach (int colIndex in targetColumns)
+        {
+            string columnName = dgv.Columns[colIndex].Name;
+            if (string.IsNullOrEmpty(columnName)) columnName = $"Col{colIndex}";
+
+            // Access the cell value
+            object rawValue = dgv.Rows[i].Cells[colIndex].Value;
+
+            // Handle Null: If null or DBNull, use GetVal to convert to 0, 
+            // otherwise use the value directly.
+            dict[columnName] = (rawValue == null || rawValue == DBNull.Value)
+                               ? 0
+                               : GetVal(rawValue);
+        }
+
+        list.Add(dict);
+    }
+    return list;
+}

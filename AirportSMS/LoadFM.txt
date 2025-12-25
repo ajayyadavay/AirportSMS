@@ -1,0 +1,60 @@
+private double[,] LoadJsonTo2DArray(string projectFolder)
+{
+    // Result array: [4 columns, 12 rows]
+    double[,] fmData = new double[4, 12];
+    string filePath = Path.Combine(projectFolder, "FMData", "FMData.json");
+
+    if (!File.Exists(filePath))
+    {
+        MessageBox.Show("No Flight movement data file found");
+        return fmData; // Returns array full of 0.0
+    }
+
+    try
+    {
+        string jsonString = File.ReadAllText(filePath);
+        FMDataWrapper loadedData = JsonSerializer.Deserialize<FMDataWrapper>(jsonString);
+
+        if (loadedData != null)
+        {
+            // Map Current Year (Cols 2 and 3)
+            for (int i = 0; i < Math.Min(loadedData.CurrentYear.Count, 12); i++)
+            {
+                var row = loadedData.CurrentYear[i];
+                fmData[0, i] = GetValFromDict(row, 2); // Current Arr
+                fmData[1, i] = GetValFromDict(row, 3); // Current Dep
+            }
+
+            // Map Previous Year (Cols 5 and 6)
+            for (int i = 0; i < Math.Min(loadedData.PreviousYear.Count, 12); i++)
+            {
+                var row = loadedData.PreviousYear[i];
+                fmData[2, i] = GetValFromDict(row, 5); // Prev Arr
+                fmData[3, i] = GetValFromDict(row, 6); // Prev Dep
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show($"Error loading JSON: {ex.Message}");
+    }
+
+    return fmData;
+}
+
+// Helper to safely extract value from the dictionary by column index
+private double GetValFromDict(Dictionary<string, object> dict, int colIndex)
+{
+    string key = DGV.Columns[colIndex].Name ?? $"Col{colIndex}";
+    if (dict.TryGetValue(key, out object val))
+    {
+        return GetVal(val);
+    }
+    return 0;
+}
+
+
+
+
+//call function
+//double[,] data = LoadJsonTo2DArray(userInputPath);

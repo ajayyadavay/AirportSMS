@@ -29,22 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGV_FMs_CurrentYear = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.TxtFMCurrentYear = new System.Windows.Forms.TextBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.plotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fMsOfCurrentYearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fMsOfPreviousYearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fMsOfBothYearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ColSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDomArr = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,46 +43,57 @@
             this.ColDIArr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDIDep = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDITotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.TxtFMCurrentYear = new System.Windows.Forms.TextBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.plotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fMsOfCurrentYearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fMsOfPreviousYearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fMsOfBothYearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabCurrYrFM = new System.Windows.Forms.TabPage();
             this.TabPrevYrFM = new System.Windows.Forms.TabPage();
             this.TxtFMPrevYear = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.DGV_FMs_PreviousYear = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TabPlotFM = new System.Windows.Forms.TabPage();
-            this.PanelPlotFM = new System.Windows.Forms.Panel();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.TabPlotFM = new System.Windows.Forms.TabPage();
+            this.PanelPlotFM = new System.Windows.Forms.Panel();
+            this.ColSN1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMonth1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDomArr1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDomDep1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDomTotal1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColIntlArr1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColIntlDep1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColIntlTotal1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDIArr1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDIDep1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDITotal1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FMs_CurrentYear)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.TabCurrYrFM.SuspendLayout();
             this.TabPrevYrFM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FMs_PreviousYear)).BeginInit();
-            this.TabPlotFM.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
+            this.TabPlotFM.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGV_FMs_CurrentYear
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
-            this.DGV_FMs_CurrentYear.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightGray;
+            this.DGV_FMs_CurrentYear.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_FMs_CurrentYear.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGV_FMs_CurrentYear.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSN,
@@ -110,121 +108,11 @@
             this.ColDIDep,
             this.ColDITotal});
             this.DGV_FMs_CurrentYear.ContextMenuStrip = this.contextMenuStrip1;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_FMs_CurrentYear.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_FMs_CurrentYear.Location = new System.Drawing.Point(14, 81);
             this.DGV_FMs_CurrentYear.Name = "DGV_FMs_CurrentYear";
             this.DGV_FMs_CurrentYear.Size = new System.Drawing.Size(1214, 376);
             this.DGV_FMs_CurrentYear.TabIndex = 0;
             this.DGV_FMs_CurrentYear.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FMs_CurrentYear_CellValueChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(17, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(265, 18);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Flight Movement Data for Current Year:";
-            // 
-            // TxtFMCurrentYear
-            // 
-            this.TxtFMCurrentYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtFMCurrentYear.Location = new System.Drawing.Point(295, 45);
-            this.TxtFMCurrentYear.Name = "TxtFMCurrentYear";
-            this.TxtFMCurrentYear.Size = new System.Drawing.Size(141, 24);
-            this.TxtFMCurrentYear.TabIndex = 2;
-            this.TxtFMCurrentYear.TextChanged += new System.EventHandler(this.TxtFMCurrentYear_TextChanged);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.plotToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1370, 28);
-            this.menuStrip1.TabIndex = 3;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createNewToolStripMenuItem,
-            this.saveToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // createNewToolStripMenuItem
-            // 
-            this.createNewToolStripMenuItem.Name = "createNewToolStripMenuItem";
-            this.createNewToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.createNewToolStripMenuItem.Text = "Create New";
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.saveToolStripMenuItem.Text = "Save";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // plotToolStripMenuItem
-            // 
-            this.plotToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fMsOfCurrentYearToolStripMenuItem,
-            this.fMsOfPreviousYearToolStripMenuItem,
-            this.fMsOfBothYearToolStripMenuItem});
-            this.plotToolStripMenuItem.Name = "plotToolStripMenuItem";
-            this.plotToolStripMenuItem.Size = new System.Drawing.Size(47, 24);
-            this.plotToolStripMenuItem.Text = "Plot";
-            // 
-            // fMsOfCurrentYearToolStripMenuItem
-            // 
-            this.fMsOfCurrentYearToolStripMenuItem.CheckOnClick = true;
-            this.fMsOfCurrentYearToolStripMenuItem.Name = "fMsOfCurrentYearToolStripMenuItem";
-            this.fMsOfCurrentYearToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.fMsOfCurrentYearToolStripMenuItem.Text = "FMs of Current Year";
-            this.fMsOfCurrentYearToolStripMenuItem.Click += new System.EventHandler(this.fMsOfCurrentYearToolStripMenuItem_Click);
-            // 
-            // fMsOfPreviousYearToolStripMenuItem
-            // 
-            this.fMsOfPreviousYearToolStripMenuItem.CheckOnClick = true;
-            this.fMsOfPreviousYearToolStripMenuItem.Name = "fMsOfPreviousYearToolStripMenuItem";
-            this.fMsOfPreviousYearToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.fMsOfPreviousYearToolStripMenuItem.Text = "FMs of Previous Year";
-            this.fMsOfPreviousYearToolStripMenuItem.Click += new System.EventHandler(this.fMsOfPreviousYearToolStripMenuItem_Click);
-            // 
-            // fMsOfBothYearToolStripMenuItem
-            // 
-            this.fMsOfBothYearToolStripMenuItem.Checked = true;
-            this.fMsOfBothYearToolStripMenuItem.CheckOnClick = true;
-            this.fMsOfBothYearToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.fMsOfBothYearToolStripMenuItem.Name = "fMsOfBothYearToolStripMenuItem";
-            this.fMsOfBothYearToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
-            this.fMsOfBothYearToolStripMenuItem.Text = "FMs of both year";
-            this.fMsOfBothYearToolStripMenuItem.Click += new System.EventHandler(this.fMsOfBothYearToolStripMenuItem_Click);
             // 
             // ColSN
             // 
@@ -294,6 +182,125 @@
             this.ColDITotal.Name = "ColDITotal";
             this.ColDITotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem,
+            this.pasteToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(113, 52);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(112, 24);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
+            // pasteToolStripMenuItem
+            // 
+            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(112, 24);
+            this.pasteToolStripMenuItem.Text = "Paste";
+            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(17, 49);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(265, 18);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Flight Movement Data for Current Year:";
+            // 
+            // TxtFMCurrentYear
+            // 
+            this.TxtFMCurrentYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtFMCurrentYear.Location = new System.Drawing.Point(295, 45);
+            this.TxtFMCurrentYear.Name = "TxtFMCurrentYear";
+            this.TxtFMCurrentYear.Size = new System.Drawing.Size(141, 24);
+            this.TxtFMCurrentYear.TabIndex = 2;
+            this.TxtFMCurrentYear.TextChanged += new System.EventHandler(this.TxtFMCurrentYear_TextChanged);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.plotToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1370, 28);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // plotToolStripMenuItem
+            // 
+            this.plotToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fMsOfCurrentYearToolStripMenuItem,
+            this.fMsOfPreviousYearToolStripMenuItem,
+            this.fMsOfBothYearToolStripMenuItem});
+            this.plotToolStripMenuItem.Name = "plotToolStripMenuItem";
+            this.plotToolStripMenuItem.Size = new System.Drawing.Size(47, 24);
+            this.plotToolStripMenuItem.Text = "Plot";
+            // 
+            // fMsOfCurrentYearToolStripMenuItem
+            // 
+            this.fMsOfCurrentYearToolStripMenuItem.CheckOnClick = true;
+            this.fMsOfCurrentYearToolStripMenuItem.Name = "fMsOfCurrentYearToolStripMenuItem";
+            this.fMsOfCurrentYearToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.fMsOfCurrentYearToolStripMenuItem.Text = "FMs of Current Year";
+            this.fMsOfCurrentYearToolStripMenuItem.Click += new System.EventHandler(this.fMsOfCurrentYearToolStripMenuItem_Click);
+            // 
+            // fMsOfPreviousYearToolStripMenuItem
+            // 
+            this.fMsOfPreviousYearToolStripMenuItem.CheckOnClick = true;
+            this.fMsOfPreviousYearToolStripMenuItem.Name = "fMsOfPreviousYearToolStripMenuItem";
+            this.fMsOfPreviousYearToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.fMsOfPreviousYearToolStripMenuItem.Text = "FMs of Previous Year";
+            this.fMsOfPreviousYearToolStripMenuItem.Click += new System.EventHandler(this.fMsOfPreviousYearToolStripMenuItem_Click);
+            // 
+            // fMsOfBothYearToolStripMenuItem
+            // 
+            this.fMsOfBothYearToolStripMenuItem.Checked = true;
+            this.fMsOfBothYearToolStripMenuItem.CheckOnClick = true;
+            this.fMsOfBothYearToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.fMsOfBothYearToolStripMenuItem.Name = "fMsOfBothYearToolStripMenuItem";
+            this.fMsOfBothYearToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.fMsOfBothYearToolStripMenuItem.Text = "FMs of both year";
+            this.fMsOfBothYearToolStripMenuItem.Click += new System.EventHandler(this.fMsOfBothYearToolStripMenuItem_Click);
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.TabCurrYrFM);
@@ -352,21 +359,21 @@
             // 
             // DGV_FMs_PreviousYear
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightGray;
-            this.DGV_FMs_PreviousYear.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
+            this.DGV_FMs_PreviousYear.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV_FMs_PreviousYear.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGV_FMs_PreviousYear.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11});
+            this.ColSN1,
+            this.ColMonth1,
+            this.ColDomArr1,
+            this.ColDomDep1,
+            this.ColDomTotal1,
+            this.ColIntlArr1,
+            this.ColIntlDep1,
+            this.ColIntlTotal1,
+            this.ColDIArr1,
+            this.ColDIDep1,
+            this.ColDITotal1});
             this.DGV_FMs_PreviousYear.ContextMenuStrip = this.contextMenuStrip2;
             this.DGV_FMs_PreviousYear.Location = new System.Drawing.Point(6, 53);
             this.DGV_FMs_PreviousYear.Name = "DGV_FMs_PreviousYear";
@@ -374,73 +381,28 @@
             this.DGV_FMs_PreviousYear.TabIndex = 7;
             this.DGV_FMs_PreviousYear.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_FMs_PreviousYear_CellValueChanged);
             // 
-            // dataGridViewTextBoxColumn1
+            // contextMenuStrip2
             // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "SN";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 60;
+            this.contextMenuStrip2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem1,
+            this.pasteToolStripMenuItem1});
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(113, 52);
             // 
-            // dataGridViewTextBoxColumn2
+            // copyToolStripMenuItem1
             // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Month";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn2.Width = 80;
+            this.copyToolStripMenuItem1.Name = "copyToolStripMenuItem1";
+            this.copyToolStripMenuItem1.Size = new System.Drawing.Size(112, 24);
+            this.copyToolStripMenuItem1.Text = "Copy";
+            this.copyToolStripMenuItem1.Click += new System.EventHandler(this.copyToolStripMenuItem1_Click);
             // 
-            // dataGridViewTextBoxColumn3
+            // pasteToolStripMenuItem1
             // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Domestic Arrival";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Domestic Departure";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Domestic Total";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Int\'l Arrival";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Int\'l Departure";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "Int\'l Total";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.HeaderText = "Dom+Int\'l Arrival";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.HeaderText = "Dom+Int\'l Departure";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.HeaderText = "Dom+Int\'l Total";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.pasteToolStripMenuItem1.Name = "pasteToolStripMenuItem1";
+            this.pasteToolStripMenuItem1.Size = new System.Drawing.Size(112, 24);
+            this.pasteToolStripMenuItem1.Text = "Paste";
+            this.pasteToolStripMenuItem1.Click += new System.EventHandler(this.pasteToolStripMenuItem1_Click);
             // 
             // TabPlotFM
             // 
@@ -460,51 +422,73 @@
             this.PanelPlotFM.Size = new System.Drawing.Size(1203, 424);
             this.PanelPlotFM.TabIndex = 0;
             // 
-            // contextMenuStrip1
+            // ColSN1
             // 
-            this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyToolStripMenuItem,
-            this.pasteToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(113, 52);
+            this.ColSN1.HeaderText = "SN";
+            this.ColSN1.Name = "ColSN1";
+            this.ColSN1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColSN1.Width = 60;
             // 
-            // contextMenuStrip2
+            // ColMonth1
             // 
-            this.contextMenuStrip2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyToolStripMenuItem1,
-            this.pasteToolStripMenuItem1});
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(113, 52);
+            this.ColMonth1.HeaderText = "Month";
+            this.ColMonth1.Name = "ColMonth1";
+            this.ColMonth1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColMonth1.Width = 80;
             // 
-            // copyToolStripMenuItem
+            // ColDomArr1
             // 
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(112, 24);
-            this.copyToolStripMenuItem.Text = "Copy";
-            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            this.ColDomArr1.HeaderText = "Domestic Arrival";
+            this.ColDomArr1.Name = "ColDomArr1";
+            this.ColDomArr1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // pasteToolStripMenuItem
+            // ColDomDep1
             // 
-            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(112, 24);
-            this.pasteToolStripMenuItem.Text = "Paste";
-            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
+            this.ColDomDep1.HeaderText = "Domestic Departure";
+            this.ColDomDep1.Name = "ColDomDep1";
+            this.ColDomDep1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // copyToolStripMenuItem1
+            // ColDomTotal1
             // 
-            this.copyToolStripMenuItem1.Name = "copyToolStripMenuItem1";
-            this.copyToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
-            this.copyToolStripMenuItem1.Text = "Copy";
-            this.copyToolStripMenuItem1.Click += new System.EventHandler(this.copyToolStripMenuItem1_Click);
+            this.ColDomTotal1.HeaderText = "Domestic Total";
+            this.ColDomTotal1.Name = "ColDomTotal1";
+            this.ColDomTotal1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // pasteToolStripMenuItem1
+            // ColIntlArr1
             // 
-            this.pasteToolStripMenuItem1.Name = "pasteToolStripMenuItem1";
-            this.pasteToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
-            this.pasteToolStripMenuItem1.Text = "Paste";
-            this.pasteToolStripMenuItem1.Click += new System.EventHandler(this.pasteToolStripMenuItem1_Click);
+            this.ColIntlArr1.HeaderText = "Int\'l Arrival";
+            this.ColIntlArr1.Name = "ColIntlArr1";
+            this.ColIntlArr1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColIntlDep1
+            // 
+            this.ColIntlDep1.HeaderText = "Int\'l Departure";
+            this.ColIntlDep1.Name = "ColIntlDep1";
+            this.ColIntlDep1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColIntlTotal1
+            // 
+            this.ColIntlTotal1.HeaderText = "Int\'l Total";
+            this.ColIntlTotal1.Name = "ColIntlTotal1";
+            this.ColIntlTotal1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColDIArr1
+            // 
+            this.ColDIArr1.HeaderText = "Dom+Int\'l Arrival";
+            this.ColDIArr1.Name = "ColDIArr1";
+            this.ColDIArr1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColDIDep1
+            // 
+            this.ColDIDep1.HeaderText = "Dom+Int\'l Departure";
+            this.ColDIDep1.Name = "ColDIDep1";
+            this.ColDIDep1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColDITotal1
+            // 
+            this.ColDITotal1.HeaderText = "Dom+Int\'l Total";
+            this.ColDITotal1.Name = "ColDITotal1";
+            this.ColDITotal1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // FrmFlightMovement
             // 
@@ -519,6 +503,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FMs_CurrentYear)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -527,9 +512,8 @@
             this.TabPrevYrFM.ResumeLayout(false);
             this.TabPrevYrFM.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FMs_PreviousYear)).EndInit();
-            this.TabPlotFM.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.contextMenuStrip2.ResumeLayout(false);
+            this.TabPlotFM.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -542,7 +526,6 @@
         private System.Windows.Forms.TextBox TxtFMCurrentYear;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem createNewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
@@ -567,17 +550,6 @@
         private System.Windows.Forms.TextBox TxtFMPrevYear;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView DGV_FMs_PreviousYear;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.TabPage TabPlotFM;
         private System.Windows.Forms.Panel PanelPlotFM;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
@@ -586,5 +558,16 @@
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColSN1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColMonth1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColDomArr1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColDomDep1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColDomTotal1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColIntlArr1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColIntlDep1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColIntlTotal1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColDIArr1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColDIDep1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColDITotal1;
     }
 }
