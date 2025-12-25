@@ -47,8 +47,6 @@ namespace AirportSMS
             //s.Color = modernColors[ci % modernColors.Length];
 
 
-
-
             var plt = formsPlot1.Plot;
             plt.Clear();
 
@@ -142,25 +140,30 @@ namespace AirportSMS
 
                         }
                         break;
-
                     case "COLUMN":
                         {
-                            // 1. Create the series as a single object
+                            // Determine if this is the first or second series for clustering
+                            // This assumes your dictionary is iterated in order.
+                            int seriesIndex = seriesConfig.Keys.ToList().IndexOf(kvp.Key);
+                            double barWidth = 0.35; // Narrower width so two bars fit in 1.0 unit
+                            double offset = (seriesIndex == 0) ? -barWidth / 2 : barWidth / 2;
+
+                            // 1. Create the series
                             var barPlot = plt.Add.Bars(XPos, cfg.YValues);
 
-                            // 2. Set the legend text for the entire series (only shows once)
+                            // 2. Set legend and color
                             barPlot.LegendText = cfg.LegendText;
-
-                            // 3. Set the color for all bars in this series
-                            // In ScottPlot 5, use .Color to set the fill color for the whole group
-                            //barPlot.Color = ScottPlot.Colors.Green.WithAlpha(120);
                             barPlot.Color = spColor;
 
-                            // 4. Adjust width for all bars
-                            foreach (var bar in barPlot.Bars)
+                            // 3. Adjust width and shift positions
+                            for (int i = 0; i < barPlot.Bars.Count; i++)
                             {
-                                bar.Size = 0.6;
+                                var bar = barPlot.Bars[i];
+                                bar.Size = barWidth;
                                 bar.LineStyle.Width = 0;
+
+                                // Manual offset: Shift bars left or right of the center XPos
+                                bar.Position = XPos[i] + offset;
                             }
 
                             if (cfg.ShowValueLabel)
@@ -169,18 +172,54 @@ namespace AirportSMS
                                 {
                                     var txt = plt.Add.Text(
                                         cfg.YValues[i].ToString(),
-                                        XPos[i],
+                                        barPlot.Bars[i].Position, // Use the shifted position for labels
                                         cfg.YValues[i]
                                     );
-                                    txt.Alignment = ScottPlot.Alignment.LowerCenter;
+                                    txt.Alignment = sctplot.Alignment.LowerCenter;
                                     txt.LabelFontColor = spColor;
                                 }
                             }
-
-
-
                         }
                         break;
+
+                        /*case "COLUMN":
+                            {
+                                // 1. Create the series as a single object
+                                var barPlot = plt.Add.Bars(XPos, cfg.YValues);
+
+                                // 2. Set the legend text for the entire series (only shows once)
+                                barPlot.LegendText = cfg.LegendText;
+
+                                // 3. Set the color for all bars in this series
+                                // In ScottPlot 5, use .Color to set the fill color for the whole group
+                                //barPlot.Color = ScottPlot.Colors.Green.WithAlpha(120);
+                                barPlot.Color = spColor;
+
+                                // 4. Adjust width for all bars
+                                foreach (var bar in barPlot.Bars)
+                                {
+                                    bar.Size = 0.6;
+                                    bar.LineStyle.Width = 0;
+                                }
+
+                                if (cfg.ShowValueLabel)
+                                {
+                                    for (int i = 0; i < cfg.YValues.Length; i++)
+                                    {
+                                        var txt = plt.Add.Text(
+                                            cfg.YValues[i].ToString(),
+                                            XPos[i],
+                                            cfg.YValues[i]
+                                        );
+                                        txt.Alignment = ScottPlot.Alignment.LowerCenter;
+                                        txt.LabelFontColor = spColor;
+                                    }
+                                }
+
+
+
+                            }
+                            break;*/
                 }
 
                 ci++;
@@ -242,6 +281,10 @@ namespace AirportSMS
             // 1. Enable the legend
             plt.Legend.IsVisible = true;
 
+            var existingLegends = plt.Axes.GetPanels().Where(p => p is sctplot.Panels.LegendPanel).ToList();
+            foreach (var leg in existingLegends)
+                plt.Axes.Remove(leg);
+
             // 2. Move the legend to the TOP Edge (outside the data area)
             plt.ShowLegend(Edge.Top);
 
@@ -253,6 +296,12 @@ namespace AirportSMS
 
             // Optional: Give it a clean Excel look by removing the shadow/border if desired
             plt.Legend.OutlineWidth = 0;
+
+            
+            plt.Legend.BackgroundColor = ScottPlot.Colors.Transparent;
+            plt.Legend.OutlineColor = ScottPlot.Colors.Transparent;
+            plt.Legend.ShadowColor = ScottPlot.Colors.Transparent; // Important for full transparency
+
             //plt.Legend.BackgroundFillStyle() = ScottPlot.Colors.Transparent;
 
 

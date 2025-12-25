@@ -69,6 +69,8 @@ namespace AirportSMS
         }
 
 
+
+
         private void newProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string RootFolderPath="";
@@ -97,15 +99,26 @@ namespace AirportSMS
             //Write project name
             SMS_Project_Package_class.SMSProject smsproj = new SMS_Project_Package_class.SMSProject();
 
-            if(TxtProjectName.Text == "")
+
+            /*if(TxtProjectName.Text == "")
             {
                 smsproj.ProjectName = "This_Project" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
             }
             else
             {
                 smsproj.ProjectName = TxtProjectName.Text;
+            }*/
+
+            smsproj.ProjectName = string.IsNullOrEmpty(TxtProjectName.Text)
+                ? $"This_Project{DateTime.Now:yyyy-MM-dd HH-mm-ss}"
+                : TxtProjectName.Text;
+
+            if (int.TryParse(TxtCurrentYear.Text, out int result1))
+            {
+                smsproj.ProjectCurrentYear = result1;
             }
-            
+            // If parsing fails, smsproj.ProjectCurrentYear remains its default (1000)
+
 
             //creating project
             CreateProject(RootFolderPath, smsproj);
@@ -196,6 +209,8 @@ namespace AirportSMS
 
                     // Show Modified Date
                     TxtProjModified.Text = project.ModifiedOn.ToString("yyyy-MM-dd HH:mm:ss");
+
+                    TxtCurrentYear.Text = project.ProjectCurrentYear.ToString();
 
                     /*
                     // 2. Load SPI metadata (filename, name, id)
@@ -326,12 +341,6 @@ namespace AirportSMS
             ComboBoxFilterSPI_Type.Items.Add("Leading SPIs: Proactive");
         }
 
-        private void openHazardLogRecordToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmHazardLog fhlg = new FrmHazardLog();
-            fhlg.Show();
-        }
-
         private void openSPISummaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(TxtProjectLocation.Text))
@@ -407,11 +416,62 @@ namespace AirportSMS
             }
         }
 
+        private void openHazardLogRecordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmHazardLog fhz = new FrmHazardLog();
+            fhz.Show();
+        }
+
+        
+        private void saveProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // 1. Declare the variable first so it is accessible outside the 'if' block
+            string RootFolderPath = string.Empty;
 
 
+            // 2. Use Directory.Exists to check if the path in the textbox is valid
+            if (Directory.Exists(TxtProjectLocation.Text))
+            {
+                RootFolderPath = TxtProjectLocation.Text;
 
+                //Write project name
+                SMS_Project_Package_class.SMSProject smsproj = new SMS_Project_Package_class.SMSProject();
 
+                smsproj.ProjectName = string.IsNullOrEmpty(TxtProjectName.Text)
+                    ? $"This_Project{DateTime.Now:yyyy-MM-dd HH-mm-ss}"
+                    : TxtProjectName.Text;
 
+                //Current Year
+                // If parsing fails, smsproj.ProjectCurrentYear remains its default (1000)
+                if (int.TryParse(TxtCurrentYear.Text, out int result1))
+                {
+                    smsproj.ProjectCurrentYear = result1;
+                }
 
+                //Modified date
+                smsproj.ModifiedOn = DateTime.UtcNow;
+
+                //saving project
+                File.WriteAllText(
+                    Path.Combine(RootFolderPath, "Project.json"),
+                    JsonSerializer.Serialize(smsproj, jsonOptions)
+                );
+
+                MessageBox.Show("Project saved successfully", "Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                // Notify the user if the path is invalid
+                MessageBox.Show("Project not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            
+        }
+
+        private void flightMovementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmFlightMovement ffm = new FrmFlightMovement();
+            ffm.Show();
+        }
     }
 }

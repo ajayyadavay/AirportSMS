@@ -32,20 +32,26 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.flightMovementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.spisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openNewSPIsFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateSPICardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.filterBySelectedSPITypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.openHazardLogRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSPISummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hazardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openHazardLogRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtProjectLocation = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TxtCurrentYear = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.TxtProjModified = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TxtProjectName = new System.Windows.Forms.TextBox();
@@ -64,10 +70,12 @@
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.projectToolStripMenuItem});
+            this.dataToolStripMenuItem,
+            this.spisToolStripMenuItem,
+            this.hazardToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1370, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1353, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -76,6 +84,7 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newProjectToolStripMenuItem,
             this.openProjectToolStripMenuItem,
+            this.saveProjectToolStripMenuItem,
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -85,42 +94,63 @@
             // newProjectToolStripMenuItem
             // 
             this.newProjectToolStripMenuItem.Name = "newProjectToolStripMenuItem";
-            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
             this.newProjectToolStripMenuItem.Text = "New Project";
             this.newProjectToolStripMenuItem.Click += new System.EventHandler(this.newProjectToolStripMenuItem_Click);
             // 
             // openProjectToolStripMenuItem
             // 
             this.openProjectToolStripMenuItem.Name = "openProjectToolStripMenuItem";
-            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
             this.openProjectToolStripMenuItem.Text = "Open Project";
             this.openProjectToolStripMenuItem.Click += new System.EventHandler(this.openProjectToolStripMenuItem_Click);
+            // 
+            // saveProjectToolStripMenuItem
+            // 
+            this.saveProjectToolStripMenuItem.Name = "saveProjectToolStripMenuItem";
+            this.saveProjectToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
+            this.saveProjectToolStripMenuItem.Text = "Save Project";
+            this.saveProjectToolStripMenuItem.Click += new System.EventHandler(this.saveProjectToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(161, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // projectToolStripMenuItem
+            // dataToolStripMenuItem
             // 
-            this.projectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.flightMovementToolStripMenuItem});
+            this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
+            this.dataToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.dataToolStripMenuItem.Text = "Data";
+            // 
+            // flightMovementToolStripMenuItem
+            // 
+            this.flightMovementToolStripMenuItem.Name = "flightMovementToolStripMenuItem";
+            this.flightMovementToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
+            this.flightMovementToolStripMenuItem.Text = "Flight Movement";
+            this.flightMovementToolStripMenuItem.Click += new System.EventHandler(this.flightMovementToolStripMenuItem_Click);
+            // 
+            // spisToolStripMenuItem
+            // 
+            this.spisToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openNewSPIsFormToolStripMenuItem,
             this.updateSPICardToolStripMenuItem,
             this.toolStripMenuItem2,
             this.filterBySelectedSPITypeToolStripMenuItem,
             this.toolStripMenuItem3,
-            this.openHazardLogRecordToolStripMenuItem,
             this.openSPISummaryToolStripMenuItem});
-            this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
-            this.projectToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
-            this.projectToolStripMenuItem.Text = "Project";
+            this.spisToolStripMenuItem.Name = "spisToolStripMenuItem";
+            this.spisToolStripMenuItem.Size = new System.Drawing.Size(47, 24);
+            this.spisToolStripMenuItem.Text = "SPIs";
             // 
             // openNewSPIsFormToolStripMenuItem
             // 
@@ -153,19 +183,27 @@
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(248, 6);
             // 
-            // openHazardLogRecordToolStripMenuItem
-            // 
-            this.openHazardLogRecordToolStripMenuItem.Name = "openHazardLogRecordToolStripMenuItem";
-            this.openHazardLogRecordToolStripMenuItem.Size = new System.Drawing.Size(251, 24);
-            this.openHazardLogRecordToolStripMenuItem.Text = "Open Hazard Log Record";
-            this.openHazardLogRecordToolStripMenuItem.Click += new System.EventHandler(this.openHazardLogRecordToolStripMenuItem_Click);
-            // 
             // openSPISummaryToolStripMenuItem
             // 
             this.openSPISummaryToolStripMenuItem.Name = "openSPISummaryToolStripMenuItem";
             this.openSPISummaryToolStripMenuItem.Size = new System.Drawing.Size(251, 24);
             this.openSPISummaryToolStripMenuItem.Text = "Open SPI Summary";
             this.openSPISummaryToolStripMenuItem.Click += new System.EventHandler(this.openSPISummaryToolStripMenuItem_Click);
+            // 
+            // hazardToolStripMenuItem
+            // 
+            this.hazardToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openHazardLogRecordToolStripMenuItem});
+            this.hazardToolStripMenuItem.Name = "hazardToolStripMenuItem";
+            this.hazardToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
+            this.hazardToolStripMenuItem.Text = "Hazard";
+            // 
+            // openHazardLogRecordToolStripMenuItem
+            // 
+            this.openHazardLogRecordToolStripMenuItem.Name = "openHazardLogRecordToolStripMenuItem";
+            this.openHazardLogRecordToolStripMenuItem.Size = new System.Drawing.Size(246, 24);
+            this.openHazardLogRecordToolStripMenuItem.Text = "Open Hazard Log Record";
+            this.openHazardLogRecordToolStripMenuItem.Click += new System.EventHandler(this.openHazardLogRecordToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -184,7 +222,7 @@
             this.TxtProjectLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtProjectLocation.Location = new System.Drawing.Point(139, 29);
             this.TxtProjectLocation.Name = "TxtProjectLocation";
-            this.TxtProjectLocation.Size = new System.Drawing.Size(1155, 24);
+            this.TxtProjectLocation.Size = new System.Drawing.Size(1104, 24);
             this.TxtProjectLocation.TabIndex = 2;
             // 
             // flowLayoutPanel1
@@ -200,6 +238,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.TxtCurrentYear);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.TxtProjModified);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.TxtProjectName);
@@ -209,10 +249,30 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 31);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1322, 144);
+            this.groupBox1.Size = new System.Drawing.Size(1271, 162);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General";
+            // 
+            // TxtCurrentYear
+            // 
+            this.TxtCurrentYear.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtCurrentYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCurrentYear.Location = new System.Drawing.Point(139, 127);
+            this.TxtCurrentYear.Name = "TxtCurrentYear";
+            this.TxtCurrentYear.Size = new System.Drawing.Size(1104, 24);
+            this.TxtCurrentYear.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(22, 133);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(91, 18);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Current Year";
             // 
             // TxtProjModified
             // 
@@ -221,7 +281,7 @@
             this.TxtProjModified.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtProjModified.Location = new System.Drawing.Point(139, 97);
             this.TxtProjModified.Name = "TxtProjModified";
-            this.TxtProjModified.Size = new System.Drawing.Size(1155, 24);
+            this.TxtProjModified.Size = new System.Drawing.Size(1104, 24);
             this.TxtProjModified.TabIndex = 6;
             // 
             // label3
@@ -241,7 +301,7 @@
             this.TxtProjectName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtProjectName.Location = new System.Drawing.Point(139, 62);
             this.TxtProjectName.Name = "TxtProjectName";
-            this.TxtProjectName.Size = new System.Drawing.Size(1155, 24);
+            this.TxtProjectName.Size = new System.Drawing.Size(1104, 24);
             this.TxtProjectName.TabIndex = 4;
             // 
             // label2
@@ -262,9 +322,9 @@
             this.groupBox2.Controls.Add(this.TxtFilterSPIType);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(15, 181);
+            this.groupBox2.Location = new System.Drawing.Point(15, 199);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1322, 111);
+            this.groupBox2.Size = new System.Drawing.Size(1271, 93);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filter";
@@ -277,7 +337,7 @@
             this.ComboBoxFilterSPI_Type.FormattingEnabled = true;
             this.ComboBoxFilterSPI_Type.Location = new System.Drawing.Point(133, 26);
             this.ComboBoxFilterSPI_Type.Name = "ComboBoxFilterSPI_Type";
-            this.ComboBoxFilterSPI_Type.Size = new System.Drawing.Size(1158, 26);
+            this.ComboBoxFilterSPI_Type.Size = new System.Drawing.Size(1107, 26);
             this.ComboBoxFilterSPI_Type.TabIndex = 9;
             this.ComboBoxFilterSPI_Type.SelectedIndexChanged += new System.EventHandler(this.ComboBoxFilterSPI_Type_SelectedIndexChanged);
             // 
@@ -288,7 +348,7 @@
             this.TxtFilterSPIType.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtFilterSPIType.Location = new System.Drawing.Point(133, 58);
             this.TxtFilterSPIType.Name = "TxtFilterSPIType";
-            this.TxtFilterSPIType.Size = new System.Drawing.Size(1158, 24);
+            this.TxtFilterSPIType.Size = new System.Drawing.Size(1107, 24);
             this.TxtFilterSPIType.TabIndex = 2;
             // 
             // label6
@@ -306,7 +366,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1387, 749);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
@@ -343,7 +403,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TxtProjModified;
         public System.Windows.Forms.TextBox TxtProjectLocation;
-        private System.Windows.Forms.ToolStripMenuItem projectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem spisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openNewSPIsFormToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem updateSPICardToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -353,8 +413,14 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem filterBySelectedSPITypeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem openHazardLogRecordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openSPISummaryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hazardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openHazardLogRecordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem flightMovementToolStripMenuItem;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolStripMenuItem saveProjectToolStripMenuItem;
+        public System.Windows.Forms.TextBox TxtCurrentYear;
     }
 }
 

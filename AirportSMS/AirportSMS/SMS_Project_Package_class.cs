@@ -29,6 +29,7 @@ namespace AirportSMS
             public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
             public DateTime ModifiedOn { get; set; } = DateTime.UtcNow;
             // any high-level metadata; new fields may be added later
+            public int ProjectCurrentYear { get; set; } = 1000;
         }
 
         public class SPI

@@ -66,3 +66,4 @@ F:\VBStudio\Airport_SMS\AirportSMS\AirportSMS\bin\Debug\SkiaSharp.Views.Desktop.
 F:\VBStudio\Airport_SMS\AirportSMS\AirportSMS\bin\Debug\SkiaSharp.Views.WindowsForms.pdb
 F:\VBStudio\Airport_SMS\AirportSMS\AirportSMS\obj\Debug\AirportSMS.FrmHazardLog.resources
 F:\VBStudio\Airport_SMS\AirportSMS\AirportSMS\obj\Debug\AirportSMS.FrmSPISummary.resources
+F:\VBStudio\Airport_SMS\AirportSMS\AirportSMS\obj\Debug\AirportSMS.FrmFlightMovement.resources

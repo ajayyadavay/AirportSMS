@@ -433,9 +433,11 @@ namespace AirportSMS
            
 
             // Define series
-            var seriesConfig = new Dictionary<string, SeriesStyleConfig>()
+            //var seriesConfig = new Dictionary<string, SeriesStyleConfig>()
+            var seriesConfig = new Dictionary<string, ChartStyleClass.SeriesStyleConfig>()
             {
-                ["Prv_Year_obs"] = new SeriesStyleConfig
+                //["Prv_Year_obs"] = new SeriesStyleConfig
+                ["Prv_Year_obs"] = new ChartStyleClass.SeriesStyleConfig
                 {
                     ShowSeries = true,
                     ShowValueLabel = true,
@@ -443,7 +445,8 @@ namespace AirportSMS
                     ScottPlot_Chart_Type = "COLUMN",
                     YValues = Y1_axis_prev_year.Take(12).ToArray()
                 },
-                ["Curr_Year_Target_val"] = new SeriesStyleConfig
+                //["Curr_Year_Target_val"] = new SeriesStyleConfig
+                ["Curr_Year_Target_val"] = new ChartStyleClass.SeriesStyleConfig
                 {
                     ShowSeries = true,
                     ShowValueLabel = true,
@@ -452,7 +455,8 @@ namespace AirportSMS
                     AreaFillAbove = fillabove,
                     YValues = Y1_axis_curr_year_target.Take(12).ToArray()
                 },
-                ["Curr_Year_obs"] = new SeriesStyleConfig
+                //["Curr_Year_obs"] = new SeriesStyleConfig
+                ["Curr_Year_obs"] = new ChartStyleClass.SeriesStyleConfig
                 {
                     ShowSeries = true,
                     ShowValueLabel = true,
@@ -473,7 +477,12 @@ namespace AirportSMS
             int X_Axis_Label_Rotation = 0;
 
             // Apply styling and plotting
-            ScottPlotStyle(formsPlot1, Xs, XPos,maxval,
+            /*ScottPlotStyle(formsPlot1, Xs, XPos,maxval,
+                Plot_Title, Plot_YLabel, Plot_XLabel, X_Axis_Label_Rotation,
+                seriesConfig);*/
+
+            ChartStyleClass csc = new ChartStyleClass();
+            csc.ScottPlotStyle(formsPlot1, Xs, XPos, maxval,
                 Plot_Title, Plot_YLabel, Plot_XLabel, X_Axis_Label_Rotation,
                 seriesConfig);
 
@@ -663,12 +672,35 @@ namespace AirportSMS
             // Legend
             //plt.Legend(location: sctplot.Alignment.UpperRight);
             // Use the Alignment property on the Legend object
-            plt.Legend.Alignment = ScottPlot.Alignment.UpperRight;
+            //plt.Legend.Alignment =  sctplot.Alignment.UpperRight;
 
-            // Ensure it is visible
+
+            // Legend
+            // 1. Enable the legend
             plt.Legend.IsVisible = true;
 
-            //plt.Axes.SetLimits(bottom: 0);
+            // Before adding a new one, clear existing legend panels from the axes
+            var existingLegends = plt.Axes.GetPanels().Where(p => p is sctplot.Panels.LegendPanel).ToList();
+            foreach (var leg in existingLegends)
+                plt.Axes.Remove(leg);
+
+            // 2. Move the legend to the TOP Edge (outside the data area)
+            plt.ShowLegend(sctplot.Edge.Top);
+            //MessageBox.Show("Legend");
+
+            // 3. Set items to flow horizontally like Excel
+            plt.Legend.Orientation = sctplot.Orientation.Horizontal;
+
+            // 4. Center the legend relative to the plot
+            plt.Legend.Alignment = sctplot.Alignment.UpperCenter;
+
+            // Optional: Give it a clean Excel look by removing the shadow/border if desired
+            plt.Legend.OutlineWidth = 0;
+
+            plt.Legend.BackgroundColor = sctplot.Colors.Transparent;
+            plt.Legend.OutlineColor = sctplot.Colors.Transparent;
+            plt.Legend.ShadowColor = sctplot.Colors.Transparent;
+            
         }
 
 

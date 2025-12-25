@@ -227,6 +227,7 @@ namespace AirportSMS
 
             string[] X_axis = new string[100];
             double[] Y_axis = new double[100];
+            double[] Y_axis1 = new double[100];
 
             int No_of_SPIs = DGV_Summary_Monthly.RowCount - 2;
 
@@ -236,6 +237,7 @@ namespace AirportSMS
             {
                 X_axis[i] = DGV_Summary_Monthly.Rows[i].Cells[1].Value.ToString(); //Month
                 Y_axis[i] = Convert.ToDouble(DGV_Summary_Monthly.Rows[i].Cells[2].Value); //Month total value
+                Y_axis1[i] = Convert.ToDouble(DGV_Summary_Monthly.Rows[i].Cells[2].Value)*0.6; //Month total value
                 sum += Y_axis[i];
             }
 
@@ -253,6 +255,15 @@ namespace AirportSMS
                     ScottPlot_Chart_Type = "COLUMN",
                     AreaFillAbove = false,
                     YValues = Y_axis.Take(No_of_SPIs).ToArray()
+                },
+                ["Monthly_Total_One"] = new ChartStyleClass.SeriesStyleConfig
+                {
+                    ShowSeries = true,
+                    ShowValueLabel = true,
+                    LegendText = "Monthly 0.6 (Total = " + sum + ")",
+                    ScottPlot_Chart_Type = "COLUMN",
+                    AreaFillAbove = false,
+                    YValues = Y_axis1.Take(No_of_SPIs).ToArray()
                 }
 
             };
