@@ -292,6 +292,7 @@ namespace AirportSMS
             FrmHazardMonitoring fhm = new FrmHazardMonitoring();
             fhm.Show();
             fhm.saveSPIToolStripMenuItem.Enabled = false;
+            fhm.TxtCurrentYear.Text = TxtCurrentYear.Text;
         }
 
         public void updateSPICardToolStripMenuItem_Click(object sender, EventArgs e)

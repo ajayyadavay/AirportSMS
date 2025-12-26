@@ -1,5 +1,7 @@
 ﻿using ScottPlot.Colormaps;
 using ScottPlot.Plottables;
+using ScottPlot.TickGenerators.Financial;
+using ScottPlot.TickGenerators.TimeUnits;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +18,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using static AirportSMS.FrmFlightMovement;
 using sctplot = ScottPlot;
 using sctplotwin = ScottPlot.WinForms;
 
@@ -27,6 +30,9 @@ namespace AirportSMS
         double [] Y1_axis_prev_year = new double[100];
         double [] Y1_axis_curr_year_target = new double[100];
         double [] Y1_axis_curr_year_obs = new double[100];
+
+        double[] Y_SPIs_Prev = new double[12];
+        double[] Y_SPIs_Curr = new double[12];
 
         public sctplotwin.FormsPlot formsPlot1;
 
@@ -415,11 +421,16 @@ namespace AirportSMS
             string[] Xs = X_axis.Skip(1).Take(12).ToArray(); // JAN, FEB, ...
 
             // Fill series data
+            double sum_prev=0, sum_targ=0, sum_curr=0;
             for (int i = 0; i < 12; i++)
             {
                 Y1_axis_prev_year[i] = Convert.ToDouble(dataGridView1.Rows[0].Cells[i + 3].Value);
                 Y1_axis_curr_year_target[i] = Convert.ToDouble(dataGridView1.Rows[2].Cells[i + 3].Value);
                 Y1_axis_curr_year_obs[i] = Convert.ToDouble(dataGridView1.Rows[3].Cells[i + 3].Value);
+
+                sum_prev += Y1_axis_prev_year[i];
+                sum_targ += Y1_axis_curr_year_target[i];
+                sum_curr += Y1_axis_curr_year_obs[i];
             }
 
             double Percent;
@@ -441,7 +452,7 @@ namespace AirportSMS
                 {
                     ShowSeries = true,
                     ShowValueLabel = true,
-                    LegendText = "Observed value for previous year",
+                    LegendText = "Observed value for previous year (Total = " + sum_prev + ")",
                     ScottPlot_Chart_Type = "COLUMN",
                     YValues = Y1_axis_prev_year.Take(12).ToArray()
                 },
@@ -450,7 +461,7 @@ namespace AirportSMS
                 {
                     ShowSeries = true,
                     ShowValueLabel = true,
-                    LegendText = "Target value for current year",
+                    LegendText = "Target value for current year (Total = " + sum_targ + ")",
                     ScottPlot_Chart_Type = "AREA",
                     AreaFillAbove = fillabove,
                     YValues = Y1_axis_curr_year_target.Take(12).ToArray()
@@ -460,7 +471,7 @@ namespace AirportSMS
                 {
                     ShowSeries = true,
                     ShowValueLabel = true,
-                    LegendText = "Observed value for current year",
+                    LegendText = "Observed value for current year (Total = " + sum_curr + ")",
                     ScottPlot_Chart_Type = "LINE",
                     YValues = Y1_axis_curr_year_obs.Take(12).ToArray()
                 }
@@ -726,6 +737,22 @@ namespace AirportSMS
             ComboBoxSPI_Type.Items.Add("Precursor SPIs: High Probability/Low Severity");
             ComboBoxSPI_Type.Items.Add("Leading SPIs: Proactive");
 
+            if(createNewSPIToolStripMenuItem.Enabled == false)
+            {
+                for(int i =0;i<12;i++)
+                {
+                    Y_SPIs_Prev[i] = Convert.ToDouble(dataGridView1.Rows[0].Cells[i + 3].Value);
+                    Y_SPIs_Curr[i] = Convert.ToDouble(dataGridView1.Rows[3].Cells[i + 3].Value);
+                }
+
+                expressAsNumberToolStripMenuItem.Enabled = true;
+                expressAsRateperNFlightMovementToolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                expressAsNumberToolStripMenuItem.Enabled = false;
+                expressAsRateperNFlightMovementToolStripMenuItem.Enabled = false;
+            }
 
         }
 
@@ -1190,6 +1217,383 @@ namespace AirportSMS
             {
 
             }
+        }
+
+        private void expressAsNumberToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            expressAsNumberToolStripMenuItem.Checked = true;
+            expressAsRateperNFlightMovementToolStripMenuItem.Checked = false;
+            //saveSPIToolStripMenuItem.Enabled = true;
+            bool useflightdata = false;
+            DisplaySPIAsNumberOrRate(useflightdata);
+        }
+
+        private void expressAsRateperNFlightMovementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            expressAsNumberToolStripMenuItem.Checked = false;
+            expressAsRateperNFlightMovementToolStripMenuItem.Checked = true;
+            //saveSPIToolStripMenuItem.Enabled = false;
+            bool useflightdata = true;
+            DisplaySPIAsNumberOrRate(useflightdata);
+        }
+
+
+
+        public class YearData_FM
+        {
+            public double ColDomArr { get; set; }
+            public double ColDomDep { get; set; }
+            public double ColIntlArr { get; set; }
+            public double ColIntlDep { get; set; }
+
+            // For Previous Year keys
+            public double ColDomArr1 { get; set; }
+            public double ColDomDep1 { get; set; }
+            public double ColIntlArr1 { get; set; }
+            public double ColIntlDep1 { get; set; }
+        }
+
+        public class RootData_FM
+        {
+            public List<YearData_FM> CurrentYear { get; set; }
+            public List<YearData_FM> PreviousYear { get; set; }
+        }
+
+
+       
+
+        //final
+        private double[,] LoadFMdataFromJson(string projectFolder)
+        {
+            // Result array: [4 columns, 12 rows]
+            double[,] fmData_curr = new double[4, 12];
+            double[,] fmData_prev = new double[4, 12];
+
+            double[,] FMData_MonthlyTotal_curr_prev = new double[2,12];
+            //double[] FMData_MonthlyTotal_prev = new double[12];
+            string filePath = Path.Combine(projectFolder, "FMData", "FMData.json");
+
+            // 1. Check if file exists
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show("No Flight movement data file found", "File Missing",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //return;
+            }
+            else
+            {
+                try
+                {
+                    // 2. Read the file
+                    //MessageBox.Show("start json read");
+                    string jsonString = File.ReadAllText(filePath);
+
+                    //MessageBox.Show("json read");
+
+                    // 3. Deserialize back to our class structure
+                    //FrmFlightMovement.FMDataWrapper loadedData = JsonSerializer.Deserialize<FrmFlightMovement.FMDataWrapper>(jsonString);
+                    var options = new JsonSerializerOptions
+                    {
+                        // This allows strings like "123.45" to be read as doubles automatically
+                        NumberHandling = JsonNumberHandling.AllowReadingFromString |
+                    JsonNumberHandling.AllowNamedFloatingPointLiterals
+                    };
+
+                    var loadedData = JsonSerializer.Deserialize<RootData_FM>(jsonString, options);
+                   // var loadedData = JsonSerializer.Deserialize<RootData_FM>(jsonString);
+
+                    // Your assignment becomes incredibly simple and error-free:
+                    //fmData_curr[0, i] = loadedData.CurrentYear[i].ColDomArr;
+
+
+                    if (loadedData != null)
+                    {
+                        MessageBox.Show("json not null");
+                        // Populate Current Year data
+                        // We loop up to 12 to exclude the 13th entry (the total)
+                        //dgv.Rows[i].Cells[colIndex].Value = rowData[colName]?.ToString();
+                        //var rowData = dataList[i];
+                        //List<Dictionary<string, object>> dataList
+                        //double janDomArr = loadedData.CurrentYear[0]["ColDomArr"];
+                        //double FebDomArr = loadedData.CurrentYear[1]["ColDomArr"];
+                        for (int i = 0; i < 12; i++)
+                        {
+                            // Example for one line
+                            //fmData_curr[0, i] = ((JsonElement)loadedData.CurrentYear[i]["ColDomArr"]).GetDouble();
+
+                            // Apply to your list:
+                            /*fmData_curr[0, i] = ((JsonElement)loadedData.CurrentYear[i]["ColDomArr"]).GetDouble();
+                            fmData_curr[1, i] = ((JsonElement)loadedData.CurrentYear[i]["ColDomDep"]).GetDouble();
+                            fmData_curr[2, i] = ((JsonElement)loadedData.CurrentYear[i]["ColIntlArr"]).GetDouble();
+                            fmData_curr[3, i] = ((JsonElement)loadedData.CurrentYear[i]["ColIntlDep"]).GetDouble();*/
+
+
+                            fmData_curr[0, i] = loadedData.CurrentYear[i].ColDomArr;
+                            fmData_curr[1, i] = loadedData.CurrentYear[i].ColDomDep;
+                            fmData_curr[2, i] = loadedData.CurrentYear[i].ColIntlArr;
+                            fmData_curr[3, i] = loadedData.CurrentYear[i].ColIntlDep;
+                            //MessageBox.Show("curr i = " + i + " = " + fmData_curr[0, i].ToString());
+                        }
+
+                        // Populate Previous Year data
+                        for (int i = 0; i < 12; i++)
+                        {
+                            fmData_prev[0, i] = loadedData.PreviousYear[i].ColDomArr1;
+                            fmData_prev[1, i] = loadedData.PreviousYear[i].ColDomDep1;
+                            fmData_prev[2, i] = loadedData.PreviousYear[i].ColIntlArr1;
+                            fmData_prev[3, i] = loadedData.PreviousYear[i].ColIntlDep1;
+                            //MessageBox.Show(fmData_prev[0, i].ToString());
+                            /*fmData_prev[0, i] = (double)loadedData.PreviousYear[i]["ColDomArr1"];
+                            fmData_prev[1, i] = (double)loadedData.PreviousYear[i]["ColDomDep1"];
+                            fmData_prev[2, i] = (double)loadedData.PreviousYear[i]["ColIntlArr1"];
+                            fmData_prev[3, i] = (double)loadedData.PreviousYear[i]["ColIntlDep1"];*/
+
+                            /*fmData_prev[0, i] = Convert.ToDouble(loadedData.PreviousYear[i]["ColDomArr1"]);
+                            fmData_prev[1, i] = Convert.ToDouble(loadedData.PreviousYear[i]["ColDomDep1"]);
+                            fmData_prev[2, i] = Convert.ToDouble(loadedData.PreviousYear[i]["ColIntlArr1"]);
+                            fmData_prev[3, i] = Convert.ToDouble(loadedData.PreviousYear[i]["ColIntlDep1"]);*/
+                        }
+
+
+                        // 4. Populate both grids
+                        //PopulateDoublefromjson(fmData_curr, loadedData.CurrentYear);
+                        //PopulateDoublefromjson(fmData_prev, loadedData.PreviousYear);
+
+                        /*MessageBox.Show("Data loaded successfully!", "Success",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Information);*/
+
+                        // Optional: Re-run your summation logic here to refresh the totals
+
+
+                        // 2. Call the method to get the 1D array of sums
+                        //MessageBox.Show("start sum");
+                        double[] sum_cur = SumFlightMovementsData(fmData_curr);
+                        double[] sum_prv = SumFlightMovementsData(fmData_curr);
+                        //MessageBox.Show("leng = " + sum_cur.Length);
+                        // 3. Loop through the result and assign it to the first row (index 0)
+                        for (int i = 0; i < sum_cur.Length; i++)
+                        {
+                            FMData_MonthlyTotal_curr_prev[0, i] = sum_cur[i];
+                            FMData_MonthlyTotal_curr_prev[1, i] = sum_prv[i];
+                            //MessageBox.Show("curr i = " + i + " = " + FMData_MonthlyTotal_curr_prev[0, i]);
+                        }
+
+                        //plot graph
+                        //PlotFMGraphScottPlot();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error loading data: {ex.Message}", "Error",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+
+            //MessageBox.Show("This data = " + FMData_MonthlyTotal_curr_prev[0, 0]);
+            return FMData_MonthlyTotal_curr_prev;
+                
+        }
+
+
+        private double[] SumFlightMovementsData(double[,] FM_data)
+        {
+            double[] SumData = new double[12];
+            double sum;
+            for (int i = 0; i < 12; i++)
+            {
+                sum = 0;
+                for (int j = 0; j < 4; j++)
+                {
+                    sum += FM_data[j, i];
+                }
+                SumData[i] = sum;
+            }
+
+            return SumData;
+        }
+
+
+
+
+
+
+
+        /*
+        // Helper method to map List data back into specific DGV cells
+        private void PopulateDoublefromjson(double[,] FM_data, List<Dictionary<string, object>> dataList)
+        {
+            if (dataList == null) return;
+
+            for (int i = 0; i < dataList.Count; i++) //i =0; i<12;i++
+            {
+                // Safety check: Don't exceed row index 12 or the grid's capacity
+                if (i > 12) break;
+
+                var rowData = dataList[i]; //assigning all 4 columns data of one row month
+                int[] targetColumns = { 2, 3, 5, 6 };
+
+                foreach (int colIndex in targetColumns)
+                {
+                    string colName = dgv.Columns[colIndex].Name;
+                    if (string.IsNullOrEmpty(colName)) colName = $"Col{colIndex}";
+
+                    if (rowData.ContainsKey(colName))
+                    {
+                        // Convert the JsonElement back to a usable value (double/int)
+                        dgv.Rows[i].Cells[colIndex].Value = rowData[colName]?.ToString();
+                    }
+                }
+            }
+        }
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private double[,] LoadJsonTo2DArray(string projectFolder)
+        {
+            // Result array: [4 columns, 12 rows]
+            double[,] fmData_curr = new double[4, 12];
+            double[,] fmData_prev = new double[4, 12];
+            string filePath = Path.Combine(projectFolder, "FMData", "FMData.json");
+
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show("No Flight movement data file found");
+                return fmData; // Returns array full of 0.0
+            }
+
+            try
+            {
+                string jsonString = File.ReadAllText(filePath);
+                FMDataWrapper loadedData = JsonSerializer.Deserialize<FMDataWrapper>(jsonString);
+
+                if (loadedData != null)
+                {
+                    // Map Current Year (Cols 2 and 3)
+                    for (int i = 0; i < Math.Min(loadedData.CurrentYear.Count, 12); i++)
+                    {
+                        var row = loadedData.CurrentYear[i];
+                        fmData_curr[0, i] = GetValFromDict(row, 2); // Current Arr
+                        fmData_prev[1, i] = GetValFromDict(row, 3); // Current Dep
+                        fmData_curr[2, i] = GetValFromDict(row, 5); // Current Arr
+                        fmData_prev[3, i] = GetValFromDict(row, 6); // Current Dep
+                    }
+
+                    // Map Previous Year (Cols 5 and 6)
+                    for (int i = 0; i < Math.Min(loadedData.PreviousYear.Count, 12); i++)
+                    {
+                        var row = loadedData.PreviousYear[i];
+                        fmData_prev[0, i] = GetValFromDict(row, 2); // Prev Arr
+                        fmData_prev[1, i] = GetValFromDict(row, 3); // Prev Dep
+                        fmData_prev[2, i] = GetValFromDict(row, 5); // Prev Arr
+                        fmData_prev[3, i] = GetValFromDict(row, 6); // Prev Dep
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading JSON: {ex.Message}");
+            }
+
+            return fmData;
+        }
+
+        // Helper to safely extract value from the dictionary by column index
+        private double GetValFromDict(Dictionary<string, object> dict, int colIndex)
+        {
+            string key = DGV.Columns[colIndex].Name ?? $"Col{colIndex}";
+            if (dict.TryGetValue(key, out object val))
+            {
+                return GetVal(val);
+            }
+            return 0;
+        }
+        */
+
+
+
+        //call function
+        //double[,] data = LoadJsonTo2DArray(userInputPath);
+
+
+        public void DisplaySPIAsNumberOrRate(bool useFlightData)
+        {
+            double[,] FMData_cr_pv = new double[2, 12];
+            string projectfolder;
+            FrmMain fm = (FrmMain)Application.OpenForms["FrmMain"];
+
+            if(fm.TxtProjectLocation.Text == "")
+            {
+                MessageBox.Show("No project found");
+            }
+            else
+            {
+                projectfolder = fm.TxtProjectLocation.Text;
+
+                foreach (var row in dataGridView1.Rows)
+                {
+                    //double[,] tempY_SPIs = new double[4, 12];
+
+                    if (useFlightData)
+                    {
+                        //double flightData = GetFlightData(row.Month, year);
+                        FMData_cr_pv = LoadFMdataFromJson(projectfolder);
+                        // Calculate for display only
+                        //row.Cells["Obs"].Value = (rawValue / flightData) * 1000;
+
+                        for (int i = 0; i < 12; i++)
+                        {
+                            dataGridView1.Rows[0].Cells[i + 3].Value = Y_SPIs_Prev[i] / FMData_cr_pv[1,i] * 1000;
+                            dataGridView1.Rows[3].Cells[i + 3].Value = Y_SPIs_Curr[i] / FMData_cr_pv[0, i] * 1000;
+
+                            dataGridView1.Rows[0].Cells[i + 3].Style.Format = "F0";
+                            dataGridView1.Rows[3].Cells[i + 3].Style.Format = "F0";
+                            dataGridView1.Rows[2].Cells[i + 3].Style.Format = "F0";
+                            //double temp = Y_SPIs_Prev[i] / FMData_cr_pv[1, i] * 1000;
+                            //MessageBox.Show(Y_SPIs_Prev[i] + " / " + FMData_cr_pv[1, i] + " * " + 1000 + " = " + temp);
+                        }
+
+                        PlotGraph();
+
+                    }
+                    else
+                    {
+                        for (int i = 0; i < 12; i++)
+                        {
+                            dataGridView1.Rows[0].Cells[i + 3].Value = Y_SPIs_Prev[i];
+                            dataGridView1.Rows[3].Cells[i + 3].Value = Y_SPIs_Curr[i];
+                        }
+                        //call plot function
+                        PlotGraph();
+
+                    }
+                }
+
+
+            }
+
+
+                
         }
     }
 }

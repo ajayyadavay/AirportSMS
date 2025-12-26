@@ -56,7 +56,7 @@ namespace AirportSMS
                 if (!cfg.ShowSeries || cfg.YValues == null) continue;
 
                 var drawingColor = modernColors[ci % modernColors.Length];
-                var spColor = ScottPlot.Color.FromColor(drawingColor);
+                var spColor = sctplot.Color.FromColor(drawingColor);
 
                 string type = cfg.ScottPlot_Chart_Type?.ToUpperInvariant();
 
@@ -76,7 +76,7 @@ namespace AirportSMS
                                 for (int i = 0; i < cfg.YValues.Length; i++)
                                 {
                                     var txt = plt.Add.Text(
-                                        cfg.YValues[i].ToString(),
+                                        cfg.YValues[i].ToString("F0"),
                                         XPos[i],
                                         cfg.YValues[i]
                                     );
@@ -128,7 +128,7 @@ namespace AirportSMS
                                 for (int i = 0; i < cfg.YValues.Length; i++)
                                 {
                                     var txt = plt.Add.Text(
-                                        cfg.YValues[i].ToString(),
+                                        cfg.YValues[i].ToString("F0"),
                                         XPos[i],
                                         cfg.YValues[i]
                                     );
@@ -171,7 +171,7 @@ namespace AirportSMS
                                 for (int i = 0; i < cfg.YValues.Length; i++)
                                 {
                                     var txt = plt.Add.Text(
-                                        cfg.YValues[i].ToString(),
+                                        cfg.YValues[i].ToString("F0"),
                                         barPlot.Bars[i].Position, // Use the shifted position for labels
                                         cfg.YValues[i]
                                     );

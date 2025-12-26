@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend12 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -100,6 +100,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.PanelPlot = new System.Windows.Forms.Panel();
+            this.sPIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.expressAsNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.expressAsRateperNFlightMovementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.Chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -111,16 +114,16 @@
             // 
             // Chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.Chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.Chart1.Legends.Add(legend2);
+            chartArea12.Name = "ChartArea1";
+            this.Chart1.ChartAreas.Add(chartArea12);
+            legend12.Name = "Legend1";
+            this.Chart1.Legends.Add(legend12);
             this.Chart1.Location = new System.Drawing.Point(7, 940);
             this.Chart1.Name = "Chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.Chart1.Series.Add(series2);
+            series12.ChartArea = "ChartArea1";
+            series12.Legend = "Legend1";
+            series12.Name = "Series1";
+            this.Chart1.Series.Add(series12);
             this.Chart1.Size = new System.Drawing.Size(1340, 493);
             this.Chart1.TabIndex = 1;
             this.Chart1.Text = "chart1";
@@ -300,7 +303,8 @@
             // 
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.sPIToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1353, 28);
@@ -768,6 +772,33 @@
             this.PanelPlot.Size = new System.Drawing.Size(1330, 490);
             this.PanelPlot.TabIndex = 10;
             // 
+            // sPIToolStripMenuItem
+            // 
+            this.sPIToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.expressAsNumberToolStripMenuItem,
+            this.expressAsRateperNFlightMovementToolStripMenuItem});
+            this.sPIToolStripMenuItem.Name = "sPIToolStripMenuItem";
+            this.sPIToolStripMenuItem.Size = new System.Drawing.Size(41, 24);
+            this.sPIToolStripMenuItem.Text = "SPI";
+            // 
+            // expressAsNumberToolStripMenuItem
+            // 
+            this.expressAsNumberToolStripMenuItem.Checked = true;
+            this.expressAsNumberToolStripMenuItem.CheckOnClick = true;
+            this.expressAsNumberToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.expressAsNumberToolStripMenuItem.Name = "expressAsNumberToolStripMenuItem";
+            this.expressAsNumberToolStripMenuItem.Size = new System.Drawing.Size(346, 24);
+            this.expressAsNumberToolStripMenuItem.Text = "Express as Number";
+            this.expressAsNumberToolStripMenuItem.Click += new System.EventHandler(this.expressAsNumberToolStripMenuItem_Click);
+            // 
+            // expressAsRateperNFlightMovementToolStripMenuItem
+            // 
+            this.expressAsRateperNFlightMovementToolStripMenuItem.CheckOnClick = true;
+            this.expressAsRateperNFlightMovementToolStripMenuItem.Name = "expressAsRateperNFlightMovementToolStripMenuItem";
+            this.expressAsRateperNFlightMovementToolStripMenuItem.Size = new System.Drawing.Size(346, 24);
+            this.expressAsRateperNFlightMovementToolStripMenuItem.Text = "Express as Rate (per N Flight Movement)";
+            this.expressAsRateperNFlightMovementToolStripMenuItem.Click += new System.EventHandler(this.expressAsRateperNFlightMovementToolStripMenuItem_Click);
+            // 
             // FrmHazardMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -827,7 +858,6 @@
         private System.Windows.Forms.TextBox TxtPercentTarget;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox TxtCurrentYear;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -870,5 +900,9 @@
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
         private System.Windows.Forms.Panel PanelPlot;
+        private System.Windows.Forms.ToolStripMenuItem sPIToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem expressAsNumberToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem expressAsRateperNFlightMovementToolStripMenuItem;
+        public System.Windows.Forms.TextBox TxtCurrentYear;
     }
 }

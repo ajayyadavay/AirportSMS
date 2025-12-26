@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -138,9 +139,9 @@ namespace AirportSMS
                 for (int i = 2; i <= 14; i++)
                 {
                     DGV_Summary_Monthly.Rows.Add();
-                    DGV_Summary_Monthly.Rows[idx].Cells[0].Value = (idx+1).ToString();
+                    DGV_Summary_Monthly.Rows[idx].Cells[0].Value = (idx+1);
                     DGV_Summary_Monthly.Rows[idx].Cells[1].Value = DGV_SPI_Summary_ALL.Columns[i].HeaderText;
-                    DGV_Summary_Monthly.Rows[idx].Cells[2].Value = DGV_SPI_Summary_ALL.Rows[TotalRow].Cells[i].Value;
+                    DGV_Summary_Monthly.Rows[idx].Cells[2].Value = Convert.ToDouble(DGV_SPI_Summary_ALL.Rows[TotalRow].Cells[i].Value);
                     idx++;
                 }
 
@@ -256,10 +257,10 @@ namespace AirportSMS
                     AreaFillAbove = false,
                     YValues = Y_axis.Take(No_of_SPIs).ToArray()
                 },
-                ["Monthly_Total_One"] = new ChartStyleClass.SeriesStyleConfig
+                ["Monthly_Total_test"] = new ChartStyleClass.SeriesStyleConfig
                 {
-                    ShowSeries = true,
-                    ShowValueLabel = true,
+                    ShowSeries = false,
+                    ShowValueLabel = false,
                     LegendText = "Monthly 0.6 (Total = " + sum + ")",
                     ScottPlot_Chart_Type = "COLUMN",
                     AreaFillAbove = false,
@@ -300,6 +301,7 @@ namespace AirportSMS
             ComboBoxSort.Items.Add("SPIs Total");
             ComboBoxSort.Items.Add("SPIs Progress");
 
+
         }
 
         private void sortSummaryTableToolStripMenuItem_Click(object sender, EventArgs e)
@@ -333,6 +335,190 @@ namespace AirportSMS
                 Colname = "ColSN";
                 DGV_SPI_Summary.Sort(DGV_SPI_Summary.Columns[Colname], ListSortDirection.Ascending);
             }
+
+            PlotGraphScottPlotSummary();
+        }
+
+        private void BtnMnthAscend_Click(object sender, EventArgs e)
+        {
+            int fromRow = 0;
+            int toRow = 11;           // <-- rows to sort
+            int sortColumn = 2;
+            bool ascending = true;
+
+            var data = ReadDgvRows(DGV_Summary_Monthly, fromRow, toRow);
+            var sorted = SortData(data, sortColumn, ascending);
+            WriteDgvRows(DGV_Summary_Monthly, sorted, fromRow);
+
+            PlotGraphScottPlotMonthly();
+
+        }
+
+        private void BtnMnthDescend_Click(object sender, EventArgs e)
+        {
+            int fromRow = 0;
+            int toRow = 11;           // <-- rows to sort
+            int sortColumn = 2;
+            bool ascending = false;
+
+            var data = ReadDgvRows(DGV_Summary_Monthly, fromRow, toRow);
+            var sorted = SortData(data, sortColumn, ascending);
+            WriteDgvRows(DGV_Summary_Monthly, sorted, fromRow);
+
+            PlotGraphScottPlotMonthly();
+        }
+
+        private void BtnMnthDefault_Click(object sender, EventArgs e)
+        {
+            int fromRow = 0;
+            int toRow = 11;           // <-- rows to sort
+            int sortColumn = 0;
+            bool ascending = true;
+
+            var data = ReadDgvRows(DGV_Summary_Monthly, fromRow, toRow);
+            var sorted = SortData(data, sortColumn, ascending);
+            WriteDgvRows(DGV_Summary_Monthly, sorted, fromRow);
+
+            PlotGraphScottPlotMonthly();
+        }
+
+        public static List<object[]> ReadDgvRows(
+            DataGridView dgv,
+            int fromRow,
+            int toRow)
+        {
+            var data = new List<object[]>();
+
+            for (int r = fromRow; r <= toRow; r++)
+            {
+                object[] row = new object[dgv.Columns.Count];
+                for (int c = 0; c < dgv.Columns.Count; c++)
+                    row[c] = dgv.Rows[r].Cells[c].Value;
+
+                data.Add(row);
+            }
+
+            return data;
+        }
+
+
+        /*public static List<object[]> SortData(
+            List<object[]> data,
+            int sortColumnIndex,
+            bool ascending)
+        {
+            return data
+                .Select((row, originalIndex) => new { row, originalIndex })
+                .OrderBy(x =>
+                {
+                    double d;
+                    if (double.TryParse(
+                        Convert.ToString(x.row[sortColumnIndex]), out d))
+                        return d;
+
+                    return x.row[sortColumnIndex]?.ToString();
+                })
+                .ThenBy(x => x.originalIndex)   // ⭐ THIS LINE FIXES IT
+                .Select(x => x.row)
+                .ToList();
+        }*/
+
+
+
+        public static List<object[]> SortData(
+            List<object[]> data,
+            int sortColumnIndex,
+            bool ascending)
+        {
+           
+            
+            data.Sort((a, b) =>
+            {
+                object v1 = a[sortColumnIndex];
+                object v2 = b[sortColumnIndex];
+
+                double d1, d2;
+                int result;
+
+                if (double.TryParse(Convert.ToString(v1), out d1) &&
+                    double.TryParse(Convert.ToString(v2), out d2))
+                {
+                    result = d1.CompareTo(d2);
+                }
+                else
+                {
+                    result = string.Compare(
+                        Convert.ToString(v1),
+                        Convert.ToString(v2),
+                        StringComparison.CurrentCulture);
+                }
+
+                return ascending ? result : -result;
+            });
+
+            return data;
+            
+
+        }
+
+
+        public static void WriteDgvRows(
+            DataGridView dgv,
+            List<object[]> data,
+            int startRow)
+        {
+            for (int r = 0; r < data.Count; r++)
+            {
+                for (int c = 0; c < dgv.Columns.Count; c++)
+                    dgv.Rows[startRow + r].Cells[c].Value = data[r][c];
+            }
+        }
+
+        private void BtnSortSummarySPI_Click(object sender, EventArgs e)
+        {
+
+            int fromRow = 0;
+            int toRow = DGV_SPI_Summary.RowCount - 2;           // <-- rows to sort
+            int sortColumn=0;
+            bool ascending = true;
+
+            //ComboBoxSort.Items.Add("SPIs Total");
+            //ComboBoxSort.Items.Add("SPIs Progress");
+
+            if (RadioDescending.Checked)
+            {
+                ascending = false;
+                if (ComboBoxSort.Text == "SPIs Total")
+                {
+                    sortColumn = 4;
+                }
+                else if (ComboBoxSort.Text == "SPIs Progress")
+                {
+                    sortColumn = 3;
+                }
+                
+            }
+            else if(RadioAscending.Checked)
+            {
+                ascending = true;
+                if (ComboBoxSort.Text == "SPIs Total")
+                {
+                    sortColumn = 4;
+                }
+                else if (ComboBoxSort.Text == "SPIs Progress")
+                {
+                    sortColumn = 3;
+                }
+            }
+            else
+            {
+                ascending = true;
+                sortColumn = 0;
+            }
+
+            var data = ReadDgvRows(DGV_SPI_Summary, fromRow, toRow);
+            var sorted = SortData(data, sortColumn, ascending);
+            WriteDgvRows(DGV_SPI_Summary, sorted, fromRow);
 
             PlotGraphScottPlotSummary();
         }

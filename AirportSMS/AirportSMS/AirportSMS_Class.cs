@@ -427,7 +427,8 @@ namespace AirportSMS
             
             if (IsTemplate == false)
             {
-                fhm.ShowDialog();
+                //fhm.ShowDialog();
+                fhm.Show();
             }
             
         }
