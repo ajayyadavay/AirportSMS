@@ -1223,7 +1223,7 @@ namespace AirportSMS
         {
             expressAsNumberToolStripMenuItem.Checked = true;
             expressAsRateperNFlightMovementToolStripMenuItem.Checked = false;
-            //saveSPIToolStripMenuItem.Enabled = true;
+            saveSPIToolStripMenuItem.Enabled = true;
             bool useflightdata = false;
             DisplaySPIAsNumberOrRate(useflightdata);
         }
@@ -1232,7 +1232,7 @@ namespace AirportSMS
         {
             expressAsNumberToolStripMenuItem.Checked = false;
             expressAsRateperNFlightMovementToolStripMenuItem.Checked = true;
-            //saveSPIToolStripMenuItem.Enabled = false;
+            saveSPIToolStripMenuItem.Enabled = false;
             bool useflightdata = true;
             DisplaySPIAsNumberOrRate(useflightdata);
         }
@@ -1308,7 +1308,7 @@ namespace AirportSMS
 
                     if (loadedData != null)
                     {
-                        MessageBox.Show("json not null");
+                        //MessageBox.Show("json not null");
                         // Populate Current Year data
                         // We loop up to 12 to exclude the 13th entry (the total)
                         //dgv.Rows[i].Cells[colIndex].Value = rowData[colName]?.ToString();
@@ -1320,13 +1320,6 @@ namespace AirportSMS
                         {
                             // Example for one line
                             //fmData_curr[0, i] = ((JsonElement)loadedData.CurrentYear[i]["ColDomArr"]).GetDouble();
-
-                            // Apply to your list:
-                            /*fmData_curr[0, i] = ((JsonElement)loadedData.CurrentYear[i]["ColDomArr"]).GetDouble();
-                            fmData_curr[1, i] = ((JsonElement)loadedData.CurrentYear[i]["ColDomDep"]).GetDouble();
-                            fmData_curr[2, i] = ((JsonElement)loadedData.CurrentYear[i]["ColIntlArr"]).GetDouble();
-                            fmData_curr[3, i] = ((JsonElement)loadedData.CurrentYear[i]["ColIntlDep"]).GetDouble();*/
-
 
                             fmData_curr[0, i] = loadedData.CurrentYear[i].ColDomArr;
                             fmData_curr[1, i] = loadedData.CurrentYear[i].ColDomDep;
@@ -1342,29 +1335,12 @@ namespace AirportSMS
                             fmData_prev[1, i] = loadedData.PreviousYear[i].ColDomDep1;
                             fmData_prev[2, i] = loadedData.PreviousYear[i].ColIntlArr1;
                             fmData_prev[3, i] = loadedData.PreviousYear[i].ColIntlDep1;
-                            //MessageBox.Show(fmData_prev[0, i].ToString());
-                            /*fmData_prev[0, i] = (double)loadedData.PreviousYear[i]["ColDomArr1"];
-                            fmData_prev[1, i] = (double)loadedData.PreviousYear[i]["ColDomDep1"];
-                            fmData_prev[2, i] = (double)loadedData.PreviousYear[i]["ColIntlArr1"];
-                            fmData_prev[3, i] = (double)loadedData.PreviousYear[i]["ColIntlDep1"];*/
+                            
+                            //MessageBox.Show("curr i = " + i + " = " + fmData_prev[0, i].ToString());
 
-                            /*fmData_prev[0, i] = Convert.ToDouble(loadedData.PreviousYear[i]["ColDomArr1"]);
-                            fmData_prev[1, i] = Convert.ToDouble(loadedData.PreviousYear[i]["ColDomDep1"]);
-                            fmData_prev[2, i] = Convert.ToDouble(loadedData.PreviousYear[i]["ColIntlArr1"]);
-                            fmData_prev[3, i] = Convert.ToDouble(loadedData.PreviousYear[i]["ColIntlDep1"]);*/
                         }
 
-
-                        // 4. Populate both grids
-                        //PopulateDoublefromjson(fmData_curr, loadedData.CurrentYear);
-                        //PopulateDoublefromjson(fmData_prev, loadedData.PreviousYear);
-
-                        /*MessageBox.Show("Data loaded successfully!", "Success",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Information);*/
-
-                        // Optional: Re-run your summation logic here to refresh the totals
-
-
+                                     
                         // 2. Call the method to get the 1D array of sums
                         //MessageBox.Show("start sum");
                         double[] sum_cur = SumFlightMovementsData(fmData_curr);
@@ -1412,129 +1388,6 @@ namespace AirportSMS
 
             return SumData;
         }
-
-
-
-
-
-
-
-        /*
-        // Helper method to map List data back into specific DGV cells
-        private void PopulateDoublefromjson(double[,] FM_data, List<Dictionary<string, object>> dataList)
-        {
-            if (dataList == null) return;
-
-            for (int i = 0; i < dataList.Count; i++) //i =0; i<12;i++
-            {
-                // Safety check: Don't exceed row index 12 or the grid's capacity
-                if (i > 12) break;
-
-                var rowData = dataList[i]; //assigning all 4 columns data of one row month
-                int[] targetColumns = { 2, 3, 5, 6 };
-
-                foreach (int colIndex in targetColumns)
-                {
-                    string colName = dgv.Columns[colIndex].Name;
-                    if (string.IsNullOrEmpty(colName)) colName = $"Col{colIndex}";
-
-                    if (rowData.ContainsKey(colName))
-                    {
-                        // Convert the JsonElement back to a usable value (double/int)
-                        dgv.Rows[i].Cells[colIndex].Value = rowData[colName]?.ToString();
-                    }
-                }
-            }
-        }
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        private double[,] LoadJsonTo2DArray(string projectFolder)
-        {
-            // Result array: [4 columns, 12 rows]
-            double[,] fmData_curr = new double[4, 12];
-            double[,] fmData_prev = new double[4, 12];
-            string filePath = Path.Combine(projectFolder, "FMData", "FMData.json");
-
-            if (!File.Exists(filePath))
-            {
-                MessageBox.Show("No Flight movement data file found");
-                return fmData; // Returns array full of 0.0
-            }
-
-            try
-            {
-                string jsonString = File.ReadAllText(filePath);
-                FMDataWrapper loadedData = JsonSerializer.Deserialize<FMDataWrapper>(jsonString);
-
-                if (loadedData != null)
-                {
-                    // Map Current Year (Cols 2 and 3)
-                    for (int i = 0; i < Math.Min(loadedData.CurrentYear.Count, 12); i++)
-                    {
-                        var row = loadedData.CurrentYear[i];
-                        fmData_curr[0, i] = GetValFromDict(row, 2); // Current Arr
-                        fmData_prev[1, i] = GetValFromDict(row, 3); // Current Dep
-                        fmData_curr[2, i] = GetValFromDict(row, 5); // Current Arr
-                        fmData_prev[3, i] = GetValFromDict(row, 6); // Current Dep
-                    }
-
-                    // Map Previous Year (Cols 5 and 6)
-                    for (int i = 0; i < Math.Min(loadedData.PreviousYear.Count, 12); i++)
-                    {
-                        var row = loadedData.PreviousYear[i];
-                        fmData_prev[0, i] = GetValFromDict(row, 2); // Prev Arr
-                        fmData_prev[1, i] = GetValFromDict(row, 3); // Prev Dep
-                        fmData_prev[2, i] = GetValFromDict(row, 5); // Prev Arr
-                        fmData_prev[3, i] = GetValFromDict(row, 6); // Prev Dep
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading JSON: {ex.Message}");
-            }
-
-            return fmData;
-        }
-
-        // Helper to safely extract value from the dictionary by column index
-        private double GetValFromDict(Dictionary<string, object> dict, int colIndex)
-        {
-            string key = DGV.Columns[colIndex].Name ?? $"Col{colIndex}";
-            if (dict.TryGetValue(key, out object val))
-            {
-                return GetVal(val);
-            }
-            return 0;
-        }
-        */
-
-
-
-        //call function
-        //double[,] data = LoadJsonTo2DArray(userInputPath);
-
 
         public void DisplaySPIAsNumberOrRate(bool useFlightData)
         {

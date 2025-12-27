@@ -1,4 +1,5 @@
 ﻿using ScottPlot;
+using ScottPlot.Plottables;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -27,6 +28,10 @@ namespace AirportSMS
 
             // ✅ DATA (added, not renamed)
             public double[] YValues { get; set; }
+
+            // 🔴 ADD ONLY THESE (OPTIONAL, used for COLUMN grouping)
+            public int SeriesIndex { get; set; } = 0;
+            public int TotalSeries { get; set; } = 1;
         }
 
         public void ScottPlotStyle(sctplotwin.FormsPlot formsPlot1, string[] XLabels, double[] XPos, double maxCurrObsVal,
@@ -36,12 +41,63 @@ namespace AirportSMS
 
             System.Drawing.Color[] modernColors =
             {
-                System.Drawing.Color.FromArgb(237, 125, 49),    // Red (231, 76, 60)
-                System.Drawing.Color.FromArgb(46, 204, 113),   // Green 
+                System.Drawing.Color.FromArgb(237, 125, 49),   // Orange
+                System.Drawing.Color.FromArgb(46, 204, 113),   // Green
                 System.Drawing.Color.FromArgb(52, 152, 219),   // Blue
                 System.Drawing.Color.FromArgb(241, 196, 15),   // Yellow
-                System.Drawing.Color.FromArgb(155, 89, 182)    // Purple
+                System.Drawing.Color.FromArgb(155, 89, 182),   // Purple
+                System.Drawing.Color.FromArgb(231, 76, 60),    // Red
+                System.Drawing.Color.FromArgb(26, 188, 156),   // Teal
+                System.Drawing.Color.FromArgb(149, 165, 166),   // Gray
+
+                // --- Existing 8 ---
+                // Orange, Green, Blue, Yellow, Purple, Red, Teal, Gray
+
+                System.Drawing.Color.FromArgb(52, 73, 94),     // Dark Blue-Gray
+                System.Drawing.Color.FromArgb(230, 126, 34),   // Carrot Orange
+                System.Drawing.Color.FromArgb(39, 174, 96),    // Emerald
+                System.Drawing.Color.FromArgb(41, 128, 185),   // Strong Blue
+                System.Drawing.Color.FromArgb(142, 68, 173),   // Deep Purple
+                System.Drawing.Color.FromArgb(192, 57, 43),    // Dark Red
+                System.Drawing.Color.FromArgb(22, 160, 133),   // Dark Teal
+                System.Drawing.Color.FromArgb(127, 140, 141),  // Cool Gray
+
+                System.Drawing.Color.FromArgb(243, 156, 18),   // Amber
+                System.Drawing.Color.FromArgb(211, 84, 0),     // Burnt Orange
+                System.Drawing.Color.FromArgb(88, 214, 141),   // Mint Green
+                System.Drawing.Color.FromArgb(93, 173, 226),   // Sky Blue
+                System.Drawing.Color.FromArgb(175, 122, 197),  // Lavender
+                System.Drawing.Color.FromArgb(245, 176, 65),   // Light Amber
+                System.Drawing.Color.FromArgb(133, 193, 233),  // Light Blue
+                System.Drawing.Color.FromArgb(169, 223, 191),  // Light Mint
+
+                System.Drawing.Color.FromArgb(52, 152, 219),   // Bright Azure (safe repeat shade)
+                System.Drawing.Color.FromArgb(231, 76, 60),    // Coral Red (safe repeat shade)
+                System.Drawing.Color.FromArgb(155, 89, 182),   // Soft Purple (safe repeat shade)
+                System.Drawing.Color.FromArgb(241, 196, 15)    // Soft Yellow (safe repeat shade)
+
             };
+
+            System.Drawing.Color GetSeriesColor(int seriesIndex)
+            {
+                System.Drawing.Color baseColor = modernColors[seriesIndex % modernColors.Length];
+
+                int cycle = seriesIndex / modernColors.Length; // 0,1,2...
+
+                if (cycle == 0)
+                    return baseColor;
+
+                // darken slightly for each cycle
+                double factor = 1.0 - Math.Min(0.15 * cycle, 0.6);
+
+                return System.Drawing.Color.FromArgb(
+                    baseColor.A,
+                    (int)(baseColor.R * factor),
+                    (int)(baseColor.G * factor),
+                    (int)(baseColor.B * factor)
+                );
+            }
+
 
             int ci = 0;
             //s.Color = modernColors[ci % modernColors.Length];
@@ -55,8 +111,13 @@ namespace AirportSMS
                 var cfg = kvp.Value;
                 if (!cfg.ShowSeries || cfg.YValues == null) continue;
 
-                var drawingColor = modernColors[ci % modernColors.Length];
+                //var drawingColor = modernColors[ci % modernColors.Length];
+                //var spColor = sctplot.Color.FromColor(drawingColor);
+
+                int seriesIndex1 = seriesConfig.Keys.ToList().IndexOf(kvp.Key);
+                var drawingColor = GetSeriesColor(seriesIndex1);
                 var spColor = sctplot.Color.FromColor(drawingColor);
+                
 
                 string type = cfg.ScottPlot_Chart_Type?.ToUpperInvariant();
 
@@ -142,45 +203,102 @@ namespace AirportSMS
                         break;
                     case "COLUMN":
                         {
-                            // Determine if this is the first or second series for clustering
-                            // This assumes your dictionary is iterated in order.
-                            int seriesIndex = seriesConfig.Keys.ToList().IndexOf(kvp.Key);
-                            double barWidth = 0.35; // Narrower width so two bars fit in 1.0 unit
-                            double offset = (seriesIndex == 0) ? -barWidth / 2 : barWidth / 2;
+                            // Total number of column series
+                            int totalSeries = seriesConfig.Count;
 
-                            // 1. Create the series
+                            // Index of current series (0-based)
+                            int seriesIndex = seriesConfig.Keys.ToList().IndexOf(kvp.Key);
+
+                            // Cluster width (1.0 = full month slot)
+                            double clusterWidth = 0.8;
+                            double barWidth = clusterWidth / totalSeries;
+
+                            // 🔑 CORRECT OFFSET (works for N series)
+                            double offset = (seriesIndex - (totalSeries - 1) / 2.0) * barWidth;
+
+                            // 1. Create bars at base X positions
                             var barPlot = plt.Add.Bars(XPos, cfg.YValues);
 
-                            // 2. Set legend and color
                             barPlot.LegendText = cfg.LegendText;
+
+
+
+
+
                             barPlot.Color = spColor;
 
-                            // 3. Adjust width and shift positions
+                            // 2. Adjust width & shift each bar
                             for (int i = 0; i < barPlot.Bars.Count; i++)
                             {
                                 var bar = barPlot.Bars[i];
                                 bar.Size = barWidth;
                                 bar.LineStyle.Width = 0;
 
-                                // Manual offset: Shift bars left or right of the center XPos
+                                // 🔑 Shift bar to grouped position
                                 bar.Position = XPos[i] + offset;
                             }
 
+                            // 3. Value labels (optional)
                             if (cfg.ShowValueLabel)
                             {
                                 for (int i = 0; i < cfg.YValues.Length; i++)
                                 {
                                     var txt = plt.Add.Text(
                                         cfg.YValues[i].ToString("F0"),
-                                        barPlot.Bars[i].Position, // Use the shifted position for labels
+                                        XPos[i] + offset,
                                         cfg.YValues[i]
                                     );
-                                    txt.Alignment = sctplot.Alignment.LowerCenter;
+                                    txt.Alignment = ScottPlot.Alignment.LowerCenter;
                                     txt.LabelFontColor = spColor;
                                 }
                             }
                         }
                         break;
+
+
+
+
+                        /*case "COLUMN":
+                            {
+                                // Determine if this is the first or second series for clustering
+                                // This assumes your dictionary is iterated in order.
+                                int seriesIndex = seriesConfig.Keys.ToList().IndexOf(kvp.Key);
+                                double barWidth = 0.35; // Narrower width so two bars fit in 1.0 unit
+                                double offset = (seriesIndex == 0) ? -barWidth / 2 : barWidth / 2;
+
+                                // 1. Create the series
+                                var barPlot = plt.Add.Bars(XPos, cfg.YValues);
+
+                                // 2. Set legend and color
+                                barPlot.LegendText = cfg.LegendText;
+                                barPlot.Color = spColor;
+
+                                // 3. Adjust width and shift positions
+                                for (int i = 0; i < barPlot.Bars.Count; i++)
+                                {
+                                    var bar = barPlot.Bars[i];
+                                    bar.Size = barWidth;
+                                    bar.LineStyle.Width = 0;
+
+                                    // Manual offset: Shift bars left or right of the center XPos
+                                    bar.Position = XPos[i] + offset;
+                                }
+
+                                if (cfg.ShowValueLabel)
+                                {
+                                    for (int i = 0; i < cfg.YValues.Length; i++)
+                                    {
+                                        var txt = plt.Add.Text(
+                                            cfg.YValues[i].ToString("F0"),
+                                            barPlot.Bars[i].Position, // Use the shifted position for labels
+                                            cfg.YValues[i]
+                                        );
+                                        txt.Alignment = sctplot.Alignment.LowerCenter;
+                                        txt.LabelFontColor = spColor;
+                                    }
+                                }
+                            }
+                            break;*/
 
                         /*case "COLUMN":
                             {

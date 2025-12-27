@@ -139,6 +139,7 @@
     <Compile Include="HazardMonitoring.Designer.cs">
       <DependentUpon>HazardMonitoring.cs</DependentUpon>
     </Compile>
+    <Compile Include="HighHazardCategoryCircleClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SMS_Project_Package_class.cs" />

@@ -211,15 +211,6 @@ namespace AirportSMS
                 // Define series
                 var seriesConfig = new Dictionary<string, ChartStyleClass.SeriesStyleConfig>()
                 {
-                    ["Curr_Yr_FM"] = new ChartStyleClass.SeriesStyleConfig
-                    {
-                        ShowSeries = PlotCurrFM,
-                        ShowValueLabel = PlotCurrFM,
-                        LegendText = "Monthly Flight Movement (" + TxtFMCurrentYear.Text + ") (Total = " + sum1 + ")",
-                        ScottPlot_Chart_Type = "COLUMN",
-                        AreaFillAbove = false,
-                        YValues = Y1_axis.Take(rows).ToArray()
-                    },
                     ["Prev_Yr_FM"] = new ChartStyleClass.SeriesStyleConfig
                     {
                         ShowSeries = PlotPrevFM,
@@ -228,8 +219,17 @@ namespace AirportSMS
                         ScottPlot_Chart_Type = "COLUMN",
                         AreaFillAbove = false,
                         YValues = Y2_axis.Take(rows).ToArray()
+                    },
+                    ["Curr_Yr_FM"] = new ChartStyleClass.SeriesStyleConfig
+                    {
+                        ShowSeries = PlotCurrFM,
+                        ShowValueLabel = PlotCurrFM,
+                        LegendText = "Monthly Flight Movement (" + TxtFMCurrentYear.Text + ") (Total = " + sum1 + ")",
+                        ScottPlot_Chart_Type = "COLUMN",
+                        AreaFillAbove = false,
+                        YValues = Y1_axis.Take(rows).ToArray()
                     }
-
+                    
                 };
 
             double maxval = Y1_axis.Max();

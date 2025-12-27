@@ -19,6 +19,7 @@ namespace AirportSMS
     {
         public sctplotwin.FormsPlot formsPlot2;
         public sctplotwin.FormsPlot formsPlot3;
+        public sctplotwin.FormsPlot formsPlot4;
         double CurrentYear;
 
         public void InitializeScottPlot()
@@ -36,6 +37,13 @@ namespace AirportSMS
                 formsPlot3 = new sctplotwin.FormsPlot();
                 formsPlot3.Dock = DockStyle.Fill;         // Fill the panel
                 PanelPlotMonth.Controls.Add(formsPlot3);       // Add to your panel
+            }
+
+            if (formsPlot4 == null)
+            {
+                formsPlot4 = new sctplotwin.FormsPlot();
+                formsPlot4.Dock = DockStyle.Fill;         // Fill the panel
+                PanelPlotAllSummarySPI.Controls.Add(formsPlot4);       // Add to your panel
             }
         }
 
@@ -287,6 +295,98 @@ namespace AirportSMS
             //MessageBox.Show("Plotted");
         }
 
+        public void PlotGraphScottPlotAllSummary()
+        {
+            if (formsPlot4 == null || DGV_SPI_Summary_ALL.SelectedRows.Count == 0)
+                return;
+
+            ChartStyleClass ChartCls = new ChartStyleClass();
+            formsPlot4.Plot.Clear();
+
+            // ---- CONSTANTS ----
+            int monthStartCol = 2;        // JAN
+            int monthCount = 12;          // JAN–DEC
+            int lastDataRow = DGV_SPI_Summary_ALL.RowCount - 2; // ignore TOTAL row
+
+            string[] Xs = { "JAN","FEB","MAR","APR","MAY","JUN",
+                    "JUL","AUG","SEP","OCT","NOV","DEC" };
+
+            double[] XPos = Enumerable.Range(0, monthCount)
+                                      .Select(i => (double)i)
+                                      .ToArray();
+
+            var seriesConfig = new Dictionary<string, ChartStyleClass.SeriesStyleConfig>();
+
+            double globalMax = 0;
+            int seriesIndex = 0;
+
+            // ---- SELECTED SPI ROWS ONLY ----
+            var selectedRows = DGV_SPI_Summary_ALL.SelectedRows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Index < lastDataRow) // ignore TOTAL row
+                .OrderBy(r => r.Index)
+                .ToList();
+
+           
+            foreach (var row in selectedRows)
+            {
+                string spiName = row.Cells[1].Value.ToString();
+
+                double[] yVals = new double[monthCount];
+                double sum = 0;
+
+                for (int m = 0; m < monthCount; m++)
+                {
+                    yVals[m] = Convert.ToDouble(row.Cells[monthStartCol + m].Value);
+                    sum += yVals[m];
+                    globalMax = Math.Max(globalMax, yVals[m]);
+                }
+
+                // ---- ADD SERIES ----
+                seriesConfig[$"SPI_{row.Index}"] =
+                    new ChartStyleClass.SeriesStyleConfig
+                    {
+                        ShowSeries = true,
+                        ShowValueLabel = true,
+                        LegendText = $"{spiName} (Total = {sum})",
+                        ScottPlot_Chart_Type = "COLUMN",
+                        AreaFillAbove = false,
+                        YValues = yVals,
+
+                        // 🔑 REQUIRED for grouped columns
+                        SeriesIndex = seriesIndex,
+                        TotalSeries = selectedRows.Count
+                    };
+
+                seriesIndex++;
+            }
+
+            if (seriesConfig.Count == 0)
+                return;
+
+            // ---- TITLES ----
+            string Plot_Title = "Monthly SPI for " + CurrentYear;
+            string Plot_YLabel = "Total Number";
+            string Plot_XLabel = "Month";
+            int X_Axis_Label_Rotation = 0;
+
+            // ---- APPLY STYLE ----
+            ChartCls.ScottPlotStyle(
+                formsPlot4,
+                Xs,
+                XPos,
+                globalMax,
+                Plot_Title,
+                Plot_YLabel,
+                Plot_XLabel,
+                X_Axis_Label_Rotation,
+                seriesConfig
+            );
+
+            formsPlot4.Refresh();
+        }
+
+
 
 
 
@@ -298,18 +398,21 @@ namespace AirportSMS
 
         private void FrmSPISummary_Load(object sender, EventArgs e)
         {
-            ComboBoxSort.Items.Add("SPIs Total");
+            ComboBoxSort.Items.Add("SPIs");
+            ComboBoxSort.Items.Add("SPIs Type");
             ComboBoxSort.Items.Add("SPIs Progress");
+            ComboBoxSort.Items.Add("SPIs Total");
+           
 
 
         }
 
-        private void sortSummaryTableToolStripMenuItem_Click(object sender, EventArgs e)
+        private void sortbycolName()
         {
             string Colname;
-            if (RadioAscending.Checked==true || RadioDescending.Checked==true)
+            if (RadioAscending.Checked == true || RadioDescending.Checked == true)
             {
-                if(ComboBoxSort.Text == "")
+                if (ComboBoxSort.Text == "")
                 {
                     MessageBox.Show("Select Column to sort from dropdown");
                 }
@@ -323,20 +426,24 @@ namespace AirportSMS
                     }
                     else if (RadioDescending.Checked == true)
                     {
-                        Colname = $"Col{ComboBoxSort.Text.Replace(" ", "")}";                        
+                        Colname = $"Col{ComboBoxSort.Text.Replace(" ", "")}";
                         DGV_SPI_Summary.Sort(DGV_SPI_Summary.Columns[Colname], ListSortDirection.Descending);
                     }
 
                 }
-                   
-            }     
-            else if(RadioDefault.Checked)
+
+            }
+            else if (RadioDefault.Checked)
             {
                 Colname = "ColSN";
                 DGV_SPI_Summary.Sort(DGV_SPI_Summary.Columns[Colname], ListSortDirection.Ascending);
             }
 
             PlotGraphScottPlotSummary();
+        }
+        private void sortSummaryTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void BtnMnthAscend_Click(object sender, EventArgs e)
@@ -402,27 +509,11 @@ namespace AirportSMS
         }
 
 
-        /*public static List<object[]> SortData(
-            List<object[]> data,
-            int sortColumnIndex,
-            bool ascending)
+        private class IndexedRow
         {
-            return data
-                .Select((row, originalIndex) => new { row, originalIndex })
-                .OrderBy(x =>
-                {
-                    double d;
-                    if (double.TryParse(
-                        Convert.ToString(x.row[sortColumnIndex]), out d))
-                        return d;
-
-                    return x.row[sortColumnIndex]?.ToString();
-                })
-                .ThenBy(x => x.originalIndex)   // ⭐ THIS LINE FIXES IT
-                .Select(x => x.row)
-                .ToList();
-        }*/
-
+            public object[] Row { get; set; }
+            public int OriginalIndex { get; set; }
+        }
 
 
         public static List<object[]> SortData(
@@ -430,16 +521,22 @@ namespace AirportSMS
             int sortColumnIndex,
             bool ascending)
         {
-           
-            
-            data.Sort((a, b) =>
-            {
-                object v1 = a[sortColumnIndex];
-                object v2 = b[sortColumnIndex];
+            var indexed = data
+                .Select((row, index) => new IndexedRow
+                {
+                    Row = row,
+                    OriginalIndex = index
+                })
+                .ToList();
 
-                double d1, d2;
+            indexed.Sort((x, y) =>
+            {
+                object v1 = x.Row[sortColumnIndex];
+                object v2 = y.Row[sortColumnIndex];
+
                 int result;
 
+                double d1, d2;
                 if (double.TryParse(Convert.ToString(v1), out d1) &&
                     double.TryParse(Convert.ToString(v2), out d2))
                 {
@@ -453,13 +550,19 @@ namespace AirportSMS
                         StringComparison.CurrentCulture);
                 }
 
-                return ascending ? result : -result;
+                if (!ascending)
+                    result = -result;
+
+                // ⭐ stability: tie-breaker
+                if (result == 0)
+                    result = x.OriginalIndex.CompareTo(y.OriginalIndex);
+
+                return result;
             });
 
-            return data;
-            
-
+            return indexed.Select(x => x.Row).ToList();
         }
+
 
 
         public static void WriteDgvRows(
@@ -482,6 +585,8 @@ namespace AirportSMS
             int sortColumn=0;
             bool ascending = true;
 
+            //ComboBoxSort.Items.Add("SPIs");
+            //ComboBoxSort.Items.Add("SPIs Type");
             //ComboBoxSort.Items.Add("SPIs Total");
             //ComboBoxSort.Items.Add("SPIs Progress");
 
@@ -496,7 +601,15 @@ namespace AirportSMS
                 {
                     sortColumn = 3;
                 }
-                
+                else if (ComboBoxSort.Text == "SPIs Type")
+                {
+                    sortColumn = 2;
+                }
+                else if (ComboBoxSort.Text == "SPIs")
+                {
+                    sortColumn = 1;
+                }
+
             }
             else if(RadioAscending.Checked)
             {
@@ -508,6 +621,14 @@ namespace AirportSMS
                 else if (ComboBoxSort.Text == "SPIs Progress")
                 {
                     sortColumn = 3;
+                }
+                else if (ComboBoxSort.Text == "SPIs Type")
+                {
+                    sortColumn = 2;
+                }
+                else if (ComboBoxSort.Text == "SPIs")
+                {
+                    sortColumn = 1;
                 }
             }
             else
@@ -521,6 +642,86 @@ namespace AirportSMS
             WriteDgvRows(DGV_SPI_Summary, sorted, fromRow);
 
             PlotGraphScottPlotSummary();
+        }
+
+        private void BtnPlotAllSelectedSPIs_Click(object sender, EventArgs e)
+        {
+            PlotGraphScottPlotAllSummary();
+
+        }
+
+        private void BtnClearPlotArea_Click(object sender, EventArgs e)
+        {
+            if (formsPlot4 == null || DGV_SPI_Summary_ALL.SelectedRows.Count == 0)
+                return;
+
+            formsPlot4.Plot.Clear();
+            formsPlot4.Refresh();
+        }
+
+        private void BtnHighHazardMonth_Click(object sender, EventArgs e)
+        {
+            HighHazardCategoryCircleClass hazcatcir = new HighHazardCategoryCircleClass();
+
+            hazcatcir.DrawHazardCircle(
+                PanelHighHazardMonth,
+                DGV_Summary_Monthly,
+                fromRowIndex: 0,
+                toRowIndex: 4,
+                HazCatNameColIndex: 1,  // e.g. Month / Hazard Category
+                HazCatValColIndex: 2,
+                centerText: "High Hazard \nMonth"// e.g. Total / Count
+            );
+
+        }
+
+        private void BtnSaveHighCatMonth_Click(object sender, EventArgs e)
+        {
+            HighHazardCategoryCircleClass hcc = new HighHazardCategoryCircleClass();
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "PNG Image|*.png|JPEG Image|*.jpg";
+                sfd.Title = "Save Hazard Circle as Image";
+                sfd.FileName = "HazardCircle.png";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    hcc.SavePanelAsImage(PanelHighHazardMonth, sfd.FileName);
+                    MessageBox.Show("Image saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void BtnPlotHazardCircleSPI_Click(object sender, EventArgs e)
+        {
+            HighHazardCategoryCircleClass hazcatcir = new HighHazardCategoryCircleClass();
+
+            hazcatcir.DrawHazardCircle(
+                PanelHighHazardSPI,
+                DGV_SPI_Summary,
+                fromRowIndex: 0,
+                toRowIndex: 4,
+                HazCatNameColIndex: 1,  // e.g. Month / Hazard Category
+                HazCatValColIndex: 4,
+                centerText: "High Hazard \nCategory"// e.g. Total / Count
+            );
+        }
+
+        private void BtnSaveHazardCircleSPI_Click(object sender, EventArgs e)
+        {
+            HighHazardCategoryCircleClass hcc = new HighHazardCategoryCircleClass();
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "PNG Image|*.png|JPEG Image|*.jpg";
+                sfd.Title = "Save Hazard Circle as Image";
+                sfd.FileName = "HazardCateogrySPI.png";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    hcc.SavePanelAsImage(PanelHighHazardSPI, sfd.FileName);
+                    MessageBox.Show("Image saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
     }
 }
