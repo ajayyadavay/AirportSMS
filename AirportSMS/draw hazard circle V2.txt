@@ -1,0 +1,115 @@
+private void PanelHazard_Paint(object sender, PaintEventArgs e)
+{
+    Panel panel = sender as Panel;
+    var tag = panel.Tag as Tuple<List<HazardCategory>, string>;
+    if (tag == null) return;
+
+    List<HazardCategory> data = tag.Item1;
+    string centerText = tag.Item2;
+    if (data == null || data.Count == 0) return;
+
+    Graphics g = e.Graphics;
+    g.SmoothingMode = SmoothingMode.AntiAlias;
+
+    int panelW = panel.Width;
+    int panelH = panel.Height;
+    int minSide = Math.Min(panelW, panelH);
+
+    // =========================
+    // 1. AVAILABLE SPACE
+    // =========================
+    int padding = 20; // safe margin
+    int availableRadius = (minSide / 2) - padding;
+    if (availableRadius <= 0) return;
+
+    // =========================
+    // 2. INITIAL PROPORTIONS
+    // =========================
+    int mainRadius = (int)(availableRadius * 0.45);
+    int smallRadius = (int)(availableRadius * 0.12);
+    int orbitRadius = availableRadius - smallRadius;
+
+    int centerX = panelW / 2;
+    int centerY = panelH / 2;
+
+    Color mainCircleColor = Color.FromArgb(236, 240, 253);
+    Color smallCircleColor = Color.FromArgb(224, 249, 242);
+    Color borderColor = Color.FromArgb(120, 130, 190);
+    Color textColor = Color.FromArgb(60, 60, 60);
+
+    float baseSize = minSide;
+
+    using (Pen borderPen = new Pen(borderColor, 2))
+    using (Pen linkPen = new Pen(borderColor, 1))
+    using (SolidBrush mainBrush = new SolidBrush(mainCircleColor))
+    using (SolidBrush smallBrush = new SolidBrush(smallCircleColor))
+    using (SolidBrush textBrush = new SolidBrush(textColor))
+    using (Font centerFont = new Font("Segoe UI", baseSize / 25f, FontStyle.Bold))
+    using (Font smallFont = new Font("Segoe UI", baseSize / 60f, FontStyle.Regular))
+    {
+        StringFormat sf = new StringFormat
+        {
+            Alignment = StringAlignment.Center,
+            LineAlignment = StringAlignment.Center
+        };
+
+        // =========================
+        // 3. ADJUST SMALL CIRCLE SIZE BASED ON TEXT
+        // =========================
+        int minRequiredSmallRadius = smallRadius;
+
+        foreach (var item in data)
+        {
+            string label = $"{item.Name}\n({item.Value:N0})";
+            SizeF textSize = g.MeasureString(label, smallFont);
+
+            int required = (int)(Math.Max(textSize.Width, textSize.Height) / 2) + 8;
+            if (required > minRequiredSmallRadius)
+                minRequiredSmallRadius = required;
+        }
+
+        // Apply adjusted smallRadius but do not exceed 20% of available radius
+        smallRadius = Math.Min(minRequiredSmallRadius, (int)(availableRadius * 0.20));
+        orbitRadius = availableRadius - smallRadius;
+
+        // =========================
+        // 4. MAIN CIRCLE
+        // =========================
+        g.FillEllipse(mainBrush, centerX - mainRadius, centerY - mainRadius, mainRadius * 2, mainRadius * 2);
+        g.DrawEllipse(borderPen, centerX - mainRadius, centerY - mainRadius, mainRadius * 2, mainRadius * 2);
+        g.DrawString(centerText, centerFont, textBrush,
+            new RectangleF(centerX - mainRadius, centerY - mainRadius, mainRadius * 2, mainRadius * 2),
+            sf);
+
+        // =========================
+        // 5. SMALL CIRCLES
+        // =========================
+        int count = data.Count;
+        double angleStep = 360.0 / count;
+        double startAngle = -90;
+
+        for (int i = 0; i < count; i++)
+        {
+            double angleDeg = startAngle + i * angleStep;
+            double angleRad = angleDeg * Math.PI / 180;
+
+            int x = centerX + (int)(orbitRadius * Math.Cos(angleRad));
+            int y = centerY + (int)(orbitRadius * Math.Sin(angleRad));
+
+            // connector line
+            g.DrawLine(linkPen,
+                centerX + (int)(mainRadius * Math.Cos(angleRad)),
+                centerY + (int)(mainRadius * Math.Sin(angleRad)),
+                x,
+                y);
+
+            // small circle
+            g.FillEllipse(smallBrush, x - smallRadius, y - smallRadius, smallRadius * 2, smallRadius * 2);
+            g.DrawEllipse(borderPen, x - smallRadius, y - smallRadius, smallRadius * 2, smallRadius * 2);
+
+            // text
+            string label = $"{data[i].Name}\n({data[i].Value:N0})";
+            g.DrawString(label, smallFont, textBrush, new RectangleF(x - smallRadius, y - smallRadius, smallRadius * 2, smallRadius * 2), sf);
+        }
+    }
+}

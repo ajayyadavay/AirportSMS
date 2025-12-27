@@ -63,87 +63,49 @@ namespace AirportSMS
             panel.Invalidate();   // Redraw
         }
 
+
         private void PanelHazard_Paint(object sender, PaintEventArgs e)
         {
             Panel panel = sender as Panel;
-            //List<HazardCategory> data = panel.Tag as List<HazardCategory>;
             var tag = panel.Tag as Tuple<List<HazardCategory>, string>;
             if (tag == null) return;
 
             List<HazardCategory> data = tag.Item1;
             string centerText = tag.Item2;
-
-
             if (data == null || data.Count == 0) return;
 
             Graphics g = e.Graphics;
             g.SmoothingMode = SmoothingMode.AntiAlias;
-            
-            // Base scaling factor from panel size
-            float baseSize = Math.Min(panel.Width, panel.Height);
 
-            //int centerX = panel.Width / 2;
-            //int centerY = panel.Height / 2;
+            int panelW = panel.Width;
+            int panelH = panel.Height;
+            int minSide = Math.Min(panelW, panelH);
 
-            /*int mainRadius = Math.Min(panel.Width, panel.Height) / 4;
-            int orbitRadius = mainRadius + 70;
-            int smallRadius = 40;*/
+            // =========================
+            // 1. FIXED SIZES
+            // =========================
+            int padding = 10;
+            int availableRadius = (minSide / 2) - padding;
 
-            int mainRadius = Math.Min(panel.Width, panel.Height) / 4;
+            int smallRadius = (int)(minSide * 0.12);       // ~10% of panel size
+            int mainRadius = (int)(minSide * 0.20);       // ~18% of panel size
+            int orbitRadius = mainRadius + smallRadius + 20; // 10 px gap for connector
 
-            // Orbit radius: distance from center to small circles
-            int orbitRadius = mainRadius + (int)(Math.Min(panel.Width, panel.Height) * 0.18);
-
-            // Small circle radius
-            //int smallRadius = (int)(Math.Min(panel.Width, panel.Height) * 0.10);
-
-
-            // Base small circle radius
-            int smallRadius = (int)(Math.Min(panel.Width, panel.Height) * 0.10);
-
-            /*using (Font smallFont = new Font("Segoe UI", baseSize / 40f, FontStyle.Regular))
-            // Adjust radius if text is too long
-            using (Graphics gMeasure = panel.CreateGraphics())
-            {
-                foreach (var item in data)
-                {
-                    string label = string.Format("{0}\n({1:N0})", item.Name, item.Value);
-                    SizeF size = gMeasure.MeasureString(label, smallFont);
-
-                    // Add padding of 6 pixels
-                    float requiredRadius = Math.Max(size.Width, size.Height) / 2 + 6;
-
-                    if (requiredRadius > smallRadius)
-                        smallRadius = (int)requiredRadius;
-                }
-            }*/
-
-
-
-            // Center position
-            int centerX = panel.Width / 2;
-            int centerY = orbitRadius + smallRadius + 8;  // 10 px padding from top
+            int centerX = panelW / 2;
+            int centerY = panelH / 2;
 
             Color mainCircleColor = Color.FromArgb(236, 240, 253);
             Color smallCircleColor = Color.FromArgb(224, 249, 242);
             Color borderColor = Color.FromArgb(120, 130, 190);
             Color textColor = Color.FromArgb(60, 60, 60);
 
-            
-
-            
-
             using (Pen borderPen = new Pen(borderColor, 2))
             using (Pen linkPen = new Pen(borderColor, 1))
             using (SolidBrush mainBrush = new SolidBrush(mainCircleColor))
             using (SolidBrush smallBrush = new SolidBrush(smallCircleColor))
             using (SolidBrush textBrush = new SolidBrush(textColor))
-            //using (Font centerFont = new Font("Segoe UI", 12, FontStyle.Bold))
-            //using (Font smallFont = new Font("Segoe UI", 9, FontStyle.Regular))
-            // Center text font (bigger, bold)
-            using (Font centerFont = new Font("Segoe UI", baseSize / 25f, FontStyle.Bold))
-            // Small circles font (smaller, regular)
-            using (Font smallFont = new Font("Segoe UI", baseSize / 40f, FontStyle.Regular))
+            using (Font centerFont = new Font("Segoe UI", minSide / 25f, FontStyle.Bold))
+            using (Font smallFont = new Font("Segoe UI", 12f, FontStyle.Regular))
             {
                 StringFormat sf = new StringFormat
                 {
@@ -151,109 +113,52 @@ namespace AirportSMS
                     LineAlignment = StringAlignment.Center
                 };
 
-                // -------- Main Circle --------
-                g.FillEllipse(
-                    mainBrush,
-                    centerX - mainRadius,
-                    centerY - mainRadius,
-                    mainRadius * 2,
-                    mainRadius * 2);
+                // --- MAIN CIRCLE ---
+                g.FillEllipse(mainBrush, centerX - mainRadius, centerY - mainRadius, mainRadius * 2, mainRadius * 2);
+                g.DrawEllipse(borderPen, centerX - mainRadius, centerY - mainRadius, mainRadius * 2, mainRadius * 2);
+                g.DrawString(centerText, centerFont, textBrush,
+                    new RectangleF(centerX - mainRadius, centerY - mainRadius, mainRadius * 2, mainRadius * 2), sf);
 
-                g.DrawEllipse(
-                    borderPen,
-                    centerX - mainRadius,
-                    centerY - mainRadius,
-                    mainRadius * 2,
-                    mainRadius * 2);
-
-                g.DrawString(
-                    //"High Category\nHazard",
-                    centerText,
-                    centerFont,
-                    textBrush,
-                    new RectangleF(
-                        centerX - mainRadius,
-                        centerY - mainRadius,
-                        mainRadius * 2,
-                        mainRadius * 2),
-                    sf);
-
-                // -------- Small Circles --------
+                // --- SMALL CIRCLES ---
                 int count = data.Count;
                 double angleStep = 360.0 / count;
                 double startAngle = -90;
 
                 for (int i = 0; i < count; i++)
                 {
-                   
                     double angleDeg = startAngle + i * angleStep;
                     double angleRad = angleDeg * Math.PI / 180;
 
                     int x = centerX + (int)(orbitRadius * Math.Cos(angleRad));
                     int y = centerY + (int)(orbitRadius * Math.Sin(angleRad));
 
-                    // Connector line
-                    g.DrawLine(
-                        linkPen,
+                    // connector line
+                    g.DrawLine(linkPen,
                         centerX + (int)(mainRadius * Math.Cos(angleRad)),
                         centerY + (int)(mainRadius * Math.Sin(angleRad)),
                         x,
                         y);
 
-                    // Small circle
-                    g.FillEllipse(
-                        smallBrush,
-                        x - smallRadius,
-                        y - smallRadius,
-                        smallRadius * 2,
-                        smallRadius * 2);
+                    // small circle
+                    g.FillEllipse(smallBrush, x - smallRadius, y - smallRadius, smallRadius * 2, smallRadius * 2);
+                    g.DrawEllipse(borderPen, x - smallRadius, y - smallRadius, smallRadius * 2, smallRadius * 2);
 
-                    g.DrawEllipse(
-                        borderPen,
-                        x - smallRadius,
-                        y - smallRadius,
-                        smallRadius * 2,
-                        smallRadius * 2);
-
-                    // Text
-                    string label = string.Format(
-                        "{0}\n({1:N0})",
-                        data[i].Name,
-                        data[i].Value);
-
-                    g.DrawString(
-                        label,
-                        smallFont,
-                        textBrush,
-                        new RectangleF(
-                            x - smallRadius,
-                            y - smallRadius,
-                            smallRadius * 2,
-                            smallRadius * 2),
-                        sf);
-
-
-                    /*// Start with original smallFont
-                    Font drawFont = smallFont;
-                    SizeF textSize = g.MeasureString(label, drawFont);
-
-                    // Reduce font until it fits inside circle
-                    while ((textSize.Width > smallRadius * 2 - 4 || textSize.Height > smallRadius * 2 - 4) && drawFont.Size > 4)
-                    {
-                        drawFont = new Font(drawFont.FontFamily, drawFont.Size - 0.5f, drawFont.Style);
-                        textSize = g.MeasureString(label, drawFont);
-                    }
-
-                    // Draw the text
-                    g.DrawString(label, drawFont, textBrush, new RectangleF(x - smallRadius, y - smallRadius, smallRadius * 2, smallRadius * 2), sf);
-                    */
-
-
-
-
+                    // text (wrap inside small circle)
+                    string label = $"{data[i].Name}\n({data[i].Value:N0})";
+                    RectangleF rect = new RectangleF(x - smallRadius + 2, y - smallRadius + 2, smallRadius * 2 - 4, smallRadius * 2 - 4);
+                    g.DrawString(label, smallFont, textBrush, rect, sf);
                 }
             }
         }
+
+
+
+
+
+
+
+
+
 
         public void SavePanelAsImage(Panel panel, string filePath)
         {

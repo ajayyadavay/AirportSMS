@@ -661,17 +661,36 @@ namespace AirportSMS
 
         private void BtnHighHazardMonth_Click(object sender, EventArgs e)
         {
-            HighHazardCategoryCircleClass hazcatcir = new HighHazardCategoryCircleClass();
+            int tophz;
+            if (TxtMonthHzNumber.Text == "")
+            {
+                MessageBox.Show("Enter valid number of top hazard");
+            }
+            else
+            {
+                tophz = Convert.ToInt32(TxtMonthHzNumber.Text);
+                if (tophz > DGV_Summary_Monthly.RowCount - 2)
+                {
+                    MessageBox.Show("Enter valid number of top hazard");
+                }
+                else
+                {
+                    HighHazardCategoryCircleClass hazcatcir = new HighHazardCategoryCircleClass();
 
-            hazcatcir.DrawHazardCircle(
-                PanelHighHazardMonth,
-                DGV_Summary_Monthly,
-                fromRowIndex: 0,
-                toRowIndex: 4,
-                HazCatNameColIndex: 1,  // e.g. Month / Hazard Category
-                HazCatValColIndex: 2,
-                centerText: "High Hazard \nMonth"// e.g. Total / Count
-            );
+                    hazcatcir.DrawHazardCircle(
+                        PanelHighHazardMonth,
+                        DGV_Summary_Monthly,
+                        fromRowIndex: 0,
+                        toRowIndex: tophz - 1,
+                        HazCatNameColIndex: 1,  // e.g. Month / Hazard Category
+                        HazCatValColIndex: 2,
+                        centerText: "High Hazard \nMonth"// e.g. Total / Count
+                    );
+                }
+            }
+            //HighHazardCategoryCircleClass hazcatcir = new HighHazardCategoryCircleClass();
+
+            
 
         }
 
@@ -694,17 +713,35 @@ namespace AirportSMS
 
         private void BtnPlotHazardCircleSPI_Click(object sender, EventArgs e)
         {
-            HighHazardCategoryCircleClass hazcatcir = new HighHazardCategoryCircleClass();
+            int tophz;
+            if(TxtSummarySIPTopHz.Text == "")
+            {
+                MessageBox.Show("Enter valid number of top hazard");
+            }
+            else
+            {
+                tophz = Convert.ToInt32(TxtSummarySIPTopHz.Text);
+                if (tophz> DGV_SPI_Summary.RowCount-1)
+                {
+                    MessageBox.Show("Enter valid number of top hazard");
+                }
+                else
+                {
+                    HighHazardCategoryCircleClass hazcatcir = new HighHazardCategoryCircleClass();
 
-            hazcatcir.DrawHazardCircle(
-                PanelHighHazardSPI,
-                DGV_SPI_Summary,
-                fromRowIndex: 0,
-                toRowIndex: 4,
-                HazCatNameColIndex: 1,  // e.g. Month / Hazard Category
-                HazCatValColIndex: 4,
-                centerText: "High Hazard \nCategory"// e.g. Total / Count
-            );
+                    hazcatcir.DrawHazardCircle(
+                        PanelHighHazardSPI,
+                        DGV_SPI_Summary,
+                        fromRowIndex: 0,
+                        toRowIndex: tophz-1, //4 means 5 will be shown i.e. 0 to 4 = 5 numbers
+                        HazCatNameColIndex: 1,  // e.g. Month / Hazard Category
+                        HazCatValColIndex: 4,
+                        centerText: "High Hazard \nCategory"// e.g. Total / Count
+                    );
+                }
+            }
+
+           
         }
 
         private void BtnSaveHazardCircleSPI_Click(object sender, EventArgs e)
