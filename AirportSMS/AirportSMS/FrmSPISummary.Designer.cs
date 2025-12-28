@@ -45,6 +45,10 @@
             this.RadioDefault = new System.Windows.Forms.RadioButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabSummarySPIs = new System.Windows.Forms.TabPage();
+            this.TxtFilterSPISummary = new System.Windows.Forms.TextBox();
+            this.BtnFilterSPISummary = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.TxtSummarySIPTopHz = new System.Windows.Forms.TextBox();
             this.BtnSaveHazardCircleSPI = new System.Windows.Forms.Button();
             this.BtnPlotHazardCircleSPI = new System.Windows.Forms.Button();
             this.PanelHighHazardSPI = new System.Windows.Forms.Panel();
@@ -70,6 +74,8 @@
             this.ColDec = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabMonthwise = new System.Windows.Forms.TabPage();
+            this.TxtMonthHzNumber = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.BtnSaveHighCatMonth = new System.Windows.Forms.Button();
             this.BtnHighHazardMonth = new System.Windows.Forms.Button();
             this.PanelHighHazardMonth = new System.Windows.Forms.Panel();
@@ -81,10 +87,8 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColMonthTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TxtSummarySIPTopHz = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.TxtMonthHzNumber = new System.Windows.Forms.TextBox();
+            this.ComboBoxSPIsummaryColName = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SPI_Summary)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -179,7 +183,7 @@
             // 
             this.ComboBoxSort.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxSort.FormattingEnabled = true;
-            this.ComboBoxSort.Location = new System.Drawing.Point(922, 127);
+            this.ComboBoxSort.Location = new System.Drawing.Point(897, 57);
             this.ComboBoxSort.Name = "ComboBoxSort";
             this.ComboBoxSort.Size = new System.Drawing.Size(380, 26);
             this.ComboBoxSort.TabIndex = 3;
@@ -188,7 +192,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(921, 91);
+            this.label1.Location = new System.Drawing.Point(896, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(149, 18);
             this.label1.TabIndex = 4;
@@ -198,7 +202,7 @@
             // 
             this.RadioAscending.AutoSize = true;
             this.RadioAscending.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RadioAscending.Location = new System.Drawing.Point(924, 195);
+            this.RadioAscending.Location = new System.Drawing.Point(897, 102);
             this.RadioAscending.Name = "RadioAscending";
             this.RadioAscending.Size = new System.Drawing.Size(126, 20);
             this.RadioAscending.TabIndex = 5;
@@ -209,7 +213,7 @@
             // 
             this.RadioDescending.AutoSize = true;
             this.RadioDescending.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RadioDescending.Location = new System.Drawing.Point(924, 265);
+            this.RadioDescending.Location = new System.Drawing.Point(897, 143);
             this.RadioDescending.Name = "RadioDescending";
             this.RadioDescending.Size = new System.Drawing.Size(135, 20);
             this.RadioDescending.TabIndex = 6;
@@ -221,7 +225,7 @@
             this.RadioDefault.AutoSize = true;
             this.RadioDefault.Checked = true;
             this.RadioDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RadioDefault.Location = new System.Drawing.Point(924, 321);
+            this.RadioDefault.Location = new System.Drawing.Point(899, 182);
             this.RadioDefault.Name = "RadioDefault";
             this.RadioDefault.Size = new System.Drawing.Size(67, 20);
             this.RadioDefault.TabIndex = 7;
@@ -243,6 +247,10 @@
             // 
             // TabSummarySPIs
             // 
+            this.TabSummarySPIs.Controls.Add(this.label4);
+            this.TabSummarySPIs.Controls.Add(this.ComboBoxSPIsummaryColName);
+            this.TabSummarySPIs.Controls.Add(this.TxtFilterSPISummary);
+            this.TabSummarySPIs.Controls.Add(this.BtnFilterSPISummary);
             this.TabSummarySPIs.Controls.Add(this.label2);
             this.TabSummarySPIs.Controls.Add(this.TxtSummarySIPTopHz);
             this.TabSummarySPIs.Controls.Add(this.BtnSaveHazardCircleSPI);
@@ -263,6 +271,50 @@
             this.TabSummarySPIs.TabIndex = 0;
             this.TabSummarySPIs.Text = "Summary - SPIs";
             this.TabSummarySPIs.UseVisualStyleBackColor = true;
+            // 
+            // TxtFilterSPISummary
+            // 
+            this.TxtFilterSPISummary.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtFilterSPISummary.Location = new System.Drawing.Point(899, 456);
+            this.TxtFilterSPISummary.Name = "TxtFilterSPISummary";
+            this.TxtFilterSPISummary.Size = new System.Drawing.Size(405, 24);
+            this.TxtFilterSPISummary.TabIndex = 19;
+            // 
+            // BtnFilterSPISummary
+            // 
+            this.BtnFilterSPISummary.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
+            this.BtnFilterSPISummary.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnFilterSPISummary.FlatAppearance.BorderSize = 0;
+            this.BtnFilterSPISummary.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
+            this.BtnFilterSPISummary.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
+            this.BtnFilterSPISummary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnFilterSPISummary.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnFilterSPISummary.ForeColor = System.Drawing.Color.White;
+            this.BtnFilterSPISummary.Location = new System.Drawing.Point(899, 497);
+            this.BtnFilterSPISummary.Name = "BtnFilterSPISummary";
+            this.BtnFilterSPISummary.Size = new System.Drawing.Size(403, 35);
+            this.BtnFilterSPISummary.TabIndex = 18;
+            this.BtnFilterSPISummary.Text = "Filter";
+            this.BtnFilterSPISummary.UseVisualStyleBackColor = false;
+            this.BtnFilterSPISummary.Click += new System.EventHandler(this.BtnFilterSPISummary_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(861, 1119);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(220, 18);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Enter no. of Top Hazard to draw";
+            // 
+            // TxtSummarySIPTopHz
+            // 
+            this.TxtSummarySIPTopHz.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSummarySIPTopHz.Location = new System.Drawing.Point(1112, 1115);
+            this.TxtSummarySIPTopHz.Name = "TxtSummarySIPTopHz";
+            this.TxtSummarySIPTopHz.Size = new System.Drawing.Size(190, 24);
+            this.TxtSummarySIPTopHz.TabIndex = 16;
             // 
             // BtnSaveHazardCircleSPI
             // 
@@ -319,7 +371,7 @@
             this.BtnSortSummarySPI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSortSummarySPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSortSummarySPI.ForeColor = System.Drawing.Color.White;
-            this.BtnSortSummarySPI.Location = new System.Drawing.Point(922, 383);
+            this.BtnSortSummarySPI.Location = new System.Drawing.Point(897, 208);
             this.BtnSortSummarySPI.Name = "BtnSortSummarySPI";
             this.BtnSortSummarySPI.Size = new System.Drawing.Size(380, 35);
             this.BtnSortSummarySPI.TabIndex = 12;
@@ -534,6 +586,24 @@
             this.TabMonthwise.Text = "Summary Monthwise - SPIs";
             this.TabMonthwise.UseVisualStyleBackColor = true;
             // 
+            // TxtMonthHzNumber
+            // 
+            this.TxtMonthHzNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtMonthHzNumber.Location = new System.Drawing.Point(1103, 641);
+            this.TxtMonthHzNumber.Name = "TxtMonthHzNumber";
+            this.TxtMonthHzNumber.Size = new System.Drawing.Size(202, 24);
+            this.TxtMonthHzNumber.TabIndex = 18;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(1100, 608);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(205, 18);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "Enter no. of top hazard month";
+            // 
             // BtnSaveHighCatMonth
             // 
             this.BtnSaveHighCatMonth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
@@ -674,41 +744,24 @@
             this.ColMonthTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.ColMonthTotal.Width = 150;
             // 
-            // TxtSummarySIPTopHz
+            // ComboBoxSPIsummaryColName
             // 
-            this.TxtSummarySIPTopHz.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSummarySIPTopHz.Location = new System.Drawing.Point(1112, 1115);
-            this.TxtSummarySIPTopHz.Name = "TxtSummarySIPTopHz";
-            this.TxtSummarySIPTopHz.Size = new System.Drawing.Size(190, 24);
-            this.TxtSummarySIPTopHz.TabIndex = 16;
+            this.ComboBoxSPIsummaryColName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxSPIsummaryColName.FormattingEnabled = true;
+            this.ComboBoxSPIsummaryColName.Location = new System.Drawing.Point(902, 318);
+            this.ComboBoxSPIsummaryColName.Name = "ComboBoxSPIsummaryColName";
+            this.ComboBoxSPIsummaryColName.Size = new System.Drawing.Size(380, 26);
+            this.ComboBoxSPIsummaryColName.TabIndex = 20;
             // 
-            // label2
+            // label4
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(861, 1119);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(220, 18);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Enter no. of Top Hazard to draw";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(1100, 608);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(205, 18);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Enter no. of top hazard month";
-            // 
-            // TxtMonthHzNumber
-            // 
-            this.TxtMonthHzNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtMonthHzNumber.Location = new System.Drawing.Point(1103, 641);
-            this.TxtMonthHzNumber.Name = "TxtMonthHzNumber";
-            this.TxtMonthHzNumber.Size = new System.Drawing.Size(202, 24);
-            this.TxtMonthHzNumber.TabIndex = 18;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(899, 297);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(152, 18);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "Column Name to filter";
             // 
             // FrmSPISummary
             // 
@@ -797,5 +850,9 @@
         private System.Windows.Forms.TextBox TxtSummarySIPTopHz;
         private System.Windows.Forms.TextBox TxtMonthHzNumber;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox TxtFilterSPISummary;
+        private System.Windows.Forms.Button BtnFilterSPISummary;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox ComboBoxSPIsummaryColName;
     }
 }

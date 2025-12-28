@@ -760,5 +760,18 @@ namespace AirportSMS
                 }
             }
         }
+
+        private void BtnFilterSPISummary_Click(object sender, EventArgs e)
+        {
+            AirportSMS_Class acls = new AirportSMS_Class();
+            if(TxtFilterSPISummary.Text == "")
+            {
+                acls.FilterDataGridView(DGV_SPI_Summary, TxtFilterSPISummary.Text);
+            }
+            else
+            {
+                MessageBox.Show("Enter query to filer...");
+            }
+        }
     }
 }

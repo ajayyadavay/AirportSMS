@@ -127,6 +127,12 @@
     <Compile Include="FrmHazardLog.Designer.cs">
       <DependentUpon>FrmHazardLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmObjective.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmObjective.Designer.cs">
+      <DependentUpon>FrmObjective.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSPISummary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmHazardLog.resx">
       <DependentUpon>FrmHazardLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmObjective.resx">
+      <DependentUpon>FrmObjective.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSPISummary.resx">
       <DependentUpon>FrmSPISummary.cs</DependentUpon>

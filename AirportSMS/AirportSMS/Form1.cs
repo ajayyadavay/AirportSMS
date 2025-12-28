@@ -474,5 +474,11 @@ namespace AirportSMS
             FrmFlightMovement ffm = new FrmFlightMovement();
             ffm.Show();
         }
+
+        private void objectiveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmObjective fo = new FrmObjective();
+            fo.Show();
+        }
     }
 }

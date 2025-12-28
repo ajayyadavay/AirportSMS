@@ -848,7 +848,7 @@ namespace AirportSMS
                 if (double.TryParse(cellRow2.Value?.ToString(), out double valRow2) &&
                     double.TryParse(cellRow3.Value?.ToString(), out double valRow3))
                 {
-                    if (row1<0 && valRow3 > valRow2 || row1 > 0 && valRow3 < valRow2)
+                    if (row1<0 && valRow3 > valRow2 || row1 >= 0 && valRow3 < valRow2)
                     {
                         var currentFont = cellRow3.Style.Font ?? dataGridView1.DefaultCellStyle.Font;
                         cellRow3.Style.Font = new Font(currentFont.FontFamily, 12f, FontStyle.Bold);

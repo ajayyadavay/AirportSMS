@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -494,6 +495,52 @@ namespace AirportSMS
                 row++;
             }
         }
+
+        public void FilterDataGridView(
+            DataGridView dgv,
+            string columnName,
+            string filterValue)
+        {
+            if (dgv.DataSource == null)
+                return;
+
+            // DataTable directly bound
+            if (dgv.DataSource is DataTable dt)
+            {
+                dt.DefaultView.RowFilter = BuildFilter(dt, columnName, filterValue);
+            }
+            // BindingSource bound
+            else if (dgv.DataSource is BindingSource bs && bs.DataSource is DataTable dt2)
+            {
+                bs.Filter = BuildFilter(dt2, columnName, filterValue);
+            }
+        }
+
+        private string BuildFilter(DataTable dt, string columnName, string value)
+        {
+            if (!dt.Columns.Contains(columnName))
+                throw new ArgumentException("Column does not exist");
+
+            Type colType = dt.Columns[columnName].DataType;
+
+            // String column → LIKE
+            if (colType == typeof(string))
+            {
+                value = value.Replace("'", "''"); // escape '
+                return $"[{columnName}] LIKE '%{value}%'";
+            }
+
+            // Date column
+            if (colType == typeof(DateTime))
+            {
+                if (DateTime.TryParse(value, out DateTime d))
+                    return $"[{columnName}] = #{d:MM/dd/yyyy}#";
+            }
+
+            // Numeric column
+            return $"[{columnName}] = {value}";
+        }
+
 
 
         /*public void PasteClipboardToDatagridview(DataGridView dataGridView1)
