@@ -37,6 +37,8 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flightMovementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
+            this.objectiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.spisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openNewSPIsFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateSPICardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,8 +62,6 @@
             this.ComboBoxFilterSPI_Type = new System.Windows.Forms.ComboBox();
             this.TxtFilterSPIType = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
-            this.objectiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -142,6 +142,18 @@
             this.flightMovementToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
             this.flightMovementToolStripMenuItem.Text = "Flight Movement";
             this.flightMovementToolStripMenuItem.Click += new System.EventHandler(this.flightMovementToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(187, 6);
+            // 
+            // objectiveToolStripMenuItem
+            // 
+            this.objectiveToolStripMenuItem.Name = "objectiveToolStripMenuItem";
+            this.objectiveToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
+            this.objectiveToolStripMenuItem.Text = "Objective";
+            this.objectiveToolStripMenuItem.Click += new System.EventHandler(this.objectiveToolStripMenuItem_Click);
             // 
             // spisToolStripMenuItem
             // 
@@ -226,7 +238,7 @@
             this.TxtProjectLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtProjectLocation.Location = new System.Drawing.Point(139, 29);
             this.TxtProjectLocation.Name = "TxtProjectLocation";
-            this.TxtProjectLocation.Size = new System.Drawing.Size(1070, 24);
+            this.TxtProjectLocation.Size = new System.Drawing.Size(1053, 24);
             this.TxtProjectLocation.TabIndex = 2;
             // 
             // flowLayoutPanel1
@@ -253,7 +265,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 31);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1237, 162);
+            this.groupBox1.Size = new System.Drawing.Size(1220, 162);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General";
@@ -265,7 +277,7 @@
             this.TxtCurrentYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCurrentYear.Location = new System.Drawing.Point(139, 127);
             this.TxtCurrentYear.Name = "TxtCurrentYear";
-            this.TxtCurrentYear.Size = new System.Drawing.Size(1070, 24);
+            this.TxtCurrentYear.Size = new System.Drawing.Size(1053, 24);
             this.TxtCurrentYear.TabIndex = 8;
             // 
             // label4
@@ -285,7 +297,7 @@
             this.TxtProjModified.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtProjModified.Location = new System.Drawing.Point(139, 97);
             this.TxtProjModified.Name = "TxtProjModified";
-            this.TxtProjModified.Size = new System.Drawing.Size(1070, 24);
+            this.TxtProjModified.Size = new System.Drawing.Size(1053, 24);
             this.TxtProjModified.TabIndex = 6;
             // 
             // label3
@@ -305,7 +317,7 @@
             this.TxtProjectName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtProjectName.Location = new System.Drawing.Point(139, 62);
             this.TxtProjectName.Name = "TxtProjectName";
-            this.TxtProjectName.Size = new System.Drawing.Size(1070, 24);
+            this.TxtProjectName.Size = new System.Drawing.Size(1053, 24);
             this.TxtProjectName.TabIndex = 4;
             // 
             // label2
@@ -328,7 +340,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(15, 199);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1237, 93);
+            this.groupBox2.Size = new System.Drawing.Size(1220, 93);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filter";
@@ -341,7 +353,7 @@
             this.ComboBoxFilterSPI_Type.FormattingEnabled = true;
             this.ComboBoxFilterSPI_Type.Location = new System.Drawing.Point(133, 26);
             this.ComboBoxFilterSPI_Type.Name = "ComboBoxFilterSPI_Type";
-            this.ComboBoxFilterSPI_Type.Size = new System.Drawing.Size(1073, 26);
+            this.ComboBoxFilterSPI_Type.Size = new System.Drawing.Size(1056, 26);
             this.ComboBoxFilterSPI_Type.TabIndex = 9;
             this.ComboBoxFilterSPI_Type.SelectedIndexChanged += new System.EventHandler(this.ComboBoxFilterSPI_Type_SelectedIndexChanged);
             // 
@@ -352,7 +364,7 @@
             this.TxtFilterSPIType.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtFilterSPIType.Location = new System.Drawing.Point(133, 58);
             this.TxtFilterSPIType.Name = "TxtFilterSPIType";
-            this.TxtFilterSPIType.Size = new System.Drawing.Size(1073, 24);
+            this.TxtFilterSPIType.Size = new System.Drawing.Size(1056, 24);
             this.TxtFilterSPIType.TabIndex = 2;
             // 
             // label6
@@ -364,18 +376,6 @@
             this.label6.Size = new System.Drawing.Size(108, 18);
             this.label6.TabIndex = 1;
             this.label6.Text = "SelectSPI Type";
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(187, 6);
-            // 
-            // objectiveToolStripMenuItem
-            // 
-            this.objectiveToolStripMenuItem.Name = "objectiveToolStripMenuItem";
-            this.objectiveToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
-            this.objectiveToolStripMenuItem.Text = "Objective";
-            this.objectiveToolStripMenuItem.Click += new System.EventHandler(this.objectiveToolStripMenuItem_Click);
             // 
             // FrmMain
             // 

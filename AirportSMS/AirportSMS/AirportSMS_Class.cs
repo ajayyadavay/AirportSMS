@@ -527,13 +527,15 @@ namespace AirportSMS
             if (colType == typeof(string))
             {
                 value = value.Replace("'", "''"); // escape '
-                return $"[{columnName}] LIKE '%{value}%'";
+                                                  //return $"[{columnName}] LIKE '%{value}%'";
+                return $"[{columnName}] = '{value}'";
             }
 
             // Date column
             if (colType == typeof(DateTime))
             {
                 if (DateTime.TryParse(value, out DateTime d))
+                    //return $"[{columnName}] = #{d:MM/dd/yyyy}#";
                     return $"[{columnName}] = #{d:MM/dd/yyyy}#";
             }
 
@@ -541,7 +543,80 @@ namespace AirportSMS
             return $"[{columnName}] = {value}";
         }
 
+        public void ApplyFilterDGV(
+            DataGridView dgv,
+            string columnName,
+            string filterValue)
+        {
+            if (!dgv.Columns.Contains(columnName))
+                return;
 
+            int colIndex = dgv.Columns[columnName].Index;
+
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                var cellValue = row.Cells[colIndex].Value?.ToString();
+
+                row.Visible = (cellValue == filterValue);
+            }
+        }
+
+
+        public void ClearFilter(DataGridView dgv)
+        {
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                if (!row.IsNewRow)
+                    row.Visible = true;
+            }
+        }
+
+        public void LoadDistinctValuesFromDGV(
+            DataGridView dgv,
+            string columnName,
+            ComboBox combo)
+        {
+            combo.Items.Clear();
+            combo.Text = "";
+
+            if (!dgv.Columns.Contains(columnName))
+                return;
+
+            int colIndex = dgv.Columns[columnName].Index;
+
+            HashSet<string> values = new HashSet<string>();
+
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                var cellValue = row.Cells[colIndex].Value;
+                if (cellValue != null)
+                    values.Add(cellValue.ToString());
+            }
+
+            foreach (var v in values.OrderBy(v => v))
+                combo.Items.Add(v);
+
+            if (combo.Items.Count > 0)
+                combo.SelectedIndex = 0;
+        }
+
+
+        public void LoadColumnNames(DataGridView dgv,
+            ComboBox combo)
+        {
+            combo.Items.Clear();
+
+            foreach (DataGridViewColumn col in dgv.Columns)
+            {
+                combo.Items.Add(col.Name);
+            }
+
+            combo.SelectedIndex = 0;
+        }
 
         /*public void PasteClipboardToDatagridview(DataGridView dataGridView1)
         {

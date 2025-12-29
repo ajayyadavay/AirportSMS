@@ -45,6 +45,8 @@
             this.RadioDefault = new System.Windows.Forms.RadioButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabSummarySPIs = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.ComboBoxSPIsummaryColName = new System.Windows.Forms.ComboBox();
             this.TxtFilterSPISummary = new System.Windows.Forms.TextBox();
             this.BtnFilterSPISummary = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -87,8 +89,9 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColMonthTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ComboBoxSPIsummaryColName = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.ComboBoxSPISummaryValue = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.BtnClearFilter = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SPI_Summary)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -247,6 +250,9 @@
             // 
             // TabSummarySPIs
             // 
+            this.TabSummarySPIs.Controls.Add(this.BtnClearFilter);
+            this.TabSummarySPIs.Controls.Add(this.label5);
+            this.TabSummarySPIs.Controls.Add(this.ComboBoxSPISummaryValue);
             this.TabSummarySPIs.Controls.Add(this.label4);
             this.TabSummarySPIs.Controls.Add(this.ComboBoxSPIsummaryColName);
             this.TabSummarySPIs.Controls.Add(this.TxtFilterSPISummary);
@@ -272,12 +278,32 @@
             this.TabSummarySPIs.Text = "Summary - SPIs";
             this.TabSummarySPIs.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(899, 263);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(152, 18);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "Column Name to filter";
+            // 
+            // ComboBoxSPIsummaryColName
+            // 
+            this.ComboBoxSPIsummaryColName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxSPIsummaryColName.FormattingEnabled = true;
+            this.ComboBoxSPIsummaryColName.Location = new System.Drawing.Point(902, 284);
+            this.ComboBoxSPIsummaryColName.Name = "ComboBoxSPIsummaryColName";
+            this.ComboBoxSPIsummaryColName.Size = new System.Drawing.Size(380, 26);
+            this.ComboBoxSPIsummaryColName.TabIndex = 20;
+            this.ComboBoxSPIsummaryColName.SelectedIndexChanged += new System.EventHandler(this.ComboBoxSPIsummaryColName_SelectedIndexChanged);
+            // 
             // TxtFilterSPISummary
             // 
             this.TxtFilterSPISummary.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtFilterSPISummary.Location = new System.Drawing.Point(899, 456);
+            this.TxtFilterSPISummary.Location = new System.Drawing.Point(899, 403);
             this.TxtFilterSPISummary.Name = "TxtFilterSPISummary";
-            this.TxtFilterSPISummary.Size = new System.Drawing.Size(405, 24);
+            this.TxtFilterSPISummary.Size = new System.Drawing.Size(388, 24);
             this.TxtFilterSPISummary.TabIndex = 19;
             // 
             // BtnFilterSPISummary
@@ -290,9 +316,9 @@
             this.BtnFilterSPISummary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnFilterSPISummary.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnFilterSPISummary.ForeColor = System.Drawing.Color.White;
-            this.BtnFilterSPISummary.Location = new System.Drawing.Point(899, 497);
+            this.BtnFilterSPISummary.Location = new System.Drawing.Point(899, 444);
             this.BtnFilterSPISummary.Name = "BtnFilterSPISummary";
-            this.BtnFilterSPISummary.Size = new System.Drawing.Size(403, 35);
+            this.BtnFilterSPISummary.Size = new System.Drawing.Size(388, 35);
             this.BtnFilterSPISummary.TabIndex = 18;
             this.BtnFilterSPISummary.Text = "Filter";
             this.BtnFilterSPISummary.UseVisualStyleBackColor = false;
@@ -311,9 +337,9 @@
             // TxtSummarySIPTopHz
             // 
             this.TxtSummarySIPTopHz.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSummarySIPTopHz.Location = new System.Drawing.Point(1112, 1115);
+            this.TxtSummarySIPTopHz.Location = new System.Drawing.Point(861, 1147);
             this.TxtSummarySIPTopHz.Name = "TxtSummarySIPTopHz";
-            this.TxtSummarySIPTopHz.Size = new System.Drawing.Size(190, 24);
+            this.TxtSummarySIPTopHz.Size = new System.Drawing.Size(222, 24);
             this.TxtSummarySIPTopHz.TabIndex = 16;
             // 
             // BtnSaveHazardCircleSPI
@@ -326,7 +352,7 @@
             this.BtnSaveHazardCircleSPI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSaveHazardCircleSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSaveHazardCircleSPI.ForeColor = System.Drawing.Color.White;
-            this.BtnSaveHazardCircleSPI.Location = new System.Drawing.Point(863, 1214);
+            this.BtnSaveHazardCircleSPI.Location = new System.Drawing.Point(859, 1248);
             this.BtnSaveHazardCircleSPI.Name = "BtnSaveHazardCircleSPI";
             this.BtnSaveHazardCircleSPI.Size = new System.Drawing.Size(246, 35);
             this.BtnSaveHazardCircleSPI.TabIndex = 15;
@@ -344,7 +370,7 @@
             this.BtnPlotHazardCircleSPI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnPlotHazardCircleSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnPlotHazardCircleSPI.ForeColor = System.Drawing.Color.White;
-            this.BtnPlotHazardCircleSPI.Location = new System.Drawing.Point(863, 1161);
+            this.BtnPlotHazardCircleSPI.Location = new System.Drawing.Point(859, 1195);
             this.BtnPlotHazardCircleSPI.Name = "BtnPlotHazardCircleSPI";
             this.BtnPlotHazardCircleSPI.Size = new System.Drawing.Size(246, 35);
             this.BtnPlotHazardCircleSPI.TabIndex = 14;
@@ -373,7 +399,7 @@
             this.BtnSortSummarySPI.ForeColor = System.Drawing.Color.White;
             this.BtnSortSummarySPI.Location = new System.Drawing.Point(897, 208);
             this.BtnSortSummarySPI.Name = "BtnSortSummarySPI";
-            this.BtnSortSummarySPI.Size = new System.Drawing.Size(380, 35);
+            this.BtnSortSummarySPI.Size = new System.Drawing.Size(385, 35);
             this.BtnSortSummarySPI.TabIndex = 12;
             this.BtnSortSummarySPI.Text = "Sort";
             this.BtnSortSummarySPI.UseVisualStyleBackColor = false;
@@ -744,24 +770,42 @@
             this.ColMonthTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.ColMonthTotal.Width = 150;
             // 
-            // ComboBoxSPIsummaryColName
+            // ComboBoxSPISummaryValue
             // 
-            this.ComboBoxSPIsummaryColName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ComboBoxSPIsummaryColName.FormattingEnabled = true;
-            this.ComboBoxSPIsummaryColName.Location = new System.Drawing.Point(902, 318);
-            this.ComboBoxSPIsummaryColName.Name = "ComboBoxSPIsummaryColName";
-            this.ComboBoxSPIsummaryColName.Size = new System.Drawing.Size(380, 26);
-            this.ComboBoxSPIsummaryColName.TabIndex = 20;
+            this.ComboBoxSPISummaryValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxSPISummaryValue.FormattingEnabled = true;
+            this.ComboBoxSPISummaryValue.Location = new System.Drawing.Point(902, 348);
+            this.ComboBoxSPISummaryValue.Name = "ComboBoxSPISummaryValue";
+            this.ComboBoxSPISummaryValue.Size = new System.Drawing.Size(380, 26);
+            this.ComboBoxSPISummaryValue.TabIndex = 22;
             // 
-            // label4
+            // label5
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(899, 297);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(152, 18);
-            this.label4.TabIndex = 21;
-            this.label4.Text = "Column Name to filter";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(899, 327);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 18);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Value to filter";
+            // 
+            // BtnClearFilter
+            // 
+            this.BtnClearFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
+            this.BtnClearFilter.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnClearFilter.FlatAppearance.BorderSize = 0;
+            this.BtnClearFilter.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
+            this.BtnClearFilter.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
+            this.BtnClearFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnClearFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnClearFilter.ForeColor = System.Drawing.Color.White;
+            this.BtnClearFilter.Location = new System.Drawing.Point(899, 497);
+            this.BtnClearFilter.Name = "BtnClearFilter";
+            this.BtnClearFilter.Size = new System.Drawing.Size(388, 35);
+            this.BtnClearFilter.TabIndex = 24;
+            this.BtnClearFilter.Text = "Clear Filter";
+            this.BtnClearFilter.UseVisualStyleBackColor = false;
+            this.BtnClearFilter.Click += new System.EventHandler(this.BtnClearFilter_Click);
             // 
             // FrmSPISummary
             // 
@@ -854,5 +898,8 @@
         private System.Windows.Forms.Button BtnFilterSPISummary;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox ComboBoxSPIsummaryColName;
+        private System.Windows.Forms.ComboBox ComboBoxSPISummaryValue;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button BtnClearFilter;
     }
 }

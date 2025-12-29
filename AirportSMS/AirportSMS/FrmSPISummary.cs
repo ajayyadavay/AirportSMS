@@ -20,6 +20,7 @@ namespace AirportSMS
         public sctplotwin.FormsPlot formsPlot2;
         public sctplotwin.FormsPlot formsPlot3;
         public sctplotwin.FormsPlot formsPlot4;
+
         double CurrentYear;
 
         public void InitializeScottPlot()
@@ -175,15 +176,31 @@ namespace AirportSMS
             string[] X_axis = new string[100];
             double[] Y_axis = new double[100];
 
-            int No_of_SPIs = DGV_SPI_Summary.RowCount-1;
+            //int No_of_SPIs = DGV_SPI_Summary.RowCount-1;
+
+            int No_of_SPIs = DGV_SPI_Summary.Rows.GetRowCount(DataGridViewElementStates.Visible)-1;
+
+            if (No_of_SPIs == 0)
+                return;
 
             double sum = 0;
             // get data from datagridview
-            for (int i = 0; i < No_of_SPIs; i++)
+            /*for (int i = 0; i < No_of_SPIs; i++)
             {
                 X_axis[i] = DGV_SPI_Summary.Rows[i].Cells[1].Value.ToString(); //SPIs name
                 Y_axis[i] = Convert.ToDouble(DGV_SPI_Summary.Rows[i].Cells[4].Value); //SPIs total value
                 sum += Y_axis[i];
+            }*/
+            int idx = 0;
+            foreach (DataGridViewRow row in DGV_SPI_Summary.Rows)
+            {
+                if (!row.Visible || row.IsNewRow) continue;
+
+                X_axis[idx] = row.Cells[1].Value?.ToString();   // SPIs name
+                Y_axis[idx] = Convert.ToDouble(row.Cells[4].Value); // SPIs total
+
+                sum += Y_axis[idx];
+                idx++;
             }
 
             double[] XPos = Enumerable.Range(0, No_of_SPIs).Select(i => (double)i).ToArray();
@@ -402,7 +419,16 @@ namespace AirportSMS
             ComboBoxSort.Items.Add("SPIs Type");
             ComboBoxSort.Items.Add("SPIs Progress");
             ComboBoxSort.Items.Add("SPIs Total");
-           
+
+            //ColSN, ColSPIs,  ColSPIsType, ColSPIsProgress, ColSPIsTotal
+            /*ComboBoxSPIsummaryColName.Items.Add("ColSN");
+            ComboBoxSPIsummaryColName.Items.Add("ColSPIs");
+            ComboBoxSPIsummaryColName.Items.Add("ColSPIsType");
+            ComboBoxSPIsummaryColName.Items.Add("ColSPIsProgress");
+            ComboBoxSPIsummaryColName.Items.Add("ColSPIsTotal");*/
+
+            AirportSMS_Class acls = new AirportSMS_Class();
+            acls.LoadColumnNames(DGV_SPI_Summary, ComboBoxSPIsummaryColName);
 
 
         }
@@ -489,7 +515,7 @@ namespace AirportSMS
             PlotGraphScottPlotMonthly();
         }
 
-        public static List<object[]> ReadDgvRows(
+        /*public static List<object[]> ReadDgvRows(
             DataGridView dgv,
             int fromRow,
             int toRow)
@@ -506,7 +532,80 @@ namespace AirportSMS
             }
 
             return data;
+
+
+        }*/
+
+        public static List<object[]> ReadDgvRows(
+    DataGridView dgv,
+    int fromVisibleRow,
+    int toVisibleRow)
+        {
+            // 1️⃣ Take SNAPSHOT of visible rows (CRITICAL)
+            var visibleRows = dgv.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => r.Visible && !r.IsNewRow)
+                .ToList();
+
+            if (visibleRows.Count == 0)
+                return new List<object[]>();
+
+            // 2️⃣ Clamp range safely
+            fromVisibleRow = Math.Max(0, fromVisibleRow);
+            toVisibleRow = Math.Min(visibleRows.Count - 2, toVisibleRow);
+
+            if (fromVisibleRow > toVisibleRow)
+                return new List<object[]>();
+
+            // 3️⃣ Read only requested visible range
+            var data = new List<object[]>();
+
+            for (int i = fromVisibleRow; i <= toVisibleRow; i++)
+            {
+                var dgRow = visibleRows[i];
+                object[] row = new object[dgv.Columns.Count];
+
+                for (int c = 0; c < dgv.Columns.Count; c++)
+                    row[c] = dgRow.Cells[c].Value;
+
+                data.Add(row);
+            }
+
+            return data;
         }
+
+
+        /*public static List<object[]> ReadDgvRows(
+            DataGridView dgv,
+            int fromVisibleRow,
+            int toVisibleRow)
+        {
+            var data = new List<object[]>();
+
+            int visibleIndex = 0;
+
+            foreach (DataGridViewRow dgRow in dgv.Rows)
+            {
+                if (!dgRow.Visible || dgRow.IsNewRow)
+                    continue;
+
+                if (visibleIndex >= fromVisibleRow && visibleIndex <= toVisibleRow)
+                {
+                    object[] row = new object[dgv.Columns.Count];
+                    for (int c = 0; c < dgv.Columns.Count; c++)
+                        row[c] = dgRow.Cells[c].Value;
+
+                    data.Add(row);
+                }
+
+                visibleIndex++;
+
+                if (visibleIndex > toVisibleRow)
+                    break;
+            }
+
+            return data;
+        }*/
 
 
         private class IndexedRow
@@ -581,7 +680,10 @@ namespace AirportSMS
         {
 
             int fromRow = 0;
-            int toRow = DGV_SPI_Summary.RowCount - 2;           // <-- rows to sort
+            //int toRow = DGV_SPI_Summary.RowCount - 2;           // <-- rows to sort
+            int toRow = DGV_SPI_Summary.Rows.GetRowCount(DataGridViewElementStates.Visible) - 2;
+            // <-- rows to sort
+            //MessageBox.Show("torow = " + toRow);
             int sortColumn=0;
             bool ascending = true;
 
@@ -764,14 +866,61 @@ namespace AirportSMS
         private void BtnFilterSPISummary_Click(object sender, EventArgs e)
         {
             AirportSMS_Class acls = new AirportSMS_Class();
-            if(TxtFilterSPISummary.Text == "")
+            //acls.FilterDataGridView(DGV_SPI_Summary, ComboBoxSPIsummaryColName.Text, ComboBoxSPISummaryValue.Text);
+            /*if (TxtFilterSPISummary.Text == "")
             {
-                acls.FilterDataGridView(DGV_SPI_Summary, TxtFilterSPISummary.Text);
+                
             }
             else
             {
                 MessageBox.Show("Enter query to filer...");
-            }
+            }*/
+
+
+
+           if (ComboBoxSPIsummaryColName.SelectedItem == null ||
+        ComboBoxSPISummaryValue.SelectedItem == null)
+                return;
+
+            acls.ApplyFilterDGV(
+                DGV_SPI_Summary,
+                ComboBoxSPIsummaryColName.SelectedItem.ToString(),
+                ComboBoxSPISummaryValue.SelectedItem.ToString()
+            );
+
+            int visibleCount = DGV_SPI_Summary.Rows.GetRowCount(DataGridViewElementStates.Visible) - 1;
+
+            TxtFilterSPISummary.Text ="Total filtered rows =" + (visibleCount).ToString();
+
+            PlotGraphScottPlotSummary();
+
+        }
+
+        private void BtnClearFilter_Click(object sender, EventArgs e)
+        {
+            AirportSMS_Class acls = new AirportSMS_Class();
+            acls.ClearFilter(DGV_SPI_Summary);
+
+            int visibleCount = DGV_SPI_Summary.Rows.GetRowCount(DataGridViewElementStates.Visible) - 1;
+
+            TxtFilterSPISummary.Text = "Total rows =" + (visibleCount).ToString();
+
+            PlotGraphScottPlotSummary();
+        }
+
+        private void ComboBoxSPIsummaryColName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AirportSMS_Class acls = new AirportSMS_Class();
+            if (ComboBoxSPIsummaryColName.SelectedItem == null)
+                return;
+
+            string columnName = ComboBoxSPIsummaryColName.SelectedItem.ToString();
+
+            acls.LoadDistinctValuesFromDGV(
+                DGV_SPI_Summary,
+                columnName,
+                ComboBoxSPISummaryValue
+            );
         }
     }
 }
