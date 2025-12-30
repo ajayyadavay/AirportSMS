@@ -496,6 +496,107 @@ namespace AirportSMS
             }
         }
 
+        public void FilterDGV_DT(
+            DataGridView dgv,
+            DataTable dt,
+            string columnName,
+            string columnValue)
+        {
+            if (dt == null || dt.Rows.Count == 0)
+                return;
+
+            if (!dt.Columns.Contains(columnName))
+                throw new Exception($"Column '{columnName}' does not exist in DataTable.");
+
+            // Detach first
+            dgv.DataSource = null;
+
+            DataView dv = new DataView(dt);
+
+            // Build filter expression safely
+            DataColumn col = dt.Columns[columnName];
+
+            if (col.DataType == typeof(string))
+            {
+                // Escape single quotes
+                string safeValue = columnValue.Replace("'", "''");
+                dv.RowFilter = $"[{columnName}] = '{safeValue}'";
+            }
+            else if (col.DataType == typeof(DateTime))
+            {
+                DateTime dtVal = DateTime.Parse(columnValue);
+                dv.RowFilter = $"[{columnName}] = #{dtVal:MM/dd/yyyy}#";
+            }
+            else
+            {
+                // numeric / bool
+                dv.RowFilter = $"[{columnName}] = {columnValue}";
+            }
+
+            // Bind filtered view
+            dgv.DataSource = dv;
+        }
+
+
+        public void AddLastSumRow_DGV(
+            DataGridView dgv,
+            int colStart = 3,
+            int colEnd = 15)
+        {
+            if (dgv.DataSource == null)
+                return;
+
+            // ALWAYS work on a COPY
+            DataTable workingDT;
+
+            if (dgv.DataSource is DataView dv)
+                workingDT = dv.ToTable();   // copy of filtered rows
+            else
+                workingDT = ((DataTable)dgv.DataSource).Copy();
+
+            DataRow totalRow = workingDT.NewRow();
+            totalRow[0] = workingDT.Rows.Count + 1;
+            totalRow[1] = "Monthly Total";
+            totalRow[2] = "Summation";
+
+            for (int i = colStart; i <= colEnd; i++)
+            {
+                double sum = 0;
+
+                foreach (DataRow row in workingDT.Rows)
+                {
+                    if (row[i] != DBNull.Value)
+                        sum += Convert.ToDouble(row[i]);
+                }
+
+                totalRow[i] = sum;
+            }
+
+            workingDT.Rows.Add(totalRow);
+
+            // Rebind ONLY the copy
+            dgv.DataSource = null;
+            dgv.DataSource = workingDT;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public void FilterDataGridView(
             DataGridView dgv,
             string columnName,
@@ -564,16 +665,47 @@ namespace AirportSMS
         }
 
 
-        public void ClearFilter(DataGridView dgv)
+        public void ClearFilter(DataGridView dgv, DataTable dt)
         {
-            foreach (DataGridViewRow row in dgv.Rows)
+            /*foreach (DataGridViewRow row in dgv.Rows)
             {
                 if (!row.IsNewRow)
                     row.Visible = true;
-            }
+            }*/
+
+            dgv.DataSource = null;
+            dgv.DataSource = dt;
         }
 
-        public void LoadDistinctValuesFromDGV(
+        public void LoadDistinctValuesFromDT(
+            DataTable dt,
+            string columnName,
+            ComboBox combo)
+        {
+            combo.Items.Clear();
+            combo.Text = "";
+
+            if (dt == null || !dt.Columns.Contains(columnName))
+                return;
+
+            HashSet<string> values = new HashSet<string>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                var cellValue = row[columnName];
+                if (cellValue != null && cellValue != DBNull.Value)
+                    values.Add(cellValue.ToString());
+            }
+
+            foreach (var v in values.OrderBy(v => v))
+                combo.Items.Add(v);
+
+            if (combo.Items.Count > 0)
+                combo.SelectedIndex = 0;
+        }
+
+
+        /*public void LoadDistinctValuesFromDGV(
             DataGridView dgv,
             string columnName,
             ComboBox combo)
@@ -602,7 +734,7 @@ namespace AirportSMS
 
             if (combo.Items.Count > 0)
                 combo.SelectedIndex = 0;
-        }
+        }*/
 
 
         public void LoadColumnNames(DataGridView dgv,

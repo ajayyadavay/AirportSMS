@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using static AirportSMS.FrmHazardMonitoring;
 using sctplot = ScottPlot;
@@ -211,8 +212,19 @@ namespace AirportSMS
 
                             // Cluster width (1.0 = full month slot)
                             double clusterWidth = 0.8;
-                            double barWidth = clusterWidth / totalSeries;
 
+                            // Adjust clusterWidth for very few series so bars don't stretch visually
+                            if (totalSeries <= 2)
+                                clusterWidth = 0.5; // shrink cluster when only 1 or 2 series
+
+                            double barWidth = clusterWidth / totalSeries;
+                            
+                            // 🔹 Set an upper limit to bar width (Excel-like default)
+                            //double maxBarWidth = clusterWidth * 0.35; // 35% of cluster width like Excel default
+                            double maxBarWidth = 0.25;  // tweak this value for best look
+                            if (barWidth > maxBarWidth)
+                                barWidth = maxBarWidth;
+                            
                             // 🔑 CORRECT OFFSET (works for N series)
                             double offset = (seriesIndex - (totalSeries - 1) / 2.0) * barWidth;
 
