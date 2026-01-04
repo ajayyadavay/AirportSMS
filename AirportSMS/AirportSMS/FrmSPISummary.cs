@@ -20,12 +20,14 @@ namespace AirportSMS
         DataTable DT_Summary = new DataTable();
         DataTable DT_Summary_All = new DataTable();
         DataTable DT_Monthly = new DataTable();
+        DataTable dt_filter_monthly = new DataTable();
 
         public sctplotwin.FormsPlot formsPlot2;
         public sctplotwin.FormsPlot formsPlot3;
         public sctplotwin.FormsPlot formsPlot4;
 
         double CurrentYear;
+        bool IsMonthlyFilter = false;
 
         public void PopulateDataTableStructureFromDGV(DataGridView dgv, DataTable dt)
         {
@@ -86,7 +88,7 @@ namespace AirportSMS
             PopulateDataTableStructureFromDGV(DGV_SPI_Summary_ALL, DT_Summary_All);
             PopulateDataTableStructureFromDGV(DGV_Summary_Monthly, DT_Monthly);
 
-            LoadSPISummary();
+            LoadSPISummaries();
             InitializeScottPlot();
             PlotGraphScottPlotSummary();
             PlotGraphScottPlotMonthly();
@@ -106,7 +108,7 @@ namespace AirportSMS
         }
 
 
-        private void LoadSPISummary()
+        private void LoadSPISummaries()
         {
             FrmMain fm = (FrmMain)Application.OpenForms["FrmMain"];
 
@@ -152,7 +154,7 @@ namespace AirportSMS
 
                     //all summary data............
                     // 1. Prepare the static lead data (SN and Name)
-                    var rowData = new List<object> { sn-1, spi.Name, spi.Type };
+                    var rowData = new List<object> { sn-1, spi.Name, spi.Type, spi.Progress };
 
                     // 2. Use LINQ to grab indices 1 through 12 from MonthlySPIObsData
                     var monthlyData = spi.MonthlySPIObsData.Skip(1).Take(12).Cast<object>();
@@ -183,10 +185,11 @@ namespace AirportSMS
                 int TotalRow = DT_Summary_All.Rows.Count - 1;
                 DT_Summary_All.Rows[TotalRow][0] = TotalRow + 1;
                 DT_Summary_All.Rows[TotalRow][1] = "Montly Total";
-                DT_Summary_All.Rows[TotalRow][2] = "Summation";
+                DT_Summary_All.Rows[TotalRow][2] = "NA";
+                DT_Summary_All.Rows[TotalRow][3] = "NA";
 
                 //monthly summation
-                for (int i = 3;i <= 14;i++)
+                for (int i = 4;i <= 15;i++)
                 {
                     sum1 = 0;
                     for(int j = 0; j < TotalRow; j++)
@@ -202,7 +205,7 @@ namespace AirportSMS
                     
                 }
 
-                DT_Summary_All.Rows[TotalRow][15] = sumTotal;
+                DT_Summary_All.Rows[TotalRow][16] = sumTotal;
                 //DT_Summary_All.Rows[TotalRow][16] = true;
                 //DGV_SPI_Summary_ALL.Rows[TotalRow].Cells[14].Value = sumTotal.ToString("0.00");
 
@@ -268,7 +271,7 @@ namespace AirportSMS
             int idx = 0;
             
             //Datagridview monthly
-            for (int i = 3; i <= 15; i++)
+            for (int i = 4; i <= 16; i++)
             {
                 DT_Monthly.Rows.Add();
                 DT_Monthly.Rows[idx][0] = idx + 1;
@@ -569,12 +572,12 @@ namespace AirportSMS
             //ComboBoxSummaryAllColName.Items.Add(DGV_SPI_Summary_ALL.Columns[0].Name);
             ComboBoxSummaryAllColName.Items.Add(DGV_SPI_Summary_ALL.Columns[1].Name);
             ComboBoxSummaryAllColName.Items.Add(DGV_SPI_Summary_ALL.Columns[2].Name);
-            ComboBoxSummaryAllColName.Items.Add(DGV_SPI_Summary_ALL.Columns[15].Name);
+            ComboBoxSummaryAllColName.Items.Add(DGV_SPI_Summary_ALL.Columns[16].Name);
             ComboBoxSummaryAllColName.SelectedIndex = 0;
 
         }
 
-        private void sortbycolName()
+        /*private void sortbycolName()
         {
             string Colname;
             if (RadioAscending.Checked == true || RadioDescending.Checked == true)
@@ -611,7 +614,7 @@ namespace AirportSMS
         private void sortSummaryTableToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
-        }
+        }*/
 
         private void BtnMnthAscend_Click(object sender, EventArgs e)
         {
@@ -1123,6 +1126,40 @@ namespace AirportSMS
             );
         }
 
+        public void CopyDataFromDGVToDTWithoutColumName(DataGridView dgv, DataTable dt)
+        {
+            try
+            {
+                dt.Clear();
+                // --- 2. POPULATE DATA (The Extension) ---
+                foreach (DataGridViewRow dgvRow in dgv.Rows)
+                {
+                    // Skip the blank 'new row' at the bottom of the grid
+                    if (dgvRow.IsNewRow) continue;
+
+                    DataRow dr = dt.NewRow();
+
+                    // We only loop through the columns we actually added to the DataTable
+                    foreach (DataColumn dc in dt.Columns)
+                    {
+                        // Pull the cell value based on the column name
+                        object cellValue = dgvRow.Cells[dc.ColumnName].Value;
+
+                        // C# 7.3 Null Coalescing: use DBNull if cell is empty
+                        dr[dc.ColumnName] = cellValue ?? DBNull.Value;
+                    }
+
+                    dt.Rows.Add(dr);
+                }
+            }
+            catch
+            {
+
+            }
+
+            
+        }
+
         private void BtnFilterAll_Click(object sender, EventArgs e)
         {
             AirportSMS_Class acls = new AirportSMS_Class();
@@ -1130,16 +1167,30 @@ namespace AirportSMS
                     ComboBoxFilterValueALL.SelectedItem == null)
                 return;
 
-            acls.FilterDGV_DT(
-                DGV_SPI_Summary_ALL,
-                DT_Summary_All,
-                ComboBoxSummaryAllColName.SelectedItem.ToString(),
-                ComboBoxFilterValueALL.SelectedItem.ToString()
-            );
 
-            TxtNoOfFilteredData.Text = "Total filtered rows =" + DGV_SPI_Summary_ALL.RowCount;
+            if(IsMonthlyFilter)
+            {
+                acls.FilterDGV_DT(
+                    DGV_SPI_Summary_ALL,
+                    dt_filter_monthly,
+                    ComboBoxSummaryAllColName.SelectedItem.ToString(),
+                    ComboBoxFilterValueALL.SelectedItem.ToString()
+                );
 
-            acls.AddLastSumRow_DGV(DGV_SPI_Summary_ALL, 3, 15);
+            }
+            else
+            {
+                acls.FilterDGV_DT(
+                    DGV_SPI_Summary_ALL,
+                    DT_Summary_All,
+                    ComboBoxSummaryAllColName.SelectedItem.ToString(),
+                    ComboBoxFilterValueALL.SelectedItem.ToString()
+                );
+            }
+
+            TxtNoOfFilteredData.Text = "Total filtered rows = " + DGV_SPI_Summary_ALL.RowCount;
+
+            acls.AddLastSumRow_DGV(DGV_SPI_Summary_ALL, 4, 16);
             FillingDataInMonthlySummaryDGV_DT();
 
             PlotGraphScottPlotMonthly();
@@ -1147,8 +1198,18 @@ namespace AirportSMS
 
         private void BtnClearFilterAll_Click(object sender, EventArgs e)
         {
+
+            //IsMonthlyFilter = false;
             AirportSMS_Class acls = new AirportSMS_Class();
-            acls.ClearFilter(DGV_SPI_Summary_ALL, DT_Summary_All);
+            if (IsMonthlyFilter)
+            {
+                acls.ClearFilter(DGV_SPI_Summary_ALL, dt_filter_monthly);
+            }
+            else
+            {
+                acls.ClearFilter(DGV_SPI_Summary_ALL, DT_Summary_All);
+            }
+                
 
             //int visibleCount = DGV_SPI_Summary.Rows.GetRowCount(DataGridViewElementStates.Visible) - 1;
 
@@ -1225,6 +1286,112 @@ namespace AirportSMS
             var data = ReadDgvRows(DGV_SPI_Summary_ALL, fromRow, toRow);
             var sorted = SortData(data, sortColumn, ascending);
             WriteDgvRows(DGV_SPI_Summary_ALL, sorted, fromRow);
+        }
+
+        private void ApplyMonthFilter(List<int> selectedMonthCols)
+        {
+            DataTable dtFiltered = DT_Summary_All.Copy();
+            int totalRowIndex = dtFiltered.Rows.Count - 1;
+
+            // Reset total row
+            for (int c = 4; c <= 16; c++)
+                dtFiltered.Rows[totalRowIndex][c] = 0;
+
+            for (int r = 0; r < totalRowIndex; r++)
+            {
+                double rowTotal = 0;
+
+                for (int c = 4; c <= 15; c++)
+                {
+                    if (!selectedMonthCols.Contains(c))
+                    {
+                        dtFiltered.Rows[r][c] = 0;
+                    }
+                    else
+                    {
+                        double val = Convert.ToDouble(dtFiltered.Rows[r][c]);
+                        rowTotal += val;
+                        dtFiltered.Rows[totalRowIndex][c] =
+                            Convert.ToDouble(dtFiltered.Rows[totalRowIndex][c]) + val;
+                    }
+                }
+
+                dtFiltered.Rows[r][16] = rowTotal;
+                dtFiltered.Rows[totalRowIndex][16] =
+                    Convert.ToDouble(dtFiltered.Rows[totalRowIndex][16]) + rowTotal;
+            }
+
+            BindDTtoDGV(DGV_SPI_Summary_ALL, dtFiltered);
+        }
+
+        private List<int> ParseSelectedMonths(string input)
+        {
+            HashSet<int> monthCols = new HashSet<int>();
+
+            input = input.Replace(" ", "");
+
+            // Range format: 8-10
+            if (input.Contains("-"))
+            {
+                string[] parts = input.Split('-');
+                int start = int.Parse(parts[0]);
+                int end = int.Parse(parts[1]);
+
+                for (int m = start; m <= end; m++)
+                    monthCols.Add(3 + m);   // 4 = JAN
+            }
+            // Comma separated: 2,8,11,12
+            else if (input.Contains(","))
+            {
+                foreach (string s in input.Split(','))
+                {
+                    int m = int.Parse(s);
+                    monthCols.Add(3 + m);
+                }
+            }
+            // Single month
+            else
+            {
+                int m = int.Parse(input);
+                monthCols.Add(3 + m);
+            }
+
+            return monthCols.ToList();
+        }
+
+
+
+        private void BtnSelectedMonthView_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(TxtSelectedMonth.Text))
+            {
+                BindDTtoDGV(DGV_SPI_Summary_ALL, DT_Summary_All);
+                IsMonthlyFilter = false;
+                return;
+            }
+
+            try
+            {
+                List<int> selectedMonths =
+                    ParseSelectedMonths(TxtSelectedMonth.Text);
+
+                ApplyMonthFilter(selectedMonths);
+
+                MessageBox.Show("Filtered = " + TxtSelectedMonth.Text);
+                
+                IsMonthlyFilter = true;
+                FillingDataInMonthlySummaryDGV_DT();
+
+                PlotGraphScottPlotMonthly();
+
+                PopulateDataTableStructureFromDGV(DGV_SPI_Summary_ALL, dt_filter_monthly);//creates column in dt from dgv
+                CopyDataFromDGVToDTWithoutColumName(DGV_SPI_Summary_ALL, dt_filter_monthly);//copies data in dt from dgv
+
+            }
+            catch
+            {
+                MessageBox.Show("Invalid month format.\nExamples:\n1-12\n8-10\n2,8,11,12");
+            }
         }
     }
 }

@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.DGV_SPI_Summary = new System.Windows.Forms.DataGridView();
+            this.ColSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSPIs = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSPIsType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSPIsProgress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSPIsTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,6 +59,18 @@
             this.PanelHighHazardSPI = new System.Windows.Forms.Panel();
             this.BtnSortSummarySPI = new System.Windows.Forms.Button();
             this.TabDetailedSummary = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Default = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.TxtNoOfFilteredData = new System.Windows.Forms.TextBox();
+            this.BtnClearFilterAll = new System.Windows.Forms.Button();
+            this.BtnDescendingAll = new System.Windows.Forms.Button();
+            this.BtnAscendingAll = new System.Windows.Forms.Button();
+            this.BtnFilterAll = new System.Windows.Forms.Button();
+            this.ComboBoxFilterValueALL = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.ComboBoxSummaryAllColName = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.BtnClearPlotArea = new System.Windows.Forms.Button();
             this.BtnPlotAllSelectedSPIs = new System.Windows.Forms.Button();
             this.PanelPlotAllSummarySPI = new System.Windows.Forms.Panel();
@@ -69,29 +86,16 @@
             this.BtnMnthAscend = new System.Windows.Forms.Button();
             this.PanelPlotMonth = new System.Windows.Forms.Panel();
             this.DGV_Summary_Monthly = new System.Windows.Forms.DataGridView();
-            this.ColSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSPIs = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSPIsType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSPIsProgress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSPIsTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColM_SN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColMonthTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.ComboBoxSummaryAllColName = new System.Windows.Forms.ComboBox();
-            this.ComboBoxFilterValueALL = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.BtnFilterAll = new System.Windows.Forms.Button();
-            this.BtnAscendingAll = new System.Windows.Forms.Button();
-            this.BtnDescendingAll = new System.Windows.Forms.Button();
-            this.BtnClearFilterAll = new System.Windows.Forms.Button();
-            this.TxtNoOfFilteredData = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.Default = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.TxtSelectedMonth = new System.Windows.Forms.TextBox();
+            this.BtnSelectedMonthView = new System.Windows.Forms.Button();
             this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSpiTypeAll = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSPIs_Progress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColJan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColFeb = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColMar = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -105,15 +109,17 @@
             this.ColNov = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDec = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SPI_Summary)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.TabSummarySPIs.SuspendLayout();
             this.TabDetailedSummary.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SPI_Summary_ALL)).BeginInit();
             this.TabMonthwise.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Summary_Monthly)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGV_SPI_Summary
@@ -129,6 +135,43 @@
             this.DGV_SPI_Summary.Name = "DGV_SPI_Summary";
             this.DGV_SPI_Summary.Size = new System.Drawing.Size(885, 516);
             this.DGV_SPI_Summary.TabIndex = 0;
+            // 
+            // ColSN
+            // 
+            this.ColSN.DataPropertyName = "ColSN";
+            this.ColSN.HeaderText = "SN";
+            this.ColSN.Name = "ColSN";
+            this.ColSN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            // 
+            // ColSPIs
+            // 
+            this.ColSPIs.DataPropertyName = "ColSPIs";
+            this.ColSPIs.HeaderText = "SPIs";
+            this.ColSPIs.Name = "ColSPIs";
+            this.ColSPIs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColSPIs.Width = 250;
+            // 
+            // ColSPIsType
+            // 
+            this.ColSPIsType.DataPropertyName = "ColSPIsType";
+            this.ColSPIsType.HeaderText = "SPIs Type";
+            this.ColSPIsType.Name = "ColSPIsType";
+            this.ColSPIsType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColSPIsType.Width = 250;
+            // 
+            // ColSPIsProgress
+            // 
+            this.ColSPIsProgress.DataPropertyName = "ColSPIsProgress";
+            this.ColSPIsProgress.HeaderText = "SPIs Progress";
+            this.ColSPIsProgress.Name = "ColSPIsProgress";
+            this.ColSPIsProgress.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            // 
+            // ColSPIsTotal
+            // 
+            this.ColSPIsTotal.DataPropertyName = "ColSPIsTotal";
+            this.ColSPIsTotal.HeaderText = "SPIs Total";
+            this.ColSPIsTotal.Name = "ColSPIsTotal";
+            this.ColSPIsTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             // 
             // menuStrip1
             // 
@@ -426,6 +469,7 @@
             // 
             // TabDetailedSummary
             // 
+            this.TabDetailedSummary.Controls.Add(this.groupBox2);
             this.TabDetailedSummary.Controls.Add(this.groupBox1);
             this.TabDetailedSummary.Controls.Add(this.BtnClearPlotArea);
             this.TabDetailedSummary.Controls.Add(this.BtnPlotAllSelectedSPIs);
@@ -438,6 +482,168 @@
             this.TabDetailedSummary.TabIndex = 1;
             this.TabDetailedSummary.Text = "Detailed Summary - SPIs";
             this.TabDetailedSummary.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.Default);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.TxtNoOfFilteredData);
+            this.groupBox1.Controls.Add(this.BtnClearFilterAll);
+            this.groupBox1.Controls.Add(this.BtnDescendingAll);
+            this.groupBox1.Controls.Add(this.BtnAscendingAll);
+            this.groupBox1.Controls.Add(this.BtnFilterAll);
+            this.groupBox1.Controls.Add(this.ComboBoxFilterValueALL);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.ComboBoxSummaryAllColName);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(6, 456);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(966, 146);
+            this.groupBox1.TabIndex = 16;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Filter and Sort";
+            // 
+            // Default
+            // 
+            this.Default.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
+            this.Default.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.Default.FlatAppearance.BorderSize = 0;
+            this.Default.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
+            this.Default.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
+            this.Default.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Default.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Default.ForeColor = System.Drawing.Color.White;
+            this.Default.Location = new System.Drawing.Point(257, 96);
+            this.Default.Name = "Default";
+            this.Default.Size = new System.Drawing.Size(91, 35);
+            this.Default.TabIndex = 23;
+            this.Default.Text = "Default";
+            this.Default.UseVisualStyleBackColor = false;
+            this.Default.Click += new System.EventHandler(this.Default_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(755, 71);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(133, 18);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "No. of filtered rows";
+            // 
+            // TxtNoOfFilteredData
+            // 
+            this.TxtNoOfFilteredData.Location = new System.Drawing.Point(758, 96);
+            this.TxtNoOfFilteredData.Name = "TxtNoOfFilteredData";
+            this.TxtNoOfFilteredData.Size = new System.Drawing.Size(187, 24);
+            this.TxtNoOfFilteredData.TabIndex = 21;
+            // 
+            // BtnClearFilterAll
+            // 
+            this.BtnClearFilterAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
+            this.BtnClearFilterAll.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnClearFilterAll.FlatAppearance.BorderSize = 0;
+            this.BtnClearFilterAll.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
+            this.BtnClearFilterAll.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
+            this.BtnClearFilterAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnClearFilterAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnClearFilterAll.ForeColor = System.Drawing.Color.White;
+            this.BtnClearFilterAll.Location = new System.Drawing.Point(593, 96);
+            this.BtnClearFilterAll.Name = "BtnClearFilterAll";
+            this.BtnClearFilterAll.Size = new System.Drawing.Size(140, 35);
+            this.BtnClearFilterAll.TabIndex = 20;
+            this.BtnClearFilterAll.Text = "Clear Filter";
+            this.BtnClearFilterAll.UseVisualStyleBackColor = false;
+            this.BtnClearFilterAll.Click += new System.EventHandler(this.BtnClearFilterAll_Click);
+            // 
+            // BtnDescendingAll
+            // 
+            this.BtnDescendingAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
+            this.BtnDescendingAll.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnDescendingAll.FlatAppearance.BorderSize = 0;
+            this.BtnDescendingAll.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
+            this.BtnDescendingAll.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
+            this.BtnDescendingAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnDescendingAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnDescendingAll.ForeColor = System.Drawing.Color.White;
+            this.BtnDescendingAll.Location = new System.Drawing.Point(142, 96);
+            this.BtnDescendingAll.Name = "BtnDescendingAll";
+            this.BtnDescendingAll.Size = new System.Drawing.Size(109, 35);
+            this.BtnDescendingAll.TabIndex = 19;
+            this.BtnDescendingAll.Text = "Descending";
+            this.BtnDescendingAll.UseVisualStyleBackColor = false;
+            this.BtnDescendingAll.Click += new System.EventHandler(this.BtnDescendingAll_Click);
+            // 
+            // BtnAscendingAll
+            // 
+            this.BtnAscendingAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
+            this.BtnAscendingAll.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnAscendingAll.FlatAppearance.BorderSize = 0;
+            this.BtnAscendingAll.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
+            this.BtnAscendingAll.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
+            this.BtnAscendingAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAscendingAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAscendingAll.ForeColor = System.Drawing.Color.White;
+            this.BtnAscendingAll.Location = new System.Drawing.Point(10, 96);
+            this.BtnAscendingAll.Name = "BtnAscendingAll";
+            this.BtnAscendingAll.Size = new System.Drawing.Size(126, 35);
+            this.BtnAscendingAll.TabIndex = 18;
+            this.BtnAscendingAll.Text = "Ascending";
+            this.BtnAscendingAll.UseVisualStyleBackColor = false;
+            this.BtnAscendingAll.Click += new System.EventHandler(this.BtnAscendingAll_Click);
+            // 
+            // BtnFilterAll
+            // 
+            this.BtnFilterAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
+            this.BtnFilterAll.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnFilterAll.FlatAppearance.BorderSize = 0;
+            this.BtnFilterAll.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
+            this.BtnFilterAll.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
+            this.BtnFilterAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnFilterAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnFilterAll.ForeColor = System.Drawing.Color.White;
+            this.BtnFilterAll.Location = new System.Drawing.Point(382, 96);
+            this.BtnFilterAll.Name = "BtnFilterAll";
+            this.BtnFilterAll.Size = new System.Drawing.Size(205, 35);
+            this.BtnFilterAll.TabIndex = 17;
+            this.BtnFilterAll.Text = "Filter";
+            this.BtnFilterAll.UseVisualStyleBackColor = false;
+            this.BtnFilterAll.Click += new System.EventHandler(this.BtnFilterAll_Click);
+            // 
+            // ComboBoxFilterValueALL
+            // 
+            this.ComboBoxFilterValueALL.FormattingEnabled = true;
+            this.ComboBoxFilterValueALL.Location = new System.Drawing.Point(382, 41);
+            this.ComboBoxFilterValueALL.Name = "ComboBoxFilterValueALL";
+            this.ComboBoxFilterValueALL.Size = new System.Drawing.Size(351, 26);
+            this.ComboBoxFilterValueALL.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(379, 20);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(148, 18);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Column Value to filter";
+            // 
+            // ComboBoxSummaryAllColName
+            // 
+            this.ComboBoxSummaryAllColName.FormattingEnabled = true;
+            this.ComboBoxSummaryAllColName.Location = new System.Drawing.Point(6, 43);
+            this.ComboBoxSummaryAllColName.Name = "ComboBoxSummaryAllColName";
+            this.ComboBoxSummaryAllColName.Size = new System.Drawing.Size(342, 26);
+            this.ComboBoxSummaryAllColName.TabIndex = 1;
+            this.ComboBoxSummaryAllColName.SelectedIndexChanged += new System.EventHandler(this.ComboBoxSummaryAllColName_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 22);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(104, 18);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Column Name";
             // 
             // BtnClearPlotArea
             // 
@@ -491,6 +697,7 @@
             this.ColID,
             this.ColName,
             this.ColSpiTypeAll,
+            this.ColSPIs_Progress,
             this.ColJan,
             this.ColFeb,
             this.ColMar,
@@ -665,43 +872,6 @@
             this.DGV_Summary_Monthly.Size = new System.Drawing.Size(393, 487);
             this.DGV_Summary_Monthly.TabIndex = 9;
             // 
-            // ColSN
-            // 
-            this.ColSN.DataPropertyName = "ColSN";
-            this.ColSN.HeaderText = "SN";
-            this.ColSN.Name = "ColSN";
-            this.ColSN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // ColSPIs
-            // 
-            this.ColSPIs.DataPropertyName = "ColSPIs";
-            this.ColSPIs.HeaderText = "SPIs";
-            this.ColSPIs.Name = "ColSPIs";
-            this.ColSPIs.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColSPIs.Width = 250;
-            // 
-            // ColSPIsType
-            // 
-            this.ColSPIsType.DataPropertyName = "ColSPIsType";
-            this.ColSPIsType.HeaderText = "SPIs Type";
-            this.ColSPIsType.Name = "ColSPIsType";
-            this.ColSPIsType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColSPIsType.Width = 250;
-            // 
-            // ColSPIsProgress
-            // 
-            this.ColSPIsProgress.DataPropertyName = "ColSPIsProgress";
-            this.ColSPIsProgress.HeaderText = "SPIs Progress";
-            this.ColSPIsProgress.Name = "ColSPIsProgress";
-            this.ColSPIsProgress.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // ColSPIsTotal
-            // 
-            this.ColSPIsTotal.DataPropertyName = "ColSPIsTotal";
-            this.ColSPIsTotal.HeaderText = "SPIs Total";
-            this.ColSPIsTotal.Name = "ColSPIsTotal";
-            this.ColSPIsTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
             // ColM_SN
             // 
             this.ColM_SN.DataPropertyName = "ColM_SN";
@@ -726,167 +896,43 @@
             this.ColMonthTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.ColMonthTotal.Width = 150;
             // 
-            // groupBox1
+            // groupBox2
             // 
-            this.groupBox1.Controls.Add(this.Default);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.TxtNoOfFilteredData);
-            this.groupBox1.Controls.Add(this.BtnClearFilterAll);
-            this.groupBox1.Controls.Add(this.BtnDescendingAll);
-            this.groupBox1.Controls.Add(this.BtnAscendingAll);
-            this.groupBox1.Controls.Add(this.BtnFilterAll);
-            this.groupBox1.Controls.Add(this.ComboBoxFilterValueALL);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.ComboBoxSummaryAllColName);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(6, 456);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1065, 146);
-            this.groupBox1.TabIndex = 16;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Filter and Sort";
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.BtnSelectedMonthView);
+            this.groupBox2.Controls.Add(this.TxtSelectedMonth);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(995, 456);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(320, 196);
+            this.groupBox2.TabIndex = 17;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Select Month to view";
             // 
-            // label6
+            // TxtSelectedMonth
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 22);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(104, 18);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Column Name";
+            this.TxtSelectedMonth.Location = new System.Drawing.Point(6, 30);
+            this.TxtSelectedMonth.Name = "TxtSelectedMonth";
+            this.TxtSelectedMonth.Size = new System.Drawing.Size(273, 24);
+            this.TxtSelectedMonth.TabIndex = 22;
             // 
-            // ComboBoxSummaryAllColName
+            // BtnSelectedMonthView
             // 
-            this.ComboBoxSummaryAllColName.FormattingEnabled = true;
-            this.ComboBoxSummaryAllColName.Location = new System.Drawing.Point(6, 43);
-            this.ComboBoxSummaryAllColName.Name = "ComboBoxSummaryAllColName";
-            this.ComboBoxSummaryAllColName.Size = new System.Drawing.Size(384, 26);
-            this.ComboBoxSummaryAllColName.TabIndex = 1;
-            this.ComboBoxSummaryAllColName.SelectedIndexChanged += new System.EventHandler(this.ComboBoxSummaryAllColName_SelectedIndexChanged);
-            // 
-            // ComboBoxFilterValueALL
-            // 
-            this.ComboBoxFilterValueALL.FormattingEnabled = true;
-            this.ComboBoxFilterValueALL.Location = new System.Drawing.Point(435, 43);
-            this.ComboBoxFilterValueALL.Name = "ComboBoxFilterValueALL";
-            this.ComboBoxFilterValueALL.Size = new System.Drawing.Size(405, 26);
-            this.ComboBoxFilterValueALL.TabIndex = 3;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(432, 22);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(148, 18);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Column Value to filter";
-            // 
-            // BtnFilterAll
-            // 
-            this.BtnFilterAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
-            this.BtnFilterAll.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnFilterAll.FlatAppearance.BorderSize = 0;
-            this.BtnFilterAll.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
-            this.BtnFilterAll.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
-            this.BtnFilterAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnFilterAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnFilterAll.ForeColor = System.Drawing.Color.White;
-            this.BtnFilterAll.Location = new System.Drawing.Point(6, 96);
-            this.BtnFilterAll.Name = "BtnFilterAll";
-            this.BtnFilterAll.Size = new System.Drawing.Size(205, 35);
-            this.BtnFilterAll.TabIndex = 17;
-            this.BtnFilterAll.Text = "Filter";
-            this.BtnFilterAll.UseVisualStyleBackColor = false;
-            this.BtnFilterAll.Click += new System.EventHandler(this.BtnFilterAll_Click);
-            // 
-            // BtnAscendingAll
-            // 
-            this.BtnAscendingAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
-            this.BtnAscendingAll.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnAscendingAll.FlatAppearance.BorderSize = 0;
-            this.BtnAscendingAll.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
-            this.BtnAscendingAll.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
-            this.BtnAscendingAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAscendingAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAscendingAll.ForeColor = System.Drawing.Color.White;
-            this.BtnAscendingAll.Location = new System.Drawing.Point(406, 96);
-            this.BtnAscendingAll.Name = "BtnAscendingAll";
-            this.BtnAscendingAll.Size = new System.Drawing.Size(220, 35);
-            this.BtnAscendingAll.TabIndex = 18;
-            this.BtnAscendingAll.Text = "Ascending";
-            this.BtnAscendingAll.UseVisualStyleBackColor = false;
-            this.BtnAscendingAll.Click += new System.EventHandler(this.BtnAscendingAll_Click);
-            // 
-            // BtnDescendingAll
-            // 
-            this.BtnDescendingAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
-            this.BtnDescendingAll.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnDescendingAll.FlatAppearance.BorderSize = 0;
-            this.BtnDescendingAll.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
-            this.BtnDescendingAll.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
-            this.BtnDescendingAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnDescendingAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnDescendingAll.ForeColor = System.Drawing.Color.White;
-            this.BtnDescendingAll.Location = new System.Drawing.Point(645, 96);
-            this.BtnDescendingAll.Name = "BtnDescendingAll";
-            this.BtnDescendingAll.Size = new System.Drawing.Size(221, 35);
-            this.BtnDescendingAll.TabIndex = 19;
-            this.BtnDescendingAll.Text = "Descending";
-            this.BtnDescendingAll.UseVisualStyleBackColor = false;
-            this.BtnDescendingAll.Click += new System.EventHandler(this.BtnDescendingAll_Click);
-            // 
-            // BtnClearFilterAll
-            // 
-            this.BtnClearFilterAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
-            this.BtnClearFilterAll.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnClearFilterAll.FlatAppearance.BorderSize = 0;
-            this.BtnClearFilterAll.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
-            this.BtnClearFilterAll.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
-            this.BtnClearFilterAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnClearFilterAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnClearFilterAll.ForeColor = System.Drawing.Color.White;
-            this.BtnClearFilterAll.Location = new System.Drawing.Point(225, 96);
-            this.BtnClearFilterAll.Name = "BtnClearFilterAll";
-            this.BtnClearFilterAll.Size = new System.Drawing.Size(165, 35);
-            this.BtnClearFilterAll.TabIndex = 20;
-            this.BtnClearFilterAll.Text = "Clear Filter";
-            this.BtnClearFilterAll.UseVisualStyleBackColor = false;
-            this.BtnClearFilterAll.Click += new System.EventHandler(this.BtnClearFilterAll_Click);
-            // 
-            // TxtNoOfFilteredData
-            // 
-            this.TxtNoOfFilteredData.Location = new System.Drawing.Point(861, 45);
-            this.TxtNoOfFilteredData.Name = "TxtNoOfFilteredData";
-            this.TxtNoOfFilteredData.Size = new System.Drawing.Size(187, 24);
-            this.TxtNoOfFilteredData.TabIndex = 21;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(858, 20);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(133, 18);
-            this.label8.TabIndex = 22;
-            this.label8.Text = "No. of filtered rows";
-            // 
-            // Default
-            // 
-            this.Default.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
-            this.Default.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.Default.FlatAppearance.BorderSize = 0;
-            this.Default.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
-            this.Default.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
-            this.Default.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Default.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Default.ForeColor = System.Drawing.Color.White;
-            this.Default.Location = new System.Drawing.Point(872, 96);
-            this.Default.Name = "Default";
-            this.Default.Size = new System.Drawing.Size(176, 35);
-            this.Default.TabIndex = 23;
-            this.Default.Text = "Default";
-            this.Default.UseVisualStyleBackColor = false;
-            this.Default.Click += new System.EventHandler(this.Default_Click);
+            this.BtnSelectedMonthView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
+            this.BtnSelectedMonthView.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnSelectedMonthView.FlatAppearance.BorderSize = 0;
+            this.BtnSelectedMonthView.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
+            this.BtnSelectedMonthView.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
+            this.BtnSelectedMonthView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSelectedMonthView.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSelectedMonthView.ForeColor = System.Drawing.Color.White;
+            this.BtnSelectedMonthView.Location = new System.Drawing.Point(7, 147);
+            this.BtnSelectedMonthView.Name = "BtnSelectedMonthView";
+            this.BtnSelectedMonthView.Size = new System.Drawing.Size(281, 35);
+            this.BtnSelectedMonthView.TabIndex = 24;
+            this.BtnSelectedMonthView.Text = "View Selected Month";
+            this.BtnSelectedMonthView.UseVisualStyleBackColor = false;
+            this.BtnSelectedMonthView.Click += new System.EventHandler(this.BtnSelectedMonthView_Click);
             // 
             // ColID
             // 
@@ -902,7 +948,7 @@
             this.ColName.HeaderText = "Name";
             this.ColName.Name = "ColName";
             this.ColName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColName.Width = 150;
+            this.ColName.Width = 140;
             // 
             // ColSpiTypeAll
             // 
@@ -910,7 +956,15 @@
             this.ColSpiTypeAll.HeaderText = "Type";
             this.ColSpiTypeAll.Name = "ColSpiTypeAll";
             this.ColSpiTypeAll.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColSpiTypeAll.Width = 150;
+            this.ColSpiTypeAll.Width = 140;
+            // 
+            // ColSPIs_Progress
+            // 
+            this.ColSPIs_Progress.DataPropertyName = "ColSPIs_Progress";
+            this.ColSPIs_Progress.HeaderText = "SPIs Progress";
+            this.ColSPIs_Progress.Name = "ColSPIs_Progress";
+            this.ColSPIs_Progress.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColSPIs_Progress.Width = 70;
             // 
             // ColJan
             // 
@@ -918,7 +972,7 @@
             this.ColJan.HeaderText = "Jan";
             this.ColJan.Name = "ColJan";
             this.ColJan.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColJan.Width = 70;
+            this.ColJan.Width = 65;
             // 
             // ColFeb
             // 
@@ -926,7 +980,7 @@
             this.ColFeb.HeaderText = "Feb";
             this.ColFeb.Name = "ColFeb";
             this.ColFeb.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColFeb.Width = 70;
+            this.ColFeb.Width = 65;
             // 
             // ColMar
             // 
@@ -934,7 +988,7 @@
             this.ColMar.HeaderText = "Mar";
             this.ColMar.Name = "ColMar";
             this.ColMar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColMar.Width = 70;
+            this.ColMar.Width = 65;
             // 
             // ColApr
             // 
@@ -942,7 +996,7 @@
             this.ColApr.HeaderText = "Apr";
             this.ColApr.Name = "ColApr";
             this.ColApr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColApr.Width = 70;
+            this.ColApr.Width = 65;
             // 
             // ColMay
             // 
@@ -950,7 +1004,7 @@
             this.ColMay.HeaderText = "May";
             this.ColMay.Name = "ColMay";
             this.ColMay.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColMay.Width = 70;
+            this.ColMay.Width = 65;
             // 
             // ColJun
             // 
@@ -958,7 +1012,7 @@
             this.ColJun.HeaderText = "Jun";
             this.ColJun.Name = "ColJun";
             this.ColJun.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColJun.Width = 70;
+            this.ColJun.Width = 65;
             // 
             // ColJul
             // 
@@ -966,7 +1020,7 @@
             this.ColJul.HeaderText = "Jul";
             this.ColJul.Name = "ColJul";
             this.ColJul.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColJul.Width = 70;
+            this.ColJul.Width = 65;
             // 
             // ColAug
             // 
@@ -974,7 +1028,7 @@
             this.ColAug.HeaderText = "Aug";
             this.ColAug.Name = "ColAug";
             this.ColAug.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColAug.Width = 70;
+            this.ColAug.Width = 65;
             // 
             // ColSep
             // 
@@ -982,7 +1036,7 @@
             this.ColSep.HeaderText = "Sep";
             this.ColSep.Name = "ColSep";
             this.ColSep.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColSep.Width = 70;
+            this.ColSep.Width = 65;
             // 
             // ColOct
             // 
@@ -990,7 +1044,7 @@
             this.ColOct.HeaderText = "Oct";
             this.ColOct.Name = "ColOct";
             this.ColOct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColOct.Width = 70;
+            this.ColOct.Width = 65;
             // 
             // ColNov
             // 
@@ -998,7 +1052,7 @@
             this.ColNov.HeaderText = "Nov";
             this.ColNov.Name = "ColNov";
             this.ColNov.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColNov.Width = 70;
+            this.ColNov.Width = 65;
             // 
             // ColDec
             // 
@@ -1006,7 +1060,7 @@
             this.ColDec.HeaderText = "Dec";
             this.ColDec.Name = "ColDec";
             this.ColDec.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColDec.Width = 70;
+            this.ColDec.Width = 65;
             // 
             // ColTotal
             // 
@@ -1015,6 +1069,19 @@
             this.ColTotal.Name = "ColTotal";
             this.ColTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.ColTotal.Width = 75;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.DimGray;
+            this.label9.Location = new System.Drawing.Point(6, 60);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(273, 80);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Enter month index to view those months only\r\nFor JAN, enter 1, FEB=2, DEC=12.\r\nIn" +
+    "put format: For Single month: 2; \r\nFor range month: 3-8; For other months: 3,8,1" +
+    "2\r\nLeave empty to show whole months";
             // 
             // FrmSPISummary
             // 
@@ -1035,12 +1102,14 @@
             this.TabSummarySPIs.ResumeLayout(false);
             this.TabSummarySPIs.PerformLayout();
             this.TabDetailedSummary.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SPI_Summary_ALL)).EndInit();
             this.TabMonthwise.ResumeLayout(false);
             this.TabMonthwise.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Summary_Monthly)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1109,9 +1178,13 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TxtNoOfFilteredData;
         private System.Windows.Forms.Button Default;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox TxtSelectedMonth;
+        private System.Windows.Forms.Button BtnSelectedMonthView;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSpiTypeAll;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColSPIs_Progress;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColJan;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColFeb;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColMar;
@@ -1125,5 +1198,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColNov;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDec;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTotal;
+        private System.Windows.Forms.Label label9;
     }
 }

@@ -579,91 +579,39 @@ namespace AirportSMS
             dgv.DataSource = workingDT;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public void FilterDataGridView(
-            DataGridView dgv,
-            string columnName,
-            string filterValue)
+        public void EnableDgvTextWrap(DataGridView dgv)
         {
-            if (dgv.DataSource == null)
-                return;
+            dgv.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dgv.RowsDefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dgv.AlternatingRowsDefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
-            // DataTable directly bound
-            if (dgv.DataSource is DataTable dt)
+            dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgv.AllowUserToResizeRows = true;
+
+            foreach (DataGridViewColumn col in dgv.Columns)
             {
-                dt.DefaultView.RowFilter = BuildFilter(dt, columnName, filterValue);
-            }
-            // BindingSource bound
-            else if (dgv.DataSource is BindingSource bs && bs.DataSource is DataTable dt2)
-            {
-                bs.Filter = BuildFilter(dt2, columnName, filterValue);
+                col.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             }
         }
 
-        private string BuildFilter(DataTable dt, string columnName, string value)
-        {
-            if (!dt.Columns.Contains(columnName))
-                throw new ArgumentException("Column does not exist");
 
-            Type colType = dt.Columns[columnName].DataType;
 
-            // String column → LIKE
-            if (colType == typeof(string))
-            {
-                value = value.Replace("'", "''"); // escape '
-                                                  //return $"[{columnName}] LIKE '%{value}%'";
-                return $"[{columnName}] = '{value}'";
-            }
 
-            // Date column
-            if (colType == typeof(DateTime))
-            {
-                if (DateTime.TryParse(value, out DateTime d))
-                    //return $"[{columnName}] = #{d:MM/dd/yyyy}#";
-                    return $"[{columnName}] = #{d:MM/dd/yyyy}#";
-            }
 
-            // Numeric column
-            return $"[{columnName}] = {value}";
-        }
 
-        public void ApplyFilterDGV(
-            DataGridView dgv,
-            string columnName,
-            string filterValue)
-        {
-            if (!dgv.Columns.Contains(columnName))
-                return;
 
-            int colIndex = dgv.Columns[columnName].Index;
 
-            foreach (DataGridViewRow row in dgv.Rows)
-            {
-                if (row.IsNewRow) continue;
 
-                var cellValue = row.Cells[colIndex].Value?.ToString();
 
-                row.Visible = (cellValue == filterValue);
-            }
-        }
 
+
+
+
+
+
+
+
+        
 
         public void ClearFilter(DataGridView dgv, DataTable dt)
         {

@@ -44,6 +44,7 @@ namespace AirportSMS
             {
                 AirportSMS_Class asmscls = new AirportSMS_Class();
                 asmscls.PasteClipboardToDatagridview(DGV_Objective);
+                asmscls.EnableDgvTextWrap(DGV_Objective);
             }
             catch
             {
@@ -131,8 +132,8 @@ namespace AirportSMS
 
                     dataToSave.Add(new Objective
                     {
-                        SN = Convert.ToInt32(row.Cells["SN"].Value),
-                        ObjectiveText = row.Cells["Objective"].Value?.ToString() ?? ""
+                        SN = Convert.ToInt32(row.Cells["ColSN"].Value),
+                        ObjectiveText = row.Cells["ColObj"].Value?.ToString() ?? ""
                     });
                 }
 
@@ -144,7 +145,7 @@ namespace AirportSMS
 
                 File.WriteAllText(filePath, jsonString);
 
-                MessageBox.Show("Data saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Data saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -168,6 +169,9 @@ namespace AirportSMS
                 projectFolder = fm.TxtProjectLocation.Text;
                 LoadObjectiveGridsFromJson(projectFolder);
             }
+
+            AirportSMS_Class acls = new AirportSMS_Class();
+            acls.EnableDgvTextWrap(DGV_Objective);
         }
 
         private void LoadObjectiveGridsFromJson(string projectFolder)
@@ -195,12 +199,15 @@ namespace AirportSMS
                     return;
                 }
 
+
+                DGV_Objective.AutoGenerateColumns = false;
+                DGV_Objective.AllowUserToAddRows = false;
                 // Bind to DataGridView
                 DGV_Objective.DataSource = objectives;
-
+               
                 // Optional: set nice column headers
-                if (DGV_Objective.Columns["ObjectiveText"] != null)
-                    DGV_Objective.Columns["ObjectiveText"].HeaderText = "Objective";
+                /*if (DGV_Objective.Columns["ObjectiveText"] != null)
+                    DGV_Objective.Columns["ObjectiveText"].HeaderText = "Objective";*/
 
             }
             catch (Exception ex)
