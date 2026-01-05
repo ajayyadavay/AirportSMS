@@ -294,6 +294,9 @@ namespace AirportSMS
 
         public void PlotGraph()
         {
+            PlotGraphScottPlot();
+            /*
+            //Plotting in Chart1
             Chart1.Series.Clear();
             Chart1.Series.Add("Prv_Year_obs");
             Chart1.Series.Add("Curr_Year_Target_val");
@@ -311,20 +314,7 @@ namespace AirportSMS
                 Chart1.Series["Curr_Year_obs"].Points.AddXY(X_axis[i+1], Y1_axis_curr_year_obs[i]);
             }
 
-            /*Chart1.Series["Prv_Year_obs"].Color = Color.Red;
-            Chart1.Series["Curr_Year_Target_val"].Color = Color.Green;
-            Chart1.Series["Curr_Year_obs"].Color = Color.Blue;*/
-
-            //Chart1.Series["Prv_Year_obs"].BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            //Chart1.Series["Curr_Year_Target_val"].BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-
-            /*var ax = Chart1.ChartAreas[0].AxisX;
-
-            ax.Interval = 1;                   // Force all labels
-            ax.IsLabelAutoFit = false;         // Disable auto hiding
-            ax.LabelStyle.Angle = -45;         // Optional (better fit)*/
-            //ax.MajorGrid.Enabled = false;      // Cleaner look
-
+            
             string Chart_Name, Y_axis_Label;
             if(TxtSPI_Name.Text == "")
             {
@@ -403,10 +393,12 @@ namespace AirportSMS
             //.Series["Curr_Year_obs"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
 
             Chart1.Invalidate();
-            Chart1.Update();
+            Chart1.Update();*/
 
-            PlotGraphScottPlot();
+
         }
+
+
 
         // --------------------------- PlotGraphScottPlot ---------------------------
         public void PlotGraphScottPlot()

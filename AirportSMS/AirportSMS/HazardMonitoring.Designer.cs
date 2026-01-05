@@ -29,12 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend12 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.Chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDes = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,6 +57,9 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.importTemplateSPIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sPIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.expressAsNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.expressAsRateperNFlightMovementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtPercentTarget = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -100,10 +99,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.PanelPlot = new System.Windows.Forms.Panel();
-            this.sPIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.expressAsNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.expressAsRateperNFlightMovementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.Chart1)).BeginInit();
+            this.ComboBoxObjective = new System.Windows.Forms.ComboBox();
+            this.TxtObjective = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -112,33 +109,17 @@
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Chart1
-            // 
-            chartArea12.Name = "ChartArea1";
-            this.Chart1.ChartAreas.Add(chartArea12);
-            legend12.Name = "Legend1";
-            this.Chart1.Legends.Add(legend12);
-            this.Chart1.Location = new System.Drawing.Point(7, 940);
-            this.Chart1.Name = "Chart1";
-            series12.ChartArea = "ChartArea1";
-            series12.Legend = "Legend1";
-            series12.Name = "Series1";
-            this.Chart1.Series.Add(series12);
-            this.Chart1.Size = new System.Drawing.Size(1340, 493);
-            this.Chart1.TabIndex = 1;
-            this.Chart1.Text = "chart1";
-            // 
             // dataGridView1
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColID,
@@ -157,15 +138,15 @@
             this.ColNov,
             this.ColDec});
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView1.Location = new System.Drawing.Point(8, 787);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.Location = new System.Drawing.Point(8, 861);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1340, 147);
             this.dataGridView1.TabIndex = 4;
@@ -356,6 +337,33 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // sPIToolStripMenuItem
+            // 
+            this.sPIToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.expressAsNumberToolStripMenuItem,
+            this.expressAsRateperNFlightMovementToolStripMenuItem});
+            this.sPIToolStripMenuItem.Name = "sPIToolStripMenuItem";
+            this.sPIToolStripMenuItem.Size = new System.Drawing.Size(41, 24);
+            this.sPIToolStripMenuItem.Text = "SPI";
+            // 
+            // expressAsNumberToolStripMenuItem
+            // 
+            this.expressAsNumberToolStripMenuItem.Checked = true;
+            this.expressAsNumberToolStripMenuItem.CheckOnClick = true;
+            this.expressAsNumberToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.expressAsNumberToolStripMenuItem.Name = "expressAsNumberToolStripMenuItem";
+            this.expressAsNumberToolStripMenuItem.Size = new System.Drawing.Size(346, 24);
+            this.expressAsNumberToolStripMenuItem.Text = "Express as Number";
+            this.expressAsNumberToolStripMenuItem.Click += new System.EventHandler(this.expressAsNumberToolStripMenuItem_Click);
+            // 
+            // expressAsRateperNFlightMovementToolStripMenuItem
+            // 
+            this.expressAsRateperNFlightMovementToolStripMenuItem.CheckOnClick = true;
+            this.expressAsRateperNFlightMovementToolStripMenuItem.Name = "expressAsRateperNFlightMovementToolStripMenuItem";
+            this.expressAsRateperNFlightMovementToolStripMenuItem.Size = new System.Drawing.Size(346, 24);
+            this.expressAsRateperNFlightMovementToolStripMenuItem.Text = "Express as Rate (per N Flight Movement)";
+            this.expressAsRateperNFlightMovementToolStripMenuItem.Click += new System.EventHandler(this.expressAsRateperNFlightMovementToolStripMenuItem_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -393,7 +401,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.TxtPercentTarget);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 678);
+            this.groupBox1.Location = new System.Drawing.Point(12, 752);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1328, 103);
             this.groupBox1.TabIndex = 9;
@@ -421,6 +429,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.TxtObjective);
+            this.groupBox2.Controls.Add(this.ComboBoxObjective);
             this.groupBox2.Controls.Add(this.checkBox4);
             this.groupBox2.Controls.Add(this.checkBox3);
             this.groupBox2.Controls.Add(this.checkBox2);
@@ -428,7 +438,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(7, 41);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1328, 86);
+            this.groupBox2.Size = new System.Drawing.Size(1328, 152);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Selecting SPIs";
@@ -436,7 +446,7 @@
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(543, 51);
+            this.checkBox4.Location = new System.Drawing.Point(722, 105);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(589, 22);
             this.checkBox4.TabIndex = 11;
@@ -447,7 +457,7 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(543, 23);
+            this.checkBox3.Location = new System.Drawing.Point(722, 64);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(320, 22);
             this.checkBox3.TabIndex = 10;
@@ -457,7 +467,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(21, 51);
+            this.checkBox2.Location = new System.Drawing.Point(722, 23);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(392, 22);
             this.checkBox2.TabIndex = 9;
@@ -503,7 +513,7 @@
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(7, 134);
+            this.groupBox3.Location = new System.Drawing.Point(7, 201);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1328, 538);
             this.groupBox3.TabIndex = 8;
@@ -772,32 +782,24 @@
             this.PanelPlot.Size = new System.Drawing.Size(1330, 490);
             this.PanelPlot.TabIndex = 10;
             // 
-            // sPIToolStripMenuItem
+            // ComboBoxObjective
             // 
-            this.sPIToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.expressAsNumberToolStripMenuItem,
-            this.expressAsRateperNFlightMovementToolStripMenuItem});
-            this.sPIToolStripMenuItem.Name = "sPIToolStripMenuItem";
-            this.sPIToolStripMenuItem.Size = new System.Drawing.Size(41, 24);
-            this.sPIToolStripMenuItem.Text = "SPI";
+            this.ComboBoxObjective.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxObjective.FormattingEnabled = true;
+            this.ComboBoxObjective.Location = new System.Drawing.Point(21, 47);
+            this.ComboBoxObjective.Name = "ComboBoxObjective";
+            this.ComboBoxObjective.Size = new System.Drawing.Size(658, 26);
+            this.ComboBoxObjective.TabIndex = 12;
             // 
-            // expressAsNumberToolStripMenuItem
+            // TxtObjective
             // 
-            this.expressAsNumberToolStripMenuItem.Checked = true;
-            this.expressAsNumberToolStripMenuItem.CheckOnClick = true;
-            this.expressAsNumberToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.expressAsNumberToolStripMenuItem.Name = "expressAsNumberToolStripMenuItem";
-            this.expressAsNumberToolStripMenuItem.Size = new System.Drawing.Size(346, 24);
-            this.expressAsNumberToolStripMenuItem.Text = "Express as Number";
-            this.expressAsNumberToolStripMenuItem.Click += new System.EventHandler(this.expressAsNumberToolStripMenuItem_Click);
-            // 
-            // expressAsRateperNFlightMovementToolStripMenuItem
-            // 
-            this.expressAsRateperNFlightMovementToolStripMenuItem.CheckOnClick = true;
-            this.expressAsRateperNFlightMovementToolStripMenuItem.Name = "expressAsRateperNFlightMovementToolStripMenuItem";
-            this.expressAsRateperNFlightMovementToolStripMenuItem.Size = new System.Drawing.Size(346, 24);
-            this.expressAsRateperNFlightMovementToolStripMenuItem.Text = "Express as Rate (per N Flight Movement)";
-            this.expressAsRateperNFlightMovementToolStripMenuItem.Click += new System.EventHandler(this.expressAsRateperNFlightMovementToolStripMenuItem_Click);
+            this.TxtObjective.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtObjective.Location = new System.Drawing.Point(21, 79);
+            this.TxtObjective.Multiline = true;
+            this.TxtObjective.Name = "TxtObjective";
+            this.TxtObjective.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtObjective.Size = new System.Drawing.Size(658, 60);
+            this.TxtObjective.TabIndex = 13;
             // 
             // FrmHazardMonitoring
             // 
@@ -810,14 +812,12 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.Chart1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmHazardMonitoring";
             this.Text = "Airport SMS - Hazard monitoring";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmHazardMonitoring_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.Chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
@@ -834,8 +834,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataVisualization.Charting.Chart Chart1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
@@ -904,5 +902,7 @@
         private System.Windows.Forms.ToolStripMenuItem expressAsNumberToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem expressAsRateperNFlightMovementToolStripMenuItem;
         public System.Windows.Forms.TextBox TxtCurrentYear;
+        private System.Windows.Forms.ComboBox ComboBoxObjective;
+        public System.Windows.Forms.TextBox TxtObjective;
     }
 }

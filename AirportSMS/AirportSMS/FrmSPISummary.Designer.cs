@@ -59,6 +59,10 @@
             this.PanelHighHazardSPI = new System.Windows.Forms.Panel();
             this.BtnSortSummarySPI = new System.Windows.Forms.Button();
             this.TabDetailedSummary = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.BtnSelectedMonthView = new System.Windows.Forms.Button();
+            this.TxtSelectedMonth = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Default = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
@@ -75,23 +79,6 @@
             this.BtnPlotAllSelectedSPIs = new System.Windows.Forms.Button();
             this.PanelPlotAllSummarySPI = new System.Windows.Forms.Panel();
             this.DGV_SPI_Summary_ALL = new System.Windows.Forms.DataGridView();
-            this.TabMonthwise = new System.Windows.Forms.TabPage();
-            this.TxtMonthHzNumber = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.BtnSaveHighCatMonth = new System.Windows.Forms.Button();
-            this.BtnHighHazardMonth = new System.Windows.Forms.Button();
-            this.PanelHighHazardMonth = new System.Windows.Forms.Panel();
-            this.BtnMnthDefault = new System.Windows.Forms.Button();
-            this.BtnMnthDescend = new System.Windows.Forms.Button();
-            this.BtnMnthAscend = new System.Windows.Forms.Button();
-            this.PanelPlotMonth = new System.Windows.Forms.Panel();
-            this.DGV_Summary_Monthly = new System.Windows.Forms.DataGridView();
-            this.ColM_SN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMonthTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.TxtSelectedMonth = new System.Windows.Forms.TextBox();
-            this.BtnSelectedMonthView = new System.Windows.Forms.Button();
             this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSpiTypeAll = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -109,17 +96,30 @@
             this.ColNov = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDec = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label9 = new System.Windows.Forms.Label();
+            this.TabMonthwise = new System.Windows.Forms.TabPage();
+            this.TxtMonthHzNumber = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.BtnSaveHighCatMonth = new System.Windows.Forms.Button();
+            this.BtnHighHazardMonth = new System.Windows.Forms.Button();
+            this.PanelHighHazardMonth = new System.Windows.Forms.Panel();
+            this.BtnMnthDefault = new System.Windows.Forms.Button();
+            this.BtnMnthDescend = new System.Windows.Forms.Button();
+            this.BtnMnthAscend = new System.Windows.Forms.Button();
+            this.PanelPlotMonth = new System.Windows.Forms.Panel();
+            this.DGV_Summary_Monthly = new System.Windows.Forms.DataGridView();
+            this.ColM_SN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMonthTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SPI_Summary)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.TabSummarySPIs.SuspendLayout();
             this.TabDetailedSummary.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SPI_Summary_ALL)).BeginInit();
             this.TabMonthwise.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Summary_Monthly)).BeginInit();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGV_SPI_Summary
@@ -263,8 +263,8 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.TabSummarySPIs);
             this.tabControl1.Controls.Add(this.TabDetailedSummary);
+            this.tabControl1.Controls.Add(this.TabSummarySPIs);
             this.tabControl1.Controls.Add(this.TabMonthwise);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(12, 31);
@@ -482,6 +482,57 @@
             this.TabDetailedSummary.TabIndex = 1;
             this.TabDetailedSummary.Text = "Detailed Summary - SPIs";
             this.TabDetailedSummary.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.BtnSelectedMonthView);
+            this.groupBox2.Controls.Add(this.TxtSelectedMonth);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(995, 456);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(320, 196);
+            this.groupBox2.TabIndex = 17;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Select Month to view";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.DimGray;
+            this.label9.Location = new System.Drawing.Point(6, 60);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(273, 80);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Enter month index to view those months only\r\nFor JAN, enter 1, FEB=2, DEC=12.\r\nIn" +
+    "put format: For Single month: 2; \r\nFor range month: 3-8; For other months: 3,8,1" +
+    "2\r\nLeave empty to show whole months";
+            // 
+            // BtnSelectedMonthView
+            // 
+            this.BtnSelectedMonthView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
+            this.BtnSelectedMonthView.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnSelectedMonthView.FlatAppearance.BorderSize = 0;
+            this.BtnSelectedMonthView.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
+            this.BtnSelectedMonthView.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
+            this.BtnSelectedMonthView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSelectedMonthView.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSelectedMonthView.ForeColor = System.Drawing.Color.White;
+            this.BtnSelectedMonthView.Location = new System.Drawing.Point(7, 147);
+            this.BtnSelectedMonthView.Name = "BtnSelectedMonthView";
+            this.BtnSelectedMonthView.Size = new System.Drawing.Size(281, 35);
+            this.BtnSelectedMonthView.TabIndex = 24;
+            this.BtnSelectedMonthView.Text = "View Selected Month";
+            this.BtnSelectedMonthView.UseVisualStyleBackColor = false;
+            this.BtnSelectedMonthView.Click += new System.EventHandler(this.BtnSelectedMonthView_Click);
+            // 
+            // TxtSelectedMonth
+            // 
+            this.TxtSelectedMonth.Location = new System.Drawing.Point(6, 30);
+            this.TxtSelectedMonth.Name = "TxtSelectedMonth";
+            this.TxtSelectedMonth.Size = new System.Drawing.Size(273, 24);
+            this.TxtSelectedMonth.TabIndex = 22;
             // 
             // groupBox1
             // 
@@ -716,6 +767,142 @@
             this.DGV_SPI_Summary_ALL.Size = new System.Drawing.Size(1309, 436);
             this.DGV_SPI_Summary_ALL.TabIndex = 5;
             // 
+            // ColID
+            // 
+            this.ColID.DataPropertyName = "ColID";
+            this.ColID.HeaderText = "ID";
+            this.ColID.Name = "ColID";
+            this.ColID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColID.Width = 40;
+            // 
+            // ColName
+            // 
+            this.ColName.DataPropertyName = "ColName";
+            this.ColName.HeaderText = "Name";
+            this.ColName.Name = "ColName";
+            this.ColName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColName.Width = 140;
+            // 
+            // ColSpiTypeAll
+            // 
+            this.ColSpiTypeAll.DataPropertyName = "ColSpiTypeAll";
+            this.ColSpiTypeAll.HeaderText = "Type";
+            this.ColSpiTypeAll.Name = "ColSpiTypeAll";
+            this.ColSpiTypeAll.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColSpiTypeAll.Width = 140;
+            // 
+            // ColSPIs_Progress
+            // 
+            this.ColSPIs_Progress.DataPropertyName = "ColSPIs_Progress";
+            this.ColSPIs_Progress.HeaderText = "SPIs Progress";
+            this.ColSPIs_Progress.Name = "ColSPIs_Progress";
+            this.ColSPIs_Progress.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColSPIs_Progress.Width = 70;
+            // 
+            // ColJan
+            // 
+            this.ColJan.DataPropertyName = "ColJan";
+            this.ColJan.HeaderText = "Jan";
+            this.ColJan.Name = "ColJan";
+            this.ColJan.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColJan.Width = 65;
+            // 
+            // ColFeb
+            // 
+            this.ColFeb.DataPropertyName = "ColFeb";
+            this.ColFeb.HeaderText = "Feb";
+            this.ColFeb.Name = "ColFeb";
+            this.ColFeb.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColFeb.Width = 65;
+            // 
+            // ColMar
+            // 
+            this.ColMar.DataPropertyName = "ColMar";
+            this.ColMar.HeaderText = "Mar";
+            this.ColMar.Name = "ColMar";
+            this.ColMar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColMar.Width = 65;
+            // 
+            // ColApr
+            // 
+            this.ColApr.DataPropertyName = "ColApr";
+            this.ColApr.HeaderText = "Apr";
+            this.ColApr.Name = "ColApr";
+            this.ColApr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColApr.Width = 65;
+            // 
+            // ColMay
+            // 
+            this.ColMay.DataPropertyName = "ColMay";
+            this.ColMay.HeaderText = "May";
+            this.ColMay.Name = "ColMay";
+            this.ColMay.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColMay.Width = 65;
+            // 
+            // ColJun
+            // 
+            this.ColJun.DataPropertyName = "ColJun";
+            this.ColJun.HeaderText = "Jun";
+            this.ColJun.Name = "ColJun";
+            this.ColJun.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColJun.Width = 65;
+            // 
+            // ColJul
+            // 
+            this.ColJul.DataPropertyName = "ColJul";
+            this.ColJul.HeaderText = "Jul";
+            this.ColJul.Name = "ColJul";
+            this.ColJul.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColJul.Width = 65;
+            // 
+            // ColAug
+            // 
+            this.ColAug.DataPropertyName = "ColAug";
+            this.ColAug.HeaderText = "Aug";
+            this.ColAug.Name = "ColAug";
+            this.ColAug.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColAug.Width = 65;
+            // 
+            // ColSep
+            // 
+            this.ColSep.DataPropertyName = "ColSep";
+            this.ColSep.HeaderText = "Sep";
+            this.ColSep.Name = "ColSep";
+            this.ColSep.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColSep.Width = 65;
+            // 
+            // ColOct
+            // 
+            this.ColOct.DataPropertyName = "ColOct";
+            this.ColOct.HeaderText = "Oct";
+            this.ColOct.Name = "ColOct";
+            this.ColOct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColOct.Width = 65;
+            // 
+            // ColNov
+            // 
+            this.ColNov.DataPropertyName = "ColNov";
+            this.ColNov.HeaderText = "Nov";
+            this.ColNov.Name = "ColNov";
+            this.ColNov.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColNov.Width = 65;
+            // 
+            // ColDec
+            // 
+            this.ColDec.DataPropertyName = "ColDec";
+            this.ColDec.HeaderText = "Dec";
+            this.ColDec.Name = "ColDec";
+            this.ColDec.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColDec.Width = 65;
+            // 
+            // ColTotal
+            // 
+            this.ColTotal.DataPropertyName = "ColTotal";
+            this.ColTotal.HeaderText = "Total";
+            this.ColTotal.Name = "ColTotal";
+            this.ColTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.ColTotal.Width = 75;
+            // 
             // TabMonthwise
             // 
             this.TabMonthwise.Controls.Add(this.TxtMonthHzNumber);
@@ -896,193 +1083,6 @@
             this.ColMonthTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.ColMonthTotal.Width = 150;
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.BtnSelectedMonthView);
-            this.groupBox2.Controls.Add(this.TxtSelectedMonth);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(995, 456);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(320, 196);
-            this.groupBox2.TabIndex = 17;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Select Month to view";
-            // 
-            // TxtSelectedMonth
-            // 
-            this.TxtSelectedMonth.Location = new System.Drawing.Point(6, 30);
-            this.TxtSelectedMonth.Name = "TxtSelectedMonth";
-            this.TxtSelectedMonth.Size = new System.Drawing.Size(273, 24);
-            this.TxtSelectedMonth.TabIndex = 22;
-            // 
-            // BtnSelectedMonthView
-            // 
-            this.BtnSelectedMonthView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
-            this.BtnSelectedMonthView.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnSelectedMonthView.FlatAppearance.BorderSize = 0;
-            this.BtnSelectedMonthView.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
-            this.BtnSelectedMonthView.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
-            this.BtnSelectedMonthView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnSelectedMonthView.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnSelectedMonthView.ForeColor = System.Drawing.Color.White;
-            this.BtnSelectedMonthView.Location = new System.Drawing.Point(7, 147);
-            this.BtnSelectedMonthView.Name = "BtnSelectedMonthView";
-            this.BtnSelectedMonthView.Size = new System.Drawing.Size(281, 35);
-            this.BtnSelectedMonthView.TabIndex = 24;
-            this.BtnSelectedMonthView.Text = "View Selected Month";
-            this.BtnSelectedMonthView.UseVisualStyleBackColor = false;
-            this.BtnSelectedMonthView.Click += new System.EventHandler(this.BtnSelectedMonthView_Click);
-            // 
-            // ColID
-            // 
-            this.ColID.DataPropertyName = "ColID";
-            this.ColID.HeaderText = "ID";
-            this.ColID.Name = "ColID";
-            this.ColID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColID.Width = 40;
-            // 
-            // ColName
-            // 
-            this.ColName.DataPropertyName = "ColName";
-            this.ColName.HeaderText = "Name";
-            this.ColName.Name = "ColName";
-            this.ColName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColName.Width = 140;
-            // 
-            // ColSpiTypeAll
-            // 
-            this.ColSpiTypeAll.DataPropertyName = "ColSpiTypeAll";
-            this.ColSpiTypeAll.HeaderText = "Type";
-            this.ColSpiTypeAll.Name = "ColSpiTypeAll";
-            this.ColSpiTypeAll.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColSpiTypeAll.Width = 140;
-            // 
-            // ColSPIs_Progress
-            // 
-            this.ColSPIs_Progress.DataPropertyName = "ColSPIs_Progress";
-            this.ColSPIs_Progress.HeaderText = "SPIs Progress";
-            this.ColSPIs_Progress.Name = "ColSPIs_Progress";
-            this.ColSPIs_Progress.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColSPIs_Progress.Width = 70;
-            // 
-            // ColJan
-            // 
-            this.ColJan.DataPropertyName = "ColJan";
-            this.ColJan.HeaderText = "Jan";
-            this.ColJan.Name = "ColJan";
-            this.ColJan.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColJan.Width = 65;
-            // 
-            // ColFeb
-            // 
-            this.ColFeb.DataPropertyName = "ColFeb";
-            this.ColFeb.HeaderText = "Feb";
-            this.ColFeb.Name = "ColFeb";
-            this.ColFeb.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColFeb.Width = 65;
-            // 
-            // ColMar
-            // 
-            this.ColMar.DataPropertyName = "ColMar";
-            this.ColMar.HeaderText = "Mar";
-            this.ColMar.Name = "ColMar";
-            this.ColMar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColMar.Width = 65;
-            // 
-            // ColApr
-            // 
-            this.ColApr.DataPropertyName = "ColApr";
-            this.ColApr.HeaderText = "Apr";
-            this.ColApr.Name = "ColApr";
-            this.ColApr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColApr.Width = 65;
-            // 
-            // ColMay
-            // 
-            this.ColMay.DataPropertyName = "ColMay";
-            this.ColMay.HeaderText = "May";
-            this.ColMay.Name = "ColMay";
-            this.ColMay.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColMay.Width = 65;
-            // 
-            // ColJun
-            // 
-            this.ColJun.DataPropertyName = "ColJun";
-            this.ColJun.HeaderText = "Jun";
-            this.ColJun.Name = "ColJun";
-            this.ColJun.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColJun.Width = 65;
-            // 
-            // ColJul
-            // 
-            this.ColJul.DataPropertyName = "ColJul";
-            this.ColJul.HeaderText = "Jul";
-            this.ColJul.Name = "ColJul";
-            this.ColJul.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColJul.Width = 65;
-            // 
-            // ColAug
-            // 
-            this.ColAug.DataPropertyName = "ColAug";
-            this.ColAug.HeaderText = "Aug";
-            this.ColAug.Name = "ColAug";
-            this.ColAug.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColAug.Width = 65;
-            // 
-            // ColSep
-            // 
-            this.ColSep.DataPropertyName = "ColSep";
-            this.ColSep.HeaderText = "Sep";
-            this.ColSep.Name = "ColSep";
-            this.ColSep.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColSep.Width = 65;
-            // 
-            // ColOct
-            // 
-            this.ColOct.DataPropertyName = "ColOct";
-            this.ColOct.HeaderText = "Oct";
-            this.ColOct.Name = "ColOct";
-            this.ColOct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColOct.Width = 65;
-            // 
-            // ColNov
-            // 
-            this.ColNov.DataPropertyName = "ColNov";
-            this.ColNov.HeaderText = "Nov";
-            this.ColNov.Name = "ColNov";
-            this.ColNov.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColNov.Width = 65;
-            // 
-            // ColDec
-            // 
-            this.ColDec.DataPropertyName = "ColDec";
-            this.ColDec.HeaderText = "Dec";
-            this.ColDec.Name = "ColDec";
-            this.ColDec.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColDec.Width = 65;
-            // 
-            // ColTotal
-            // 
-            this.ColTotal.DataPropertyName = "ColTotal";
-            this.ColTotal.HeaderText = "Total";
-            this.ColTotal.Name = "ColTotal";
-            this.ColTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColTotal.Width = 75;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.DimGray;
-            this.label9.Location = new System.Drawing.Point(6, 60);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(273, 80);
-            this.label9.TabIndex = 25;
-            this.label9.Text = "Enter month index to view those months only\r\nFor JAN, enter 1, FEB=2, DEC=12.\r\nIn" +
-    "put format: For Single month: 2; \r\nFor range month: 3-8; For other months: 3,8,1" +
-    "2\r\nLeave empty to show whole months";
-            // 
             // FrmSPISummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1102,14 +1102,14 @@
             this.TabSummarySPIs.ResumeLayout(false);
             this.TabSummarySPIs.PerformLayout();
             this.TabDetailedSummary.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SPI_Summary_ALL)).EndInit();
             this.TabMonthwise.ResumeLayout(false);
             this.TabMonthwise.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Summary_Monthly)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

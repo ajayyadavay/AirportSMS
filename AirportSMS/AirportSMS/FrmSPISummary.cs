@@ -490,7 +490,7 @@ namespace AirportSMS
             formsPlot4.Plot.Clear();
 
             // ---- CONSTANTS ----
-            int monthStartCol = 3;        // JAN
+            int monthStartCol = 4;        // JAN
             int monthCount = 12;          // JAN–DEC
             int lastDataRow = DGV_SPI_Summary_ALL.RowCount - 1; // ignore TOTAL row -1 instead of -2
 
