@@ -141,7 +141,7 @@ namespace AirportSMS
                 {
                     //Summary
                     //DGV_SPI_Summary.Rows.Add(
-                    DT_Summary.Rows.Add(
+                   /* DT_Summary.Rows.Add(
                        sn++,
                         spi.Name,
                         spi.Type,
@@ -149,11 +149,12 @@ namespace AirportSMS
                         spi.Total
                         //false
                         //spi.CurrYear.ToString()
-                    );
+                    );*/
                     CurrentYear = spi.CurrYear;
 
                     //all summary data............
                     // 1. Prepare the static lead data (SN and Name)
+                    sn++;
                     var rowData = new List<object> { sn-1, spi.Name, spi.Type, spi.Progress };
 
                     // 2. Use LINQ to grab indices 1 through 12 from MonthlySPIObsData
@@ -234,8 +235,9 @@ namespace AirportSMS
 
                         idx++;
                 }*/
-                BindDTtoDGV(DGV_SPI_Summary, DT_Summary);
+                //BindDTtoDGV(DGV_SPI_Summary, DT_Summary);
                 BindDTtoDGV(DGV_SPI_Summary_ALL, DT_Summary_All);
+                FillingDataSPISummaryDGV_DT();
                 FillingDataInMonthlySummaryDGV_DT();
 
             }
@@ -257,7 +259,34 @@ namespace AirportSMS
             //BindDTtoDGV(DGV_Summary_Monthly, DT_Monthly);
         }
 
-        
+        public void FillingDataSPISummaryDGV_DT()
+        {
+            DGV_SPI_Summary.DataSource = null;
+            DT_Summary.Clear();
+
+            int TotalRow = DGV_SPI_Summary_ALL.RowCount - 1;
+
+            int idx = 0;
+
+            //int[] all_idx = { 0, 1, 2, 3, 16 };
+            //int i;
+            //Datagridview SPI summary
+            for(int r = 0; r<TotalRow; r++) //last row is total so not needed here
+            {
+                
+                DT_Summary.Rows.Add();
+                DT_Summary.Rows[r][0] = Convert.ToInt32(DGV_SPI_Summary_ALL.Rows[r].Cells[0].Value);//SN
+                DT_Summary.Rows[r][1] = DGV_SPI_Summary_ALL.Rows[r].Cells[1].Value;//SPI Name
+                DT_Summary.Rows[r][2] = DGV_SPI_Summary_ALL.Rows[r].Cells[2].Value;//SPI Type
+                DT_Summary.Rows[r][3] = Convert.ToDouble(DGV_SPI_Summary_ALL.Rows[r].Cells[3].Value);//Progress
+                DT_Summary.Rows[r][4] = Convert.ToDouble(DGV_SPI_Summary_ALL.Rows[r].Cells[16].Value);//Total
+                idx++;
+            }
+            
+
+
+            BindDTtoDGV(DGV_SPI_Summary, DT_Summary);
+        }
 
 
 
@@ -1377,11 +1406,13 @@ namespace AirportSMS
 
                 ApplyMonthFilter(selectedMonths);
 
-                MessageBox.Show("Filtered = " + TxtSelectedMonth.Text);
+                //MessageBox.Show("Filtered = " + TxtSelectedMonth.Text);
                 
                 IsMonthlyFilter = true;
+                FillingDataSPISummaryDGV_DT();
                 FillingDataInMonthlySummaryDGV_DT();
 
+                PlotGraphScottPlotSummary();
                 PlotGraphScottPlotMonthly();
 
                 PopulateDataTableStructureFromDGV(DGV_SPI_Summary_ALL, dt_filter_monthly);//creates column in dt from dgv
