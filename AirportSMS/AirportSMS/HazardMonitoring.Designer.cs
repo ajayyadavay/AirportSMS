@@ -67,6 +67,8 @@
             this.TxtCurrentYear = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.TxtObjective = new System.Windows.Forms.TextBox();
+            this.ComboBoxObjective = new System.Windows.Forms.ComboBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -99,8 +101,30 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.PanelPlot = new System.Windows.Forms.Panel();
-            this.ComboBoxObjective = new System.Windows.Forms.ComboBox();
-            this.TxtObjective = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.textBox11 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -146,7 +170,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Location = new System.Drawing.Point(8, 861);
+            this.dataGridView1.Location = new System.Drawing.Point(8, 1051);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1340, 147);
             this.dataGridView1.TabIndex = 4;
@@ -401,7 +425,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.TxtPercentTarget);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 752);
+            this.groupBox1.Location = new System.Drawing.Point(12, 942);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1328, 103);
             this.groupBox1.TabIndex = 9;
@@ -442,6 +466,28 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Selecting SPIs";
+            // 
+            // TxtObjective
+            // 
+            this.TxtObjective.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtObjective.Location = new System.Drawing.Point(21, 79);
+            this.TxtObjective.Multiline = true;
+            this.TxtObjective.Name = "TxtObjective";
+            this.TxtObjective.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtObjective.Size = new System.Drawing.Size(658, 60);
+            this.TxtObjective.TabIndex = 13;
+            // 
+            // ComboBoxObjective
+            // 
+            this.ComboBoxObjective.DropDownHeight = 140;
+            this.ComboBoxObjective.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxObjective.FormattingEnabled = true;
+            this.ComboBoxObjective.IntegralHeight = false;
+            this.ComboBoxObjective.Location = new System.Drawing.Point(21, 47);
+            this.ComboBoxObjective.Name = "ComboBoxObjective";
+            this.ComboBoxObjective.Size = new System.Drawing.Size(658, 26);
+            this.ComboBoxObjective.TabIndex = 12;
+            this.ComboBoxObjective.SelectedIndexChanged += new System.EventHandler(this.ComboBoxObjective_SelectedIndexChanged);
             // 
             // checkBox4
             // 
@@ -486,6 +532,30 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label29);
+            this.groupBox3.Controls.Add(this.textBox11);
+            this.groupBox3.Controls.Add(this.label28);
+            this.groupBox3.Controls.Add(this.textBox10);
+            this.groupBox3.Controls.Add(this.label27);
+            this.groupBox3.Controls.Add(this.textBox9);
+            this.groupBox3.Controls.Add(this.label26);
+            this.groupBox3.Controls.Add(this.textBox8);
+            this.groupBox3.Controls.Add(this.label25);
+            this.groupBox3.Controls.Add(this.label24);
+            this.groupBox3.Controls.Add(this.textBox7);
+            this.groupBox3.Controls.Add(this.label23);
+            this.groupBox3.Controls.Add(this.textBox6);
+            this.groupBox3.Controls.Add(this.label22);
+            this.groupBox3.Controls.Add(this.textBox5);
+            this.groupBox3.Controls.Add(this.label21);
+            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this.label20);
+            this.groupBox3.Controls.Add(this.textBox3);
+            this.groupBox3.Controls.Add(this.label19);
+            this.groupBox3.Controls.Add(this.textBox2);
+            this.groupBox3.Controls.Add(this.label18);
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.label17);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.TxtProgressPercent);
             this.groupBox3.Controls.Add(this.TxtSPI_Value_Current);
@@ -515,7 +585,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(7, 201);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1328, 538);
+            this.groupBox3.Size = new System.Drawing.Size(1328, 735);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Defining SPIs";
@@ -661,9 +731,9 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(78, 223);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(106, 36);
+            this.label9.Size = new System.Drawing.Size(130, 36);
             this.label9.TabIndex = 16;
-            this.label9.Text = "Who it intends \r\nto inform";
+            this.label9.Text = "b2. Who it intends \r\nto inform";
             // 
             // TxtSPI_Inform
             // 
@@ -682,9 +752,9 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(75, 173);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(109, 36);
+            this.label6.Size = new System.Drawing.Size(133, 36);
             this.label6.TabIndex = 14;
-            this.label6.Text = "What it intends \r\nto manage";
+            this.label6.Text = "b1. What it intends \r\nto manage";
             // 
             // Txt_SPI_Manage
             // 
@@ -782,24 +852,246 @@
             this.PanelPlot.Size = new System.Drawing.Size(1330, 490);
             this.PanelPlot.TabIndex = 10;
             // 
-            // ComboBoxObjective
+            // textBox1
             // 
-            this.ComboBoxObjective.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBoxObjective.FormattingEnabled = true;
-            this.ComboBoxObjective.Location = new System.Drawing.Point(21, 47);
-            this.ComboBoxObjective.Name = "ComboBoxObjective";
-            this.ComboBoxObjective.Size = new System.Drawing.Size(658, 26);
-            this.ComboBoxObjective.TabIndex = 12;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(212, 409);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(523, 44);
+            this.textBox1.TabIndex = 32;
             // 
-            // TxtObjective
+            // label17
             // 
-            this.TxtObjective.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtObjective.Location = new System.Drawing.Point(21, 79);
-            this.TxtObjective.Multiline = true;
-            this.TxtObjective.Name = "TxtObjective";
-            this.TxtObjective.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TxtObjective.Size = new System.Drawing.Size(658, 60);
-            this.TxtObjective.TabIndex = 13;
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(27, 384);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(581, 18);
+            this.label17.TabIndex = 31;
+            this.label17.Text = "d. Who is responsible for .... on the SPI (may be staff from different part of or" +
+    "ganization)";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(108, 426);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(97, 18);
+            this.label18.TabIndex = 33;
+            this.label18.Text = "d1. Collecting";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(108, 476);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(94, 18);
+            this.label19.TabIndex = 35;
+            this.label19.Text = "d2. Validating";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(212, 459);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox2.Size = new System.Drawing.Size(523, 44);
+            this.textBox2.TabIndex = 34;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(108, 526);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(102, 18);
+            this.label20.TabIndex = 37;
+            this.label20.Text = "d3. Monitoring";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(212, 509);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox3.Size = new System.Drawing.Size(523, 44);
+            this.textBox3.TabIndex = 36;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(108, 576);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(96, 18);
+            this.label21.TabIndex = 39;
+            this.label21.Text = "d4. Reporting";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Location = new System.Drawing.Point(212, 559);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox4.Size = new System.Drawing.Size(523, 44);
+            this.textBox4.TabIndex = 38;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(108, 626);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(72, 18);
+            this.label22.TabIndex = 41;
+            this.label22.Text = "d5. Acting";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox5.Location = new System.Drawing.Point(212, 609);
+            this.textBox5.Multiline = true;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox5.Size = new System.Drawing.Size(523, 44);
+            this.textBox5.TabIndex = 40;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(806, 220);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(239, 18);
+            this.label23.TabIndex = 43;
+            this.label23.Text = "e1. Where data should be collected";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox6.Location = new System.Drawing.Point(806, 241);
+            this.textBox6.Multiline = true;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox6.Size = new System.Drawing.Size(496, 44);
+            this.textBox6.TabIndex = 42;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(805, 293);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(247, 18);
+            this.label24.TabIndex = 45;
+            this.label24.Text = "e2. how the data should be collected";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox7.Location = new System.Drawing.Point(805, 314);
+            this.textBox7.Multiline = true;
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox7.Size = new System.Drawing.Size(496, 44);
+            this.textBox7.TabIndex = 44;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(803, 384);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(106, 18);
+            this.label25.TabIndex = 46;
+            this.label25.Text = "f. Frequency of";
+            // 
+            // textBox8
+            // 
+            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox8.Location = new System.Drawing.Point(926, 409);
+            this.textBox8.Multiline = true;
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox8.Size = new System.Drawing.Size(375, 44);
+            this.textBox8.TabIndex = 47;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(815, 426);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(92, 18);
+            this.label26.TabIndex = 48;
+            this.label26.Text = "f1. Reporting";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(816, 476);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(93, 18);
+            this.label27.TabIndex = 50;
+            this.label27.Text = "f2. Collecting";
+            // 
+            // textBox9
+            // 
+            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox9.Location = new System.Drawing.Point(927, 459);
+            this.textBox9.Multiline = true;
+            this.textBox9.Name = "textBox9";
+            this.textBox9.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox9.Size = new System.Drawing.Size(375, 44);
+            this.textBox9.TabIndex = 49;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(815, 526);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(98, 18);
+            this.label28.TabIndex = 52;
+            this.label28.Text = "f3. Monitoring";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox10.Location = new System.Drawing.Point(926, 509);
+            this.textBox10.Multiline = true;
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox10.Size = new System.Drawing.Size(375, 44);
+            this.textBox10.TabIndex = 51;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(815, 567);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(86, 36);
+            this.label29.TabIndex = 54;
+            this.label29.Text = "f4. Analysis \r\nof SPI data";
+            // 
+            // textBox11
+            // 
+            this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox11.Location = new System.Drawing.Point(926, 559);
+            this.textBox11.Multiline = true;
+            this.textBox11.Name = "textBox11";
+            this.textBox11.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox11.Size = new System.Drawing.Size(375, 44);
+            this.textBox11.TabIndex = 53;
             // 
             // FrmHazardMonitoring
             // 
@@ -904,5 +1196,29 @@
         public System.Windows.Forms.TextBox TxtCurrentYear;
         private System.Windows.Forms.ComboBox ComboBoxObjective;
         public System.Windows.Forms.TextBox TxtObjective;
+        private System.Windows.Forms.Label label22;
+        public System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label21;
+        public System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label20;
+        public System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label19;
+        public System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label18;
+        public System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label24;
+        public System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label label23;
+        public System.Windows.Forms.TextBox textBox6;
+        public System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label28;
+        public System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Label label27;
+        public System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label29;
+        public System.Windows.Forms.TextBox textBox11;
     }
 }

@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using static AirportSMS.FrmFlightMovement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using sctplot = ScottPlot;
 using sctplotwin = ScottPlot.WinForms;
 
@@ -706,9 +707,65 @@ namespace AirportSMS
             
         }
 
+        public void LoadObjectiveFromJsonToCombobox()
+        {
+            FrmMain fm = (FrmMain)Application.OpenForms["FrmMain"];
+            FrmObjective fo = new FrmObjective();
+
+            string projectFolder = string.Empty;
+            if (fm.TxtProjectLocation.Text == "")
+            {
+                MessageBox.Show("No project found....Open project first");
+            }
+            else
+            {
+                projectFolder = fm.TxtProjectLocation.Text;
+                string folderPath = Path.Combine(projectFolder, "SMSObjective");
+                string filePath = Path.Combine(folderPath, "SMSObjective.json");
+
+                // 1. Check if file exists
+                if (!Directory.Exists(folderPath) && !File.Exists(filePath))
+                {
+                    MessageBox.Show("No objective file found", "File Missing",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //return;
+                }
+                else
+                {
+                    try
+                    {
+                        // 2. Read the file
+                        string jsonString = File.ReadAllText(filePath);
+                        
+                        List<FrmObjective.Objective> objectives = JsonSerializer.Deserialize<List<FrmObjective.Objective>>(jsonString);
+                       
+                        if (objectives != null)
+                        {
+                            // 1. Set the data source
+                            ComboBoxObjective.DataSource = objectives;
+
+                            // 2. Define what the user sees (The name of the property)
+                            ComboBoxObjective.DisplayMember = "ObjectiveText";
+
+                            // 3. Define the hidden value (The SN/ID property)
+                            ComboBoxObjective.ValueMember = "SN";
+                            ComboBoxObjective.SelectedIndex = 0;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error loading data: {ex.Message}", "Error",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }
 
 
+            }
+           
 
+
+        }
 
 
         private void FrmHazardMonitoring_Load(object sender, EventArgs e)
@@ -728,6 +785,9 @@ namespace AirportSMS
             ComboBoxSPI_Type.Items.Add("Lagging SPIs: Low Probability/High Severity");
             ComboBoxSPI_Type.Items.Add("Precursor SPIs: High Probability/Low Severity");
             ComboBoxSPI_Type.Items.Add("Leading SPIs: Proactive");
+
+            //Load objective combobox
+            LoadObjectiveFromJsonToCombobox();
 
             if(createNewSPIToolStripMenuItem.Enabled == false)
             {
@@ -1439,6 +1499,11 @@ namespace AirportSMS
 
 
                 
+        }
+
+        private void ComboBoxObjective_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TxtObjective.Text = ComboBoxObjective.Text;
         }
     }
 }
