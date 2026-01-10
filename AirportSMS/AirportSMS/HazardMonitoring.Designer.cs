@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDes = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,6 +74,30 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.TxtfAnalysisSPI = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.TxtfMonitoringSPI = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.TxtfCollectingSPI = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.TxtfReportingSPI = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.TxteHowDataColSPI = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.TxteWhereDataColSPI = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.TxtdActingSPI = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.TxtdReportingSPI = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.TxtdMonitoringSPI = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.TxtdValidatingSPI = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.TxtdCollectingSPI = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.TxtProgressPercent = new System.Windows.Forms.TextBox();
             this.TxtSPI_Value_Current = new System.Windows.Forms.TextBox();
@@ -101,30 +125,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.PanelPlot = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.TxtRemarksSPI = new System.Windows.Forms.TextBox();
+            this.BtnComboToTxtObj = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -136,14 +139,14 @@
             // dataGridView1
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColID,
@@ -162,14 +165,14 @@
             this.ColNov,
             this.ColDec});
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Location = new System.Drawing.Point(8, 1051);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1340, 147);
@@ -453,6 +456,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.BtnComboToTxtObj);
             this.groupBox2.Controls.Add(this.TxtObjective);
             this.groupBox2.Controls.Add(this.ComboBoxObjective);
             this.groupBox2.Controls.Add(this.checkBox4);
@@ -485,7 +489,7 @@
             this.ComboBoxObjective.IntegralHeight = false;
             this.ComboBoxObjective.Location = new System.Drawing.Point(21, 47);
             this.ComboBoxObjective.Name = "ComboBoxObjective";
-            this.ComboBoxObjective.Size = new System.Drawing.Size(658, 26);
+            this.ComboBoxObjective.Size = new System.Drawing.Size(613, 26);
             this.ComboBoxObjective.TabIndex = 12;
             this.ComboBoxObjective.SelectedIndexChanged += new System.EventHandler(this.ComboBoxObjective_SelectedIndexChanged);
             // 
@@ -532,29 +536,31 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.TxtRemarksSPI);
+            this.groupBox3.Controls.Add(this.label30);
             this.groupBox3.Controls.Add(this.label29);
-            this.groupBox3.Controls.Add(this.textBox11);
+            this.groupBox3.Controls.Add(this.TxtfAnalysisSPI);
             this.groupBox3.Controls.Add(this.label28);
-            this.groupBox3.Controls.Add(this.textBox10);
+            this.groupBox3.Controls.Add(this.TxtfMonitoringSPI);
             this.groupBox3.Controls.Add(this.label27);
-            this.groupBox3.Controls.Add(this.textBox9);
+            this.groupBox3.Controls.Add(this.TxtfCollectingSPI);
             this.groupBox3.Controls.Add(this.label26);
-            this.groupBox3.Controls.Add(this.textBox8);
+            this.groupBox3.Controls.Add(this.TxtfReportingSPI);
             this.groupBox3.Controls.Add(this.label25);
             this.groupBox3.Controls.Add(this.label24);
-            this.groupBox3.Controls.Add(this.textBox7);
+            this.groupBox3.Controls.Add(this.TxteHowDataColSPI);
             this.groupBox3.Controls.Add(this.label23);
-            this.groupBox3.Controls.Add(this.textBox6);
+            this.groupBox3.Controls.Add(this.TxteWhereDataColSPI);
             this.groupBox3.Controls.Add(this.label22);
-            this.groupBox3.Controls.Add(this.textBox5);
+            this.groupBox3.Controls.Add(this.TxtdActingSPI);
             this.groupBox3.Controls.Add(this.label21);
-            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this.TxtdReportingSPI);
             this.groupBox3.Controls.Add(this.label20);
-            this.groupBox3.Controls.Add(this.textBox3);
+            this.groupBox3.Controls.Add(this.TxtdMonitoringSPI);
             this.groupBox3.Controls.Add(this.label19);
-            this.groupBox3.Controls.Add(this.textBox2);
+            this.groupBox3.Controls.Add(this.TxtdValidatingSPI);
             this.groupBox3.Controls.Add(this.label18);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.TxtdCollectingSPI);
             this.groupBox3.Controls.Add(this.label17);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.TxtProgressPercent);
@@ -589,6 +595,247 @@
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Defining SPIs";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(815, 567);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(86, 36);
+            this.label29.TabIndex = 54;
+            this.label29.Text = "f4. Analysis \r\nof SPI data";
+            // 
+            // TxtfAnalysisSPI
+            // 
+            this.TxtfAnalysisSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtfAnalysisSPI.Location = new System.Drawing.Point(926, 559);
+            this.TxtfAnalysisSPI.Multiline = true;
+            this.TxtfAnalysisSPI.Name = "TxtfAnalysisSPI";
+            this.TxtfAnalysisSPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtfAnalysisSPI.Size = new System.Drawing.Size(375, 44);
+            this.TxtfAnalysisSPI.TabIndex = 53;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(815, 526);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(98, 18);
+            this.label28.TabIndex = 52;
+            this.label28.Text = "f3. Monitoring";
+            // 
+            // TxtfMonitoringSPI
+            // 
+            this.TxtfMonitoringSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtfMonitoringSPI.Location = new System.Drawing.Point(926, 509);
+            this.TxtfMonitoringSPI.Multiline = true;
+            this.TxtfMonitoringSPI.Name = "TxtfMonitoringSPI";
+            this.TxtfMonitoringSPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtfMonitoringSPI.Size = new System.Drawing.Size(375, 44);
+            this.TxtfMonitoringSPI.TabIndex = 51;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(816, 476);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(93, 18);
+            this.label27.TabIndex = 50;
+            this.label27.Text = "f2. Collecting";
+            // 
+            // TxtfCollectingSPI
+            // 
+            this.TxtfCollectingSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtfCollectingSPI.Location = new System.Drawing.Point(927, 459);
+            this.TxtfCollectingSPI.Multiline = true;
+            this.TxtfCollectingSPI.Name = "TxtfCollectingSPI";
+            this.TxtfCollectingSPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtfCollectingSPI.Size = new System.Drawing.Size(375, 44);
+            this.TxtfCollectingSPI.TabIndex = 49;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(815, 426);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(92, 18);
+            this.label26.TabIndex = 48;
+            this.label26.Text = "f1. Reporting";
+            // 
+            // TxtfReportingSPI
+            // 
+            this.TxtfReportingSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtfReportingSPI.Location = new System.Drawing.Point(926, 409);
+            this.TxtfReportingSPI.Multiline = true;
+            this.TxtfReportingSPI.Name = "TxtfReportingSPI";
+            this.TxtfReportingSPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtfReportingSPI.Size = new System.Drawing.Size(375, 44);
+            this.TxtfReportingSPI.TabIndex = 47;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(803, 384);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(106, 18);
+            this.label25.TabIndex = 46;
+            this.label25.Text = "f. Frequency of";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(805, 293);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(247, 18);
+            this.label24.TabIndex = 45;
+            this.label24.Text = "e2. how the data should be collected";
+            // 
+            // TxteHowDataColSPI
+            // 
+            this.TxteHowDataColSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxteHowDataColSPI.Location = new System.Drawing.Point(805, 314);
+            this.TxteHowDataColSPI.Multiline = true;
+            this.TxteHowDataColSPI.Name = "TxteHowDataColSPI";
+            this.TxteHowDataColSPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxteHowDataColSPI.Size = new System.Drawing.Size(496, 44);
+            this.TxteHowDataColSPI.TabIndex = 44;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(806, 220);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(239, 18);
+            this.label23.TabIndex = 43;
+            this.label23.Text = "e1. Where data should be collected";
+            // 
+            // TxteWhereDataColSPI
+            // 
+            this.TxteWhereDataColSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxteWhereDataColSPI.Location = new System.Drawing.Point(806, 241);
+            this.TxteWhereDataColSPI.Multiline = true;
+            this.TxteWhereDataColSPI.Name = "TxteWhereDataColSPI";
+            this.TxteWhereDataColSPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxteWhereDataColSPI.Size = new System.Drawing.Size(496, 44);
+            this.TxteWhereDataColSPI.TabIndex = 42;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(108, 626);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(72, 18);
+            this.label22.TabIndex = 41;
+            this.label22.Text = "d5. Acting";
+            // 
+            // TxtdActingSPI
+            // 
+            this.TxtdActingSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtdActingSPI.Location = new System.Drawing.Point(212, 609);
+            this.TxtdActingSPI.Multiline = true;
+            this.TxtdActingSPI.Name = "TxtdActingSPI";
+            this.TxtdActingSPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtdActingSPI.Size = new System.Drawing.Size(523, 44);
+            this.TxtdActingSPI.TabIndex = 40;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(108, 576);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(96, 18);
+            this.label21.TabIndex = 39;
+            this.label21.Text = "d4. Reporting";
+            // 
+            // TxtdReportingSPI
+            // 
+            this.TxtdReportingSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtdReportingSPI.Location = new System.Drawing.Point(212, 559);
+            this.TxtdReportingSPI.Multiline = true;
+            this.TxtdReportingSPI.Name = "TxtdReportingSPI";
+            this.TxtdReportingSPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtdReportingSPI.Size = new System.Drawing.Size(523, 44);
+            this.TxtdReportingSPI.TabIndex = 38;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(108, 526);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(102, 18);
+            this.label20.TabIndex = 37;
+            this.label20.Text = "d3. Monitoring";
+            // 
+            // TxtdMonitoringSPI
+            // 
+            this.TxtdMonitoringSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtdMonitoringSPI.Location = new System.Drawing.Point(212, 509);
+            this.TxtdMonitoringSPI.Multiline = true;
+            this.TxtdMonitoringSPI.Name = "TxtdMonitoringSPI";
+            this.TxtdMonitoringSPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtdMonitoringSPI.Size = new System.Drawing.Size(523, 44);
+            this.TxtdMonitoringSPI.TabIndex = 36;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(108, 476);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(94, 18);
+            this.label19.TabIndex = 35;
+            this.label19.Text = "d2. Validating";
+            // 
+            // TxtdValidatingSPI
+            // 
+            this.TxtdValidatingSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtdValidatingSPI.Location = new System.Drawing.Point(212, 459);
+            this.TxtdValidatingSPI.Multiline = true;
+            this.TxtdValidatingSPI.Name = "TxtdValidatingSPI";
+            this.TxtdValidatingSPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtdValidatingSPI.Size = new System.Drawing.Size(523, 44);
+            this.TxtdValidatingSPI.TabIndex = 34;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(108, 426);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(97, 18);
+            this.label18.TabIndex = 33;
+            this.label18.Text = "d1. Collecting";
+            // 
+            // TxtdCollectingSPI
+            // 
+            this.TxtdCollectingSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtdCollectingSPI.Location = new System.Drawing.Point(212, 409);
+            this.TxtdCollectingSPI.Multiline = true;
+            this.TxtdCollectingSPI.Name = "TxtdCollectingSPI";
+            this.TxtdCollectingSPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtdCollectingSPI.Size = new System.Drawing.Size(523, 44);
+            this.TxtdCollectingSPI.TabIndex = 32;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(27, 384);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(581, 18);
+            this.label17.TabIndex = 31;
+            this.label17.Text = "d. Who is responsible for .... on the SPI (may be staff from different part of or" +
+    "ganization)";
             // 
             // label16
             // 
@@ -847,251 +1094,48 @@
             // PanelPlot
             // 
             this.PanelPlot.BackColor = System.Drawing.Color.LightGray;
-            this.PanelPlot.Location = new System.Drawing.Point(7, 1439);
+            this.PanelPlot.Location = new System.Drawing.Point(9, 1217);
             this.PanelPlot.Name = "PanelPlot";
             this.PanelPlot.Size = new System.Drawing.Size(1330, 490);
             this.PanelPlot.TabIndex = 10;
             // 
-            // textBox1
+            // label30
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(212, 409);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(523, 44);
-            this.textBox1.TabIndex = 32;
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(819, 644);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(69, 18);
+            this.label30.TabIndex = 55;
+            this.label30.Text = "Remarks";
             // 
-            // label17
+            // TxtRemarksSPI
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(27, 384);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(581, 18);
-            this.label17.TabIndex = 31;
-            this.label17.Text = "d. Who is responsible for .... on the SPI (may be staff from different part of or" +
-    "ganization)";
+            this.TxtRemarksSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtRemarksSPI.Location = new System.Drawing.Point(926, 617);
+            this.TxtRemarksSPI.Multiline = true;
+            this.TxtRemarksSPI.Name = "TxtRemarksSPI";
+            this.TxtRemarksSPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtRemarksSPI.Size = new System.Drawing.Size(375, 69);
+            this.TxtRemarksSPI.TabIndex = 56;
             // 
-            // label18
+            // BtnComboToTxtObj
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(108, 426);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(97, 18);
-            this.label18.TabIndex = 33;
-            this.label18.Text = "d1. Collecting";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(108, 476);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(94, 18);
-            this.label19.TabIndex = 35;
-            this.label19.Text = "d2. Validating";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(212, 459);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(523, 44);
-            this.textBox2.TabIndex = 34;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(108, 526);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(102, 18);
-            this.label20.TabIndex = 37;
-            this.label20.Text = "d3. Monitoring";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(212, 509);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox3.Size = new System.Drawing.Size(523, 44);
-            this.textBox3.TabIndex = 36;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(108, 576);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(96, 18);
-            this.label21.TabIndex = 39;
-            this.label21.Text = "d4. Reporting";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(212, 559);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox4.Size = new System.Drawing.Size(523, 44);
-            this.textBox4.TabIndex = 38;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(108, 626);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(72, 18);
-            this.label22.TabIndex = 41;
-            this.label22.Text = "d5. Acting";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(212, 609);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox5.Size = new System.Drawing.Size(523, 44);
-            this.textBox5.TabIndex = 40;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(806, 220);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(239, 18);
-            this.label23.TabIndex = 43;
-            this.label23.Text = "e1. Where data should be collected";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(806, 241);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox6.Size = new System.Drawing.Size(496, 44);
-            this.textBox6.TabIndex = 42;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(805, 293);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(247, 18);
-            this.label24.TabIndex = 45;
-            this.label24.Text = "e2. how the data should be collected";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(805, 314);
-            this.textBox7.Multiline = true;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox7.Size = new System.Drawing.Size(496, 44);
-            this.textBox7.TabIndex = 44;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(803, 384);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(106, 18);
-            this.label25.TabIndex = 46;
-            this.label25.Text = "f. Frequency of";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(926, 409);
-            this.textBox8.Multiline = true;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox8.Size = new System.Drawing.Size(375, 44);
-            this.textBox8.TabIndex = 47;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(815, 426);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(92, 18);
-            this.label26.TabIndex = 48;
-            this.label26.Text = "f1. Reporting";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(816, 476);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(93, 18);
-            this.label27.TabIndex = 50;
-            this.label27.Text = "f2. Collecting";
-            // 
-            // textBox9
-            // 
-            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox9.Location = new System.Drawing.Point(927, 459);
-            this.textBox9.Multiline = true;
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox9.Size = new System.Drawing.Size(375, 44);
-            this.textBox9.TabIndex = 49;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(815, 526);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(98, 18);
-            this.label28.TabIndex = 52;
-            this.label28.Text = "f3. Monitoring";
-            // 
-            // textBox10
-            // 
-            this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox10.Location = new System.Drawing.Point(926, 509);
-            this.textBox10.Multiline = true;
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox10.Size = new System.Drawing.Size(375, 44);
-            this.textBox10.TabIndex = 51;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(815, 567);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(86, 36);
-            this.label29.TabIndex = 54;
-            this.label29.Text = "f4. Analysis \r\nof SPI data";
-            // 
-            // textBox11
-            // 
-            this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox11.Location = new System.Drawing.Point(926, 559);
-            this.textBox11.Multiline = true;
-            this.textBox11.Name = "textBox11";
-            this.textBox11.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox11.Size = new System.Drawing.Size(375, 44);
-            this.textBox11.TabIndex = 53;
+            this.BtnComboToTxtObj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
+            this.BtnComboToTxtObj.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnComboToTxtObj.FlatAppearance.BorderSize = 0;
+            this.BtnComboToTxtObj.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
+            this.BtnComboToTxtObj.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
+            this.BtnComboToTxtObj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnComboToTxtObj.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnComboToTxtObj.ForeColor = System.Drawing.Color.White;
+            this.BtnComboToTxtObj.Location = new System.Drawing.Point(640, 36);
+            this.BtnComboToTxtObj.Name = "BtnComboToTxtObj";
+            this.BtnComboToTxtObj.Size = new System.Drawing.Size(38, 37);
+            this.BtnComboToTxtObj.TabIndex = 21;
+            this.BtnComboToTxtObj.Text = "↓";
+            this.BtnComboToTxtObj.UseVisualStyleBackColor = false;
+            this.BtnComboToTxtObj.Click += new System.EventHandler(this.BtnComboToTxtObj_Click);
             // 
             // FrmHazardMonitoring
             // 
@@ -1197,28 +1241,31 @@
         private System.Windows.Forms.ComboBox ComboBoxObjective;
         public System.Windows.Forms.TextBox TxtObjective;
         private System.Windows.Forms.Label label22;
-        public System.Windows.Forms.TextBox textBox5;
+        public System.Windows.Forms.TextBox TxtdActingSPI;
         private System.Windows.Forms.Label label21;
-        public System.Windows.Forms.TextBox textBox4;
+        public System.Windows.Forms.TextBox TxtdReportingSPI;
         private System.Windows.Forms.Label label20;
-        public System.Windows.Forms.TextBox textBox3;
+        public System.Windows.Forms.TextBox TxtdMonitoringSPI;
         private System.Windows.Forms.Label label19;
-        public System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.TextBox TxtdValidatingSPI;
         private System.Windows.Forms.Label label18;
-        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TextBox TxtdCollectingSPI;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label24;
-        public System.Windows.Forms.TextBox textBox7;
+        public System.Windows.Forms.TextBox TxteHowDataColSPI;
         private System.Windows.Forms.Label label23;
-        public System.Windows.Forms.TextBox textBox6;
-        public System.Windows.Forms.TextBox textBox8;
+        public System.Windows.Forms.TextBox TxteWhereDataColSPI;
+        public System.Windows.Forms.TextBox TxtfReportingSPI;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label28;
-        public System.Windows.Forms.TextBox textBox10;
+        public System.Windows.Forms.TextBox TxtfMonitoringSPI;
         private System.Windows.Forms.Label label27;
-        public System.Windows.Forms.TextBox textBox9;
+        public System.Windows.Forms.TextBox TxtfCollectingSPI;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label29;
-        public System.Windows.Forms.TextBox textBox11;
+        public System.Windows.Forms.TextBox TxtfAnalysisSPI;
+        public System.Windows.Forms.TextBox TxtRemarksSPI;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Button BtnComboToTxtObj;
     }
 }

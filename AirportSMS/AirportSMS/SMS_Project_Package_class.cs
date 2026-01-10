@@ -36,6 +36,7 @@ namespace AirportSMS
         {
             //selecting SPIs
             public bool IsRelatedToObjective { get; set; }
+            public string SPI_Related_Objective { get; set; } = string.Empty;
             public bool IsBasedOnDateAndMeasurement { get; set; }
             public bool IsSpecificQuantifiable { get; set; }
             public bool IsRealistic { get; set; }
@@ -55,12 +56,33 @@ namespace AirportSMS
             public string SPI_Inform { get; set; }
             public string SPI_Unit { get; set; }
             public string SPI_Calc { get; set; }
-          
+
+            //d. Who is responsible for
+            public string SPI_Resp_for_Collecting { get; set; } = string.Empty;
+            public string SPI_Resp_for_Validating { get; set; } = string.Empty;
+            public string SPI_Resp_for_Monitoring { get; set; } = string.Empty;
+            public string SPI_Resp_for_Reporting { get; set; } = string.Empty;
+            public string SPI_Resp_for_Acting { get; set; } = string.Empty;
+
+            //e. data collection
+            public string SPI_Where_data_Collected { get; set; } = string.Empty;
+            public string SPI_How_data_Collected { get; set; } = string.Empty;
+
+            //f. Frequency of
+            public string SPI_Frequency_of_Reporting { get; set; } = string.Empty;
+            public string SPI_Frequency_of_Collecting { get; set; } = string.Empty;
+            public string SPI_Frequency_of_Monitoring { get; set; } = string.Empty;
+            public string SPI_Frequency_of_Analysis { get; set; } = string.Empty;
+
+            public string SPI_Remarks { get; set; } = string.Empty;
+
             //SPIs data
             public double[] PrevYearObserved { get; set; } = new double[13];
             public double[] CurrYearTargetPercent { get; set; } = new double[13];
             public double[] CurrYearTargetValue { get; set; } = new double[13];
             public double[] CurrYearObserved { get; set; } = new double[13];
+
+
             
             // Add new properties in future; unknown properties will be ignored when deserializing (see options)
         }

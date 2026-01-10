@@ -37,6 +37,7 @@ namespace AirportSMS
 
         public sctplotwin.FormsPlot formsPlot1;
 
+        public bool isLoading = true;
         public void InitializeScottPlot()
         {
             // Only if not already created
@@ -749,7 +750,7 @@ namespace AirportSMS
 
                             // 3. Define the hidden value (The SN/ID property)
                             ComboBoxObjective.ValueMember = "SN";
-                            ComboBoxObjective.SelectedIndex = 0;
+                            //ComboBoxObjective.SelectedIndex = 0;
                         }
                     }
                     catch (Exception ex)
@@ -1086,12 +1087,13 @@ namespace AirportSMS
                 curr_year_obs[i] = Convert.ToDouble(dataGridView1.Rows[3].Cells[i + 2].Value);
 
             }
-            
+
             // 2. Create the project object
             var thisSPI = new SMS_Project_Package_class.SPI
             {
                 // Selecting SPIs
                 IsRelatedToObjective = ISobj,
+                SPI_Related_Objective = TxtObjective.Text,
                 IsBasedOnDateAndMeasurement = ISdata,
                 IsSpecificQuantifiable = ISspec,
                 IsRealistic = ISreal,
@@ -1111,6 +1113,22 @@ namespace AirportSMS
                 SPI_Inform = TxtSPI_Inform.Text,
                 SPI_Unit = Txt_SPI_Unit.Text,
                 SPI_Calc = TxtSPI_Calc.Text,
+
+                SPI_Resp_for_Collecting = TxtdCollectingSPI.Text,
+                SPI_Resp_for_Validating = TxtdValidatingSPI.Text,
+                SPI_Resp_for_Monitoring = TxtdMonitoringSPI.Text,
+                SPI_Resp_for_Reporting = TxtdReportingSPI.Text,
+                SPI_Resp_for_Acting = TxtdActingSPI.Text,
+
+                SPI_Where_data_Collected = TxteWhereDataColSPI.Text,
+                SPI_How_data_Collected = TxteHowDataColSPI.Text,
+
+                SPI_Frequency_of_Reporting = TxtfReportingSPI.Text,
+                SPI_Frequency_of_Collecting = TxtfCollectingSPI.Text,
+                SPI_Frequency_of_Monitoring = TxtfMonitoringSPI.Text,
+                SPI_Frequency_of_Analysis = TxtfAnalysisSPI.Text,
+
+                SPI_Remarks = TxtRemarksSPI.Text,
 
                 // Data arrays (each 13 elements: index 0 unused or 1–12 months)
                 PrevYearObserved = prev_year_Obs,
@@ -1503,7 +1521,18 @@ namespace AirportSMS
 
         private void ComboBoxObjective_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TxtObjective.Text = ComboBoxObjective.Text;
+            //TxtObjective.Text = ComboBoxObjective.Text;
+            
+        }
+
+        private void BtnComboToTxtObj_Click(object sender, EventArgs e)
+        {
+            
+            if (ComboBoxObjective.SelectedItem != null)
+            {
+                // Explicitly move the value to the textbox
+                TxtObjective.Text = ComboBoxObjective.Text;
+            }
         }
     }
 }

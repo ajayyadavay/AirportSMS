@@ -388,6 +388,7 @@ namespace AirportSMS
                 {
                     //Selecting SPIs
                     CheckOnIfTrue(fhm.checkBox1, spi.IsRelatedToObjective);
+                    fhm.TxtObjective.Text = spi.SPI_Related_Objective;
                     CheckOnIfTrue(fhm.checkBox2, spi.IsBasedOnDateAndMeasurement);
                     CheckOnIfTrue(fhm.checkBox3, spi.IsSpecificQuantifiable);
                     CheckOnIfTrue(fhm.checkBox4, spi.IsRealistic);
@@ -406,6 +407,22 @@ namespace AirportSMS
                     fhm.TxtSPI_Inform.Text = spi.SPI_Inform;
                     fhm.Txt_SPI_Unit.Text = spi.SPI_Unit;
                     fhm.TxtSPI_Calc.Text = spi.SPI_Calc;
+
+                    fhm.TxtdCollectingSPI.Text = spi.SPI_Resp_for_Collecting;
+                    fhm.TxtdValidatingSPI.Text = spi.SPI_Resp_for_Validating;
+                    fhm.TxtdMonitoringSPI.Text = spi.SPI_Resp_for_Monitoring;
+                    fhm.TxtdReportingSPI.Text = spi.SPI_Resp_for_Reporting;
+                    fhm.TxtdActingSPI.Text = spi.SPI_Resp_for_Acting;
+
+                    fhm.TxteWhereDataColSPI.Text = spi.SPI_Where_data_Collected;
+                    fhm.TxteHowDataColSPI.Text = spi.SPI_How_data_Collected;
+
+                    fhm.TxtfReportingSPI.Text = spi.SPI_Frequency_of_Reporting;
+                    fhm.TxtfCollectingSPI.Text = spi.SPI_Frequency_of_Collecting;
+                    fhm.TxtfMonitoringSPI.Text = spi.SPI_Frequency_of_Monitoring;
+                    fhm.TxtfAnalysisSPI.Text = spi.SPI_Frequency_of_Analysis;
+
+                    fhm.TxtRemarksSPI.Text = spi.SPI_Remarks;
 
                     //SPIs data
                     for (int i = 0; i < 13; i++)
