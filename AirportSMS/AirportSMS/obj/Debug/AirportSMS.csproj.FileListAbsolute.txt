@@ -68,3 +68,4 @@ F:\VBStudio\Airport_SMS\AirportSMS\AirportSMS\obj\Debug\AirportSMS.FrmHazardLog.
 F:\VBStudio\Airport_SMS\AirportSMS\AirportSMS\obj\Debug\AirportSMS.FrmSPISummary.resources
 F:\VBStudio\Airport_SMS\AirportSMS\AirportSMS\obj\Debug\AirportSMS.FrmFlightMovement.resources
 F:\VBStudio\Airport_SMS\AirportSMS\AirportSMS\obj\Debug\AirportSMS.FrmObjective.resources
+F:\VBStudio\Airport_SMS\AirportSMS\AirportSMS\obj\Debug\AirportSMS.FrmSPIsGridMode.resources

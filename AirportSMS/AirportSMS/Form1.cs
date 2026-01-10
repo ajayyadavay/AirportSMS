@@ -480,5 +480,18 @@ namespace AirportSMS
             FrmObjective fo = new FrmObjective();
             fo.Show();
         }
+
+        private void sPIsInGridModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(TxtProjectLocation.Text == "")
+            {
+                MessageBox.Show("No valid project loaded");
+            }
+            else
+            {
+                FrmSPIsGridMode fsgm = new FrmSPIsGridMode();
+                fsgm.Show();
+            }
+        }
     }
 }

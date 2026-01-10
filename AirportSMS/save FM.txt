@@ -1,62 +1,85 @@
-private void SaveGridsToJson(string projectFolder)
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Text.Json;
+using System.Windows.Forms;
+using System.Linq; // Required for string.Join on arrays
+
+public void LoadJsonToGrid(string folderPath, DataGridView dgv)
 {
-    string folderPath = Path.Combine(projectFolder, "FMData");
-    string filePath = Path.Combine(folderPath, "FMData.json");
+    // 1. Create a DataTable to hold the data
+    DataTable dt = new DataTable();
 
-    // 1. Check Folder and File existence
-    if (Directory.Exists(folderPath) && File.Exists(filePath))
+    // 2. Define Columns (Add more if you want to see other specific fields)
+    dt.Columns.Add("SPI Name", typeof(string));
+    dt.Columns.Add("Objective", typeof(string));
+    dt.Columns.Add("Progress %", typeof(string));
+    
+    // Columns for the Arrays (We use string type to hold the comma-separated values)
+    dt.Columns.Add("Prev Year Observed", typeof(string));
+    dt.Columns.Add("Curr Year Target %", typeof(string));
+    dt.Columns.Add("Curr Year Target Val", typeof(string));
+    dt.Columns.Add("Curr Year Observed", typeof(string));
+
+    try
     {
-        MessageBox.Show("Folder and File already exist.");
-        return;
-    }
+        // 3. Get all JSON files
+        string[] files = Directory.GetFiles(folderPath, "*.json");
 
-    // 2. Create Directory if it doesn't exist
-    if (!Directory.Exists(folderPath))
-    {
-        Directory.CreateDirectory(folderPath);
-    }
-
-    // 3. Extract data from both DataGridViews
-    FMDataWrapper dataToSave = new FMDataWrapper();
-    dataToSave.CurrentYear = GetGridData(DGV_FMs_CurrentYear);
-    dataToSave.PreviousYear = GetGridData(DGV_FMs_PreviousYear);
-
-    // 4. Serialize to JSON and Write to File
-    string jsonString = JsonSerializer.Serialize(dataToSave, new JsonSerializerOptions { WriteIndented = true });
-    File.WriteAllText(filePath, jsonString);
-
-    MessageBox.Show("File created successfully at: " + filePath);
-}
-
-private List<Dictionary<string, object>> GetGridData(DataGridView dgv)
-{
-    var list = new List<Dictionary<string, object>>();
-
-    // Loop through row index 0 to 12
-    for (int i = 0; i <= 12; i++)
-    {
-        // Safety: Ensure the row exists and skip the 'New Row' placeholder
-        if (i >= dgv.Rows.Count || dgv.Rows[i].IsNewRow) continue;
-
-        var dict = new Dictionary<string, object>();
-        int[] targetColumns = { 2, 3, 5, 6 };
-
-        foreach (int colIndex in targetColumns)
+        // Options to make JSON case-insensitive (safer)
+        var options = new JsonSerializerOptions
         {
-            string columnName = dgv.Columns[colIndex].Name;
-            if (string.IsNullOrEmpty(columnName)) columnName = $"Col{colIndex}";
+            PropertyNameCaseInsensitive = true
+        };
 
-            // Access the cell value
-            object rawValue = dgv.Rows[i].Cells[colIndex].Value;
+        foreach (string file in files)
+        {
+            // 4. Read and Deserialize
+            string jsonContent = File.ReadAllText(file);
+            SPI spiData = JsonSerializer.Deserialize<SPI>(jsonContent, options);
 
-            // Handle Null: If null or DBNull, use GetVal to convert to 0, 
-            // otherwise use the value directly.
-            dict[columnName] = (rawValue == null || rawValue == DBNull.Value)
-                               ? 0
-                               : GetVal(rawValue);
+            if (spiData != null)
+            {
+                // 5. Create a new row
+                DataRow row = dt.NewRow();
+
+                // Map simple fields
+                row["SPI Name"] = spiData.SPI_Name;
+                row["Objective"] = spiData.SPI_Related_Objective;
+                row["Progress %"] = spiData.SPI_Progress_Percentage;
+
+                // 6. FLATTEN ARRAYS: Convert double[] to comma-separated string
+                // We use string.Join(", ", array) to combine them
+                row["Prev Year Observed"] = spiData.PrevYearObserved != null 
+                    ? string.Join(", ", spiData.PrevYearObserved) 
+                    : "";
+
+                row["Curr Year Target %"] = spiData.CurrYearTargetPercent != null 
+                    ? string.Join(", ", spiData.CurrYearTargetPercent) 
+                    : "";
+
+                row["Curr Year Target Val"] = spiData.CurrYearTargetValue != null 
+                    ? string.Join(", ", spiData.CurrYearTargetValue) 
+                    : "";
+
+                row["Curr Year Observed"] = spiData.CurrYearObserved != null 
+                    ? string.Join(", ", spiData.CurrYearObserved) 
+                    : "";
+
+                // Add row to table
+                dt.Rows.Add(row);
+            }
         }
 
-        list.Add(dict);
+        // 7. Bind to DataGridView
+        dgv.DataSource = dt;
+        
+        // Optional: Auto-resize columns to fit the new data
+        dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
     }
-    return list;
+    catch (Exception ex)
+    {
+        MessageBox.Show($"Error loading SPIs: {ex.Message}");
+    }
 }
