@@ -10,6 +10,8 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static AirportSMS.SMS_Project_Package_class;
+using Xceed.Words.NET; // Updated namespace for v5+
+using Xceed.Document.NET;
 
 namespace AirportSMS
 {
@@ -229,7 +231,221 @@ namespace AirportSMS
 
 
 
+        public void ExportSPIs_DocXv5(DataGridView dgv, bool combineIntoOneFile)
+        {
+            string exportPath=string.Empty;
+            //string exportPath = Path.Combine(Application.StartupPath, "Exported_SPIs");
+
+            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+            {
+                if (folderDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // 2. Combine the user's selected path with your specific folder name
+                    exportPath = folderDialog.SelectedPath;
+                    //string exportPath = Path.Combine(rootFolder, "Exported_SPIs");
+
+                   
+
+                    // Now you can save your 15 pages into exportPath
+                    // Example: File.WriteAllText(Path.Combine(exportPath, "page1.txt"), content);
+                }
+            }
+
+            if(exportPath == string.Empty)
+            {
+                return;
+            }
+
+            FrmMain fm = (FrmMain)Application.OpenForms["FrmMain"];
+            string projectfolder = string.Empty;
+            if (fm.TxtProjectLocation.Text == "")
+            {
+                MessageBox.Show("No valid project loaded...");
+            }
+            else
+            {
+                projectfolder = fm.TxtProjectLocation.Text;
+                
+            }
+
+            string chartPath = Path.Combine(projectfolder, "PlotSPIs");
+            //if (!Directory.Exists(exportPath)) Directory.CreateDirectory(exportPath);
+
+            // Columns you want to hide in the Word Report
+            string[] columnsToSkip = { "SPI ID" };
+
+            DocX mainDoc = null;
+            string mainFileName = Path.Combine(exportPath, "Complete_SPI_Report.docx");
+
+            if (combineIntoOneFile)
+            {
+                mainDoc = DocX.Create(mainFileName);
+            }
+
+            // Process only selected rows from the grid
+            var selectedRows = dgv.SelectedRows.Cast<DataGridViewRow>()
+                                 .Where(r => !r.IsNewRow)
+                                 .ToList();
+
+            for (int idx = 0; idx < selectedRows.Count; idx++)
+            {
+                DataGridViewRow row = selectedRows[idx];
+                string spiName = row.Cells["SPI Name"].Value?.ToString() ?? "Unnamed";
+                string spiId = row.Cells["SPI ID"].Value?.ToString() ?? "";
+
+                DocX doc;
+                if (combineIntoOneFile)
+                {
+                    doc = mainDoc;
+                }
+                else
+                {
+                    string clean_Spi_Name = SanitizeFileName(spiName);
+                    string path = Path.Combine(exportPath, $"{clean_Spi_Name}.docx");
+                    // Basic duplicate filename handling
+                    int count = 1;
+                    while (File.Exists(path)) { path = Path.Combine(exportPath, $"{clean_Spi_Name}({count}).docx"); count++; }
+                    doc = DocX.Create(path);
+                }
+
+                // --- TITLE ---
+                doc.InsertParagraph("SPI for Monitoring")
+                   .FontSize(18d).Bold().Color(Xceed.Drawing.Color.MidnightBlue).Alignment = Alignment.center;
+
+                doc.InsertParagraph(spiName)
+                   .FontSize(13d).Italic().Alignment = Alignment.center;
+
+                doc.InsertParagraph().SpacingAfter(15d);
+
+                // --- CHART IMAGE ---
+                string imageFile = Path.Combine(chartPath, $"{spiId}.png");
+                MessageBox.Show(imageFile);
+
+                if (File.Exists(imageFile))
+                {
+                    Xceed.Document.NET.Image img = doc.AddImage(imageFile);
+                    Picture pic = img.CreatePicture();
+
+                    // Auto-scale to fit page width (roughly 500 units)
+                    double ratio = (double)pic.Width / pic.Height;
+                    pic.Width = 500;
+                    pic.Height = (int)(500 / ratio);
+
+                    doc.InsertParagraph().AppendPicture(pic).Alignment = Alignment.center;
+                    doc.InsertParagraph().SpacingAfter(15d);
+                    MessageBox.Show("Image added");
+                }
+
+                // --- DATA TABLE ---
+                int visibleCount = dgv.Columns.Cast<DataGridViewColumn>().Count(c => !columnsToSkip.Contains(c.HeaderText));
+                Table t = doc.AddTable(visibleCount + 1, 3);
+                // 1. THIS PART AUTO-ADJUSTS TO WINDOW WIDTH
+                t.AutoFit = AutoFit.Window;
+                // 2. THIS PART SETS INDIVIDUAL COLUMN WIDTHS (Total must be 100)
+                // SN = 10%, Items = 30%, Value = 60%
+                float[] columnWidths = { 10f, 30f, 60f };
+                t.SetWidthsPercentage(columnWidths);
+
+                t.Design = TableDesign.TableGrid;
+                t.Alignment = Alignment.center;
 
 
+
+                // Header Styling
+                t.Rows[0].Cells[0].Paragraphs[0].Append("SN").Bold();
+                t.Rows[0].Cells[1].Paragraphs[0].Append("Items").Bold();
+                t.Rows[0].Cells[2].Paragraphs[0].Append("Value").Bold();
+                foreach (var cell in t.Rows[0].Cells) cell.FillColor = Xceed.Drawing.Color.LightSlateGray;
+
+                // Fill Data
+                int rowCounter = 1;
+                for (int i = 0; i < dgv.Columns.Count; i++)
+                {
+                    string header = dgv.Columns[i].HeaderText;
+                    if (columnsToSkip.Contains(header)) continue;
+
+                    t.Rows[rowCounter].Cells[0].Paragraphs[0].Append(rowCounter.ToString());
+                    t.Rows[rowCounter].Cells[1].Paragraphs[0].Append(header).Bold();
+                    t.Rows[rowCounter].Cells[2].Paragraphs[0].Append(row.Cells[i].Value?.ToString() ?? "-");
+
+                    // Zebra Striping
+                    if (rowCounter % 2 == 0)
+                        foreach (var cell in t.Rows[rowCounter].Cells) cell.FillColor = Xceed.Drawing.Color.WhiteSmoke;
+
+                    rowCounter++;
+                }
+                doc.InsertTable(t);
+
+                // --- PAGE MANAGEMENT ---
+                if (combineIntoOneFile)
+                {
+                    // If not the last SPI, insert a page break
+                    if (idx < selectedRows.Count - 1)
+                    {
+                        doc.InsertSectionPageBreak();
+                    }
+                }
+                else
+                {
+                    doc.Save(); // Save individual file immediately
+                }
+            }
+
+            if (combineIntoOneFile)
+            {
+                mainDoc.Save();
+                MessageBox.Show("All SPIs merged into a single document with page breaks.");
+            }
+            else
+            {
+                MessageBox.Show("Individual Word files created successfully.");
+            }
+        }
+
+        private string SanitizeFileName(string fileName)
+        {
+            // List of characters not allowed in Windows filenames
+            char[] invalidChars = Path.GetInvalidFileNameChars();
+
+            foreach (char c in invalidChars)
+            {
+                // Replace each invalid character with an underscore
+                fileName = fileName.Replace(c, '_');
+            }
+
+            return fileName;
+        }
+
+        private void selectedRowsToDocxAsMergedFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmMain fm = (FrmMain)Application.OpenForms["FrmMain"];
+            if (fm.TxtProjectLocation.Text == "")
+            {
+                MessageBox.Show("No valid project loaded");
+            }
+            else
+            {
+                string projectfolder = fm.TxtProjectLocation.Text;
+
+                if (DGV_ALL_SPIs_GridMode != null)
+                    ExportSPIs_DocXv5(DGV_ALL_SPIs_GridMode, true);
+            }
+        }
+
+        private void selectedRowsToDocxAsIndividualFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmMain fm = (FrmMain)Application.OpenForms["FrmMain"];
+            if (fm.TxtProjectLocation.Text == "")
+            {
+                MessageBox.Show("No valid project loaded");
+            }
+            else
+            {
+                string projectfolder = fm.TxtProjectLocation.Text;
+
+                if (DGV_ALL_SPIs_GridMode != null)
+                    ExportSPIs_DocXv5(DGV_ALL_SPIs_GridMode, false);
+            }
+        }
     }
 }

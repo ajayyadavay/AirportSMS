@@ -768,6 +768,36 @@ namespace AirportSMS
 
         }
 
+        public void SaveSPIScottPlot(string projectFolder, string spiID)
+        {
+            try
+            {
+                //if filename is same, it will be overwritten
+                //if filename is different, it will be created as new file
+                string PlotFolder = Path.Combine(projectFolder, "PlotSPIs");
+
+                if (!Directory.Exists(PlotFolder))
+                    Directory.CreateDirectory(PlotFolder);
+
+                // Plot file name
+                string fileName = $"{spiID}.png";
+                string fullPath = Path.Combine(PlotFolder, fileName);
+
+                if (!fullPath.EndsWith(".png")) fullPath += ".png";
+
+                // 3. Save the figure from your ScottPlot control
+                // Replace 'formsPlot1' with the name of your specific control
+                //formsPlot1.Plot.SaveFig(fullPath);
+                formsPlot1.Plot.SavePng(fullPath, 1920, 1080);
+
+                //MessageBox.Show($"Plot saved successfully to:\n{fullPath}", "Success");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving plot: {ex.Message}", "Error");
+            }
+        }
+
 
         private void FrmHazardMonitoring_Load(object sender, EventArgs e)
         {
@@ -1065,12 +1095,18 @@ namespace AirportSMS
             ISreal = IsChecked(checkBox4);
 
             //SPI info
-            string spiID;
+            string spiID, plotID;
 
             if (IsCreateNew)
+            {
                 spiID = Guid.NewGuid().ToString();
+            }
             else
+            {
                 spiID = TxtSPI_ID.Text;
+            }
+
+            plotID = spiID;
 
             //SPI data for previous and current year
             double[] prev_year_Obs = new double[13];
@@ -1139,6 +1175,8 @@ namespace AirportSMS
 
             //write to existing spi file or create new and write to it
             WriteToSPIFile(projectfolder, thisSPI);
+            SaveSPIScottPlot(projectfolder, plotID);
+            
 
             //creating card
             string name = TxtSPI_Name.Text;
@@ -1170,6 +1208,7 @@ namespace AirportSMS
                 string projectfolder = fm.TxtProjectLocation.Text;
                 SaveOrCreateNewSPIFinal(false, projectfolder);
                 fm.updateSPICardToolStripMenuItem_Click(null, null);
+
                 MessageBox.Show("SPI saved successfully");
             }
                
