@@ -73,3 +73,4 @@ F:\VBStudio\Airport_SMS\AirportSMS\AirportSMS\bin\Debug\Xceed.Document.NET.dll
 F:\VBStudio\Airport_SMS\AirportSMS\AirportSMS\bin\Debug\Xceed.Drawing.NET.dll
 F:\VBStudio\Airport_SMS\AirportSMS\AirportSMS\bin\Debug\Xceed.Pdf.dll
 F:\VBStudio\Airport_SMS\AirportSMS\AirportSMS\bin\Debug\Xceed.Words.NET.dll
+F:\VBStudio\Airport_SMS\AirportSMS\AirportSMS\obj\Debug\AirportSMS.ResolutionDialog.resources

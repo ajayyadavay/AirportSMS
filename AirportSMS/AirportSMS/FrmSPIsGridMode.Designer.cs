@@ -36,10 +36,15 @@
             this.viewSPIsInGridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DGV_ALL_SPIs_GridMode = new System.Windows.Forms.DataGridView();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectedRowsToDocxAsIndividualFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectedRowsToDocxAsMergedFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DGV_ALL_SPIs_GridMode = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.TxtSPISummaryCurrYear = new System.Windows.Forms.TextBox();
+            this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dashboardWithBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dashboardWithoutBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_ALL_SPIs_GridMode)).BeginInit();
             this.SuspendLayout();
@@ -49,7 +54,8 @@
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.exportToolStripMenuItem});
+            this.exportToolStripMenuItem,
+            this.settingToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(961, 28);
@@ -69,21 +75,44 @@
             // viewSPIsInGridToolStripMenuItem
             // 
             this.viewSPIsInGridToolStripMenuItem.Name = "viewSPIsInGridToolStripMenuItem";
-            this.viewSPIsInGridToolStripMenuItem.Size = new System.Drawing.Size(275, 24);
+            this.viewSPIsInGridToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
             this.viewSPIsInGridToolStripMenuItem.Text = "View SPIs in Grid";
             this.viewSPIsInGridToolStripMenuItem.Click += new System.EventHandler(this.viewSPIsInGridToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(272, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(185, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(275, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(188, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // exportToolStripMenuItem
+            // 
+            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectedRowsToDocxAsIndividualFileToolStripMenuItem,
+            this.selectedRowsToDocxAsMergedFileToolStripMenuItem});
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
+            this.exportToolStripMenuItem.Text = "Export";
+            // 
+            // selectedRowsToDocxAsIndividualFileToolStripMenuItem
+            // 
+            this.selectedRowsToDocxAsIndividualFileToolStripMenuItem.Name = "selectedRowsToDocxAsIndividualFileToolStripMenuItem";
+            this.selectedRowsToDocxAsIndividualFileToolStripMenuItem.Size = new System.Drawing.Size(336, 24);
+            this.selectedRowsToDocxAsIndividualFileToolStripMenuItem.Text = "Selected rows to docx as individual file";
+            this.selectedRowsToDocxAsIndividualFileToolStripMenuItem.Click += new System.EventHandler(this.selectedRowsToDocxAsIndividualFileToolStripMenuItem_Click);
+            // 
+            // selectedRowsToDocxAsMergedFileToolStripMenuItem
+            // 
+            this.selectedRowsToDocxAsMergedFileToolStripMenuItem.Name = "selectedRowsToDocxAsMergedFileToolStripMenuItem";
+            this.selectedRowsToDocxAsMergedFileToolStripMenuItem.Size = new System.Drawing.Size(336, 24);
+            this.selectedRowsToDocxAsMergedFileToolStripMenuItem.Text = "Selected rows to docx as merged file";
+            this.selectedRowsToDocxAsMergedFileToolStripMenuItem.Click += new System.EventHandler(this.selectedRowsToDocxAsMergedFileToolStripMenuItem_Click);
             // 
             // DGV_ALL_SPIs_GridMode
             // 
@@ -115,34 +144,59 @@
             this.DGV_ALL_SPIs_GridMode.Size = new System.Drawing.Size(936, 331);
             this.DGV_ALL_SPIs_GridMode.TabIndex = 1;
             // 
-            // exportToolStripMenuItem
+            // label1
             // 
-            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.selectedRowsToDocxAsIndividualFileToolStripMenuItem,
-            this.selectedRowsToDocxAsMergedFileToolStripMenuItem});
-            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
-            this.exportToolStripMenuItem.Text = "Export";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 46);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 18);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Current Year";
             // 
-            // selectedRowsToDocxAsIndividualFileToolStripMenuItem
+            // TxtSPISummaryCurrYear
             // 
-            this.selectedRowsToDocxAsIndividualFileToolStripMenuItem.Name = "selectedRowsToDocxAsIndividualFileToolStripMenuItem";
-            this.selectedRowsToDocxAsIndividualFileToolStripMenuItem.Size = new System.Drawing.Size(336, 24);
-            this.selectedRowsToDocxAsIndividualFileToolStripMenuItem.Text = "Selected rows to docx as individual file";
-            this.selectedRowsToDocxAsIndividualFileToolStripMenuItem.Click += new System.EventHandler(this.selectedRowsToDocxAsIndividualFileToolStripMenuItem_Click);
+            this.TxtSPISummaryCurrYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSPISummaryCurrYear.Location = new System.Drawing.Point(120, 44);
+            this.TxtSPISummaryCurrYear.Name = "TxtSPISummaryCurrYear";
+            this.TxtSPISummaryCurrYear.ReadOnly = true;
+            this.TxtSPISummaryCurrYear.Size = new System.Drawing.Size(142, 24);
+            this.TxtSPISummaryCurrYear.TabIndex = 3;
             // 
-            // selectedRowsToDocxAsMergedFileToolStripMenuItem
+            // settingToolStripMenuItem
             // 
-            this.selectedRowsToDocxAsMergedFileToolStripMenuItem.Name = "selectedRowsToDocxAsMergedFileToolStripMenuItem";
-            this.selectedRowsToDocxAsMergedFileToolStripMenuItem.Size = new System.Drawing.Size(336, 24);
-            this.selectedRowsToDocxAsMergedFileToolStripMenuItem.Text = "Selected rows to docx as merged file";
-            this.selectedRowsToDocxAsMergedFileToolStripMenuItem.Click += new System.EventHandler(this.selectedRowsToDocxAsMergedFileToolStripMenuItem_Click);
+            this.settingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dashboardWithBackgroundToolStripMenuItem,
+            this.dashboardWithoutBackgroundToolStripMenuItem});
+            this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
+            this.settingToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
+            this.settingToolStripMenuItem.Text = "Setting";
+            // 
+            // dashboardWithBackgroundToolStripMenuItem
+            // 
+            this.dashboardWithBackgroundToolStripMenuItem.Checked = true;
+            this.dashboardWithBackgroundToolStripMenuItem.CheckOnClick = true;
+            this.dashboardWithBackgroundToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.dashboardWithBackgroundToolStripMenuItem.Name = "dashboardWithBackgroundToolStripMenuItem";
+            this.dashboardWithBackgroundToolStripMenuItem.Size = new System.Drawing.Size(288, 24);
+            this.dashboardWithBackgroundToolStripMenuItem.Text = "Dashboard with Background";
+            this.dashboardWithBackgroundToolStripMenuItem.Click += new System.EventHandler(this.dashboardWithBackgroundToolStripMenuItem_Click);
+            // 
+            // dashboardWithoutBackgroundToolStripMenuItem
+            // 
+            this.dashboardWithoutBackgroundToolStripMenuItem.CheckOnClick = true;
+            this.dashboardWithoutBackgroundToolStripMenuItem.Name = "dashboardWithoutBackgroundToolStripMenuItem";
+            this.dashboardWithoutBackgroundToolStripMenuItem.Size = new System.Drawing.Size(288, 24);
+            this.dashboardWithoutBackgroundToolStripMenuItem.Text = "Dashboard without Background";
+            this.dashboardWithoutBackgroundToolStripMenuItem.Click += new System.EventHandler(this.dashboardWithoutBackgroundToolStripMenuItem_Click);
             // 
             // FrmSPIsGridMode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(961, 450);
+            this.Controls.Add(this.TxtSPISummaryCurrYear);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.DGV_ALL_SPIs_GridMode);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -169,5 +223,10 @@
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectedRowsToDocxAsIndividualFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectedRowsToDocxAsMergedFileToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox TxtSPISummaryCurrYear;
+        private System.Windows.Forms.ToolStripMenuItem settingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dashboardWithBackgroundToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dashboardWithoutBackgroundToolStripMenuItem;
     }
 }

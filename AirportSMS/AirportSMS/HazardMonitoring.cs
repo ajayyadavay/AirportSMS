@@ -770,7 +770,7 @@ namespace AirportSMS
 
         public void SaveSPIScottPlot(string projectFolder, string spiID)
         {
-            try
+            /*try
             {
                 //if filename is same, it will be overwritten
                 //if filename is different, it will be created as new file
@@ -795,7 +795,30 @@ namespace AirportSMS
             catch (Exception ex)
             {
                 MessageBox.Show($"Error saving plot: {ex.Message}", "Error");
+            }*/
+
+            using (var dlg = new ResolutionDialog())
+            {
+                if (dlg.ShowDialog() != DialogResult.OK)
+                    return; // User canceled
+
+                int width = dlg.WidthValue;
+                int height = dlg.HeightValue;
+
+                string plotFolder = Path.Combine(projectFolder, "PlotSPIs");
+                if (!Directory.Exists(plotFolder))
+                    Directory.CreateDirectory(plotFolder);
+
+                string fileName = $"{spiID}.png";
+                string fullPath = Path.Combine(plotFolder, fileName);
+
+                formsPlot1.Plot.SavePng(fullPath, width, height);
+
+                MessageBox.Show($"Plot saved successfully:\n{fullPath}\nSize: {width}x{height} px",
+                                "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+
         }
 
 

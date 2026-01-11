@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScottPlot.DataSources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,9 +10,10 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static AirportSMS.SMS_Project_Package_class;
-using Xceed.Words.NET; // Updated namespace for v5+
+using System.Windows.Forms.DataVisualization.Charting;
 using Xceed.Document.NET;
+using Xceed.Words.NET; // Updated namespace for v5+
+using static AirportSMS.SMS_Project_Package_class;
 
 namespace AirportSMS
 {
@@ -48,6 +50,12 @@ namespace AirportSMS
         {
             PopulateHeaderOfDt();
 
+            FrmMain fm = (FrmMain)Application.OpenForms["FrmMain"];
+            if (fm.TxtCurrentYear.Text == "")
+                TxtSPISummaryCurrYear.Text = "";
+            else
+                TxtSPISummaryCurrYear.Text = fm.TxtCurrentYear.Text;
+
         }
 
         public void PopulateHeaderOfDt()
@@ -76,33 +84,33 @@ namespace AirportSMS
             
 
             // --- Responsibilities ---
-            dt.Columns.Add("Resp Collecting", typeof(string));
-            dt.Columns.Add("Resp Validating", typeof(string));
-            dt.Columns.Add("Resp Monitoring", typeof(string));
-            dt.Columns.Add("Resp Reporting", typeof(string));
-            dt.Columns.Add("Resp Acting", typeof(string));
+            dt.Columns.Add("Responsible for Collecting", typeof(string));
+            dt.Columns.Add("Responsible for Validating", typeof(string));
+            dt.Columns.Add("Responsible for Monitoring", typeof(string));
+            dt.Columns.Add("Responsible for Reporting", typeof(string));
+            dt.Columns.Add("Responsible for Acting", typeof(string));
 
             // --- Data Collection Methods ---
-            dt.Columns.Add("Where Collected", typeof(string));
-            dt.Columns.Add("How Collected", typeof(string));
+            dt.Columns.Add("Where data is Collected", typeof(string));
+            dt.Columns.Add("How data is Collected", typeof(string));
 
             // --- Frequencies ---
-            dt.Columns.Add("Freq Reporting", typeof(string));
-            dt.Columns.Add("Freq Collecting", typeof(string));
-            dt.Columns.Add("Freq Monitoring", typeof(string));
-            dt.Columns.Add("Freq Analysis", typeof(string));
+            dt.Columns.Add("Frequency of Reporting of SPI data", typeof(string));
+            dt.Columns.Add("Frequency of Collecting of SPI data", typeof(string));
+            dt.Columns.Add("Frequency of Monitoring of SPI data", typeof(string));
+            dt.Columns.Add("Frequency of Analysis of SPI data", typeof(string));
 
             // --- Arrays (Comma Separated Strings) ---
-            dt.Columns.Add("Prev Year Observed", typeof(string));
-            dt.Columns.Add("Curr Year Target %", typeof(string));
-            dt.Columns.Add("Curr Year Target Val", typeof(string));
-            dt.Columns.Add("Curr Year Observed", typeof(string));
+            dt.Columns.Add("Previous Year Observed", typeof(string));
+            dt.Columns.Add("Current Year Target %", typeof(string));
+            dt.Columns.Add("Current Year Target Value", typeof(string));
+            dt.Columns.Add("Current Year Observed", typeof(string));
 
             dt.Columns.Add("Remarks", typeof(string));
             // --- Scalar Values & Progress ---
-            dt.Columns.Add("Value Prev Obs", typeof(string));     // SPI_Value_Prev_Obs
-            dt.Columns.Add("Value Curr Target", typeof(string));  // SPI_Value_Curr_Target
-            dt.Columns.Add("Value Curr Obs", typeof(string));     // SPI_Value_Curr_obs
+            dt.Columns.Add("Mean of Previous Observed", typeof(string));     // SPI_Value_Prev_Obs
+            dt.Columns.Add("Mean of Current Target", typeof(string));  // SPI_Value_Curr_Target
+            dt.Columns.Add("Mean of Current Observed", typeof(string));     // SPI_Value_Curr_obs
             dt.Columns.Add("Progress %", typeof(string));
 
             dt.Columns.Add("SPI ID", typeof(string));
@@ -158,46 +166,46 @@ namespace AirportSMS
                         row["Calculation"] = spiData.SPI_Calc;
 
                         // --- Responsibilities ---
-                        row["Resp Collecting"] = spiData.SPI_Resp_for_Collecting;
-                        row["Resp Validating"] = spiData.SPI_Resp_for_Validating;
-                        row["Resp Monitoring"] = spiData.SPI_Resp_for_Monitoring;
-                        row["Resp Reporting"] = spiData.SPI_Resp_for_Reporting;
-                        row["Resp Acting"] = spiData.SPI_Resp_for_Acting;
+                        row["Responsible for Collecting"] = spiData.SPI_Resp_for_Collecting;
+                        row["Responsible for Validating"] = spiData.SPI_Resp_for_Validating;
+                        row["Responsible for Monitoring"] = spiData.SPI_Resp_for_Monitoring;
+                        row["Responsible for Reporting"] = spiData.SPI_Resp_for_Reporting;
+                        row["Responsible for Acting"] = spiData.SPI_Resp_for_Acting;
 
                         // --- Data Collection Methods ---
-                        row["Where Collected"] = spiData.SPI_Where_data_Collected;
-                        row["How Collected"] = spiData.SPI_How_data_Collected;
+                        row["Where data is Collected"] = spiData.SPI_Where_data_Collected;
+                        row["How data is Collected"] = spiData.SPI_How_data_Collected;
 
                         // --- Frequencies ---
-                        row["Freq Reporting"] = spiData.SPI_Frequency_of_Reporting;
-                        row["Freq Collecting"] = spiData.SPI_Frequency_of_Collecting;
-                        row["Freq Monitoring"] = spiData.SPI_Frequency_of_Monitoring;
-                        row["Freq Analysis"] = spiData.SPI_Frequency_of_Analysis;
+                        row["Frequency of Reporting of SPI data"] = spiData.SPI_Frequency_of_Reporting;
+                        row["Frequency of Collecting of SPI data"] = spiData.SPI_Frequency_of_Collecting;
+                        row["Frequency of Monitoring of SPI data"] = spiData.SPI_Frequency_of_Monitoring;
+                        row["Frequency of Analysis of SPI data"] = spiData.SPI_Frequency_of_Analysis;
 
                         // 6. FLATTEN ARRAYS: Convert double[] to comma-separated string
                         // We use string.Join(", ", array) to combine them
-                        row["Prev Year Observed"] = spiData.PrevYearObserved != null
+                        row["Previous Year Observed"] = spiData.PrevYearObserved != null
                             ? string.Join(", ", spiData.PrevYearObserved)
                             : "";
 
-                        row["Curr Year Target %"] = spiData.CurrYearTargetPercent != null
+                        row["Current Year Target %"] = spiData.CurrYearTargetPercent != null
                             ? string.Join(", ", spiData.CurrYearTargetPercent)
                             : "";
 
-                        row["Curr Year Target Val"] = spiData.CurrYearTargetValue != null
+                        row["Current Year Target Value"] = spiData.CurrYearTargetValue != null
                             ? string.Join(", ", spiData.CurrYearTargetValue)
                             : "";
 
-                        row["Curr Year Observed"] = spiData.CurrYearObserved != null
+                        row["Current Year Observed"] = spiData.CurrYearObserved != null
                             ? string.Join(", ", spiData.CurrYearObserved)
                             : "";
 
                         // --- Remarks & Scalars ---
                         row["Remarks"] = spiData.SPI_Remarks;
 
-                        row["Value Prev Obs"] = spiData.SPI_Value_Prev_Obs;
-                        row["Value Curr Target"] = spiData.SPI_Value_Curr_Target;
-                        row["Value Curr Obs"] = spiData.SPI_Value_Curr_obs;
+                        row["Mean of Previous Observed"] = spiData.SPI_Value_Prev_Obs;
+                        row["Mean of Current Target"] = spiData.SPI_Value_Curr_Target;
+                        row["Mean of Current Observed"] = spiData.SPI_Value_Curr_obs;
                         row["Progress %"] = spiData.SPI_Progress_Percentage;
 
                         row["SPI ID"] = spiData.SPI_Id;
@@ -215,9 +223,9 @@ namespace AirportSMS
                 //Read only columns
                 dgv.Columns["SPI ID"].ReadOnly = true;
                 dgv.Columns["Remarks"].ReadOnly = true;
-                dgv.Columns["Value Prev Obs"].ReadOnly = true;
-                dgv.Columns["Value Curr Target"].ReadOnly = true;
-                dgv.Columns["Value Curr Obs"].ReadOnly = true;
+                dgv.Columns["Mean of Previous Observed"].ReadOnly = true;
+                dgv.Columns["Mean of Current Target"].ReadOnly = true;
+                dgv.Columns["Mean of Current Observed"].ReadOnly = true;
                 dgv.Columns["Progress %"].ReadOnly = true;
 
                 dgv.AllowUserToAddRows = false;
@@ -233,28 +241,55 @@ namespace AirportSMS
 
         public void ExportSPIs_DocXv5(DataGridView dgv, bool combineIntoOneFile)
         {
-            string exportPath=string.Empty;
-            //string exportPath = Path.Combine(Application.StartupPath, "Exported_SPIs");
+            string exportPath = string.Empty;
+            string mainFileName = string.Empty;
 
-            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+            if(combineIntoOneFile)
             {
-                if (folderDialog.ShowDialog() == DialogResult.OK)
+                using (SaveFileDialog saveDialog = new SaveFileDialog())
                 {
-                    // 2. Combine the user's selected path with your specific folder name
-                    exportPath = folderDialog.SelectedPath;
-                    //string exportPath = Path.Combine(rootFolder, "Exported_SPIs");
+                    saveDialog.Title = "Select location and filename for Complete SPI Report";
+                    saveDialog.Filter = "Word Document (*.docx)|*.docx";
+                    saveDialog.FileName = "Complete_SPI_Report.docx"; // default name
 
-                   
+                    if (saveDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        // Get full path including filename
+                        mainFileName = saveDialog.FileName;
 
-                    // Now you can save your 15 pages into exportPath
-                    // Example: File.WriteAllText(Path.Combine(exportPath, "page1.txt"), content);
+                        // Extract folder path
+                        exportPath = Path.GetDirectoryName(mainFileName);
+                    }
+                }
+
+                if (string.IsNullOrEmpty(exportPath) || string.IsNullOrEmpty(mainFileName))
+                {
+                    return; // user canceled
+                }
+            }
+            else
+            {
+                using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
+                {
+                    if (folderDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        exportPath = folderDialog.SelectedPath;
+                    }
+                }
+
+                if (exportPath == string.Empty)
+                {
+                    return;
                 }
             }
 
-            if(exportPath == string.Empty)
-            {
-                return;
-            }
+
+                // Now mainFileName contains full path + filename
+                // exportPath contains folder path
+                // Example:
+                // mainFileName = "C:\Users\User\Documents\Complete_SPI_Report.docx"
+                // exportPath = "C:\Users\User\Documents"
+
 
             FrmMain fm = (FrmMain)Application.OpenForms["FrmMain"];
             string projectfolder = string.Empty;
@@ -274,12 +309,46 @@ namespace AirportSMS
             // Columns you want to hide in the Word Report
             string[] columnsToSkip = { "SPI ID" };
 
+            // 🔹 SECTION → COLUMN MAPPING (UPDATED)
+            Dictionary<string, List<string>> sectionMap = new Dictionary<string, List<string>>()
+            {
+                { "A. Basic Information", new List<string>{
+                    "SPI Name", "Type"
+                }},
+                { "B. Selecting SPI", new List<string>{
+                    "Is Related To Objective", "Objective", "Is Based On Date/Measure",
+                    "Is Specific/Quantifiable", "Is Realistic", "What it Manage", "Who it Inform"
+                }},
+                { "C. Defining SPI", new List<string>{
+                    "Description", "Unit", "Calculation", "Responsible for Collecting", 
+                    "Responsible for Validating", "Responsible for Monitoring",
+                    "Responsible for Reporting", "Responsible for Acting",
+                    "Where data is Collected", "How data is Collected", 
+                    "Frequency of Reporting of SPI data",
+                    "Frequency of Collecting of SPI data", "Frequency of Monitoring of SPI data",
+                    "Frequency of Analysis of SPI data"
+                }},
+                { "D. Monitoring & Review", new List<string>{
+                    "Previous Year Observed","Current Year Target %",
+                    "Current Year Target Value", "Current Year Observed",
+                    "Remarks", "Mean of Previous Observed", "Mean of Current Target",
+                    "Mean of Current Observed", "Progress %"
+                }}
+            };
+
             DocX mainDoc = null;
-            string mainFileName = Path.Combine(exportPath, "Complete_SPI_Report.docx");
+            
+            //string mainFileName = Path.Combine(exportPath, "Complete_SPI_Report.docx");
 
             if (combineIntoOneFile)
             {
                 mainDoc = DocX.Create(mainFileName);
+                int reportYear = Convert.ToInt32(TxtSPISummaryCurrYear.Text);
+                AddCoverPage(mainDoc, reportYear);
+                AddTOCPage(mainDoc);
+                AddSPIDescriptionPage(mainDoc);
+                AddSPISummaryTables(mainDoc, dgv);
+
             }
 
             // Process only selected rows from the grid
@@ -309,19 +378,23 @@ namespace AirportSMS
                 }
 
                 // --- TITLE ---
-                doc.InsertParagraph("SPI for Monitoring")
+               /* doc.InsertParagraph("Safety Performance Indicator (SPI)")
                    .FontSize(18d).Bold().Color(Xceed.Drawing.Color.MidnightBlue).Alignment = Alignment.center;
+               */
 
-                doc.InsertParagraph(spiName)
-                   .FontSize(13d).Italic().Alignment = Alignment.center;
+                var spititles = doc.InsertParagraph(spiName)
+                   .FontSize(13d)
+                   //.Italic()
+                   .Heading(HeadingType.Heading1)
+                   .Alignment = Alignment.center;
+                
 
                 doc.InsertParagraph().SpacingAfter(15d);
 
                 // --- CHART IMAGE ---
                 string imageFile = Path.Combine(chartPath, $"{spiId}.png");
-                MessageBox.Show(imageFile);
 
-                if (File.Exists(imageFile))
+                /*if (File.Exists(imageFile))
                 {
                     Xceed.Document.NET.Image img = doc.AddImage(imageFile);
                     Picture pic = img.CreatePicture();
@@ -333,8 +406,25 @@ namespace AirportSMS
 
                     doc.InsertParagraph().AppendPicture(pic).Alignment = Alignment.center;
                     doc.InsertParagraph().SpacingAfter(15d);
-                    MessageBox.Show("Image added");
+                }*/
+
+                if (File.Exists(imageFile))
+                {
+                    var img = doc.AddImage(imageFile);
+                    var pic = img.CreatePicture();
+
+                    // Get available page width (approx, minus margins)
+                    float pageWidth = doc.PageWidth - doc.MarginLeft - doc.MarginRight;
+
+                    // Maintain aspect ratio
+                    double ratio = (double)pic.Width / pic.Height;
+                    pic.Width = (int)pageWidth;
+                    pic.Height = (int)(pageWidth / ratio);
+
+                    doc.InsertParagraph().AppendPicture(pic).Alignment = Alignment.center;
+                    doc.InsertParagraph().SpacingAfter(15d);
                 }
+
 
                 // --- DATA TABLE ---
                 int visibleCount = dgv.Columns.Cast<DataGridViewColumn>().Count(c => !columnsToSkip.Contains(c.HeaderText));
@@ -358,7 +448,7 @@ namespace AirportSMS
                 foreach (var cell in t.Rows[0].Cells) cell.FillColor = Xceed.Drawing.Color.LightSlateGray;
 
                 // Fill Data
-                int rowCounter = 1;
+                /*int rowCounter = 1;
                 for (int i = 0; i < dgv.Columns.Count; i++)
                 {
                     string header = dgv.Columns[i].HeaderText;
@@ -373,17 +463,70 @@ namespace AirportSMS
                         foreach (var cell in t.Rows[rowCounter].Cells) cell.FillColor = Xceed.Drawing.Color.WhiteSmoke;
 
                     rowCounter++;
+                }*/
+
+
+
+                // ================== SECTION MAPPED DATA ==================
+                int rowCounter = 1;
+                int sn = 1;
+
+                // Create a lookup for column index by header
+                Dictionary<string, int> columnIndexMap = dgv.Columns
+                    .Cast<DataGridViewColumn>()
+                    .ToDictionary(c => c.HeaderText, c => c.Index);
+
+                foreach (var section in sectionMap)
+                {
+                    // 🔹 Section Header (Merged 3 Columns)
+                    t.Rows[rowCounter].Cells[0].Paragraphs[0]
+                        .Append(section.Key)
+                        .Bold()
+                        .FontSize(11);
+
+                    t.Rows[rowCounter].MergeCells(0, 2);
+                    t.Rows[rowCounter].Cells[0].FillColor = Xceed.Drawing.Color.LightGray;
+
+                    rowCounter++;
+
+                    // 🔹 Section Items
+                    foreach (string columnName in section.Value)
+                    {
+                        if (!columnIndexMap.ContainsKey(columnName)) continue;
+
+                        if (rowCounter >= t.RowCount)
+                            t.InsertRow();
+
+                        int colIndex = columnIndexMap[columnName];
+
+                        t.Rows[rowCounter].Cells[0].Paragraphs[0].Append(sn.ToString());
+                        t.Rows[rowCounter].Cells[1].Paragraphs[0].Append(columnName).Bold();
+                        t.Rows[rowCounter].Cells[2].Paragraphs[0]
+                            .Append(row.Cells[colIndex].Value?.ToString() ?? "-");
+
+                        // Zebra striping
+                        if (rowCounter % 2 == 0)
+                            foreach (var cell in t.Rows[rowCounter].Cells)
+                                cell.FillColor = Xceed.Drawing.Color.WhiteSmoke;
+
+                        rowCounter++;
+                        sn++;
+                    }
                 }
+                // ================== END SECTION MAPPED DATA ==================
+
+
                 doc.InsertTable(t);
 
                 // --- PAGE MANAGEMENT ---
                 if (combineIntoOneFile)
                 {
                     // If not the last SPI, insert a page break
-                    if (idx < selectedRows.Count - 1)
+                    /*if (idx < selectedRows.Count - 1)
                     {
                         doc.InsertSectionPageBreak();
-                    }
+                    }*/
+                    doc.InsertSectionPageBreak();
                 }
                 else
                 {
@@ -393,6 +536,8 @@ namespace AirportSMS
 
             if (combineIntoOneFile)
             {
+                //AddDashboardPage(mainDoc, dgv);
+                AddDashboardCards(mainDoc, dgv);
                 mainDoc.Save();
                 MessageBox.Show("All SPIs merged into a single document with page breaks.");
             }
@@ -400,6 +545,409 @@ namespace AirportSMS
             {
                 MessageBox.Show("Individual Word files created successfully.");
             }
+        }
+
+
+        private void AddTOCPage(DocX doc)
+        {
+            // Title of the TOC
+            doc.InsertParagraph("TABLE OF CONTENTS")
+                .FontSize(18)
+                .Bold()
+                .Alignment = Alignment.center;
+
+            doc.InsertParagraph(); // spacing
+
+            // DocX v2021+ requires a dictionary for switches
+            var tocSwitches = new Dictionary<TableOfContentsSwitches, string>()
+                {
+                    { TableOfContentsSwitches.O, "" }, // Include page numbers
+                    { TableOfContentsSwitches.U, "" }, // Add hyperlinks
+                    { TableOfContentsSwitches.Z, "" }  // Hide web formatting
+                };
+
+            // Insert TOC for Heading1 only
+            doc.InsertTableOfContents(
+                "Click to update Table of Contents", // placeholder text for Word
+                tocSwitches,
+                "1", // start heading
+                1  // end heading
+            );
+
+                // Add a page break after TOC
+                doc.InsertSectionPageBreak();
+
+                // Enable auto-update when Word opens
+                //doc.CoreDocument.Settings.UpdateFieldsOnOpen = true;
+        }
+
+
+
+
+    private void AddCoverPage(DocX doc, int year)
+        {
+            doc.InsertParagraph("\n\n\n");
+
+            var title = doc.InsertParagraph("SAFETY PERFORMANCE INDICATORS (SPI)")
+                .FontSize(26)
+                .Bold()
+                .Color(Xceed.Drawing.Color.MidnightBlue)
+                .Alignment = Alignment.center;
+
+            doc.InsertParagraph("\n\n\n\n");
+
+            doc.InsertParagraph("Safety Office")
+                .FontSize(18)
+                .Italic()
+                .Alignment = Alignment.center;
+
+            doc.InsertParagraph("\n\n\n\n\n\n\n\n");
+
+            // Decorative aviation-style line
+            var line = doc.InsertParagraph("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+                .FontSize(10)
+                .Color(Xceed.Drawing.Color.DarkSlateGray)
+                .Alignment = Alignment.center;
+
+            doc.InsertParagraph("\n");
+
+            doc.InsertParagraph("Safety Management System (SMS)")
+                .FontSize(16)
+                .Bold()
+                .Alignment = Alignment.center;
+
+            doc.InsertParagraph("\n\n\n\n\n\n");
+
+            doc.InsertParagraph($"Year: {year}")
+               .FontSize(14)
+               .Bold()
+               .Alignment = Alignment.center;
+
+
+           /* doc.InsertParagraph($"Generated On: {DateTime.Now:dd MMM yyyy}")
+                .FontSize(10)
+                .Alignment = Alignment.center;*/
+           
+            // Page break
+            doc.InsertSectionPageBreak();
+        }
+
+        private void AddSPIDescriptionPage(DocX doc)
+        {
+            doc.InsertParagraph("Description of SAFETY PERFORMANCE INDICATORS (SPI)")
+                .Heading(HeadingType.Heading1)
+                .FontSize(15)
+                .Bold();
+
+            doc.InsertParagraph(
+                "A Safety Performance Indicator (SPI) is a data-driven metric used to monitor and assess " +
+                "the effectiveness of safety management within an aviation organization. SPIs help in " +
+                "identifying hazards, measuring safety performance trends, and supporting data-informed decisions.\n\n" +
+
+                "SPIs are selected based on organizational objectives, defined clearly with measurable criteria, " +
+                "and monitored regularly to ensure continuous improvement in safety performance.\n\n" +
+
+                "This document presents SPI definitions, monitoring results, summaries, and a performance dashboard " +
+                "to support management review and decision-making."
+            ).FontSize(11);
+
+            doc.InsertSectionPageBreak();
+        }
+
+        private int CalculateSPITotal(string currentObs)
+        {
+            if (string.IsNullOrWhiteSpace(currentObs))
+                return 0;
+
+            var parts = currentObs.Split(',');
+            int total = 0;
+
+            // Skip Year → start from index 1
+            for (int i = 1; i < parts.Length; i++)
+            {
+                if (int.TryParse(parts[i].Trim(), out int val))
+                    total += val;
+            }
+            return total;
+        }
+
+        private void AddSPISummaryTables(DocX doc, DataGridView dgv)
+        {
+            var spiGroups = dgv.Rows.Cast<DataGridViewRow>()
+                .Where(r => !r.IsNewRow)
+                .GroupBy(r => r.Cells["Type"].Value?.ToString() ?? "Unknown");
+
+            foreach (var group in spiGroups)
+            {
+                doc.InsertParagraph($"SPI SUMMARY – {group.Key}")
+                    .Heading(HeadingType.Heading1)
+                    .FontSize(15)
+                    .Bold();
+
+                Table t = doc.AddTable(group.Count() + 1, 5);
+                t.Design = TableDesign.TableGrid;
+                t.AutoFit = AutoFit.Window;
+
+                // Header
+                t.Rows[0].Cells[0].Paragraphs[0].Append("SN").Bold();
+                t.Rows[0].Cells[1].Paragraphs[0].Append("SPI Name").Bold();
+                t.Rows[0].Cells[2].Paragraphs[0].Append("Description").Bold();
+                t.Rows[0].Cells[3].Paragraphs[0].Append("SPI Total (Current Year)").Bold();
+                t.Rows[0].Cells[4].Paragraphs[0].Append("Progress %").Bold();
+
+                int sn = 1;
+                int r = 1;
+
+                foreach (var row in group)
+                {
+                    int spiTotal = CalculateSPITotal(
+                        row.Cells["Current Year Observed"].Value?.ToString()
+                        );
+
+                    t.Rows[r].Cells[0].Paragraphs[0].Append(sn.ToString());
+                    t.Rows[r].Cells[1].Paragraphs[0].Append(row.Cells["SPI Name"].Value?.ToString());
+                    t.Rows[r].Cells[2].Paragraphs[0].Append(row.Cells["Description"].Value?.ToString());
+                    t.Rows[r].Cells[3].Paragraphs[0].Append(spiTotal.ToString());
+                    t.Rows[r].Cells[4].Paragraphs[0]
+                        .Append(row.Cells["Progress %"].Value?.ToString());
+
+                    r++;
+                    sn++;
+                }
+
+                doc.InsertTable(t);
+                doc.InsertSectionPageBreak();
+            }
+        }
+
+        private void AddDashboardPage(DocX doc, DataGridView dgv)
+        {
+            //doc.InsertSectionPageBreak();
+            doc.InsertParagraph("SPI PERFORMANCE DASHBOARD")
+                .Heading(HeadingType.Heading1)
+                .FontSize(15)
+                .Bold()
+                .Alignment = Alignment.center;
+
+            doc.InsertParagraph();
+
+            Table t = doc.AddTable(dgv.Rows.Count + 1, 4);
+            t.Design = TableDesign.LightGridAccent2;
+            t.AutoFit = AutoFit.Window;
+
+            // Header
+            t.Rows[0].Cells[0].Paragraphs[0].Append("SPI Name").Bold();
+            t.Rows[0].Cells[1].Paragraphs[0].Append("Type").Bold();
+            t.Rows[0].Cells[2].Paragraphs[0].Append("SPI Total").Bold();
+            t.Rows[0].Cells[3].Paragraphs[0].Append("Progress %").Bold();
+
+            int r = 1;
+
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                int spiTotal = CalculateSPITotal(
+                    row.Cells["Current Year Observed"].Value?.ToString()
+                );
+
+                double.TryParse(row.Cells["Progress %"].Value?.ToString(), out double progress);
+
+                t.Rows[r].Cells[0].Paragraphs[0].Append(row.Cells["SPI Name"].Value?.ToString());
+                t.Rows[r].Cells[1].Paragraphs[0].Append(row.Cells["Type"].Value?.ToString());
+                t.Rows[r].Cells[2].Paragraphs[0].Append(spiTotal.ToString());
+                t.Rows[r].Cells[3].Paragraphs[0].Append($"{progress}%");
+
+                // Dashboard coloring
+                var color =
+                    progress >= 80 ? Xceed.Drawing.Color.LightGreen :
+                    progress >= 50 ? Xceed.Drawing.Color.Khaki :
+                                     Xceed.Drawing.Color.LightSalmon;
+
+                foreach (var cell in t.Rows[r].Cells)
+                    cell.FillColor = color;
+
+                r++;
+            }
+
+            doc.InsertTable(t);
+        }
+
+        private void AddDashboardCards(DocX doc, DataGridView dgv)
+        {
+            //doc.InsertSectionPageBreak();
+            // 1. Add Dashboard Title
+            doc.InsertParagraph("SPI PERFORMANCE INDICATOR DASHBOARD")
+                .Heading(HeadingType.Heading1)
+                .FontSize(15)
+                //.Color(Xceed.Drawing.Color.DarkSlateGray)
+                .Bold()
+                //.Font("Segoe UI") // Web-like font
+                .Alignment = Alignment.center;
+
+            doc.InsertParagraph(""); // Spacing below title
+
+            // 2. Filter valid rows (exclude new row placeholder)
+            var dataRows = dgv.Rows.Cast<DataGridViewRow>()
+                                   .Where(r => !r.IsNewRow)
+                                   .ToList();
+
+            if (dataRows.Count == 0) return;
+
+            // 3. Calculate Table Dimensions
+            int columnsPerRow = 3;
+            int totalRows = (int)Math.Ceiling((double)dataRows.Count / columnsPerRow);
+
+            // 4. Create the Table
+            // We create a table with specific width logic. 
+            // Note: In DocX, tables usually expand to page width by default.
+            var table = doc.AddTable(totalRows, columnsPerRow);
+            table.Design = TableDesign.TableGrid; // Standard grid to start
+            table.Alignment = Alignment.center;
+
+            // 5. Global Table Styling (The "Card Gap" Trick)
+            // We set all borders to White and Thick to simulate space between cards
+            Xceed.Document.NET.Border BorderColor;
+            if (dashboardWithBackgroundToolStripMenuItem.Checked)
+                BorderColor = new Xceed.Document.NET.Border(Xceed.Document.NET.BorderStyle.Tcbs_single, BorderSize.seven, 0, Xceed.Drawing.Color.White);
+            else
+                BorderColor = new Xceed.Document.NET.Border(Xceed.Document.NET.BorderStyle.Tcbs_single, BorderSize.seven, 0, Xceed.Drawing.Color.LightSlateGray);
+
+            table.SetBorder(TableBorderType.InsideH, BorderColor);
+            table.SetBorder(TableBorderType.InsideV, BorderColor);
+            table.SetBorder(TableBorderType.Top, BorderColor);
+            table.SetBorder(TableBorderType.Bottom, BorderColor);
+            table.SetBorder(TableBorderType.Left, BorderColor);
+            table.SetBorder(TableBorderType.Right, BorderColor);
+
+            // 6. Loop and Fill Cards
+            for (int i = 0; i < dataRows.Count; i++)
+            {
+                int r = i / columnsPerRow;
+                int c = i % columnsPerRow;
+                var dgvRow = dataRows[i];
+
+                // --- Extract Data ---
+                string spiName = dgvRow.Cells["SPI Name"].Value?.ToString() ?? "N/A";
+                string type = dgvRow.Cells["Type"].Value?.ToString() ?? "-";
+
+                // Handle parsing safely
+                double.TryParse(dgvRow.Cells["Progress %"].Value?.ToString(), out double progress);
+                string currentObserved = dgvRow.Cells["Current Year Observed"].Value?.ToString();
+
+                // (Assuming you have this method, otherwise replace with direct value)
+                // int spiTotal = CalculateSPITotal(currentObserved); 
+                string displayTotal = currentObserved; // specific display logic
+
+                // --- Determine Color (Traffic Light System) ---
+                Xceed.Drawing.Color cardColor_fg;
+                Xceed.Drawing.Color cardColor;
+
+
+                //Dark foreground color on card without background
+                // 0 → 50  (Red → Blue)
+                if (progress <= 50)
+                {
+                    double t = progress / 50.0;   // 0 to 1
+
+                    int r1 = (int)(255 * (1 - t));         // 255 → 0
+                    int g = 0;                            // stays 0
+                    int b = (int)(255 * t);               // 0 → 255
+
+                    cardColor_fg = Xceed.Drawing.Color.Parse(r1, g, b);
+                }
+                // 50 → 100 (Blue → Green)
+                else
+                {
+                    double t = (progress - 50) / 50.0; // 0 to 1
+
+                    int r1 = 0;                                // stays 0
+                    int g = (int)(255 * t);                   // 0 → 255
+                    int b = (int)(255 * (1 - t));             // 255 → 0
+
+                    cardColor_fg = Xceed.Drawing.Color.Parse(r1, g, b);
+                }
+
+                //softer card color
+                // 0 → 50 (Pastel Red → Pastel Blue)
+                if (progress <= 50)
+                {
+                    double t = progress / 50.0;
+
+                    // Base of 200 ensures it's always a light pastel
+                    int r1 = (int)(200 + (55 * (1 - t))); // 255 → 200
+                    int g = 200;                         // Stays light
+                    int b = (int)(200 + (55 * t));       // 200 → 255
+
+                    cardColor = Xceed.Drawing.Color.Parse(r1, g, b);
+                }
+                // 50 → 100 (Pastel Blue → Pastel Green)
+                else
+                {
+                    double t = (progress - 50) / 50.0;
+
+                    int r1 = 200;                         // Stays light
+                    int g = (int)(200 + (55 * t));       // 200 → 255
+                    int b = (int)(200 + (55 * (1 - t))); // 255 → 200
+
+                    cardColor = Xceed.Drawing.Color.Parse(r1, g, b);
+                }
+
+
+                /*if (progress >= 80) cardColor = Xceed.Drawing.Color.Parse(220, 255, 220);  //LightGreen; // Light Pastel Green
+                else if (progress >= 50) cardColor = Xceed.Drawing.Color.Parse(255, 250, 205); // Lemon Chiffon (Khaki-ish)
+                else cardColor = Xceed.Drawing.Color.Parse(255, 228, 225); // Misty Rose (Red-ish)
+                */
+                // --- Style the "Card" (Cell) ---
+                var cell = table.Rows[r].Cells[c];
+
+                if(dashboardWithBackgroundToolStripMenuItem.Checked)
+                    cell.FillColor = cardColor;
+                else
+                    cell.FillColor = Xceed.Drawing.Color.White;
+
+                cell.VerticalAlignment = VerticalAlignment.Center;
+
+                // Add Padding (Margin inside cell)
+                cell.MarginTop = 10;
+                cell.MarginBottom = 10;
+                cell.MarginLeft = 10;
+                cell.MarginRight = 10;
+
+                // --- Content Formatting ---
+                // Line 1: SPI Name (Bold, Larger)
+                var pName = cell.InsertParagraph(spiName);
+                
+
+                // Line 2: Type (Smaller, Gray)
+                var pType = cell.InsertParagraph($"Type: {type}");
+                
+
+                // Line 3: Metrics
+                var pMetrics = cell.InsertParagraph($"Progress: {progress}%");
+               
+
+                if(dashboardWithBackgroundToolStripMenuItem.Checked)
+                {
+                    pName.Bold().FontSize(12d).Color(Xceed.Drawing.Color.Black).Font("Segoe UI").Alignment = Alignment.center;
+                    pType.FontSize(9d).Italic().Color(Xceed.Drawing.Color.DimGray).Alignment = Alignment.center;
+                    pMetrics.FontSize(11d).Color(Xceed.Drawing.Color.Black).Bold().Alignment = Alignment.center;
+                }
+                else
+                {
+                    pName.Bold().FontSize(12d).Color(Xceed.Drawing.Color.Black).Font("Segoe UI").Alignment = Alignment.center;
+                    pType.FontSize(9d).Italic().Color(Xceed.Drawing.Color.DimGray).Alignment = Alignment.center;
+                    pMetrics.FontSize(11d).Color(cardColor_fg).Bold().Alignment = Alignment.center;
+                }
+
+                // Optional: Add visual bar using pipe characters if shapes fail
+                // string progressBar = new string('█', (int)(progress / 10)) + new string('░', 10 - (int)(progress / 10));
+                // cell.InsertParagraph(progressBar).Color(System.Drawing.Color.Gray).Alignment = Alignment.center;
+            }
+
+            // 7. Insert the table into the document
+            doc.InsertTable(table);
+            doc.InsertParagraph(""); // Bottom spacing
         }
 
         private string SanitizeFileName(string fileName)
@@ -446,6 +994,18 @@ namespace AirportSMS
                 if (DGV_ALL_SPIs_GridMode != null)
                     ExportSPIs_DocXv5(DGV_ALL_SPIs_GridMode, false);
             }
+        }
+
+        private void dashboardWithBackgroundToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dashboardWithBackgroundToolStripMenuItem.Checked = true;
+            dashboardWithoutBackgroundToolStripMenuItem.Checked = false;
+        }
+
+        private void dashboardWithoutBackgroundToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dashboardWithBackgroundToolStripMenuItem.Checked = false;
+            dashboardWithoutBackgroundToolStripMenuItem.Checked = true;
         }
     }
 }

@@ -46,6 +46,7 @@
             this.filterBySelectedSPITypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.openSPISummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sPIsInGridModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hazardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openHazardLogRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
@@ -62,7 +63,6 @@
             this.ComboBoxFilterSPI_Type = new System.Windows.Forms.ComboBox();
             this.TxtFilterSPIType = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.sPIsInGridModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -208,6 +208,13 @@
             this.openSPISummaryToolStripMenuItem.Text = "Open SPI Summary";
             this.openSPISummaryToolStripMenuItem.Click += new System.EventHandler(this.openSPISummaryToolStripMenuItem_Click);
             // 
+            // sPIsInGridModeToolStripMenuItem
+            // 
+            this.sPIsInGridModeToolStripMenuItem.Name = "sPIsInGridModeToolStripMenuItem";
+            this.sPIsInGridModeToolStripMenuItem.Size = new System.Drawing.Size(251, 24);
+            this.sPIsInGridModeToolStripMenuItem.Text = "SPIs in Grid mode";
+            this.sPIsInGridModeToolStripMenuItem.Click += new System.EventHandler(this.sPIsInGridModeToolStripMenuItem_Click);
+            // 
             // hazardToolStripMenuItem
             // 
             this.hazardToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -240,7 +247,7 @@
             this.TxtProjectLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtProjectLocation.Location = new System.Drawing.Point(139, 29);
             this.TxtProjectLocation.Name = "TxtProjectLocation";
-            this.TxtProjectLocation.Size = new System.Drawing.Size(1128, 24);
+            this.TxtProjectLocation.Size = new System.Drawing.Size(1094, 24);
             this.TxtProjectLocation.TabIndex = 2;
             // 
             // flowLayoutPanel1
@@ -267,7 +274,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 31);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1295, 162);
+            this.groupBox1.Size = new System.Drawing.Size(1261, 162);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General";
@@ -279,7 +286,7 @@
             this.TxtCurrentYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCurrentYear.Location = new System.Drawing.Point(139, 127);
             this.TxtCurrentYear.Name = "TxtCurrentYear";
-            this.TxtCurrentYear.Size = new System.Drawing.Size(1128, 24);
+            this.TxtCurrentYear.Size = new System.Drawing.Size(1094, 24);
             this.TxtCurrentYear.TabIndex = 8;
             // 
             // label4
@@ -299,7 +306,7 @@
             this.TxtProjModified.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtProjModified.Location = new System.Drawing.Point(139, 97);
             this.TxtProjModified.Name = "TxtProjModified";
-            this.TxtProjModified.Size = new System.Drawing.Size(1128, 24);
+            this.TxtProjModified.Size = new System.Drawing.Size(1094, 24);
             this.TxtProjModified.TabIndex = 6;
             // 
             // label3
@@ -319,7 +326,7 @@
             this.TxtProjectName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtProjectName.Location = new System.Drawing.Point(139, 62);
             this.TxtProjectName.Name = "TxtProjectName";
-            this.TxtProjectName.Size = new System.Drawing.Size(1128, 24);
+            this.TxtProjectName.Size = new System.Drawing.Size(1094, 24);
             this.TxtProjectName.TabIndex = 4;
             // 
             // label2
@@ -342,7 +349,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(15, 199);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1292, 93);
+            this.groupBox2.Size = new System.Drawing.Size(1258, 93);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filter";
@@ -355,7 +362,7 @@
             this.ComboBoxFilterSPI_Type.FormattingEnabled = true;
             this.ComboBoxFilterSPI_Type.Location = new System.Drawing.Point(133, 26);
             this.ComboBoxFilterSPI_Type.Name = "ComboBoxFilterSPI_Type";
-            this.ComboBoxFilterSPI_Type.Size = new System.Drawing.Size(1128, 26);
+            this.ComboBoxFilterSPI_Type.Size = new System.Drawing.Size(1094, 26);
             this.ComboBoxFilterSPI_Type.TabIndex = 9;
             this.ComboBoxFilterSPI_Type.SelectedIndexChanged += new System.EventHandler(this.ComboBoxFilterSPI_Type_SelectedIndexChanged);
             // 
@@ -366,7 +373,7 @@
             this.TxtFilterSPIType.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtFilterSPIType.Location = new System.Drawing.Point(133, 58);
             this.TxtFilterSPIType.Name = "TxtFilterSPIType";
-            this.TxtFilterSPIType.Size = new System.Drawing.Size(1128, 24);
+            this.TxtFilterSPIType.Size = new System.Drawing.Size(1094, 24);
             this.TxtFilterSPIType.TabIndex = 2;
             // 
             // label6
@@ -378,13 +385,6 @@
             this.label6.Size = new System.Drawing.Size(108, 18);
             this.label6.TabIndex = 1;
             this.label6.Text = "SelectSPI Type";
-            // 
-            // sPIsInGridModeToolStripMenuItem
-            // 
-            this.sPIsInGridModeToolStripMenuItem.Name = "sPIsInGridModeToolStripMenuItem";
-            this.sPIsInGridModeToolStripMenuItem.Size = new System.Drawing.Size(251, 24);
-            this.sPIsInGridModeToolStripMenuItem.Text = "SPIs in Grid mode";
-            this.sPIsInGridModeToolStripMenuItem.Click += new System.EventHandler(this.sPIsInGridModeToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
