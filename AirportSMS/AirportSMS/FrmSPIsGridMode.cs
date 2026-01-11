@@ -584,7 +584,7 @@ namespace AirportSMS
 
 
 
-    private void AddCoverPage(DocX doc, int year)
+        private void AddCoverPage(DocX doc, int year)
         {
             doc.InsertParagraph("\n\n\n");
 
@@ -611,7 +611,7 @@ namespace AirportSMS
 
             doc.InsertParagraph("\n");
 
-            doc.InsertParagraph("Safety Management System (SMS)")
+            doc.InsertParagraph("SPIs Monitoring Report")
                 .FontSize(16)
                 .Bold()
                 .Alignment = Alignment.center;
@@ -619,12 +619,12 @@ namespace AirportSMS
             doc.InsertParagraph("\n\n\n\n\n\n");
 
             doc.InsertParagraph($"Year: {year}")
-               .FontSize(14)
-               .Bold()
-               .Alignment = Alignment.center;
+                .FontSize(14)
+                .Bold()
+                .Alignment = Alignment.center;
 
 
-           /* doc.InsertParagraph($"Generated On: {DateTime.Now:dd MMM yyyy}")
+            /* doc.InsertParagraph($"Generated On: {DateTime.Now:dd MMM yyyy}")
                 .FontSize(10)
                 .Alignment = Alignment.center;*/
            
@@ -634,25 +634,208 @@ namespace AirportSMS
 
         private void AddSPIDescriptionPage(DocX doc)
         {
-            doc.InsertParagraph("Description of SAFETY PERFORMANCE INDICATORS (SPI)")
+            // Title
+            doc.InsertParagraph("Safety performance Indicators (SPIs)")
                 .Heading(HeadingType.Heading1)
                 .FontSize(15)
-                .Bold();
+                .Bold()
+                .SpacingAfter(12);
 
-            doc.InsertParagraph(
-                "A Safety Performance Indicator (SPI) is a data-driven metric used to monitor and assess " +
-                "the effectiveness of safety management within an aviation organization. SPIs help in " +
-                "identifying hazards, measuring safety performance trends, and supporting data-informed decisions.\n\n" +
+            // 1. Definition
+            doc.InsertParagraph("1. Definition: Safety Performance Indicators (SPIs) are")
+                .Bold()
+                .FontSize(11)
+                .SpacingAfter(6);
 
-                "SPIs are selected based on organizational objectives, defined clearly with measurable criteria, " +
-                "and monitored regularly to ensure continuous improvement in safety performance.\n\n" +
+            doc.InsertParagraph("• measurable metrics used to monitor and assess an organization's safety performance,")
+                .FontSize(11);
+            doc.InsertParagraph("• helping to verify safety goals,")
+                .FontSize(11);
+            doc.InsertParagraph("• identify trends,")
+                .FontSize(11);
+            doc.InsertParagraph("• detect risks, and")
+                .FontSize(11);
+            doc.InsertParagraph("• check SMS effectiveness through data like incident rates, audit findings, and training compliance")
+                .FontSize(11)
+                .SpacingAfter(12);
 
-                "This document presents SPI definitions, monitoring results, summaries, and a performance dashboard " +
-                "to support management review and decision-making."
-            ).FontSize(11);
+            // 2. Types
+            doc.InsertParagraph("2. Types")
+                .Bold()
+                .FontSize(11)
+                .SpacingAfter(6);
+
+            // A. Quantitative and Qualitative
+            doc.InsertParagraph("A. Quantitative and Qualitative")
+                .Bold()
+                .FontSize(11)
+                .SpacingAfter(4);
+
+            doc.InsertParagraph("i. Qualitative: descriptive e.g. employee perception of safety culture")
+                .FontSize(11)
+                .SpacingAfter(4);
+
+            doc.InsertParagraph("ii. Quantitative:")
+                .FontSize(11)
+                .SpacingAfter(2);
+
+            doc.InsertParagraph("• expressed as number (e.g. 10 incursions)")
+                .FontSize(11);
+            doc.InsertParagraph("• expressed as rate (e.g. 10 incursions per 1000 movement)")
+                .FontSize(11)
+                .SpacingAfter(10);
+
+            // B. Leading and lagging
+            doc.InsertParagraph("B. Leading and lagging")
+                .Bold()
+                .FontSize(11)
+                .SpacingAfter(4);
+
+            doc.InsertParagraph("i. Lagging:")
+                .FontSize(11)
+                .SpacingAfter(2);
+
+            doc.InsertParagraph("• SPIs that have already occurred")
+                .FontSize(11);
+            doc.InsertParagraph("• Outcome based")
+                .FontSize(11);
+            doc.InsertParagraph("• Reactive")
+                .FontSize(11);
+            doc.InsertParagraph("• Normally negative outcomes organization aim to avoid")
+                .FontSize(11);
+            doc.InsertParagraph("• Types:")
+                .FontSize(11);
+
+            doc.InsertParagraph("o Low probability/high severity (lagging SPIs): accidents or serious incidents e.g. aircraft damage due to bird strike")
+                .FontSize(11);
+            doc.InsertParagraph("o High probability/low severity (Precursor SPIS): help detect risk building up before an accident happens e.g. bird radar detection which indicates level of bird activity rather than actual bird strikes")
+                .FontSize(11)
+                .SpacingAfter(8);
+
+            doc.InsertParagraph("ii. Leading")
+                .FontSize(11)
+                .SpacingAfter(2);
+
+            doc.InsertParagraph("• Measures process and inputs")
+                .FontSize(11);
+            doc.InsertParagraph("• Activity or process SPIs")
+                .FontSize(11);
+            doc.InsertParagraph("• Proactive")
+                .FontSize(11);
+            doc.InsertParagraph("• Monitors and measures condition that have potential to lead or to contribute to a specific outcome")
+                .FontSize(11);
+            doc.InsertParagraph("• E.g. Percentage of staff who have successfully completed safety training on time")
+                .FontSize(11);
+            doc.InsertParagraph("• E.g. frequency of bird scaring activities")
+                .FontSize(11)
+                .SpacingAfter(12);
+
+            // 3. Link between leading, precursor and lagging SPIs
+            doc.InsertParagraph("3. Link between leading, precursor and lagging SPIs")
+                .Bold()
+                .FontSize(11)
+                .SpacingAfter(4);
+
+            doc.InsertParagraph("For Bird hazard management:")
+                .FontSize(11)
+                .SpacingAfter(2);
+
+            doc.InsertParagraph("• Leading SPI: Bird scaring activities (Actions)")
+                .FontSize(11);
+            doc.InsertParagraph("• Precursor SPI: Bird sightings or radar detections (Warning)")
+                .FontSize(11);
+            doc.InsertParagraph("• Lagging SPI: No. of bird strikes (Outcome)")
+                .FontSize(11);
+            doc.InsertParagraph("• Note: If leading activities decrease, precursor spikes and lagging incidents increase.")
+                .FontSize(11)
+                .SpacingAfter(6);
+
+            doc.InsertParagraph("Sequence of defining: Lagging → Precursor → Leading")
+                .FontSize(11)
+                .SpacingAfter(4);
+
+            doc.InsertParagraph("Note: The only real mistake is the one from which we learn nothing. – John Powell")
+                .Italic()
+                .FontSize(11)
+                .SpacingAfter(12);
+
+            // 4. Selecting SPI
+            doc.InsertParagraph("4. Selecting SPI")
+                .Bold()
+                .FontSize(11)
+                .SpacingAfter(4);
+
+            doc.InsertParagraph("SPIs should focus on parameters that are important indicators of safety performance, rather than on those that are easy to attain.")
+                .FontSize(11)
+                .SpacingAfter(4);
+
+            doc.InsertParagraph("SPIs should be:")
+                .FontSize(11)
+                .SpacingAfter(2);
+
+            doc.InsertParagraph("a) related to the safety objective they aim to indicate;")
+                .FontSize(11);
+            doc.InsertParagraph("b) selected or developed based on available data and reliable measurement;")
+                .FontSize(11);
+            doc.InsertParagraph("c) appropriately specific and quantifiable; and")
+                .FontSize(11);
+            doc.InsertParagraph("d) realistic, by taking into account the possibilities and constraints of the organization.")
+                .FontSize(11);
+
+            doc.InsertParagraph("A combination of SPIs is usually required to provide a clear indication of safety performance. There should be a clear link between lagging and leading SPIs. Ideally lagging SPIs should be defined before determining leading SPIs.")
+                .FontSize(11)
+                .SpacingAfter(12);
+
+            // 5. Defining SPIs
+            doc.InsertParagraph("5. Defining SPIs")
+                .Bold()
+                .FontSize(11)
+                .SpacingAfter(4);
+
+            doc.InsertParagraph("The contents of each SPI should include:")
+                .FontSize(11)
+                .SpacingAfter(2);
+
+            doc.InsertParagraph("a) a description of what the SPI measures;")
+                .FontSize(11);
+            doc.InsertParagraph("b) the purpose of the SPI (what it is intended to manage and who it is intended to inform);")
+                .FontSize(11);
+            doc.InsertParagraph("c) the units of measurement and any requirements for its calculation;")
+                .FontSize(11);
+            doc.InsertParagraph("d) who is responsible for collecting, validating, monitoring, reporting and acting on the SPI (these may be staff from different parts of the organization);")
+                .FontSize(11);
+            doc.InsertParagraph("where or how the data should be collected; and")
+                .FontSize(11);
+            doc.InsertParagraph("f) the frequency of reporting, collecting, monitoring and analysis of the SPI data.")
+                .FontSize(11)
+                .SpacingAfter(12);
+
+            // 6. SPIs and safety reporting
+            doc.InsertParagraph("6. SPIs and safety reporting")
+                .Bold()
+                .FontSize(11)
+                .SpacingAfter(4);
+
+            doc.InsertParagraph("In simple terms, reporting bias happens when the number of safety reports goes up or down for the wrong reasons, making data less accurate:")
+                .FontSize(11);
+
+            doc.InsertParagraph("Underreporting: People may stop reporting hazards if they are confused by new rules or don't trust them yet.")
+                .FontSize(11);
+            doc.InsertParagraph("Over-reporting: People might report too much if new laws give them extra protection or incentives.")
+                .FontSize(11);
+
+            doc.InsertParagraph("The Bottom Line: Even though these biases can \"mess up\" the data used to measure safety, reports are still very useful as long as managers look at them carefully and understand the context.")
+                .FontSize(11)
+                .SpacingAfter(10);
+
+            // Closing
+            doc.InsertParagraph("This document contains monitoring report of SPI with graphs, table and summary.")
+                .FontSize(11);
 
             doc.InsertSectionPageBreak();
         }
+
+
 
         private int CalculateSPITotal(string currentObs)
         {
@@ -723,7 +906,7 @@ namespace AirportSMS
         private void AddDashboardPage(DocX doc, DataGridView dgv)
         {
             //doc.InsertSectionPageBreak();
-            doc.InsertParagraph("SPI PERFORMANCE DASHBOARD")
+            doc.InsertParagraph("SPI DASHBOARD")
                 .Heading(HeadingType.Heading1)
                 .FontSize(15)
                 .Bold()
@@ -777,7 +960,7 @@ namespace AirportSMS
         {
             //doc.InsertSectionPageBreak();
             // 1. Add Dashboard Title
-            doc.InsertParagraph("SPI PERFORMANCE INDICATOR DASHBOARD")
+            doc.InsertParagraph("SPI DASHBOARD")
                 .Heading(HeadingType.Heading1)
                 .FontSize(15)
                 //.Color(Xceed.Drawing.Color.DarkSlateGray)

@@ -1284,18 +1284,20 @@ namespace AirportSMS
             AirportSMS_Class asms = new AirportSMS_Class();
             if (spi != null)
             {
+
                 //Selecting SPIs
                 asms.CheckOnIfTrue(checkBox1, spi.IsRelatedToObjective);
+                TxtObjective.Text = spi.SPI_Related_Objective;
                 asms.CheckOnIfTrue(checkBox2, spi.IsBasedOnDateAndMeasurement);
                 asms.CheckOnIfTrue(checkBox3, spi.IsSpecificQuantifiable);
                 asms.CheckOnIfTrue(checkBox4, spi.IsRealistic);
 
                 //SPI info
-                TxtSPI_ID.Text = spi.SPI_Id;
+                //TxtSPI_ID.Text = spi.SPI_Id;
                 TxtSPI_Name.Text = spi.SPI_Name;
-                TxtSPI_Value.Text = spi.SPI_Value_Prev_Obs;
-                TxtSPI_Value_Target.Text = spi.SPI_Value_Curr_Target;
-                TxtSPI_Value_Current.Text = spi.SPI_Value_Curr_obs;
+                //TxtSPI_Value.Text = spi.SPI_Value_Prev_Obs;
+                //TxtSPI_Value_Target.Text = spi.SPI_Value_Curr_Target;
+                //TxtSPI_Value_Current.Text = spi.SPI_Value_Curr_obs;
 
                 //Defining SPIs
                 TxtSPI_Type.Text = spi.SPI_Type;
@@ -1305,8 +1307,24 @@ namespace AirportSMS
                 Txt_SPI_Unit.Text = spi.SPI_Unit;
                 TxtSPI_Calc.Text = spi.SPI_Calc;
 
+                TxtdCollectingSPI.Text = spi.SPI_Resp_for_Collecting;
+                TxtdValidatingSPI.Text = spi.SPI_Resp_for_Validating;
+                TxtdMonitoringSPI.Text = spi.SPI_Resp_for_Monitoring;
+                TxtdReportingSPI.Text = spi.SPI_Resp_for_Reporting;
+                TxtdActingSPI.Text = spi.SPI_Resp_for_Acting;
+
+                TxteWhereDataColSPI.Text = spi.SPI_Where_data_Collected;
+                TxteHowDataColSPI.Text = spi.SPI_How_data_Collected;
+
+                TxtfReportingSPI.Text = spi.SPI_Frequency_of_Reporting;
+                TxtfCollectingSPI.Text = spi.SPI_Frequency_of_Collecting;
+                TxtfMonitoringSPI.Text = spi.SPI_Frequency_of_Monitoring;
+                TxtfAnalysisSPI.Text = spi.SPI_Frequency_of_Analysis;
+
+                TxtRemarksSPI.Text = spi.SPI_Remarks;
+
                 //SPIs data
-                for (int i = 0; i < 13; i++)
+                /*for (int i = 0; i < 13; i++)
                 {
 
                     //MessageBox.Show("dgv " + i + " : " + spi.PrevYearObserved[i]);
@@ -1316,7 +1334,7 @@ namespace AirportSMS
                     dataGridView1.Rows[3].Cells[i + 2].Value = spi.CurrYearObserved[i];
                 }
 
-                PlotGraph();
+                PlotGraph();*/
                 //createNewSPIToolStripMenuItem.Enabled = false;
 
             }
