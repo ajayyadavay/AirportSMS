@@ -1239,6 +1239,7 @@ namespace AirportSMS
                 acls.ClearFilter(DGV_SPI_Summary_ALL, DT_Summary_All);
             }
                 
+           
 
             //int visibleCount = DGV_SPI_Summary.Rows.GetRowCount(DataGridViewElementStates.Visible) - 1;
 
@@ -1353,7 +1354,7 @@ namespace AirportSMS
             BindDTtoDGV(DGV_SPI_Summary_ALL, dtFiltered);
         }
 
-        private List<int> ParseSelectedMonths(string input)
+        public List<int> ParseSelectedMonths(string input, int shiftindexby = 3)
         {
             HashSet<int> monthCols = new HashSet<int>();
 
@@ -1367,7 +1368,7 @@ namespace AirportSMS
                 int end = int.Parse(parts[1]);
 
                 for (int m = start; m <= end; m++)
-                    monthCols.Add(3 + m);   // 4 = JAN
+                    monthCols.Add(shiftindexby + m);   // 4 = JAN
             }
             // Comma separated: 2,8,11,12
             else if (input.Contains(","))
@@ -1375,14 +1376,14 @@ namespace AirportSMS
                 foreach (string s in input.Split(','))
                 {
                     int m = int.Parse(s);
-                    monthCols.Add(3 + m);
+                    monthCols.Add(shiftindexby + m);
                 }
             }
             // Single month
             else
             {
                 int m = int.Parse(input);
-                monthCols.Add(3 + m);
+                monthCols.Add(shiftindexby + m);
             }
 
             return monthCols.ToList();
@@ -1401,8 +1402,7 @@ namespace AirportSMS
 
             try
             {
-                List<int> selectedMonths =
-                    ParseSelectedMonths(TxtSelectedMonth.Text);
+                List<int> selectedMonths = ParseSelectedMonths(TxtSelectedMonth.Text);
 
                 ApplyMonthFilter(selectedMonths);
 

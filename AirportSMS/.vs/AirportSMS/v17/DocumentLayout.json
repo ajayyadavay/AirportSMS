@@ -7,20 +7,20 @@
       "RelativeMoniker": "D:0:0:{3537DE9E-6A6E-40C1-B581-B0A756CF5325}|AirportSMS\\AirportSMS.csproj|solutionrelative:airportsms\\frmspisgridmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3537DE9E-6A6E-40C1-B581-B0A756CF5325}|AirportSMS\\AirportSMS.csproj|F:\\VBStudio\\Airport_SMS\\AirportSMS\\airportsms\\hazardmonitoring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3537DE9E-6A6E-40C1-B581-B0A756CF5325}|AirportSMS\\AirportSMS.csproj|solutionrelative:airportsms\\hazardmonitoring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3537DE9E-6A6E-40C1-B581-B0A756CF5325}|AirportSMS\\AirportSMS.csproj|F:\\VBStudio\\Airport_SMS\\AirportSMS\\airportsms\\frmspisgridmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{3537DE9E-6A6E-40C1-B581-B0A756CF5325}|AirportSMS\\AirportSMS.csproj|solutionrelative:airportsms\\frmspisgridmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3537DE9E-6A6E-40C1-B581-B0A756CF5325}|AirportSMS\\AirportSMS.csproj|f:\\vbstudio\\airport_sms\\airportsms\\airportsms\\hazardmonitoring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{3537DE9E-6A6E-40C1-B581-B0A756CF5325}|AirportSMS\\AirportSMS.csproj|F:\\VBStudio\\Airport_SMS\\AirportSMS\\airportsms\\hazardmonitoring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{3537DE9E-6A6E-40C1-B581-B0A756CF5325}|AirportSMS\\AirportSMS.csproj|solutionrelative:airportsms\\hazardmonitoring.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3537DE9E-6A6E-40C1-B581-B0A756CF5325}|AirportSMS\\AirportSMS.csproj|F:\\VBStudio\\Airport_SMS\\AirportSMS\\airportsms\\airportsms_class.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3537DE9E-6A6E-40C1-B581-B0A756CF5325}|AirportSMS\\AirportSMS.csproj|solutionrelative:airportsms\\airportsms_class.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3537DE9E-6A6E-40C1-B581-B0A756CF5325}|AirportSMS\\AirportSMS.csproj|F:\\VBStudio\\Airport_SMS\\AirportSMS\\airportsms\\frmspisummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3537DE9E-6A6E-40C1-B581-B0A756CF5325}|AirportSMS\\AirportSMS.csproj|solutionrelative:airportsms\\frmspisummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3537DE9E-6A6E-40C1-B581-B0A756CF5325}|AirportSMS\\AirportSMS.csproj|F:\\VBStudio\\Airport_SMS\\AirportSMS\\airportsms\\frmspisgridmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{3537DE9E-6A6E-40C1-B581-B0A756CF5325}|AirportSMS\\AirportSMS.csproj|solutionrelative:airportsms\\frmspisgridmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{3537DE9E-6A6E-40C1-B581-B0A756CF5325}|AirportSMS\\AirportSMS.csproj|F:\\VBStudio\\Airport_SMS\\AirportSMS\\airportsms\\frmspisummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{3537DE9E-6A6E-40C1-B581-B0A756CF5325}|AirportSMS\\AirportSMS.csproj|solutionrelative:airportsms\\frmspisummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3537DE9E-6A6E-40C1-B581-B0A756CF5325}|AirportSMS\\AirportSMS.csproj|F:\\VBStudio\\Airport_SMS\\AirportSMS\\airportsms\\resolutiondialog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -42,6 +42,31 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FrmSPISummary.cs",
+              "DocumentMoniker": "F:\\VBStudio\\Airport_SMS\\AirportSMS\\AirportSMS\\FrmSPISummary.cs",
+              "RelativeDocumentMoniker": "AirportSMS\\FrmSPISummary.cs",
+              "ToolTip": "F:\\VBStudio\\Airport_SMS\\AirportSMS\\AirportSMS\\FrmSPISummary.cs",
+              "RelativeToolTip": "AirportSMS\\FrmSPISummary.cs",
+              "ViewState": "AgIAAJoAAAAAAAAAAAAowKoAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T07:29:24.792Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FrmSPISummary.cs [Design]",
+              "DocumentMoniker": "F:\\VBStudio\\Airport_SMS\\AirportSMS\\AirportSMS\\FrmSPISummary.cs",
+              "RelativeDocumentMoniker": "AirportSMS\\FrmSPISummary.cs",
+              "ToolTip": "F:\\VBStudio\\Airport_SMS\\AirportSMS\\AirportSMS\\FrmSPISummary.cs [Design]",
+              "RelativeToolTip": "AirportSMS\\FrmSPISummary.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T07:24:33.698Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "HazardMonitoring.cs [Design]",
               "DocumentMoniker": "F:\\VBStudio\\Airport_SMS\\AirportSMS\\AirportSMS\\HazardMonitoring.cs",
@@ -55,19 +80,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "HazardMonitoring.cs",
-              "DocumentMoniker": "F:\\VBStudio\\Airport_SMS\\AirportSMS\\AirportSMS\\HazardMonitoring.cs",
-              "RelativeDocumentMoniker": "AirportSMS\\HazardMonitoring.cs",
-              "ToolTip": "F:\\VBStudio\\Airport_SMS\\AirportSMS\\AirportSMS\\HazardMonitoring.cs",
-              "RelativeToolTip": "AirportSMS\\HazardMonitoring.cs",
-              "ViewState": "AgIAACkFAAAAAAAAAAAAADwFAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-10T08:26:28.108Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "FrmSPIsGridMode.cs [Design]",
               "DocumentMoniker": "F:\\VBStudio\\Airport_SMS\\AirportSMS\\AirportSMS\\FrmSPIsGridMode.cs",
               "RelativeDocumentMoniker": "AirportSMS\\FrmSPIsGridMode.cs",
@@ -79,26 +91,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AirportSMS_Class.cs",
-              "DocumentMoniker": "F:\\VBStudio\\Airport_SMS\\AirportSMS\\AirportSMS\\AirportSMS_Class.cs",
-              "RelativeDocumentMoniker": "AirportSMS\\AirportSMS_Class.cs",
-              "ToolTip": "F:\\VBStudio\\Airport_SMS\\AirportSMS\\AirportSMS\\AirportSMS_Class.cs",
-              "RelativeToolTip": "AirportSMS\\AirportSMS_Class.cs",
-              "ViewState": "AgIAAGoBAAAAAAAAAAAqwHABAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-11T06:20:48.311Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "FrmSPIsGridMode.cs",
               "DocumentMoniker": "F:\\VBStudio\\Airport_SMS\\AirportSMS\\AirportSMS\\FrmSPIsGridMode.cs",
               "RelativeDocumentMoniker": "AirportSMS\\FrmSPIsGridMode.cs",
               "ToolTip": "F:\\VBStudio\\Airport_SMS\\AirportSMS\\AirportSMS\\FrmSPIsGridMode.cs",
               "RelativeToolTip": "AirportSMS\\FrmSPIsGridMode.cs",
-              "ViewState": "AgIAAK0DAAAAAAAAAAAAAMIDAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAIkFAAAAAAAAAAAAAJsFAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-10T07:48:26.374Z",
               "EditorCaption": ""

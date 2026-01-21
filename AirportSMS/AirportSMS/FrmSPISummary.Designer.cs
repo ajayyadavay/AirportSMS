@@ -44,20 +44,6 @@
             this.RadioDescending = new System.Windows.Forms.RadioButton();
             this.RadioDefault = new System.Windows.Forms.RadioButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.TabSummarySPIs = new System.Windows.Forms.TabPage();
-            this.BtnClearFilter = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.ComboBoxSPISummaryValue = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.ComboBoxSPIsummaryColName = new System.Windows.Forms.ComboBox();
-            this.TxtFilterSPISummary = new System.Windows.Forms.TextBox();
-            this.BtnFilterSPISummary = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.TxtSummarySIPTopHz = new System.Windows.Forms.TextBox();
-            this.BtnSaveHazardCircleSPI = new System.Windows.Forms.Button();
-            this.BtnPlotHazardCircleSPI = new System.Windows.Forms.Button();
-            this.PanelHighHazardSPI = new System.Windows.Forms.Panel();
-            this.BtnSortSummarySPI = new System.Windows.Forms.Button();
             this.TabDetailedSummary = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -96,6 +82,20 @@
             this.ColNov = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDec = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TabSummarySPIs = new System.Windows.Forms.TabPage();
+            this.BtnClearFilter = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ComboBoxSPISummaryValue = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.ComboBoxSPIsummaryColName = new System.Windows.Forms.ComboBox();
+            this.TxtFilterSPISummary = new System.Windows.Forms.TextBox();
+            this.BtnFilterSPISummary = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.TxtSummarySIPTopHz = new System.Windows.Forms.TextBox();
+            this.BtnSaveHazardCircleSPI = new System.Windows.Forms.Button();
+            this.BtnPlotHazardCircleSPI = new System.Windows.Forms.Button();
+            this.PanelHighHazardSPI = new System.Windows.Forms.Panel();
+            this.BtnSortSummarySPI = new System.Windows.Forms.Button();
             this.TabMonthwise = new System.Windows.Forms.TabPage();
             this.TxtMonthHzNumber = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -113,11 +113,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SPI_Summary)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.TabSummarySPIs.SuspendLayout();
             this.TabDetailedSummary.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SPI_Summary_ALL)).BeginInit();
+            this.TabSummarySPIs.SuspendLayout();
             this.TabMonthwise.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Summary_Monthly)).BeginInit();
             this.SuspendLayout();
@@ -272,200 +272,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1329, 1800);
             this.tabControl1.TabIndex = 8;
-            // 
-            // TabSummarySPIs
-            // 
-            this.TabSummarySPIs.Controls.Add(this.BtnClearFilter);
-            this.TabSummarySPIs.Controls.Add(this.label5);
-            this.TabSummarySPIs.Controls.Add(this.ComboBoxSPISummaryValue);
-            this.TabSummarySPIs.Controls.Add(this.label4);
-            this.TabSummarySPIs.Controls.Add(this.ComboBoxSPIsummaryColName);
-            this.TabSummarySPIs.Controls.Add(this.TxtFilterSPISummary);
-            this.TabSummarySPIs.Controls.Add(this.BtnFilterSPISummary);
-            this.TabSummarySPIs.Controls.Add(this.label2);
-            this.TabSummarySPIs.Controls.Add(this.TxtSummarySIPTopHz);
-            this.TabSummarySPIs.Controls.Add(this.BtnSaveHazardCircleSPI);
-            this.TabSummarySPIs.Controls.Add(this.BtnPlotHazardCircleSPI);
-            this.TabSummarySPIs.Controls.Add(this.PanelHighHazardSPI);
-            this.TabSummarySPIs.Controls.Add(this.BtnSortSummarySPI);
-            this.TabSummarySPIs.Controls.Add(this.RadioDefault);
-            this.TabSummarySPIs.Controls.Add(this.DGV_SPI_Summary);
-            this.TabSummarySPIs.Controls.Add(this.RadioDescending);
-            this.TabSummarySPIs.Controls.Add(this.PanelPlotSPISummary);
-            this.TabSummarySPIs.Controls.Add(this.RadioAscending);
-            this.TabSummarySPIs.Controls.Add(this.label1);
-            this.TabSummarySPIs.Controls.Add(this.ComboBoxSort);
-            this.TabSummarySPIs.Location = new System.Drawing.Point(4, 25);
-            this.TabSummarySPIs.Name = "TabSummarySPIs";
-            this.TabSummarySPIs.Padding = new System.Windows.Forms.Padding(3);
-            this.TabSummarySPIs.Size = new System.Drawing.Size(1321, 1771);
-            this.TabSummarySPIs.TabIndex = 0;
-            this.TabSummarySPIs.Text = "Summary - SPIs";
-            this.TabSummarySPIs.UseVisualStyleBackColor = true;
-            // 
-            // BtnClearFilter
-            // 
-            this.BtnClearFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
-            this.BtnClearFilter.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnClearFilter.FlatAppearance.BorderSize = 0;
-            this.BtnClearFilter.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
-            this.BtnClearFilter.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
-            this.BtnClearFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnClearFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnClearFilter.ForeColor = System.Drawing.Color.White;
-            this.BtnClearFilter.Location = new System.Drawing.Point(899, 497);
-            this.BtnClearFilter.Name = "BtnClearFilter";
-            this.BtnClearFilter.Size = new System.Drawing.Size(388, 35);
-            this.BtnClearFilter.TabIndex = 24;
-            this.BtnClearFilter.Text = "Clear Filter";
-            this.BtnClearFilter.UseVisualStyleBackColor = false;
-            this.BtnClearFilter.Click += new System.EventHandler(this.BtnClearFilter_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(899, 327);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 18);
-            this.label5.TabIndex = 23;
-            this.label5.Text = "Value to filter";
-            // 
-            // ComboBoxSPISummaryValue
-            // 
-            this.ComboBoxSPISummaryValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ComboBoxSPISummaryValue.FormattingEnabled = true;
-            this.ComboBoxSPISummaryValue.Location = new System.Drawing.Point(902, 348);
-            this.ComboBoxSPISummaryValue.Name = "ComboBoxSPISummaryValue";
-            this.ComboBoxSPISummaryValue.Size = new System.Drawing.Size(380, 26);
-            this.ComboBoxSPISummaryValue.TabIndex = 22;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(899, 263);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(152, 18);
-            this.label4.TabIndex = 21;
-            this.label4.Text = "Column Name to filter";
-            // 
-            // ComboBoxSPIsummaryColName
-            // 
-            this.ComboBoxSPIsummaryColName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ComboBoxSPIsummaryColName.FormattingEnabled = true;
-            this.ComboBoxSPIsummaryColName.Location = new System.Drawing.Point(902, 284);
-            this.ComboBoxSPIsummaryColName.Name = "ComboBoxSPIsummaryColName";
-            this.ComboBoxSPIsummaryColName.Size = new System.Drawing.Size(380, 26);
-            this.ComboBoxSPIsummaryColName.TabIndex = 20;
-            this.ComboBoxSPIsummaryColName.SelectedIndexChanged += new System.EventHandler(this.ComboBoxSPIsummaryColName_SelectedIndexChanged);
-            // 
-            // TxtFilterSPISummary
-            // 
-            this.TxtFilterSPISummary.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtFilterSPISummary.Location = new System.Drawing.Point(899, 403);
-            this.TxtFilterSPISummary.Name = "TxtFilterSPISummary";
-            this.TxtFilterSPISummary.Size = new System.Drawing.Size(388, 24);
-            this.TxtFilterSPISummary.TabIndex = 19;
-            // 
-            // BtnFilterSPISummary
-            // 
-            this.BtnFilterSPISummary.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
-            this.BtnFilterSPISummary.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnFilterSPISummary.FlatAppearance.BorderSize = 0;
-            this.BtnFilterSPISummary.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
-            this.BtnFilterSPISummary.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
-            this.BtnFilterSPISummary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnFilterSPISummary.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnFilterSPISummary.ForeColor = System.Drawing.Color.White;
-            this.BtnFilterSPISummary.Location = new System.Drawing.Point(899, 444);
-            this.BtnFilterSPISummary.Name = "BtnFilterSPISummary";
-            this.BtnFilterSPISummary.Size = new System.Drawing.Size(388, 35);
-            this.BtnFilterSPISummary.TabIndex = 18;
-            this.BtnFilterSPISummary.Text = "Filter";
-            this.BtnFilterSPISummary.UseVisualStyleBackColor = false;
-            this.BtnFilterSPISummary.Click += new System.EventHandler(this.BtnFilterSPISummary_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(861, 1119);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(220, 18);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Enter no. of Top Hazard to draw";
-            // 
-            // TxtSummarySIPTopHz
-            // 
-            this.TxtSummarySIPTopHz.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSummarySIPTopHz.Location = new System.Drawing.Point(861, 1147);
-            this.TxtSummarySIPTopHz.Name = "TxtSummarySIPTopHz";
-            this.TxtSummarySIPTopHz.Size = new System.Drawing.Size(222, 24);
-            this.TxtSummarySIPTopHz.TabIndex = 16;
-            // 
-            // BtnSaveHazardCircleSPI
-            // 
-            this.BtnSaveHazardCircleSPI.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
-            this.BtnSaveHazardCircleSPI.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnSaveHazardCircleSPI.FlatAppearance.BorderSize = 0;
-            this.BtnSaveHazardCircleSPI.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
-            this.BtnSaveHazardCircleSPI.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
-            this.BtnSaveHazardCircleSPI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnSaveHazardCircleSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnSaveHazardCircleSPI.ForeColor = System.Drawing.Color.White;
-            this.BtnSaveHazardCircleSPI.Location = new System.Drawing.Point(859, 1248);
-            this.BtnSaveHazardCircleSPI.Name = "BtnSaveHazardCircleSPI";
-            this.BtnSaveHazardCircleSPI.Size = new System.Drawing.Size(246, 35);
-            this.BtnSaveHazardCircleSPI.TabIndex = 15;
-            this.BtnSaveHazardCircleSPI.Text = "Save";
-            this.BtnSaveHazardCircleSPI.UseVisualStyleBackColor = false;
-            this.BtnSaveHazardCircleSPI.Click += new System.EventHandler(this.BtnSaveHazardCircleSPI_Click);
-            // 
-            // BtnPlotHazardCircleSPI
-            // 
-            this.BtnPlotHazardCircleSPI.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
-            this.BtnPlotHazardCircleSPI.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnPlotHazardCircleSPI.FlatAppearance.BorderSize = 0;
-            this.BtnPlotHazardCircleSPI.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
-            this.BtnPlotHazardCircleSPI.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
-            this.BtnPlotHazardCircleSPI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnPlotHazardCircleSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnPlotHazardCircleSPI.ForeColor = System.Drawing.Color.White;
-            this.BtnPlotHazardCircleSPI.Location = new System.Drawing.Point(859, 1195);
-            this.BtnPlotHazardCircleSPI.Name = "BtnPlotHazardCircleSPI";
-            this.BtnPlotHazardCircleSPI.Size = new System.Drawing.Size(246, 35);
-            this.BtnPlotHazardCircleSPI.TabIndex = 14;
-            this.BtnPlotHazardCircleSPI.Text = "High Hazard Catergory";
-            this.BtnPlotHazardCircleSPI.UseVisualStyleBackColor = false;
-            this.BtnPlotHazardCircleSPI.Click += new System.EventHandler(this.BtnPlotHazardCircleSPI_Click);
-            // 
-            // PanelHighHazardSPI
-            // 
-            this.PanelHighHazardSPI.BackColor = System.Drawing.Color.White;
-            this.PanelHighHazardSPI.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PanelHighHazardSPI.Location = new System.Drawing.Point(10, 1094);
-            this.PanelHighHazardSPI.Name = "PanelHighHazardSPI";
-            this.PanelHighHazardSPI.Size = new System.Drawing.Size(832, 669);
-            this.PanelHighHazardSPI.TabIndex = 13;
-            // 
-            // BtnSortSummarySPI
-            // 
-            this.BtnSortSummarySPI.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
-            this.BtnSortSummarySPI.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnSortSummarySPI.FlatAppearance.BorderSize = 0;
-            this.BtnSortSummarySPI.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
-            this.BtnSortSummarySPI.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
-            this.BtnSortSummarySPI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnSortSummarySPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnSortSummarySPI.ForeColor = System.Drawing.Color.White;
-            this.BtnSortSummarySPI.Location = new System.Drawing.Point(897, 208);
-            this.BtnSortSummarySPI.Name = "BtnSortSummarySPI";
-            this.BtnSortSummarySPI.Size = new System.Drawing.Size(385, 35);
-            this.BtnSortSummarySPI.TabIndex = 12;
-            this.BtnSortSummarySPI.Text = "Sort";
-            this.BtnSortSummarySPI.UseVisualStyleBackColor = false;
-            this.BtnSortSummarySPI.Click += new System.EventHandler(this.BtnSortSummarySPI_Click);
             // 
             // TabDetailedSummary
             // 
@@ -903,6 +709,200 @@
             this.ColTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.ColTotal.Width = 75;
             // 
+            // TabSummarySPIs
+            // 
+            this.TabSummarySPIs.Controls.Add(this.BtnClearFilter);
+            this.TabSummarySPIs.Controls.Add(this.label5);
+            this.TabSummarySPIs.Controls.Add(this.ComboBoxSPISummaryValue);
+            this.TabSummarySPIs.Controls.Add(this.label4);
+            this.TabSummarySPIs.Controls.Add(this.ComboBoxSPIsummaryColName);
+            this.TabSummarySPIs.Controls.Add(this.TxtFilterSPISummary);
+            this.TabSummarySPIs.Controls.Add(this.BtnFilterSPISummary);
+            this.TabSummarySPIs.Controls.Add(this.label2);
+            this.TabSummarySPIs.Controls.Add(this.TxtSummarySIPTopHz);
+            this.TabSummarySPIs.Controls.Add(this.BtnSaveHazardCircleSPI);
+            this.TabSummarySPIs.Controls.Add(this.BtnPlotHazardCircleSPI);
+            this.TabSummarySPIs.Controls.Add(this.PanelHighHazardSPI);
+            this.TabSummarySPIs.Controls.Add(this.BtnSortSummarySPI);
+            this.TabSummarySPIs.Controls.Add(this.RadioDefault);
+            this.TabSummarySPIs.Controls.Add(this.DGV_SPI_Summary);
+            this.TabSummarySPIs.Controls.Add(this.RadioDescending);
+            this.TabSummarySPIs.Controls.Add(this.PanelPlotSPISummary);
+            this.TabSummarySPIs.Controls.Add(this.RadioAscending);
+            this.TabSummarySPIs.Controls.Add(this.label1);
+            this.TabSummarySPIs.Controls.Add(this.ComboBoxSort);
+            this.TabSummarySPIs.Location = new System.Drawing.Point(4, 25);
+            this.TabSummarySPIs.Name = "TabSummarySPIs";
+            this.TabSummarySPIs.Padding = new System.Windows.Forms.Padding(3);
+            this.TabSummarySPIs.Size = new System.Drawing.Size(1321, 1771);
+            this.TabSummarySPIs.TabIndex = 0;
+            this.TabSummarySPIs.Text = "Summary - SPIs";
+            this.TabSummarySPIs.UseVisualStyleBackColor = true;
+            // 
+            // BtnClearFilter
+            // 
+            this.BtnClearFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
+            this.BtnClearFilter.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnClearFilter.FlatAppearance.BorderSize = 0;
+            this.BtnClearFilter.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
+            this.BtnClearFilter.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
+            this.BtnClearFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnClearFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnClearFilter.ForeColor = System.Drawing.Color.White;
+            this.BtnClearFilter.Location = new System.Drawing.Point(899, 497);
+            this.BtnClearFilter.Name = "BtnClearFilter";
+            this.BtnClearFilter.Size = new System.Drawing.Size(388, 35);
+            this.BtnClearFilter.TabIndex = 24;
+            this.BtnClearFilter.Text = "Clear Filter";
+            this.BtnClearFilter.UseVisualStyleBackColor = false;
+            this.BtnClearFilter.Click += new System.EventHandler(this.BtnClearFilter_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(899, 327);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 18);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Value to filter";
+            // 
+            // ComboBoxSPISummaryValue
+            // 
+            this.ComboBoxSPISummaryValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxSPISummaryValue.FormattingEnabled = true;
+            this.ComboBoxSPISummaryValue.Location = new System.Drawing.Point(902, 348);
+            this.ComboBoxSPISummaryValue.Name = "ComboBoxSPISummaryValue";
+            this.ComboBoxSPISummaryValue.Size = new System.Drawing.Size(380, 26);
+            this.ComboBoxSPISummaryValue.TabIndex = 22;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(899, 263);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(152, 18);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "Column Name to filter";
+            // 
+            // ComboBoxSPIsummaryColName
+            // 
+            this.ComboBoxSPIsummaryColName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxSPIsummaryColName.FormattingEnabled = true;
+            this.ComboBoxSPIsummaryColName.Location = new System.Drawing.Point(902, 284);
+            this.ComboBoxSPIsummaryColName.Name = "ComboBoxSPIsummaryColName";
+            this.ComboBoxSPIsummaryColName.Size = new System.Drawing.Size(380, 26);
+            this.ComboBoxSPIsummaryColName.TabIndex = 20;
+            this.ComboBoxSPIsummaryColName.SelectedIndexChanged += new System.EventHandler(this.ComboBoxSPIsummaryColName_SelectedIndexChanged);
+            // 
+            // TxtFilterSPISummary
+            // 
+            this.TxtFilterSPISummary.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtFilterSPISummary.Location = new System.Drawing.Point(899, 403);
+            this.TxtFilterSPISummary.Name = "TxtFilterSPISummary";
+            this.TxtFilterSPISummary.Size = new System.Drawing.Size(388, 24);
+            this.TxtFilterSPISummary.TabIndex = 19;
+            // 
+            // BtnFilterSPISummary
+            // 
+            this.BtnFilterSPISummary.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
+            this.BtnFilterSPISummary.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnFilterSPISummary.FlatAppearance.BorderSize = 0;
+            this.BtnFilterSPISummary.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
+            this.BtnFilterSPISummary.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
+            this.BtnFilterSPISummary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnFilterSPISummary.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnFilterSPISummary.ForeColor = System.Drawing.Color.White;
+            this.BtnFilterSPISummary.Location = new System.Drawing.Point(899, 444);
+            this.BtnFilterSPISummary.Name = "BtnFilterSPISummary";
+            this.BtnFilterSPISummary.Size = new System.Drawing.Size(388, 35);
+            this.BtnFilterSPISummary.TabIndex = 18;
+            this.BtnFilterSPISummary.Text = "Filter";
+            this.BtnFilterSPISummary.UseVisualStyleBackColor = false;
+            this.BtnFilterSPISummary.Click += new System.EventHandler(this.BtnFilterSPISummary_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(861, 1119);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(220, 18);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Enter no. of Top Hazard to draw";
+            // 
+            // TxtSummarySIPTopHz
+            // 
+            this.TxtSummarySIPTopHz.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSummarySIPTopHz.Location = new System.Drawing.Point(861, 1147);
+            this.TxtSummarySIPTopHz.Name = "TxtSummarySIPTopHz";
+            this.TxtSummarySIPTopHz.Size = new System.Drawing.Size(222, 24);
+            this.TxtSummarySIPTopHz.TabIndex = 16;
+            // 
+            // BtnSaveHazardCircleSPI
+            // 
+            this.BtnSaveHazardCircleSPI.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
+            this.BtnSaveHazardCircleSPI.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnSaveHazardCircleSPI.FlatAppearance.BorderSize = 0;
+            this.BtnSaveHazardCircleSPI.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
+            this.BtnSaveHazardCircleSPI.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
+            this.BtnSaveHazardCircleSPI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSaveHazardCircleSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSaveHazardCircleSPI.ForeColor = System.Drawing.Color.White;
+            this.BtnSaveHazardCircleSPI.Location = new System.Drawing.Point(859, 1248);
+            this.BtnSaveHazardCircleSPI.Name = "BtnSaveHazardCircleSPI";
+            this.BtnSaveHazardCircleSPI.Size = new System.Drawing.Size(246, 35);
+            this.BtnSaveHazardCircleSPI.TabIndex = 15;
+            this.BtnSaveHazardCircleSPI.Text = "Save";
+            this.BtnSaveHazardCircleSPI.UseVisualStyleBackColor = false;
+            this.BtnSaveHazardCircleSPI.Click += new System.EventHandler(this.BtnSaveHazardCircleSPI_Click);
+            // 
+            // BtnPlotHazardCircleSPI
+            // 
+            this.BtnPlotHazardCircleSPI.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
+            this.BtnPlotHazardCircleSPI.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnPlotHazardCircleSPI.FlatAppearance.BorderSize = 0;
+            this.BtnPlotHazardCircleSPI.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
+            this.BtnPlotHazardCircleSPI.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
+            this.BtnPlotHazardCircleSPI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPlotHazardCircleSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPlotHazardCircleSPI.ForeColor = System.Drawing.Color.White;
+            this.BtnPlotHazardCircleSPI.Location = new System.Drawing.Point(859, 1195);
+            this.BtnPlotHazardCircleSPI.Name = "BtnPlotHazardCircleSPI";
+            this.BtnPlotHazardCircleSPI.Size = new System.Drawing.Size(246, 35);
+            this.BtnPlotHazardCircleSPI.TabIndex = 14;
+            this.BtnPlotHazardCircleSPI.Text = "High Hazard Catergory";
+            this.BtnPlotHazardCircleSPI.UseVisualStyleBackColor = false;
+            this.BtnPlotHazardCircleSPI.Click += new System.EventHandler(this.BtnPlotHazardCircleSPI_Click);
+            // 
+            // PanelHighHazardSPI
+            // 
+            this.PanelHighHazardSPI.BackColor = System.Drawing.Color.White;
+            this.PanelHighHazardSPI.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelHighHazardSPI.Location = new System.Drawing.Point(10, 1094);
+            this.PanelHighHazardSPI.Name = "PanelHighHazardSPI";
+            this.PanelHighHazardSPI.Size = new System.Drawing.Size(832, 669);
+            this.PanelHighHazardSPI.TabIndex = 13;
+            // 
+            // BtnSortSummarySPI
+            // 
+            this.BtnSortSummarySPI.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
+            this.BtnSortSummarySPI.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnSortSummarySPI.FlatAppearance.BorderSize = 0;
+            this.BtnSortSummarySPI.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
+            this.BtnSortSummarySPI.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
+            this.BtnSortSummarySPI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSortSummarySPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSortSummarySPI.ForeColor = System.Drawing.Color.White;
+            this.BtnSortSummarySPI.Location = new System.Drawing.Point(897, 208);
+            this.BtnSortSummarySPI.Name = "BtnSortSummarySPI";
+            this.BtnSortSummarySPI.Size = new System.Drawing.Size(385, 35);
+            this.BtnSortSummarySPI.TabIndex = 12;
+            this.BtnSortSummarySPI.Text = "Sort";
+            this.BtnSortSummarySPI.UseVisualStyleBackColor = false;
+            this.BtnSortSummarySPI.Click += new System.EventHandler(this.BtnSortSummarySPI_Click);
+            // 
             // TabMonthwise
             // 
             this.TabMonthwise.Controls.Add(this.TxtMonthHzNumber);
@@ -1099,14 +1099,14 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.TabSummarySPIs.ResumeLayout(false);
-            this.TabSummarySPIs.PerformLayout();
             this.TabDetailedSummary.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SPI_Summary_ALL)).EndInit();
+            this.TabSummarySPIs.ResumeLayout(false);
+            this.TabSummarySPIs.PerformLayout();
             this.TabMonthwise.ResumeLayout(false);
             this.TabMonthwise.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Summary_Monthly)).EndInit();
