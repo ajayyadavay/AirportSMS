@@ -170,6 +170,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SMS_Project_Package_class.cs" />
+    <Compile Include="SPISummaryGirdAndDocxClass.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

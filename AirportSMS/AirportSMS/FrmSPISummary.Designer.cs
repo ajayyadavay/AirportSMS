@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGV_SPI_Summary = new System.Windows.Forms.DataGridView();
             this.ColSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColSPIs = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,12 +46,15 @@
             this.RadioDefault = new System.Windows.Forms.RadioButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabDetailedSummary = new System.Windows.Forms.TabPage();
+            this.DGV_ALL_SPIs_GridMode = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.BtnSelectedMonthView = new System.Windows.Forms.Button();
             this.TxtSelectedMonth = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TxtSPISummaryCurrYear = new System.Windows.Forms.TextBox();
             this.Default = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.TxtNoOfFilteredData = new System.Windows.Forms.TextBox();
             this.BtnClearFilterAll = new System.Windows.Forms.Button();
@@ -64,24 +68,6 @@
             this.BtnClearPlotArea = new System.Windows.Forms.Button();
             this.BtnPlotAllSelectedSPIs = new System.Windows.Forms.Button();
             this.PanelPlotAllSummarySPI = new System.Windows.Forms.Panel();
-            this.DGV_SPI_Summary_ALL = new System.Windows.Forms.DataGridView();
-            this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSpiTypeAll = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSPIs_Progress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColJan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColFeb = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColApr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColJun = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColJul = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColAug = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSep = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColOct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColNov = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDec = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabSummarySPIs = new System.Windows.Forms.TabPage();
             this.BtnClearFilter = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -110,13 +96,23 @@
             this.ColM_SN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColMonth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColMonthTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectedRowsToDocxAsIndividualFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectedRowsToDocxAsMergedFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dashboardWithBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dashboardWithoutBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label11 = new System.Windows.Forms.Label();
+            this.TxtCentralCircleTextHazard = new System.Windows.Forms.TextBox();
+            this.TxtCentercircletextMonthhazard = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SPI_Summary)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.TabDetailedSummary.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_ALL_SPIs_GridMode)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_SPI_Summary_ALL)).BeginInit();
             this.TabSummarySPIs.SuspendLayout();
             this.TabMonthwise.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Summary_Monthly)).BeginInit();
@@ -177,7 +173,9 @@
             // 
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.exportToolStripMenuItem,
+            this.exportSettingToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1353, 28);
@@ -195,7 +193,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -275,12 +273,12 @@
             // 
             // TabDetailedSummary
             // 
+            this.TabDetailedSummary.Controls.Add(this.DGV_ALL_SPIs_GridMode);
             this.TabDetailedSummary.Controls.Add(this.groupBox2);
             this.TabDetailedSummary.Controls.Add(this.groupBox1);
             this.TabDetailedSummary.Controls.Add(this.BtnClearPlotArea);
             this.TabDetailedSummary.Controls.Add(this.BtnPlotAllSelectedSPIs);
             this.TabDetailedSummary.Controls.Add(this.PanelPlotAllSummarySPI);
-            this.TabDetailedSummary.Controls.Add(this.DGV_SPI_Summary_ALL);
             this.TabDetailedSummary.Location = new System.Drawing.Point(4, 25);
             this.TabDetailedSummary.Name = "TabDetailedSummary";
             this.TabDetailedSummary.Padding = new System.Windows.Forms.Padding(3);
@@ -288,6 +286,19 @@
             this.TabDetailedSummary.TabIndex = 1;
             this.TabDetailedSummary.Text = "Detailed Summary - SPIs";
             this.TabDetailedSummary.UseVisualStyleBackColor = true;
+            // 
+            // DGV_ALL_SPIs_GridMode
+            // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DGV_ALL_SPIs_GridMode.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.DGV_ALL_SPIs_GridMode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DGV_ALL_SPIs_GridMode.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGV_ALL_SPIs_GridMode.Location = new System.Drawing.Point(6, 6);
+            this.DGV_ALL_SPIs_GridMode.Name = "DGV_ALL_SPIs_GridMode";
+            this.DGV_ALL_SPIs_GridMode.Size = new System.Drawing.Size(1309, 431);
+            this.DGV_ALL_SPIs_GridMode.TabIndex = 18;
             // 
             // groupBox2
             // 
@@ -342,7 +353,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.TxtSPISummaryCurrYear);
             this.groupBox1.Controls.Add(this.Default);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.TxtNoOfFilteredData);
             this.groupBox1.Controls.Add(this.BtnClearFilterAll);
@@ -360,6 +373,15 @@
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter and Sort";
+            // 
+            // TxtSPISummaryCurrYear
+            // 
+            this.TxtSPISummaryCurrYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSPISummaryCurrYear.Location = new System.Drawing.Point(757, 102);
+            this.TxtSPISummaryCurrYear.Name = "TxtSPISummaryCurrYear";
+            this.TxtSPISummaryCurrYear.ReadOnly = true;
+            this.TxtSPISummaryCurrYear.Size = new System.Drawing.Size(187, 24);
+            this.TxtSPISummaryCurrYear.TabIndex = 20;
             // 
             // Default
             // 
@@ -379,10 +401,20 @@
             this.Default.UseVisualStyleBackColor = false;
             this.Default.Click += new System.EventHandler(this.Default_Click);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(754, 81);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(91, 18);
+            this.label10.TabIndex = 19;
+            this.label10.Text = "Current Year";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(755, 71);
+            this.label8.Location = new System.Drawing.Point(754, 20);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(133, 18);
             this.label8.TabIndex = 22;
@@ -390,7 +422,7 @@
             // 
             // TxtNoOfFilteredData
             // 
-            this.TxtNoOfFilteredData.Location = new System.Drawing.Point(758, 96);
+            this.TxtNoOfFilteredData.Location = new System.Drawing.Point(757, 45);
             this.TxtNoOfFilteredData.Name = "TxtNoOfFilteredData";
             this.TxtNoOfFilteredData.Size = new System.Drawing.Size(187, 24);
             this.TxtNoOfFilteredData.TabIndex = 21;
@@ -546,171 +578,10 @@
             this.PanelPlotAllSummarySPI.Size = new System.Drawing.Size(1309, 442);
             this.PanelPlotAllSummarySPI.TabIndex = 6;
             // 
-            // DGV_SPI_Summary_ALL
-            // 
-            this.DGV_SPI_Summary_ALL.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.DGV_SPI_Summary_ALL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGV_SPI_Summary_ALL.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColID,
-            this.ColName,
-            this.ColSpiTypeAll,
-            this.ColSPIs_Progress,
-            this.ColJan,
-            this.ColFeb,
-            this.ColMar,
-            this.ColApr,
-            this.ColMay,
-            this.ColJun,
-            this.ColJul,
-            this.ColAug,
-            this.ColSep,
-            this.ColOct,
-            this.ColNov,
-            this.ColDec,
-            this.ColTotal});
-            this.DGV_SPI_Summary_ALL.Location = new System.Drawing.Point(6, 14);
-            this.DGV_SPI_Summary_ALL.Name = "DGV_SPI_Summary_ALL";
-            this.DGV_SPI_Summary_ALL.Size = new System.Drawing.Size(1309, 436);
-            this.DGV_SPI_Summary_ALL.TabIndex = 5;
-            // 
-            // ColID
-            // 
-            this.ColID.DataPropertyName = "ColID";
-            this.ColID.HeaderText = "ID";
-            this.ColID.Name = "ColID";
-            this.ColID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColID.Width = 40;
-            // 
-            // ColName
-            // 
-            this.ColName.DataPropertyName = "ColName";
-            this.ColName.HeaderText = "Name";
-            this.ColName.Name = "ColName";
-            this.ColName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColName.Width = 140;
-            // 
-            // ColSpiTypeAll
-            // 
-            this.ColSpiTypeAll.DataPropertyName = "ColSpiTypeAll";
-            this.ColSpiTypeAll.HeaderText = "Type";
-            this.ColSpiTypeAll.Name = "ColSpiTypeAll";
-            this.ColSpiTypeAll.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColSpiTypeAll.Width = 140;
-            // 
-            // ColSPIs_Progress
-            // 
-            this.ColSPIs_Progress.DataPropertyName = "ColSPIs_Progress";
-            this.ColSPIs_Progress.HeaderText = "SPIs Progress";
-            this.ColSPIs_Progress.Name = "ColSPIs_Progress";
-            this.ColSPIs_Progress.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColSPIs_Progress.Width = 70;
-            // 
-            // ColJan
-            // 
-            this.ColJan.DataPropertyName = "ColJan";
-            this.ColJan.HeaderText = "Jan";
-            this.ColJan.Name = "ColJan";
-            this.ColJan.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColJan.Width = 65;
-            // 
-            // ColFeb
-            // 
-            this.ColFeb.DataPropertyName = "ColFeb";
-            this.ColFeb.HeaderText = "Feb";
-            this.ColFeb.Name = "ColFeb";
-            this.ColFeb.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColFeb.Width = 65;
-            // 
-            // ColMar
-            // 
-            this.ColMar.DataPropertyName = "ColMar";
-            this.ColMar.HeaderText = "Mar";
-            this.ColMar.Name = "ColMar";
-            this.ColMar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColMar.Width = 65;
-            // 
-            // ColApr
-            // 
-            this.ColApr.DataPropertyName = "ColApr";
-            this.ColApr.HeaderText = "Apr";
-            this.ColApr.Name = "ColApr";
-            this.ColApr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColApr.Width = 65;
-            // 
-            // ColMay
-            // 
-            this.ColMay.DataPropertyName = "ColMay";
-            this.ColMay.HeaderText = "May";
-            this.ColMay.Name = "ColMay";
-            this.ColMay.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColMay.Width = 65;
-            // 
-            // ColJun
-            // 
-            this.ColJun.DataPropertyName = "ColJun";
-            this.ColJun.HeaderText = "Jun";
-            this.ColJun.Name = "ColJun";
-            this.ColJun.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColJun.Width = 65;
-            // 
-            // ColJul
-            // 
-            this.ColJul.DataPropertyName = "ColJul";
-            this.ColJul.HeaderText = "Jul";
-            this.ColJul.Name = "ColJul";
-            this.ColJul.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColJul.Width = 65;
-            // 
-            // ColAug
-            // 
-            this.ColAug.DataPropertyName = "ColAug";
-            this.ColAug.HeaderText = "Aug";
-            this.ColAug.Name = "ColAug";
-            this.ColAug.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColAug.Width = 65;
-            // 
-            // ColSep
-            // 
-            this.ColSep.DataPropertyName = "ColSep";
-            this.ColSep.HeaderText = "Sep";
-            this.ColSep.Name = "ColSep";
-            this.ColSep.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColSep.Width = 65;
-            // 
-            // ColOct
-            // 
-            this.ColOct.DataPropertyName = "ColOct";
-            this.ColOct.HeaderText = "Oct";
-            this.ColOct.Name = "ColOct";
-            this.ColOct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColOct.Width = 65;
-            // 
-            // ColNov
-            // 
-            this.ColNov.DataPropertyName = "ColNov";
-            this.ColNov.HeaderText = "Nov";
-            this.ColNov.Name = "ColNov";
-            this.ColNov.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColNov.Width = 65;
-            // 
-            // ColDec
-            // 
-            this.ColDec.DataPropertyName = "ColDec";
-            this.ColDec.HeaderText = "Dec";
-            this.ColDec.Name = "ColDec";
-            this.ColDec.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColDec.Width = 65;
-            // 
-            // ColTotal
-            // 
-            this.ColTotal.DataPropertyName = "ColTotal";
-            this.ColTotal.HeaderText = "Total";
-            this.ColTotal.Name = "ColTotal";
-            this.ColTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.ColTotal.Width = 75;
-            // 
             // TabSummarySPIs
             // 
+            this.TabSummarySPIs.Controls.Add(this.label11);
+            this.TabSummarySPIs.Controls.Add(this.TxtCentralCircleTextHazard);
             this.TabSummarySPIs.Controls.Add(this.BtnClearFilter);
             this.TabSummarySPIs.Controls.Add(this.label5);
             this.TabSummarySPIs.Controls.Add(this.ComboBoxSPISummaryValue);
@@ -837,7 +708,7 @@
             this.TxtSummarySIPTopHz.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtSummarySIPTopHz.Location = new System.Drawing.Point(861, 1147);
             this.TxtSummarySIPTopHz.Name = "TxtSummarySIPTopHz";
-            this.TxtSummarySIPTopHz.Size = new System.Drawing.Size(222, 24);
+            this.TxtSummarySIPTopHz.Size = new System.Drawing.Size(441, 24);
             this.TxtSummarySIPTopHz.TabIndex = 16;
             // 
             // BtnSaveHazardCircleSPI
@@ -850,9 +721,9 @@
             this.BtnSaveHazardCircleSPI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSaveHazardCircleSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSaveHazardCircleSPI.ForeColor = System.Drawing.Color.White;
-            this.BtnSaveHazardCircleSPI.Location = new System.Drawing.Point(859, 1248);
+            this.BtnSaveHazardCircleSPI.Location = new System.Drawing.Point(861, 1379);
             this.BtnSaveHazardCircleSPI.Name = "BtnSaveHazardCircleSPI";
-            this.BtnSaveHazardCircleSPI.Size = new System.Drawing.Size(246, 35);
+            this.BtnSaveHazardCircleSPI.Size = new System.Drawing.Size(441, 35);
             this.BtnSaveHazardCircleSPI.TabIndex = 15;
             this.BtnSaveHazardCircleSPI.Text = "Save";
             this.BtnSaveHazardCircleSPI.UseVisualStyleBackColor = false;
@@ -868,11 +739,11 @@
             this.BtnPlotHazardCircleSPI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnPlotHazardCircleSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnPlotHazardCircleSPI.ForeColor = System.Drawing.Color.White;
-            this.BtnPlotHazardCircleSPI.Location = new System.Drawing.Point(859, 1195);
+            this.BtnPlotHazardCircleSPI.Location = new System.Drawing.Point(861, 1326);
             this.BtnPlotHazardCircleSPI.Name = "BtnPlotHazardCircleSPI";
-            this.BtnPlotHazardCircleSPI.Size = new System.Drawing.Size(246, 35);
+            this.BtnPlotHazardCircleSPI.Size = new System.Drawing.Size(441, 35);
             this.BtnPlotHazardCircleSPI.TabIndex = 14;
-            this.BtnPlotHazardCircleSPI.Text = "High Hazard Catergory";
+            this.BtnPlotHazardCircleSPI.Text = "Hazard Catergory";
             this.BtnPlotHazardCircleSPI.UseVisualStyleBackColor = false;
             this.BtnPlotHazardCircleSPI.Click += new System.EventHandler(this.BtnPlotHazardCircleSPI_Click);
             // 
@@ -905,6 +776,8 @@
             // 
             // TabMonthwise
             // 
+            this.TabMonthwise.Controls.Add(this.TxtCentercircletextMonthhazard);
+            this.TabMonthwise.Controls.Add(this.label12);
             this.TabMonthwise.Controls.Add(this.TxtMonthHzNumber);
             this.TabMonthwise.Controls.Add(this.label3);
             this.TabMonthwise.Controls.Add(this.BtnSaveHighCatMonth);
@@ -950,7 +823,7 @@
             this.BtnSaveHighCatMonth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSaveHighCatMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSaveHighCatMonth.ForeColor = System.Drawing.Color.White;
-            this.BtnSaveHighCatMonth.Location = new System.Drawing.Point(1103, 758);
+            this.BtnSaveHighCatMonth.Location = new System.Drawing.Point(1103, 896);
             this.BtnSaveHighCatMonth.Name = "BtnSaveHighCatMonth";
             this.BtnSaveHighCatMonth.Size = new System.Drawing.Size(202, 45);
             this.BtnSaveHighCatMonth.TabIndex = 16;
@@ -968,11 +841,11 @@
             this.BtnHighHazardMonth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnHighHazardMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnHighHazardMonth.ForeColor = System.Drawing.Color.White;
-            this.BtnHighHazardMonth.Location = new System.Drawing.Point(1103, 692);
+            this.BtnHighHazardMonth.Location = new System.Drawing.Point(1103, 835);
             this.BtnHighHazardMonth.Name = "BtnHighHazardMonth";
             this.BtnHighHazardMonth.Size = new System.Drawing.Size(202, 45);
             this.BtnHighHazardMonth.TabIndex = 15;
-            this.BtnHighHazardMonth.Text = "High Hazard Month";
+            this.BtnHighHazardMonth.Text = "Hazard Month";
             this.BtnHighHazardMonth.UseVisualStyleBackColor = false;
             this.BtnHighHazardMonth.Click += new System.EventHandler(this.BtnHighHazardMonth_Click);
             // 
@@ -1083,6 +956,94 @@
             this.ColMonthTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.ColMonthTotal.Width = 150;
             // 
+            // exportToolStripMenuItem
+            // 
+            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectedRowsToDocxAsIndividualFileToolStripMenuItem,
+            this.selectedRowsToDocxAsMergedFileToolStripMenuItem});
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
+            this.exportToolStripMenuItem.Text = "Export";
+            // 
+            // selectedRowsToDocxAsIndividualFileToolStripMenuItem
+            // 
+            this.selectedRowsToDocxAsIndividualFileToolStripMenuItem.Name = "selectedRowsToDocxAsIndividualFileToolStripMenuItem";
+            this.selectedRowsToDocxAsIndividualFileToolStripMenuItem.Size = new System.Drawing.Size(336, 24);
+            this.selectedRowsToDocxAsIndividualFileToolStripMenuItem.Text = "Selected rows to docx as individual file";
+            this.selectedRowsToDocxAsIndividualFileToolStripMenuItem.Click += new System.EventHandler(this.selectedRowsToDocxAsIndividualFileToolStripMenuItem_Click_1);
+            // 
+            // selectedRowsToDocxAsMergedFileToolStripMenuItem
+            // 
+            this.selectedRowsToDocxAsMergedFileToolStripMenuItem.Name = "selectedRowsToDocxAsMergedFileToolStripMenuItem";
+            this.selectedRowsToDocxAsMergedFileToolStripMenuItem.Size = new System.Drawing.Size(336, 24);
+            this.selectedRowsToDocxAsMergedFileToolStripMenuItem.Text = "Selected rows to docx as merged file";
+            this.selectedRowsToDocxAsMergedFileToolStripMenuItem.Click += new System.EventHandler(this.selectedRowsToDocxAsMergedFileToolStripMenuItem_Click_1);
+            // 
+            // exportSettingToolStripMenuItem
+            // 
+            this.exportSettingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dashboardWithBackgroundToolStripMenuItem,
+            this.dashboardWithoutBackgroundToolStripMenuItem});
+            this.exportSettingToolStripMenuItem.Name = "exportSettingToolStripMenuItem";
+            this.exportSettingToolStripMenuItem.Size = new System.Drawing.Size(115, 24);
+            this.exportSettingToolStripMenuItem.Text = "Export Setting";
+            // 
+            // dashboardWithBackgroundToolStripMenuItem
+            // 
+            this.dashboardWithBackgroundToolStripMenuItem.Checked = true;
+            this.dashboardWithBackgroundToolStripMenuItem.CheckOnClick = true;
+            this.dashboardWithBackgroundToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.dashboardWithBackgroundToolStripMenuItem.Name = "dashboardWithBackgroundToolStripMenuItem";
+            this.dashboardWithBackgroundToolStripMenuItem.Size = new System.Drawing.Size(288, 24);
+            this.dashboardWithBackgroundToolStripMenuItem.Text = "Dashboard with Background";
+            this.dashboardWithBackgroundToolStripMenuItem.Click += new System.EventHandler(this.dashboardWithBackgroundToolStripMenuItem_Click);
+            // 
+            // dashboardWithoutBackgroundToolStripMenuItem
+            // 
+            this.dashboardWithoutBackgroundToolStripMenuItem.CheckOnClick = true;
+            this.dashboardWithoutBackgroundToolStripMenuItem.Name = "dashboardWithoutBackgroundToolStripMenuItem";
+            this.dashboardWithoutBackgroundToolStripMenuItem.Size = new System.Drawing.Size(288, 24);
+            this.dashboardWithoutBackgroundToolStripMenuItem.Text = "Dashboard without Background";
+            this.dashboardWithoutBackgroundToolStripMenuItem.Click += new System.EventHandler(this.dashboardWithoutBackgroundToolStripMenuItem_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(862, 1187);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(168, 18);
+            this.label11.TabIndex = 26;
+            this.label11.Text = "Enter Central Circle Text";
+            // 
+            // TxtCentralCircleTextHazard
+            // 
+            this.TxtCentralCircleTextHazard.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCentralCircleTextHazard.Location = new System.Drawing.Point(862, 1215);
+            this.TxtCentralCircleTextHazard.Multiline = true;
+            this.TxtCentralCircleTextHazard.Name = "TxtCentralCircleTextHazard";
+            this.TxtCentralCircleTextHazard.Size = new System.Drawing.Size(440, 98);
+            this.TxtCentralCircleTextHazard.TabIndex = 25;
+            // 
+            // TxtCentercircletextMonthhazard
+            // 
+            this.TxtCentercircletextMonthhazard.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCentercircletextMonthhazard.Location = new System.Drawing.Point(1103, 717);
+            this.TxtCentercircletextMonthhazard.Multiline = true;
+            this.TxtCentercircletextMonthhazard.Name = "TxtCentercircletextMonthhazard";
+            this.TxtCentercircletextMonthhazard.Size = new System.Drawing.Size(202, 101);
+            this.TxtCentercircletextMonthhazard.TabIndex = 20;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(1100, 684);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(160, 18);
+            this.label12.TabIndex = 19;
+            this.label12.Text = "Enter Central circle text";
+            // 
             // FrmSPISummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1100,11 +1061,11 @@
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.TabDetailedSummary.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_ALL_SPIs_GridMode)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGV_SPI_Summary_ALL)).EndInit();
             this.TabSummarySPIs.ResumeLayout(false);
             this.TabSummarySPIs.PerformLayout();
             this.TabMonthwise.ResumeLayout(false);
@@ -1131,7 +1092,6 @@
         private System.Windows.Forms.TabPage TabDetailedSummary;
         private System.Windows.Forms.TabPage TabSummarySPIs;
         private System.Windows.Forms.TabPage TabMonthwise;
-        public System.Windows.Forms.DataGridView DGV_SPI_Summary_ALL;
         private System.Windows.Forms.DataGridView DGV_Summary_Monthly;
         private System.Windows.Forms.Panel PanelPlotMonth;
         private System.Windows.Forms.Button BtnMnthAscend;
@@ -1181,23 +1141,19 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox TxtSelectedMonth;
         private System.Windows.Forms.Button BtnSelectedMonthView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColSpiTypeAll;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColSPIs_Progress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColJan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColFeb;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColMar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColApr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColMay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColJun;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColJul;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColAug;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColSep;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColOct;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColNov;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColDec;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColTotal;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DataGridView DGV_ALL_SPIs_GridMode;
+        private System.Windows.Forms.TextBox TxtSPISummaryCurrYear;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectedRowsToDocxAsIndividualFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectedRowsToDocxAsMergedFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportSettingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dashboardWithBackgroundToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dashboardWithoutBackgroundToolStripMenuItem;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox TxtCentralCircleTextHazard;
+        private System.Windows.Forms.TextBox TxtCentercircletextMonthhazard;
+        private System.Windows.Forms.Label label12;
     }
 }

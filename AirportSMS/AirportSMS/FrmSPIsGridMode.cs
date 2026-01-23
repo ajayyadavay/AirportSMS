@@ -19,8 +19,10 @@ namespace AirportSMS
 {
     public partial class FrmSPIsGridMode : Form
     {
+        SPISummaryGirdAndDocxClass sumgridocx = new SPISummaryGirdAndDocxClass();
+
         // 1. Create a DataTable to hold the data
-        DataTable dt = new DataTable();
+        DataTable dt1 = new DataTable();
         DataTable DT_Summary_All1 = new DataTable();
         DataTable dt_filter_monthly1 = new DataTable();
 
@@ -52,14 +54,15 @@ namespace AirportSMS
             else
             {
                 string projectfolder = fm.TxtProjectLocation.Text;
-                LoadALLSPIsJsonToGrid(projectfolder, DGV_ALL_SPIs_GridMode);
+                sumgridocx.LoadALLSPIsJsonToGrid(projectfolder, DGV_ALL_SPIs_GridMode, dt1);
             }
         }
 
 
         private void FrmSPIsGridMode_Load(object sender, EventArgs e)
         {
-            PopulateHeaderOfDt();
+            
+            dt1 = sumgridocx.PopulateHeaderOfDt();
 
             FrmMain fm = (FrmMain)Application.OpenForms["FrmMain"];
             if (fm.TxtCurrentYear.Text == "")
@@ -70,7 +73,6 @@ namespace AirportSMS
             LoadAllSPIDatainGridview();
 
             //load to combobox
-            //ComboBoxSummaryAllColName.Items.Add(DGV_SPI_Summary_ALL.Columns[0].Name);
             ComboBoxSummaryAllColName.Items.Add(DGV_ALL_SPIs_GridMode.Columns["Type"].Name);
             ComboBoxSummaryAllColName.Items.Add(DGV_ALL_SPIs_GridMode.Columns["SPI Name"].Name);
             ComboBoxSummaryAllColName.Items.Add(DGV_ALL_SPIs_GridMode.Columns["Progress %"].Name);
@@ -81,204 +83,7 @@ namespace AirportSMS
             fsmry.CopyDataFromDGVToDTWithoutColumName(DGV_ALL_SPIs_GridMode, DT_Summary_All1);//copies data in dt from dgv
         }
 
-        public void PopulateHeaderOfDt()
-        {
-            // 1. Initialize the DataTable
-            dt = new DataTable();
-
-            // --- Basic Information ---
-            dt.Columns.Add("SPI Name", typeof(string));
-            dt.Columns.Add("Type", typeof(string));
-            dt.Columns.Add("Description", typeof(string));
-           
-
-            // --- Boolean Flags (Will appear as Checkboxes) ---
-            dt.Columns.Add("Is Related To Objective", typeof(bool));
-            dt.Columns.Add("Objective", typeof(string));
-            dt.Columns.Add("Is Based On Date/Measure", typeof(bool));
-            dt.Columns.Add("Is Specific/Quantifiable", typeof(bool));
-            dt.Columns.Add("Is Realistic", typeof(bool));
-
-            // --- Operational Details ---
-            dt.Columns.Add("What it Manage", typeof(string));
-            dt.Columns.Add("Who it Inform", typeof(string));
-            dt.Columns.Add("Unit", typeof(string));
-            dt.Columns.Add("Calculation", typeof(string));
-            
-
-            // --- Responsibilities ---
-            dt.Columns.Add("Responsible for Collecting", typeof(string));
-            dt.Columns.Add("Responsible for Validating", typeof(string));
-            dt.Columns.Add("Responsible for Monitoring", typeof(string));
-            dt.Columns.Add("Responsible for Reporting", typeof(string));
-            dt.Columns.Add("Responsible for Acting", typeof(string));
-
-            // --- Data Collection Methods ---
-            dt.Columns.Add("Where data is Collected", typeof(string));
-            dt.Columns.Add("How data is Collected", typeof(string));
-
-            // --- Frequencies ---
-            dt.Columns.Add("Frequency of Reporting of SPI data", typeof(string));
-            dt.Columns.Add("Frequency of Collecting of SPI data", typeof(string));
-            dt.Columns.Add("Frequency of Monitoring of SPI data", typeof(string));
-            dt.Columns.Add("Frequency of Analysis of SPI data", typeof(string));
-
-            // --- Arrays (Comma Separated Strings) ---
-            dt.Columns.Add("Previous Year Observed", typeof(string));
-            dt.Columns.Add("Current Year Target %", typeof(string));
-            dt.Columns.Add("Current Year Target Value", typeof(string));
-            dt.Columns.Add("Current Year Observed", typeof(string));
-
-            dt.Columns.Add("Remarks", typeof(string));
-            // --- Scalar Values & Progress ---
-            dt.Columns.Add("Mean of Previous Observed", typeof(string));     // SPI_Value_Prev_Obs
-            dt.Columns.Add("Mean of Current Target", typeof(string));  // SPI_Value_Curr_Target
-            dt.Columns.Add("Mean of Current Observed", typeof(string));     // SPI_Value_Curr_obs
-            dt.Columns.Add("Progress %", typeof(string));
-
-            dt.Columns.Add("SPI ID", typeof(string));
-        }
-
-
-        public void LoadALLSPIsJsonToGrid(string Projectfolder, DataGridView dgv)
-        {
-            dt.Clear();
-
-           
-            try
-            {
-                string spiFolder = Path.Combine(Projectfolder, "SPIs");
-
-                // 3. Get all JSON files
-                string[] files = Directory.GetFiles(spiFolder, "*.json");
-
-                // Options to make JSON case-insensitive (safer)
-                var options = new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                };
-
-                foreach (string file in files)
-                {
-                    // 4. Read and Deserialize
-                    string jsonContent = File.ReadAllText(file);
-                    SPI spiData = JsonSerializer.Deserialize<SPI>(jsonContent, options);
-
-                    if (spiData != null)
-                    {
-                        // 5. Create a new row
-                        DataRow row = dt.NewRow();
-
-                        // Map simple fields
-                        // --- Basic Information ---
-                        row["SPI Name"] = spiData.SPI_Name;
-                        row["Type"] = spiData.SPI_Type;
-                        row["Description"] = spiData.SPI_Des;
-
-                        // --- Boolean Flags ---
-                        row["Is Related To Objective"] = spiData.IsRelatedToObjective;
-                        row["Objective"] = spiData.SPI_Related_Objective;
-                        row["Is Based On Date/Measure"] = spiData.IsBasedOnDateAndMeasurement;
-                        row["Is Specific/Quantifiable"] = spiData.IsSpecificQuantifiable;
-                        row["Is Realistic"] = spiData.IsRealistic;
-
-                        // --- Operational Details ---
-                        row["What it Manage"] = spiData.SPI_Manage;
-                        row["Who it Inform"] = spiData.SPI_Inform;
-                        row["Unit"] = spiData.SPI_Unit;
-                        row["Calculation"] = spiData.SPI_Calc;
-
-                        // --- Responsibilities ---
-                        row["Responsible for Collecting"] = spiData.SPI_Resp_for_Collecting;
-                        row["Responsible for Validating"] = spiData.SPI_Resp_for_Validating;
-                        row["Responsible for Monitoring"] = spiData.SPI_Resp_for_Monitoring;
-                        row["Responsible for Reporting"] = spiData.SPI_Resp_for_Reporting;
-                        row["Responsible for Acting"] = spiData.SPI_Resp_for_Acting;
-
-                        // --- Data Collection Methods ---
-                        row["Where data is Collected"] = spiData.SPI_Where_data_Collected;
-                        row["How data is Collected"] = spiData.SPI_How_data_Collected;
-
-                        // --- Frequencies ---
-                        row["Frequency of Reporting of SPI data"] = spiData.SPI_Frequency_of_Reporting;
-                        row["Frequency of Collecting of SPI data"] = spiData.SPI_Frequency_of_Collecting;
-                        row["Frequency of Monitoring of SPI data"] = spiData.SPI_Frequency_of_Monitoring;
-                        row["Frequency of Analysis of SPI data"] = spiData.SPI_Frequency_of_Analysis;
-
-                        // 6. FLATTEN ARRAYS: Convert double[] to comma-separated string
-                        // We use string.Join(", ", array) to combine them
-                        row["Previous Year Observed"] = spiData.PrevYearObserved != null
-                            ? string.Join(", ", spiData.PrevYearObserved)
-                            : "";
-
-                        row["Current Year Target %"] = spiData.CurrYearTargetPercent != null
-                            ? string.Join(", ", spiData.CurrYearTargetPercent)
-                            : "";
-
-                        row["Current Year Target Value"] = spiData.CurrYearTargetValue != null
-                            ? string.Join(", ", spiData.CurrYearTargetValue)
-                            : "";
-
-                        row["Current Year Observed"] = spiData.CurrYearObserved != null
-                            ? string.Join(", ", spiData.CurrYearObserved)
-                            : "";
-
-                        // --- Remarks & Scalars ---
-                        row["Remarks"] = spiData.SPI_Remarks;
-
-                        row["Mean of Previous Observed"] = spiData.SPI_Value_Prev_Obs;
-                        row["Mean of Current Target"] = spiData.SPI_Value_Curr_Target;
-                        row["Mean of Current Observed"] = spiData.SPI_Value_Curr_obs;
-                        row["Progress %"] = spiData.SPI_Progress_Percentage;
-
-                        row["SPI ID"] = spiData.SPI_Id;
-
-                        // Add row to table
-                        dt.Rows.Add(row);
-                    }
-                }
-
-                // 7. Bind to DataGridView
-                dgv.DataSource = dt;
-
-                /*// Optional: Auto-resize columns to fit the new data
-                dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-                //Read only columns
-                dgv.Columns["SPI ID"].ReadOnly = true;
-                dgv.Columns["Remarks"].ReadOnly = true;
-                dgv.Columns["Mean of Previous Observed"].ReadOnly = true;
-                dgv.Columns["Mean of Current Target"].ReadOnly = true;
-                dgv.Columns["Mean of Current Observed"].ReadOnly = true;
-                dgv.Columns["Progress %"].ReadOnly = true;
-
-                dgv.AllowUserToAddRows = false;
-                dgv.Columns["SPI Name"].Frozen = true;*/
-
-                DGV_SPI_Summary_GridMode_Settings(DGV_ALL_SPIs_GridMode);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading SPIs: {ex.Message}");
-            }
-        }
-
-        public void DGV_SPI_Summary_GridMode_Settings(DataGridView dgv)
-        {
-            // Optional: Auto-resize columns to fit the new data
-            dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-            //Read only columns
-            dgv.Columns["SPI ID"].ReadOnly = true;
-            dgv.Columns["Remarks"].ReadOnly = true;
-            dgv.Columns["Mean of Previous Observed"].ReadOnly = true;
-            dgv.Columns["Mean of Current Target"].ReadOnly = true;
-            dgv.Columns["Mean of Current Observed"].ReadOnly = true;
-            dgv.Columns["Progress %"].ReadOnly = true;
-
-            dgv.AllowUserToAddRows = false;
-            dgv.Columns["SPI Name"].Frozen = true;
-        }
-
-
+        
         public void ExportSPIs_DocXv5(DataGridView dgv, bool combineIntoOneFile)
         {
             string exportPath = string.Empty;
@@ -1240,7 +1045,7 @@ namespace AirportSMS
             string columnName = ComboBoxSummaryAllColName.SelectedItem.ToString();
 
             acls.LoadDistinctValuesFromDT(
-               dt,
+               dt1,
                 columnName,
                 ComboBoxFilterValueALL
             );
@@ -1331,7 +1136,7 @@ namespace AirportSMS
                 );
             }
 
-            DGV_SPI_Summary_GridMode_Settings(DGV_ALL_SPIs_GridMode);
+            sumgridocx.DGV_SPI_Summary_GridMode_Settings(DGV_ALL_SPIs_GridMode);
             TxtNoOfFilteredData.Text = "Total filtered rows = " + DGV_ALL_SPIs_GridMode.RowCount;
 
         }
@@ -1349,53 +1154,12 @@ namespace AirportSMS
                 acls.ClearFilter(DGV_ALL_SPIs_GridMode, DT_Summary_All1);
             }
 
-            DGV_SPI_Summary_GridMode_Settings(DGV_ALL_SPIs_GridMode);
+            sumgridocx.DGV_SPI_Summary_GridMode_Settings(DGV_ALL_SPIs_GridMode);
             TxtNoOfFilteredData.Text = "Total rows =" + DGV_ALL_SPIs_GridMode.RowCount;
            
         }
 
-        /// <summary>
-        /// Reads a comma-separated string (Year, Jan...Dec) from a DataGridView and 
-        /// returns an array of 12 doubles if the format is valid.
-        /// </summary>
-        public double[] ReadingCommaSparatedMonthlyDataFromDGV(DataGridView dgv, int rowIndex)
-        {
-            // 1. Basic safety checks
-            if (dgv.Rows.Count <= rowIndex || rowIndex < 0) return null;
-
-            var cell = dgv.Rows[rowIndex].Cells["Current Year Observed"];
-            if (cell.Value == null) return null;
-
-            // 2. Extract and Split the data
-            string rawData = cell.Value.ToString();
-            string[] parts = rawData.Split(',');
-
-            // 3. Ensure exactly 13 parts (1 Year + 12 Months)
-            if (parts.Length == 13)
-            {
-                double[] monthlyData = new double[13];
-
-                for (int i = 0; i < parts.Length; i++)
-                {
-                    // Try to parse starting from index 1 (January)
-                    if (double.TryParse(parts[i].Trim(), out double val))
-                    {
-                        // Store in array index 0 to 11
-                        monthlyData[i] = val;
-                    }
-                    else
-                    {
-                        // If any data is non-numeric, return null (do nothing)
-                        return null;
-                    }
-                }
-
-                return monthlyData; // Returns the double array variable
-            }
-
-            // 4. If length is not 13, do nothing and return null
-            return null;
-        }
+        
 
         public void ApplyMonthFilter_GridMode(List<int> selectedMonthCols)
         {
@@ -1414,7 +1178,7 @@ namespace AirportSMS
             for (int r = 0; r <= totalRowIndex; r++)
             { 
                 //double rowTotal = 0;
-                MonthData = ReadingCommaSparatedMonthlyDataFromDGV(DGV_ALL_SPIs_GridMode, r);
+                MonthData = sumgridocx.ReadingCommaSparatedMonthlyDataFromDGV(DGV_ALL_SPIs_GridMode, r, "Current Year Observed");
                 for(int c = 1; c<=12; c++)
                 {
                     if (!selectedMonthCols.Contains(c))

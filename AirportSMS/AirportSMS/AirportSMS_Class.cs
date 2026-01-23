@@ -596,6 +596,72 @@ namespace AirportSMS
             dgv.DataSource = workingDT;
         }
 
+        public void AddLastSumRow_DGV_GridMode(
+            DataGridView dgv,
+            string ColumnName,
+            bool IsCurrentTotal = true)
+        {
+            if (dgv.DataSource == null)
+                return;
+
+            // ALWAYS work on a COPY
+            DataTable workingDT;
+
+            if (dgv.DataSource is DataView dv)
+                workingDT = dv.ToTable();   // copy of filtered rows
+            else
+                workingDT = ((DataTable)dgv.DataSource).Copy();
+
+            DataRow totalRow = workingDT.NewRow();
+            totalRow[0] = workingDT.Rows.Count + 1;
+            totalRow[1] = "Monthly Total";
+
+            int CurrColIndex = workingDT.Columns.IndexOf(ColumnName);
+
+            SPISummaryGirdAndDocxClass fspgrdox = new SPISummaryGirdAndDocxClass();
+            string lastrowCurrTotal = fspgrdox.GetMonthlySPISummationString(workingDT, ColumnName);
+            totalRow[CurrColIndex] = lastrowCurrTotal;
+
+            if (IsCurrentTotal)
+            {
+              
+                double sum = lastrowCurrTotal.Split(',')           // 1. Split into array
+                                 .Skip(1)              // 2. Skip the 'Year'
+                                 .Select(s => {        // 3. Convert to double safely
+                                     double.TryParse(s.Trim(), out double val);
+                                     return val;
+                                 })
+                                 .Sum();               // 4. Add them all up
+                //double[] YrMonthData 
+                //double total = fspgrdox.SumSPITotal(YrMonthData);
+                //"Current Year Total"
+                totalRow["Current Year Total"] = sum;
+
+            }
+
+            
+
+            /*
+            for (int i = colStart; i <= colEnd; i++)
+            {
+                double sum = 0;
+
+                foreach (DataRow row in workingDT.Rows)
+                {
+                    if (row[i] != DBNull.Value)
+                        sum += Convert.ToDouble(row[i]);
+                }
+
+                totalRow[i] = sum;
+            }
+            */
+            workingDT.Rows.Add(totalRow);
+
+            // Rebind ONLY the copy
+            dgv.DataSource = null;
+            dgv.DataSource = workingDT;
+        }
+
         public void EnableDgvTextWrap(DataGridView dgv)
         {
             dgv.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
