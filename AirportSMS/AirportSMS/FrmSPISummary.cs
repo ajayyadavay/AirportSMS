@@ -476,6 +476,15 @@ namespace AirportSMS
                 
             };
 
+            if (TxtSPISummaryCurrYear.Text == "")
+            {
+                CurrentYear = 0;
+            }
+            else
+            {
+                CurrentYear = Convert.ToInt32(TxtSPISummaryCurrYear.Text);
+            }
+
             double maxval = Y_axis.Max();
 
             string Plot_Title = "Categories of Hazard of " + CurrentYear;
@@ -548,6 +557,16 @@ namespace AirportSMS
                 }
 
             };
+
+            if (TxtSPISummaryCurrYear.Text == "")
+            {
+                CurrentYear = 0;
+            }
+            else
+            {
+                CurrentYear = Convert.ToInt32(TxtSPISummaryCurrYear.Text);
+            }
+
 
             double maxval = Y_axis.Max();
 
@@ -732,6 +751,15 @@ namespace AirportSMS
 
             if (seriesConfig.Count == 0)
                 return;
+
+            if (TxtSPISummaryCurrYear.Text == "")
+            {
+                CurrentYear = 0;
+            }
+            else
+            {
+                CurrentYear = Convert.ToInt32(TxtSPISummaryCurrYear.Text);
+            }
 
             // ---- TITLES ----
             string Plot_Title = "Monthly SPI for " + CurrentYear;
@@ -1208,7 +1236,7 @@ namespace AirportSMS
             else
             {
                 tophz = Convert.ToInt32(TxtMonthHzNumber.Text);
-                if (tophz > DGV_Summary_Monthly.RowCount - 2)
+                if (tophz > DGV_Summary_Monthly.RowCount - 1)
                 {
                     MessageBox.Show("Enter valid number of top hazard");
                 }

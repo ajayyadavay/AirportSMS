@@ -435,41 +435,78 @@ namespace AirportSMS
                 Percent = Convert.ToDouble(cellValue);
 
             bool fillabove = Percent >= 0;
-           
 
+            //show series
+            bool ShowPrevious, ShowTarget, ShowCurrent;
+            if (previousSeriesToolStripMenuItem.Checked)
+                ShowPrevious = true;
+            else
+                ShowPrevious = false;
+
+            if (tagetSeriesToolStripMenuItem.Checked)
+                ShowTarget = true;
+            else
+                ShowTarget = false;
+
+            if (currentSeriesToolStripMenuItem.Checked)
+                ShowCurrent = true;
+            else
+                ShowCurrent = false;
+
+
+            //show label
+            bool ShowPreviousLbl, ShowTargetLbl, ShowCurrentLbl;
+            if (showPreviousLabelToolStripMenuItem.Checked)
+                ShowPreviousLbl = true;
+            else
+                ShowPreviousLbl = false;
+
+            if (showTargetLabelToolStripMenuItem.Checked)
+                ShowTargetLbl = true;
+            else
+                ShowTargetLbl = false;
+
+            if (showCurrentLabelToolStripMenuItem.Checked)
+                ShowCurrentLbl = true;
+            else
+                ShowCurrentLbl = false;
+
+            int curryear, prevyear;
+            curryear = Convert.ToInt32(dataGridView1.Rows[3].Cells[2].Value);
+            prevyear = Convert.ToInt32(dataGridView1.Rows[0].Cells[2].Value);
             // Define series
             //var seriesConfig = new Dictionary<string, SeriesStyleConfig>()
             var seriesConfig = new Dictionary<string, ChartStyleClass.SeriesStyleConfig>()
-            {
-                //["Prv_Year_obs"] = new SeriesStyleConfig
-                ["Prv_Year_obs"] = new ChartStyleClass.SeriesStyleConfig
                 {
-                    ShowSeries = true,
-                    ShowValueLabel = true,
-                    LegendText = "Observed value for previous year (Total = " + sum_prev + ")",
-                    ScottPlot_Chart_Type = "COLUMN",
-                    YValues = Y1_axis_prev_year.Take(12).ToArray()
-                },
-                //["Curr_Year_Target_val"] = new SeriesStyleConfig
-                ["Curr_Year_Target_val"] = new ChartStyleClass.SeriesStyleConfig
-                {
-                    ShowSeries = true,
-                    ShowValueLabel = true,
-                    LegendText = "Target value for current year (Total = " + sum_targ + ")",
-                    ScottPlot_Chart_Type = "AREA",
-                    AreaFillAbove = fillabove,
-                    YValues = Y1_axis_curr_year_target.Take(12).ToArray()
-                },
-                //["Curr_Year_obs"] = new SeriesStyleConfig
-                ["Curr_Year_obs"] = new ChartStyleClass.SeriesStyleConfig
-                {
-                    ShowSeries = true,
-                    ShowValueLabel = true,
-                    LegendText = "Observed value for current year (Total = " + sum_curr + ")",
-                    ScottPlot_Chart_Type = "LINE",
-                    YValues = Y1_axis_curr_year_obs.Take(12).ToArray()
-                }
-            };
+                    //["Prv_Year_obs"] = new SeriesStyleConfig
+                    ["Prv_Year_obs"] = new ChartStyleClass.SeriesStyleConfig
+                    {
+                        ShowSeries = ShowPrevious,
+                        ShowValueLabel = ShowPreviousLbl,
+                        LegendText = "Observed value for previous year (" + prevyear + ") " + "(Total = " + sum_prev + ")",
+                        ScottPlot_Chart_Type = "COLUMN",
+                        YValues = Y1_axis_prev_year.Take(12).ToArray()
+                    },
+                    //["Curr_Year_Target_val"] = new SeriesStyleConfig
+                    ["Curr_Year_Target_val"] = new ChartStyleClass.SeriesStyleConfig
+                    {
+                        ShowSeries = ShowTarget,
+                        ShowValueLabel = ShowTargetLbl,
+                        LegendText = "Target value for current year (" + curryear + ") " +"(Total = " + sum_targ + ")",
+                        ScottPlot_Chart_Type = "AREA",
+                        AreaFillAbove = fillabove,
+                        YValues = Y1_axis_curr_year_target.Take(12).ToArray()
+                    },
+                    //["Curr_Year_obs"] = new SeriesStyleConfig
+                    ["Curr_Year_obs"] = new ChartStyleClass.SeriesStyleConfig
+                    {
+                        ShowSeries = ShowCurrent,
+                        ShowValueLabel = ShowCurrentLbl,
+                        LegendText = "Observed value for current year (" + curryear + ") " +  "(Total = " + sum_curr + ")",
+                        ScottPlot_Chart_Type = "LINE",
+                        YValues = Y1_axis_curr_year_obs.Take(12).ToArray()
+                    }
+                };
 
             double maxval1 = Y1_axis_curr_year_target.Max();
             double maxval2 = Y1_axis_curr_year_obs.Max();
@@ -1613,6 +1650,36 @@ namespace AirportSMS
                 // Explicitly move the value to the textbox
                 TxtObjective.Text = ComboBoxObjective.Text;
             }
+        }
+
+        private void previousSeriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PlotGraph();
+        }
+
+        private void tagetSeriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PlotGraph();
+        }
+
+        private void currentSeriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PlotGraph();
+        }
+
+        private void showPreviousLabelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PlotGraph();
+        }
+
+        private void showTargetLabelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PlotGraph();
+        }
+
+        private void showCurrentLabelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PlotGraph();
         }
     }
 }

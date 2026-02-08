@@ -67,6 +67,7 @@
             this.TxtCurrentYear = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.BtnComboToTxtObj = new System.Windows.Forms.Button();
             this.TxtObjective = new System.Windows.Forms.TextBox();
             this.ComboBoxObjective = new System.Windows.Forms.ComboBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
@@ -74,6 +75,8 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.TxtRemarksSPI = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.TxtfAnalysisSPI = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
@@ -125,9 +128,15 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.PanelPlot = new System.Windows.Forms.Panel();
-            this.label30 = new System.Windows.Forms.Label();
-            this.TxtRemarksSPI = new System.Windows.Forms.TextBox();
-            this.BtnComboToTxtObj = new System.Windows.Forms.Button();
+            this.graphToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showSeriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.previousSeriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tagetSeriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.currentSeriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showPreviousLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showTargetLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showCurrentLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -312,7 +321,8 @@
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.sPIToolStripMenuItem});
+            this.sPIToolStripMenuItem,
+            this.graphToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1353, 28);
@@ -471,6 +481,24 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Selecting SPIs";
             // 
+            // BtnComboToTxtObj
+            // 
+            this.BtnComboToTxtObj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
+            this.BtnComboToTxtObj.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnComboToTxtObj.FlatAppearance.BorderSize = 0;
+            this.BtnComboToTxtObj.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
+            this.BtnComboToTxtObj.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
+            this.BtnComboToTxtObj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnComboToTxtObj.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnComboToTxtObj.ForeColor = System.Drawing.Color.White;
+            this.BtnComboToTxtObj.Location = new System.Drawing.Point(640, 36);
+            this.BtnComboToTxtObj.Name = "BtnComboToTxtObj";
+            this.BtnComboToTxtObj.Size = new System.Drawing.Size(38, 37);
+            this.BtnComboToTxtObj.TabIndex = 21;
+            this.BtnComboToTxtObj.Text = "↓";
+            this.BtnComboToTxtObj.UseVisualStyleBackColor = false;
+            this.BtnComboToTxtObj.Click += new System.EventHandler(this.BtnComboToTxtObj_Click);
+            // 
             // TxtObjective
             // 
             this.TxtObjective.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -595,6 +623,26 @@
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Defining SPIs";
+            // 
+            // TxtRemarksSPI
+            // 
+            this.TxtRemarksSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtRemarksSPI.Location = new System.Drawing.Point(926, 617);
+            this.TxtRemarksSPI.Multiline = true;
+            this.TxtRemarksSPI.Name = "TxtRemarksSPI";
+            this.TxtRemarksSPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtRemarksSPI.Size = new System.Drawing.Size(375, 69);
+            this.TxtRemarksSPI.TabIndex = 56;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(819, 644);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(69, 18);
+            this.label30.TabIndex = 55;
+            this.label30.Text = "Remarks";
             // 
             // label29
             // 
@@ -1099,43 +1147,90 @@
             this.PanelPlot.Size = new System.Drawing.Size(1330, 490);
             this.PanelPlot.TabIndex = 10;
             // 
-            // label30
+            // graphToolStripMenuItem
             // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(819, 644);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(69, 18);
-            this.label30.TabIndex = 55;
-            this.label30.Text = "Remarks";
+            this.graphToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showSeriesToolStripMenuItem,
+            this.labelToolStripMenuItem});
+            this.graphToolStripMenuItem.Name = "graphToolStripMenuItem";
+            this.graphToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
+            this.graphToolStripMenuItem.Text = "Graph";
             // 
-            // TxtRemarksSPI
+            // showSeriesToolStripMenuItem
             // 
-            this.TxtRemarksSPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtRemarksSPI.Location = new System.Drawing.Point(926, 617);
-            this.TxtRemarksSPI.Multiline = true;
-            this.TxtRemarksSPI.Name = "TxtRemarksSPI";
-            this.TxtRemarksSPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TxtRemarksSPI.Size = new System.Drawing.Size(375, 69);
-            this.TxtRemarksSPI.TabIndex = 56;
+            this.showSeriesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.previousSeriesToolStripMenuItem,
+            this.tagetSeriesToolStripMenuItem,
+            this.currentSeriesToolStripMenuItem});
+            this.showSeriesToolStripMenuItem.Name = "showSeriesToolStripMenuItem";
+            this.showSeriesToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.showSeriesToolStripMenuItem.Text = "Series";
             // 
-            // BtnComboToTxtObj
+            // previousSeriesToolStripMenuItem
             // 
-            this.BtnComboToTxtObj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(134)))), ((int)(((byte)(230)))));
-            this.BtnComboToTxtObj.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnComboToTxtObj.FlatAppearance.BorderSize = 0;
-            this.BtnComboToTxtObj.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(108)))), ((int)(((byte)(176)))));
-            this.BtnComboToTxtObj.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(164)))), ((int)(((byte)(242)))));
-            this.BtnComboToTxtObj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnComboToTxtObj.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnComboToTxtObj.ForeColor = System.Drawing.Color.White;
-            this.BtnComboToTxtObj.Location = new System.Drawing.Point(640, 36);
-            this.BtnComboToTxtObj.Name = "BtnComboToTxtObj";
-            this.BtnComboToTxtObj.Size = new System.Drawing.Size(38, 37);
-            this.BtnComboToTxtObj.TabIndex = 21;
-            this.BtnComboToTxtObj.Text = "↓";
-            this.BtnComboToTxtObj.UseVisualStyleBackColor = false;
-            this.BtnComboToTxtObj.Click += new System.EventHandler(this.BtnComboToTxtObj_Click);
+            this.previousSeriesToolStripMenuItem.Checked = true;
+            this.previousSeriesToolStripMenuItem.CheckOnClick = true;
+            this.previousSeriesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.previousSeriesToolStripMenuItem.Name = "previousSeriesToolStripMenuItem";
+            this.previousSeriesToolStripMenuItem.Size = new System.Drawing.Size(216, 24);
+            this.previousSeriesToolStripMenuItem.Text = "Show Previous Series";
+            this.previousSeriesToolStripMenuItem.Click += new System.EventHandler(this.previousSeriesToolStripMenuItem_Click);
+            // 
+            // tagetSeriesToolStripMenuItem
+            // 
+            this.tagetSeriesToolStripMenuItem.Checked = true;
+            this.tagetSeriesToolStripMenuItem.CheckOnClick = true;
+            this.tagetSeriesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tagetSeriesToolStripMenuItem.Name = "tagetSeriesToolStripMenuItem";
+            this.tagetSeriesToolStripMenuItem.Size = new System.Drawing.Size(216, 24);
+            this.tagetSeriesToolStripMenuItem.Text = "Show Taget Series";
+            this.tagetSeriesToolStripMenuItem.Click += new System.EventHandler(this.tagetSeriesToolStripMenuItem_Click);
+            // 
+            // currentSeriesToolStripMenuItem
+            // 
+            this.currentSeriesToolStripMenuItem.Checked = true;
+            this.currentSeriesToolStripMenuItem.CheckOnClick = true;
+            this.currentSeriesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.currentSeriesToolStripMenuItem.Name = "currentSeriesToolStripMenuItem";
+            this.currentSeriesToolStripMenuItem.Size = new System.Drawing.Size(216, 24);
+            this.currentSeriesToolStripMenuItem.Text = "Show Current Series";
+            this.currentSeriesToolStripMenuItem.Click += new System.EventHandler(this.currentSeriesToolStripMenuItem_Click);
+            // 
+            // labelToolStripMenuItem
+            // 
+            this.labelToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showPreviousLabelToolStripMenuItem,
+            this.showTargetLabelToolStripMenuItem,
+            this.showCurrentLabelToolStripMenuItem});
+            this.labelToolStripMenuItem.Name = "labelToolStripMenuItem";
+            this.labelToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.labelToolStripMenuItem.Text = "Label";
+            // 
+            // showPreviousLabelToolStripMenuItem
+            // 
+            this.showPreviousLabelToolStripMenuItem.CheckOnClick = true;
+            this.showPreviousLabelToolStripMenuItem.Name = "showPreviousLabelToolStripMenuItem";
+            this.showPreviousLabelToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.showPreviousLabelToolStripMenuItem.Text = "Show Previous Label";
+            this.showPreviousLabelToolStripMenuItem.Click += new System.EventHandler(this.showPreviousLabelToolStripMenuItem_Click);
+            // 
+            // showTargetLabelToolStripMenuItem
+            // 
+            this.showTargetLabelToolStripMenuItem.CheckOnClick = true;
+            this.showTargetLabelToolStripMenuItem.Name = "showTargetLabelToolStripMenuItem";
+            this.showTargetLabelToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.showTargetLabelToolStripMenuItem.Text = "Show Target Label";
+            this.showTargetLabelToolStripMenuItem.Click += new System.EventHandler(this.showTargetLabelToolStripMenuItem_Click);
+            // 
+            // showCurrentLabelToolStripMenuItem
+            // 
+            this.showCurrentLabelToolStripMenuItem.Checked = true;
+            this.showCurrentLabelToolStripMenuItem.CheckOnClick = true;
+            this.showCurrentLabelToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showCurrentLabelToolStripMenuItem.Name = "showCurrentLabelToolStripMenuItem";
+            this.showCurrentLabelToolStripMenuItem.Size = new System.Drawing.Size(213, 24);
+            this.showCurrentLabelToolStripMenuItem.Text = "Show Current Label";
+            this.showCurrentLabelToolStripMenuItem.Click += new System.EventHandler(this.showCurrentLabelToolStripMenuItem_Click);
             // 
             // FrmHazardMonitoring
             // 
@@ -1267,5 +1362,14 @@
         public System.Windows.Forms.TextBox TxtRemarksSPI;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Button BtnComboToTxtObj;
+        private System.Windows.Forms.ToolStripMenuItem graphToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showSeriesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem previousSeriesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tagetSeriesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem currentSeriesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem labelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showPreviousLabelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showTargetLabelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showCurrentLabelToolStripMenuItem;
     }
 }
