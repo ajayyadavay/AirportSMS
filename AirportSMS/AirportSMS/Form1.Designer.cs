@@ -63,6 +63,10 @@
             this.ComboBoxFilterSPI_Type = new System.Windows.Forms.ComboBox();
             this.TxtFilterSPIType = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.safetyDataCollectionSDCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.safetyRiskAssessmentSRAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createBowTieDiagramAnalysisBTAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -75,7 +79,8 @@
             this.fileToolStripMenuItem,
             this.dataToolStripMenuItem,
             this.spisToolStripMenuItem,
-            this.hazardToolStripMenuItem});
+            this.hazardToolStripMenuItem,
+            this.toolsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1353, 28);
@@ -248,7 +253,7 @@
             this.TxtProjectLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtProjectLocation.Location = new System.Drawing.Point(139, 29);
             this.TxtProjectLocation.Name = "TxtProjectLocation";
-            this.TxtProjectLocation.Size = new System.Drawing.Size(1060, 24);
+            this.TxtProjectLocation.Size = new System.Drawing.Size(1043, 24);
             this.TxtProjectLocation.TabIndex = 2;
             // 
             // flowLayoutPanel1
@@ -275,7 +280,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 31);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1227, 162);
+            this.groupBox1.Size = new System.Drawing.Size(1210, 162);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General";
@@ -287,7 +292,7 @@
             this.TxtCurrentYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCurrentYear.Location = new System.Drawing.Point(139, 127);
             this.TxtCurrentYear.Name = "TxtCurrentYear";
-            this.TxtCurrentYear.Size = new System.Drawing.Size(1060, 24);
+            this.TxtCurrentYear.Size = new System.Drawing.Size(1043, 24);
             this.TxtCurrentYear.TabIndex = 8;
             // 
             // label4
@@ -307,7 +312,7 @@
             this.TxtProjModified.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtProjModified.Location = new System.Drawing.Point(139, 97);
             this.TxtProjModified.Name = "TxtProjModified";
-            this.TxtProjModified.Size = new System.Drawing.Size(1060, 24);
+            this.TxtProjModified.Size = new System.Drawing.Size(1043, 24);
             this.TxtProjModified.TabIndex = 6;
             // 
             // label3
@@ -327,7 +332,7 @@
             this.TxtProjectName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtProjectName.Location = new System.Drawing.Point(139, 62);
             this.TxtProjectName.Name = "TxtProjectName";
-            this.TxtProjectName.Size = new System.Drawing.Size(1060, 24);
+            this.TxtProjectName.Size = new System.Drawing.Size(1043, 24);
             this.TxtProjectName.TabIndex = 4;
             // 
             // label2
@@ -350,7 +355,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(15, 199);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1224, 93);
+            this.groupBox2.Size = new System.Drawing.Size(1207, 93);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filter";
@@ -363,7 +368,7 @@
             this.ComboBoxFilterSPI_Type.FormattingEnabled = true;
             this.ComboBoxFilterSPI_Type.Location = new System.Drawing.Point(133, 26);
             this.ComboBoxFilterSPI_Type.Name = "ComboBoxFilterSPI_Type";
-            this.ComboBoxFilterSPI_Type.Size = new System.Drawing.Size(1060, 26);
+            this.ComboBoxFilterSPI_Type.Size = new System.Drawing.Size(1043, 26);
             this.ComboBoxFilterSPI_Type.TabIndex = 9;
             this.ComboBoxFilterSPI_Type.SelectedIndexChanged += new System.EventHandler(this.ComboBoxFilterSPI_Type_SelectedIndexChanged);
             // 
@@ -374,7 +379,7 @@
             this.TxtFilterSPIType.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtFilterSPIType.Location = new System.Drawing.Point(133, 58);
             this.TxtFilterSPIType.Name = "TxtFilterSPIType";
-            this.TxtFilterSPIType.Size = new System.Drawing.Size(1060, 24);
+            this.TxtFilterSPIType.Size = new System.Drawing.Size(1043, 24);
             this.TxtFilterSPIType.TabIndex = 2;
             // 
             // label6
@@ -386,6 +391,37 @@
             this.label6.Size = new System.Drawing.Size(108, 18);
             this.label6.TabIndex = 1;
             this.label6.Text = "SelectSPI Type";
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.safetyDataCollectionSDCToolStripMenuItem,
+            this.safetyRiskAssessmentSRAToolStripMenuItem,
+            this.createBowTieDiagramAnalysisBTAToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(56, 24);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // safetyDataCollectionSDCToolStripMenuItem
+            // 
+            this.safetyDataCollectionSDCToolStripMenuItem.Name = "safetyDataCollectionSDCToolStripMenuItem";
+            this.safetyDataCollectionSDCToolStripMenuItem.Size = new System.Drawing.Size(336, 24);
+            this.safetyDataCollectionSDCToolStripMenuItem.Text = "Safety Data Collection (SDC)";
+            this.safetyDataCollectionSDCToolStripMenuItem.Click += new System.EventHandler(this.safetyDataCollectionSDCToolStripMenuItem_Click);
+            // 
+            // safetyRiskAssessmentSRAToolStripMenuItem
+            // 
+            this.safetyRiskAssessmentSRAToolStripMenuItem.Name = "safetyRiskAssessmentSRAToolStripMenuItem";
+            this.safetyRiskAssessmentSRAToolStripMenuItem.Size = new System.Drawing.Size(336, 24);
+            this.safetyRiskAssessmentSRAToolStripMenuItem.Text = "Safety Risk Assessment (SRA)";
+            this.safetyRiskAssessmentSRAToolStripMenuItem.Click += new System.EventHandler(this.safetyRiskAssessmentSRAToolStripMenuItem_Click);
+            // 
+            // createBowTieDiagramAnalysisBTAToolStripMenuItem
+            // 
+            this.createBowTieDiagramAnalysisBTAToolStripMenuItem.Name = "createBowTieDiagramAnalysisBTAToolStripMenuItem";
+            this.createBowTieDiagramAnalysisBTAToolStripMenuItem.Size = new System.Drawing.Size(289, 24);
+            this.createBowTieDiagramAnalysisBTAToolStripMenuItem.Text = "Bow Tie Diagram Analysis (BTA)";
+            this.createBowTieDiagramAnalysisBTAToolStripMenuItem.Click += new System.EventHandler(this.createBowTieDiagramAnalysisBTAToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -450,6 +486,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem objectiveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sPIsInGridModeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem safetyDataCollectionSDCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem safetyRiskAssessmentSRAToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createBowTieDiagramAnalysisBTAToolStripMenuItem;
     }
 }
 

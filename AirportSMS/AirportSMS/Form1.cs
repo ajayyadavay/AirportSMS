@@ -493,5 +493,39 @@ namespace AirportSMS
                 fsgm.Show();
             }
         }
+
+        private void LaunchUrl(string url)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                // Replace MessageBox with Console.WriteLine if this is a Console App
+                System.Windows.Forms.MessageBox.Show("Unable to open link: " + ex.Message);
+            }
+        }
+        private void safetyDataCollectionSDCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string url = "https://safetydatacollection.netlify.app/";
+            LaunchUrl(url);
+        }
+
+        private void safetyRiskAssessmentSRAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string url = "https://safetyriskassessment.netlify.app/";
+            LaunchUrl(url);
+        }
+
+        private void createBowTieDiagramAnalysisBTAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string url = "https://bowtiediagram.netlify.app/";
+            LaunchUrl(url);
+        }
     }
 }
